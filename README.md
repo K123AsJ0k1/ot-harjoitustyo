@@ -1,4 +1,9 @@
-# Tekstiotsikko
+# Ohjelmistotekniikka, harjoitustyö
 
-README tiedoston otsikko ja **lihavoitu osuus** ja *kurssiivinen osuus*
+# Tehtävät
+
+Viikko1
+
+[gitlog.txt](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+[komentorivi.txt](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
