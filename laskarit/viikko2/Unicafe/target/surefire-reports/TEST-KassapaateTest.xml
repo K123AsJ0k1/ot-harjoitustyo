@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="com.mycompany.unicafe.MaksukorttiTest" time="0.003" errors="0" skipped="0">
+<testsuite tests="19" failures="0" name="KassapaateTest" time="0.001" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.6+10"/>
@@ -65,11 +65,23 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="luotuKorttiOlemassa" time="0.003"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="otaRahaMetodiToimiiOikein" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="rahanLaittaminenKasvattaaKortinSaldoa" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="rahanOttaminenVahentaaSaldoa" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="rahanOttaminenEiSaaKortinSaldoaNegatiiviseksi" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="metoditSaldoToimiiOikein" time="0"/>
-  <testcase classname="com.mycompany.unicafe.MaksukorttiTest" name="kortinSaldoOnOikein" time="0"/>
+  <testcase classname="KassapaateTest" name="josKortillaSyodaanMaukkaastiNiinKassanRahamaaraEiMuutu" time="0"/>
+  <testcase classname="KassapaateTest" name="kassapaateKonstruktoriOnOikea" time="0"/>
+  <testcase classname="KassapaateTest" name="korttiOstoToimiiKunSyodaanEdullisesti" time="0"/>
+  <testcase classname="KassapaateTest" name="josKortillaEiOleRahaaKunSyodaanMaukkaasti" time="0"/>
+  <testcase classname="KassapaateTest" name="josKortillaSyodaanEdullisestiNiinKassanRahamaaraEiMuutu" time="0"/>
+  <testcase classname="KassapaateTest" name="lounaidenMaaraKasvaaKunKortillaSyodaanMaukkaasti" time="0"/>
+  <testcase classname="KassapaateTest" name="kassapaateKasvaaJosSyoMakeasti" time="0"/>
+  <testcase classname="KassapaateTest" name="kassapaateenAntamaVaihtoRahaOnOikeaJosSyoMaukkaasti" time="0"/>
+  <testcase classname="KassapaateTest" name="kortilleEiVoiLadataNegatiivisiaSummia" time="0"/>
+  <testcase classname="KassapaateTest" name="kassapaateenAntamaVaihtoRahaOnOikeaJosSyoEdullisesti" time="0"/>
+  <testcase classname="KassapaateTest" name="kassapaateKasvaaJosSyoEdullisesti" time="0.001"/>
+  <testcase classname="KassapaateTest" name="korttiOstoToimiiKunSyodaanMaukkaasti" time="0"/>
+  <testcase classname="KassapaateTest" name="josYritetaanSyodaMaukkaastiMuttaRahaaEiOle" time="0"/>
+  <testcase classname="KassapaateTest" name="josYritetaanSyodaEdullisestiMuttaRahaaEiOle" time="0"/>
+  <testcase classname="KassapaateTest" name="kortilleLatausToimii" time="0"/>
+  <testcase classname="KassapaateTest" name="lounaidenMaaraKasvaaKunKortillaSyodaanEdullisesti" time="0"/>
+  <testcase classname="KassapaateTest" name="lounaidenMaaraKasvaaJosSyoEdullisesti" time="0"/>
+  <testcase classname="KassapaateTest" name="lounaidenMaaraKasvaaJosSyoMaukkaasti" time="0"/>
+  <testcase classname="KassapaateTest" name="josKortillaEiOleRahaaKunSyodaanEdullisesti" time="0"/>
 </testsuite>
