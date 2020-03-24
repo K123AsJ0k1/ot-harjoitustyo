@@ -2,7 +2,7 @@
 
 # Sovelluksen tarkoitus 
 
-Sovelluksen avulla käyttäjä pystyy generoimaan fiktiivisten henkilöiden profiileja tarkasteltavaksi tiedostoksi. Sovellusta pystyy käyttämään useampi rekiseröitynyt käyttäjä, joilla kaikilla on oma yksilöllinen ominaisuus- ja profiililistansa.
+Sovelluksen avulla käyttäjä pystyy generoimaan fiktiivisten henkilöiden profiileja tarkasteltavaksi tiedostoksi. Sovellusta pystyy käyttämään useampi rekistiröitynyt käyttäjä, joilla kaikilla on oma yksilöllinen ominaisuus ja profiili listansa.
 
 # Käyttäjät
 
