@@ -1,14 +1,14 @@
-#Vaatimusmäärittely
+# Vaatimusmäärittely
 
-#Sovelluksen tarkoitus 
+# Sovelluksen tarkoitus 
 
 Sovelluksen avulla käyttäjä pystyy generoimaan fiktiivisten henkilöiden profiileja tarkasteltavaksi tiedostoksi.Sovellusta voi tavallisesti käyttää ainoastana sen omistava henkilö, mutta on mahdollista tehdä siitä useamman käyttäjän hyödyntämä, missä he voivat hakea tietokannasta muiden generoimia profiileja tai luoda uusia profiileja muiden laittamien ominaisuuksien avulla.
 
-#Käyttäjät
+# Käyttäjät
 
 Sovelluksella on kaksi käyttäjäroolia, jotka ovat normaali käyttäjä ja pääkäyttäjä, jossa tavallisessa sovelluksessa käyttäjä on pääkäyttäjä. Muokatussa sovelluksessa taas sovellusta ylläpitävät ovat pääkäyttäjät ja sovellusta käyttävät ovat normaali käyttäjiä.   
 
-#Perusversion tarjoama toiminnallisuus
+# Perusversion tarjoama toiminnallisuus
 
 **Sovelluksen asetuksien asetus**
 
@@ -73,7 +73,7 @@ Sovelluksella on kaksi käyttäjäroolia, jotka ovat normaali käyttäjä ja pä
   *pääkäyttäjä pystyy hallitsemaan olemassa olevia pääkäyttäjiä
   *pääkäyttäjä pystyy siirtymään takaisin päävalikkoon
 
-#Jatkokehitysideoita
+# Jatkokehitysideoita
 
 Sovelluksen perusversiota täydennettään resurssien vapautuessa, esimerkiksi seuraavilla toiminnalisuuksilla
 
