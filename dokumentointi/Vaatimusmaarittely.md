@@ -20,21 +20,21 @@ Sovelluksessa on alussa ainoastaan yksi käyttäjärooli, joka on normaali käyt
   
 **Sovelluksen pääkäyttöliittymä**
 
--käyttäjä näkee päävalikkossa olevan ominaisuushallinta,profiilihallinta ja uloskirjautuminen valinnat
+- käyttäjä näkee päävalikkossa olevan ominaisuushallinta,profiilihallinta ja uloskirjautuminen valinnat
  - ominaisuushallinta siirtää käyttäjän uuteen valikkoon
  - profiilihallinta siirtää käyttäjän uuteen valikkoon
  - uloskirjautuminen palauttaa käyttäjän takaisin kirjautumiskäyttöliittymään
  
-**Sovelluksen ominaisuushallintakäyttöliittymä**
+**Sovelluksen ominaisuushallinta käyttöliittymä**
 
 - käyttäjä näkee valikossa lisää ominaisuus,poista ominaisuus ja siirry takaisin päävalikkoon
  - lisää ominaisuus mahdollistaa uuden fiktiivisen ominaisuuden lisäämisen tietokantaan
  - poista ominaisuus mahdollistaa käyttäjän luomien fiktiivisten ominaisuuksien poistamisen tietokannasta
  - siirry takaisin siirtää käyttäjän takaisin pääkäyttöliittymään
 
-**Sovelluksen profiilihallintakäyttöliittymä**
+**Sovelluksen profiilihallinta käyttöliittymä**
 
-- käyttää näkee valikossa luo profiili, luo tiedosto profiilista, resetoi nykyinen profiili ja siirry takaisin päävalikkoon
+- käyttäjä näkee valikossa luo profiili, luo tiedosto profiilista, resetoi nykyinen profiili ja siirry takaisin päävalikkoon
  - luo profiili mahdollistaa tietokannassa olevien ominaisuuksien käyttämisen profiilin luomisessa
  - luo tiedosto profiilista mahdollistaa valmiista profiilista generoidun tiedoston luomisen
  - resetoi nykyinen profiili mahdollistaa luodun profiilin tyhjentämisen 
@@ -50,6 +50,8 @@ Perusversion valmistumisen jälkeen sitä tullaan täydentämään ajan salliess
 - tietokannassa olevien ominaisuuksien muokkaus
 - tietokannassa olevien profiilien muokkaus
 - muiden käyttäjien omnaisuuksien ja profiilien tarkastelu
+- käyttäjän profiilin monipuolisuus ja muokkaaminen
+- käyttäjä tiimit ja niihin liittyvän jakamisominaisuudet
 - pääkäyttäjän luominen
 - käyttäjien salasana tarkastuksen ja tallennuksen luominen
 - sovelluksen käyttäminen yksityisessä tilassa ilman käyttäjätunnusten kysymistä
