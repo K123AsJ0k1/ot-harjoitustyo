@@ -2,97 +2,64 @@
 
 # Sovelluksen tarkoitus 
 
-Sovelluksen avulla käyttäjä pystyy generoimaan fiktiivisten henkilöiden profiileja tarkasteltavaksi tiedostoksi.Sovellusta voi tavallisesti käyttää ainoastana sen omistava henkilö, mutta on mahdollista tehdä siitä useamman käyttäjän hyödyntämä, missä he voivat hakea tietokannasta muiden generoimia profiileja tai luoda uusia profiileja muiden laittamien ominaisuuksien avulla.
+Sovelluksen avulla käyttäjä pystyy generoimaan fiktiivisten henkilöiden profiileja tarkasteltavaksi tiedostoksi. Sovellusta pystyy käyttämään useampi rekiseröitynyt käyttäjä, joilla kaikilla on oma yksilöllinen ominaisuus- ja profiililistansa.
 
 # Käyttäjät
 
-Sovelluksella on kaksi käyttäjäroolia, jotka ovat normaali käyttäjä ja pääkäyttäjä, jossa tavallisessa sovelluksessa käyttäjä on pääkäyttäjä. Muokatussa sovelluksessa taas sovellusta ylläpitävät ovat pääkäyttäjät ja sovellusta käyttävät ovat normaali käyttäjiä.   
+Sovelluksessa on alussa ainoastaan yksi käyttäjärooli, joka on normaali käyttäjä. Myöhemmässä vaiheessa, sovellukseen saatetaan lisätä suuremmilla oikeuksilla varustettu pääkäyttäjä. 
 
 # Perusversion tarjoama toiminnallisuus
 
-**Sovelluksen asetuksien asetus**
+**Sovelluksen kirjautumiskäyttöliittymä**
 
-*Sovelluksen käyttäjä on valittava yksityinen tai julkinen käyttötarkoitus
- 
- *Yksityinen käyttötarkoitus poistaa tarpeen kysyä käyttäjätunnuksia, vieden käyttäjän aina pääohjelmaan sen asettamisen jälkeen
-
- *Julkinen käyttötarkoitus saa sovelluksen aina kysymään käyttäjätunnuksia ennen pääohjelmaan pääsemistä
-
-**Sovelluksen yksityisen tilan käyttäminen**
- *Käyttäjä näkee näkee päävalikko sivun, josta voidaan valita ominaisuushallinta, profiilihallinta ja sulje ohjelma
-   *Ominaisuushallinta ja profiilihallinta vievät uusiin valikkoihin, kun taas sulje ohjelma saa sovelluksen sulkeutumaan
+-käyttäjä pystyy luomaan uuden käyttäjä tunnuksen järjestelmään
+ -tunnuksen täytyy olla uniikki ja pituudeltaan vähintään 5 merkkiä
+- käyttäjä voi kirjautua järjestelmään 
+  -käyttäjän on kirjautuakseen syötettävä olemassa oleva käyttäjätunnus kirjautumislomakkeeseen
+  -jos käyttäjätunnusta ei ole olemassa, niin järjestelemä ilmoittaa tästä
   
-**Ominaisuushallinnan käyttäminen**
-  *käyttäjä pystyy lisäämään itse tai generoimaan uusia fiktiivisiä ominaisuuksia
-  *käyttäjä pystyy poistamaan jo luotuja fiktiivisiä ominaisuuksia
-  *käyttäjä pystyy näkemään lisäämän ominaisuudet
-  *käyttäjä pystyy siirtymään takaisin päävalikkoon
+**Sovelluksen pääkäyttöliittymä**
 
-**Profiilihallinnan käyttäminen**
-  *käyttäjä pystyy luomaan itse tai generoimaan uuden profiilin ja esikatselemaan sitä
-  *käyttäjä pystyy esikatselemaan olemassa olevien profiileja
-  *käyttäjä pystyy luomaan profiilista erillisen tiedoston
-  *käyttäjä pystyy poistamana jo olemassa olevan profiilin
-  *käyttäjä pystyy siirtymään takaisin päävalikkoon
-
-**Sovelluksen julkisen tilan käyttäminen**
-
-*Sovelluksen julkisen tilan käytön kirjautuminen*
-
-*uudet käyttäjät pystyvät luomaan uuden käyttäjätunnuksen
+-käyttäjä näkee päävalikkossa olevan ominaisuushallinta,profiilihallinta ja uloskirjautuminen valinnat
+ -ominaisuushallinta siirtää käyttäjän uuteen valikkoon
+ -profiilihallinta siirtää käyttäjän uuteen valikkoon
+ -uloskirjautuminen palauttaa käyttäjän takaisin kirjautumiskäyttöliittymään
  
- *käyttäjätunnus on oltava uniikki ja sen pituus on oltava vähintään 3 merkkiä
- *käyttäjätunnukselle annettu salasana on oltava uniikki ja sen on oltava vähintään 6 merkkiä pitkä
+**Sovelluksen ominaisuushallintakäyttöliittymä**
 
-*olemassa olevat käyttäjät pystyvät kirjautumaan järjestelemään
- 
- *käyttäjän on täytettävä kirjautumislomake oikealla käyttäjällä ja oikealla salasanalla
- *annettujen tietojen ollessa virheellisiä tai olemattomia, järjestelmä viestittää käyttäjää tästä
+-käyttäjä näkee valikossa lisää ominaisuus,poista ominaisuus ja siirry takaisin päävalikkoon
+ -lisää ominaisuus mahdollistaa uuden fiktiivisen ominaisuuden lisäämisen tietokantaan
+ -poista ominaisuus mahdollistaa käyttäjän luomien fiktiivisten ominaisuuksien poistamisen tietokannasta
+ -siirry takaisin siirtää käyttäjän takaisin pääkäyttöliittymään
 
-**Kirjautumisen jälkeen**
- *käyttäjä näkee päävalikon sivun, josta voidaan valita ominaisuushallinta,profiilihallinta,ylläpito asetukset ja kirjaudu ulos
-   *Ominaisuushallinta, profiilihallinta ja ylläpito asetukset vievät uusiin valikkoihin, kun kirjaudu ulos saa käyttäjän palaamaan takaisin kirjautumissivulle
-   *Ainoastaan pääkäyttäjät pääsevät ylläpito asetusten antamaan valikkoon käsiksi
+**Sovelluksen profiilihallintakäyttöliittymä**
 
-**Ominaisuushallinnan käyttäminen**
-  *käyttäjä pystyy lisäämään itse tai generoimaan uusia fiktiivisiä ominaisuuksia
-  *käyttäjä pystyy poistamaan luomansa fiktiiviset ominaisuudet
-  *käyttäjä pystyy katselemaan lisäämiänsä ominaisuuksia
-  *käyttäjä pystyy siirtymään takaisin päävalikkoon
-
-**Profiilihallinnan käyttäminen**
-  *käyttäjä pystyy luomaan itse tai generoimaan uuden profiilin
-  *käyttäjä pystyy poistamana luomansa profiilin
-  *käyttäjä pystyy esikatselemaan omia profiileja
-  *käyttäjä pystyy luomaan profiilista erilliset tiedoston itselleen
-  *käyttäjä pystyy siirtymään takaisin päävalikkoon
-
-**Ylläpito asetusten käyttäminen**
-  *pääkäyttäjä pystyy vaihtamaan pääkäyttäjän turvakoodin
-  *pääkäyttäjä pystyy tyhjentämään tietokannat
-  *pääkäyttäjä pystyy hallitsemaan olemassa olevia pääkäyttäjiä
-  *pääkäyttäjä pystyy siirtymään takaisin päävalikkoon
-
+-käyttää näkee valikossa luo profiili, luo tiedosto profiilista, resetoi nykyinen profiili ja siirry takaisin päävalikkoon
+ -luo profiili mahdollistaa tietokannassa olevien ominaisuuksien käyttämisen profiilin luomisessa
+ -luo tiedosto profiilista mahdollistaa valmiista profiilista generoidun tiedoston luomisen
+ -resetoi nykyinen profiili mahdollistaa luodun profiilin tyhjentämisen 
+ -siirry takaisin siirtää käyttäjän takaisin pääkäyttöliittymään
+   
 # Jatkokehitysideoita
 
-Sovelluksen perusversiota täydennettään resurssien vapautuessa, esimerkiksi seuraavilla toiminnalisuuksilla
+Perusversion valmistumisen jälkeen sitä tullaan täydentämään ajan salliessa esimerkiksi seuraavilla toiminnallisuuksilla
 
-*Ominaisuuksien muokkaaminen
-*Ominisuus luokkien monipuolistaminen
-*Muiden käyttäjien laittamien ominaisuuksien tarkastelu
-*Ominaisuuksien järjestys paremmuusjärjestykseen
-*Muiden käyttäjien ominaisuuksien hyödyntäminen uusien ominaisuuksien luomiseen
-*Kaikkien ominaisuuksien tarkastelu ja filteröinti
-*Profiilien muokkaaminen
-*Profiilien monipuolistaminen
-*Muiden käyttäjien laittamien profiilien tarkastelu
-*Muiden käyttäjien laittamien profiilien hyödyntäminen uusien profiilien luomisessa
-*Profiilien järjestäminen paremmusjärjestykseen
-*Muiden ihmisten profiilien tulostaminen tiedostoksi
-*Pääkäyttäjien tietokanta työkalujen parantaminen
-*Pääkäyttäjien käyttäjä työkalujen parantaminen
-*Pääkäyttäjien ominaisuus työkalujen parantaminen
-*Pääkäyttäjien profiili työkalujen parantaminen
+-tietokannassa olevien ominaisuuksien tarkastelu
+-profiilien tallentaminen tietokantaan
+-tietokannassa olevien profiilien tarkastaminen
+-tietokannassa olevien ominaisuuksien muokkaus
+-tietokannassa olevien profiilien muokkaus
+-muiden käyttäjien omnaisuuksien ja profiilien tarkastelu
+-pääkäyttäjän luominen
+-käyttäjien salasana tarkastuksen ja tallennuksen luominen
+-sovelluksen käyttäminen yksityisessä tilassa ilman käyttäjätunnusten kysymistä
+-pääkäyttäjien sovelluksen ylläpito työkalut
+-olemassa olevien käyttäjä tunnusten ja niihin liittyvien ominaisuuksien ja profiilien poisto
+-ominaisuuksien ja profiilien paremmusjärjestys
+-muiden käyttäjien ominaisuuksien ja profiilien hyödyntäminen
+-uusien ominaisuuksien ja profiilien luominen satunnaisuudella 
+
+
 
 
   
