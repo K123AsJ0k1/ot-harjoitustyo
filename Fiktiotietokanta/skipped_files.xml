@@ -1,11 +1,12 @@
 
 <?xml version="1.0"?>
 
-<!DOCTYPE suppressions PUBLIC
-    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
-    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<!DOCTYPE suppressions SYSTEM "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd" PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN">
 
-<suppressions>
-    <suppress files="Fiktiotietokanta.ui.Main.java" checks="[a-zA-Z0-9]*"/>
-    <suppress files="Fiktiotietokanta.ui.UserInterface.java" checks="[a-zA-Z0-9]*"/>
+-<suppressions>
+
+<suppress checks="[a-zA-Z0-9]*" files="Fiktiotietokanta.ui.Main.java"/>
+
+<suppress checks="[a-zA-Z0-9]*" files="Fiktiotietokanta.ui.UserInterface.java"/>
+
 </suppressions>
