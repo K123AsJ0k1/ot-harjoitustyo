@@ -1,6 +1,6 @@
 # Fiktiotietokanta
 
-Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia ominaisuuksia ja luoda niiden avulla fiktiivisiä profiili tiedostoja.Sovellusta on mahdollista käyttää useampi rekisteroitynyt käyttäjä, joilla kaikilla on oma yksilöllinen ominaisuus- ja profiililista. 
+Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia ominaisuuksia ja luoda niiden avulla fiktiivisiä profiili tiedostoja. Sovellusta on mahdollista käyttää useampi rekisteroitynyt käyttäjä, joilla kaikilla on oma yksilöllinen ominaisuus- ja profiililista. 
 
 # Dokumentaatio
 [Käyttöohje]
