@@ -17,12 +17,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import Fiktiotietokanta.domain.UsernameDatabase;
 
 /**
  *
  * @author niila
  */
 public class UserInterface extends Application {
+
+    private UsernameDatabase username_Database;
+
+    @Override
+    public void init() throws Exception {
+        username_Database = new UsernameDatabase();
+    }
+    
+    public void reset() throws Exception {
+        username_Database.removeDatabase();
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -130,7 +142,7 @@ public class UserInterface extends Application {
         layout_ProfileMenu.add(createProfile_ProfileMenu, 0, 1);
         layout_ProfileMenu.add(createFileProfile_ProfileMenu, 0, 2);
         layout_ProfileMenu.add(resetProfile_ProfileMenu, 0, 3);
-        layout_ProfileMenu.add(return_ProfileMenu,0,4);
+        layout_ProfileMenu.add(return_ProfileMenu, 0, 4);
 
         layout_ProfileMenu.setPrefSize(300, 300);
         layout_ProfileMenu.setAlignment(Pos.CENTER);
@@ -144,12 +156,21 @@ public class UserInterface extends Application {
         //Login screen transitions
         //Transition from login scene to mainmenu scene when login
         login_Login.setOnAction((event) -> {
+            loginerror_Login.setText("");
+            String givenUsername_Login = usernameInput_Login.getText().trim();
+            if (!(username_Database.searchForAnExistingUsername(givenUsername_Login))) {
+                loginerror_Login.setText("Username doesn't exist");
+                return;
+            }
+            loginerror_Login.setText("");
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(screen_MainMenu);
+
         });
 
         //Transition from login scene to signin scene when signin
         signIn_Login.setOnAction((event) -> {
+            loginerror_Login.setText("");
             primaryStage.setTitle("Sign in screen");
             primaryStage.setScene(screen_SignIn);
         });
@@ -157,18 +178,28 @@ public class UserInterface extends Application {
         //Sign in screen transitions
         //Transition from signin scene to login scene when create a new account
         create_SignIn.setOnAction((event) -> {
+            accountIsToShortError_SignIn.setText("");
+            accountExistsError_SignIn.setText("");
             String givenUsername_SignIn = createUsernameInput_SignIn.getText().trim();
             if (givenUsername_SignIn.length() < 5) {
                 accountIsToShortError_SignIn.setText("Given username is too short");
                 return;
             }
+            if (username_Database.searchForAnExistingUsername(givenUsername_SignIn)) {
+                accountExistsError_SignIn.setText("Given username already exists");
+                return;
+            }
+            username_Database.addUsernameIntoDatabase(givenUsername_SignIn);
             accountIsToShortError_SignIn.setText("");
+            accountExistsError_SignIn.setText("");
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screen_Login);
         });
 
         //Transition from signin scene to login scene when return
         return_SignIn.setOnAction((event) -> {
+            accountIsToShortError_SignIn.setText("");
+            accountExistsError_SignIn.setText("");
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screen_Login);
         });
@@ -192,7 +223,6 @@ public class UserInterface extends Application {
         });
 
         //Ability menu transitions
-        
         //Transition from ability menu scene to main menu scene when return
         return_AbilityMenu.setOnAction((event) -> {
             primaryStage.setTitle("Main menu");
@@ -215,6 +245,11 @@ public class UserInterface extends Application {
     /**
      * @param args the command line arguments
      */
+    
+    @Override
+    public void stop() throws Exception{
+        username_Database.removeDatabase();
+    }
     public static void main(String[] args) {
         launch(args);
     }

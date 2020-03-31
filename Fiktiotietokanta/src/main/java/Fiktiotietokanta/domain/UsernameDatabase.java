@@ -1,3 +1,5 @@
+package Fiktiotietokanta.domain;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,6 +22,7 @@ public class UsernameDatabase {
     Connection username_Connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
 
     public UsernameDatabase() throws SQLException {
+        
         try {
             Statement main_Command = username_Connection.createStatement();
             main_Command.execute("PRAGMA foreign_keys = ON;");
