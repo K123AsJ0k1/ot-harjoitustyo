@@ -1,26 +1,41 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Fiktiotietokanta
 
-# Tehtävät
+Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia ominaisuuksia ja luoda niiden avulla fiktiivisiä profiili tiedostoja.Sovellusta on mahdollista käyttää useampi rekisteroitynyt käyttäjä, joilla kaikilla on oma yksilöllinen ominaisuus ja profiili lista. 
 
-Viikko1
+# Dokumentaatio
+[Käyttöohje]
+[Vaatimusmäärittely](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/Vaatimusmaarittely.md)
+[Arkkitehtuuikuvaus]
+[Testausdokumentti]
+[Työaikakirjanpito](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
 
-[gitlog.txt](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+# Komentorivitoiminnot
 
-[komentorivi.txt](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+*Testaus*
+Testit suoritetaan komennolla 
 
-Viikko2
+```mvn test```
 
-JUnit tehtävät:
+Testikattavuusraportti luodaan komennolla 
 
-- [Maksukortti](https://github.com/K123AsJ0k1/ot-harjoitustyo/tree/master/laskarit/viikko2/Maksukortti)
+```mvn jacoco:report```
 
-- [Unicafe](https://github.com/K123AsJ0k1/ot-harjoitustyo/tree/master/laskarit/viikko2/Unicafe)
+Kattavuusraporttia voi tarkastella avaamalla selaimen tiedosto target/site/jacoco/index.html
 
-- [Unicafe raportti](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/laskarit/viikko2/Viikon%202%20teht%C3%A4v%C3%A4%202.png)
+*Suoritettavan jarin generointi*
 
-Harjoitustyö tehtävä:
+Komento 
+```mvn package```
+generoi hakemistoon target suoritettavan jar-tiedoston Fiktiotietokanta-1.1-SNAPSHOT.jar
 
-- [Määrittelydokumentti](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/Vaatimusmaarittely.md)
+*JavaDoc*
+JavaDoc generoidaan komennolla 
+```mvn javadoc:javadoc```
+JavaDocia voi tarkastealla avamaalla selaimellal tiedosto target/site/apidocs/index.html
 
+*Checkstyle*
+Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
+```mvn jxr:jxr checkstyle:checkstyle```
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/site/checkstyle.html
 
 
