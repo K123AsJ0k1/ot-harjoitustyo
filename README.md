@@ -39,7 +39,7 @@ Komento
 
 ```mvn package```
 
-generoi hakemistoon target suoritettavan jar-tiedoston Fiktiotietokanta-1.1-SNAPSHOT.jar
+generoi hakemistoon target suoritettavan jar-tiedoston Fiktiotietokanta-1.0-SNAPSHOT.jar
 
 **JavaDoc**
 
