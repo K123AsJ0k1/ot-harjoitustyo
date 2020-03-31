@@ -250,8 +250,9 @@ public class UserInterface extends Application {
     public void stop() throws Exception{
         username_Database.removeDatabase();
     }
+    
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }
