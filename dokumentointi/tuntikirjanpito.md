@@ -7,4 +7,6 @@
 | 27.3 | 4      |  JavaFX tutustumista |
 | 29.3 | 3 | Projektin asettelua |
 |30.3 | 3 | Käyttöliittymän luominen|
+|31.3| 4 | Projektin asettelua|
+
 
