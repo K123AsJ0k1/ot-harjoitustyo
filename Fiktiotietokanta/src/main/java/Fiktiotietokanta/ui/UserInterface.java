@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import Fiktiotietokanta.domain.UsernameDatabase;
+import Fiktiotietokanta.domain.AbilityDatabase;
 
 /**
  *
@@ -26,14 +27,17 @@ import Fiktiotietokanta.domain.UsernameDatabase;
 public class UserInterface extends Application {
 
     private UsernameDatabase username_Database;
+    private AbilityDatabase ability_Database;
 
     @Override
     public void init() throws Exception {
         username_Database = new UsernameDatabase();
+        ability_Database = new AbilityDatabase();
     }
     
     public void reset() throws Exception {
         username_Database.removeDatabase();
+        ability_Database.removeDatabase();
     }
 
     @Override
@@ -89,7 +93,7 @@ public class UserInterface extends Application {
         layout_SignIn.setPadding(new Insets(20, 20, 20, 20));
 
         Scene screen_SignIn = new Scene(layout_SignIn);
-
+        //Main menu scene
         GridPane layout_MainMenu = new GridPane();
 
         Label title_MainMenu = new Label("What do you want to do?");
@@ -109,7 +113,7 @@ public class UserInterface extends Application {
         layout_MainMenu.setPadding(new Insets(20, 20, 20, 20));
 
         Scene screen_MainMenu = new Scene(layout_MainMenu);
-
+        //Ability menu scene
         GridPane layout_AbilityMenu = new GridPane();
 
         Label title_AbilityMenu = new Label("What do you want to do?");
@@ -129,7 +133,7 @@ public class UserInterface extends Application {
         layout_AbilityMenu.setPadding(new Insets(20, 20, 20, 20));
 
         Scene screen_AbilityMenu = new Scene(layout_AbilityMenu);
-
+        //Profile menu scene
         GridPane layout_ProfileMenu = new GridPane();
 
         Label title_ProfileMenu = new Label("What do you want to do?");
@@ -249,6 +253,7 @@ public class UserInterface extends Application {
     @Override
     public void stop() throws Exception{
         username_Database.removeDatabase();
+        ability_Database.removeDatabase();
     }
     
     public static void main(String[] args) {
