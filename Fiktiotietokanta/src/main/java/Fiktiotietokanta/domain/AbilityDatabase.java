@@ -25,7 +25,7 @@ public class AbilityDatabase {
      * Tietokannan konstruktori.
      *
      *
-     * @throws SQLException
+     * @throws SQLException virhe.
      */
     public AbilityDatabase() throws SQLException {
         try {
@@ -60,14 +60,14 @@ public class AbilityDatabase {
      * @return palauttaa true jos ominaisuus on lisätty ja false jos ei
      * 
      */
-    public Boolean addAbilityIntoDatabase(int usernameId , int classId , int nameId , int descriptionId , int requrimentId , int realityId ){
+    public Boolean addAbilityIntoDatabase(int usernameId,int classId,int nameId,int descriptionId,int requrimentId,int realityId) {
         try {
-            PreparedStatement command=connection.prepareStatement("INSERT INTO Abilities(Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id) VALUES (?,?,?,?,?,?);");
-            command.setInt(1, usernameId);
-            command.setInt(2, classId);
-            command.setInt(3, nameId);
+            PreparedStatement command = connection.prepareStatement( "INSERT INTO Abilities(Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id) VALUES (?,?,?,?,?,?);" );
+            command.setInt(1,usernameId);
+            command.setInt(2,classId);
+            command.setInt(3,nameId);
             command.setInt(4,descriptionId);
-            command.setInt(5, requrimentId);
+            command.setInt(5,requrimentId);
             command.setInt(6,realityId);
             command.executeUpdate();
             command.close();
@@ -90,20 +90,20 @@ public class AbilityDatabase {
      * @return palauttaa true jos ominaisuus on lisätty ja false jos ei
      *  
      */
-    public Boolean searchAbilityFromDatabase( int usernameId , int classId , int nameId , int descriptionId , int requrimentId , int realityId ) {
+    public Boolean searchAbilityFromDatabase(int usernameId,int classId,int nameId,int descriptionId,int requrimentId,int realityId) {
         try {
-            PreparedStatement command=connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
-            ResultSet querrySet=command.executeQuery();
-            Boolean abilityExists=false;
+            PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
+            ResultSet querrySet = command.executeQuery();
+            Boolean abilityExists = false;
             while(querrySet.next()) {
-                int userId=querrySet.getInt("Username_id");
-                int clasId=querrySet.getInt("Class_id");
-                int namId=querrySet.getInt("Name_id");
-                int descId=querrySet.getInt("Description_id");
-                int reqId=querrySet.getInt("Requriment_id");
-                int reaId=querrySet.getInt("Reality_id");
-                if (userId==usernameId && clasId==classId && namId==nameId && descId==descriptionId && reqId==requrimentId && reaId==realityId) {
-                    abilityExists=true;
+                int userId = querrySet.getInt("Username_id");
+                int clasId = querrySet.getInt("Class_id");
+                int namId = querrySet.getInt("Name_id");
+                int descId = querrySet.getInt("Description_id");
+                int reqId = querrySet.getInt("Requriment_id");
+                int reaId = querrySet.getInt("Reality_id");
+                if (userId == usernameId && clasId == classId && namId == nameId && descId == descriptionId && reqId == requrimentId && reaId == realityId) {
+                    abilityExists = true;
                     break;
                 }
             }
@@ -126,15 +126,16 @@ public class AbilityDatabase {
      * Poistaa tietokannan.
      *
      *
-     * @return palauttaa true, jos tietokanta on poistettu ja false jos ei
-     * @throws SQLException
+     * @return palauttaa true, jos tietokanta on poistettu ja false jos ei.
+     * @throws java.sql.SQLException virhe.
+     * 
      */
     public Boolean removeDatabase() throws SQLException {
         try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Abilities;");
             command.close();
-            databaseExists=false;
+            databaseExists = false;
             return true;
         } catch (SQLException k) {
             System.out.println("Error:" + k);

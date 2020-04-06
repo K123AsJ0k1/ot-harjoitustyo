@@ -23,7 +23,7 @@ public class UsernameDatabase {
 
     /**
      * Käyttäjä tietokannan konstruktori.
-     * @throws SQLException 
+     * @throws SQLException virhe. 
      */
     public UsernameDatabase() throws SQLException {
 
@@ -41,7 +41,7 @@ public class UsernameDatabase {
     }
     /**
      * Lisää uuden käyttäjän tietokantaan.
-     * @param username käyttäjä nimi 
+     * @param username käyttäjä nimi. 
      */
     public void addUsernameIntoDatabase(String username) {
         try {
@@ -54,9 +54,9 @@ public class UsernameDatabase {
         }
     }
     /**
-     * Hakee käyttäjän tietokannasta
-     * @param username käyttäjä nimi 
-     * @Return palauttaa true, jos löytyy ja false jos ei
+     * Hakee käyttäjän tietokannasta.
+     * @param username käyttäjä nimi. 
+     * @Return palauttaa true, jos löytyy ja false jos ei.
      */
     public boolean searchForAnExistingUsername(String username) {
         try {
@@ -85,9 +85,9 @@ public class UsernameDatabase {
         return false;
     }
     /**
-     * Hakee käyttäjän id:n tietokannasta
-     * @param username käyttäjä nimi 
-     * @Return palauttaa tietokanta id:n jos löytyy ja 0 jos ei.
+     * Hakee käyttäjän id:n tietokannasta.
+     * @param username käyttäjä nimi.
+     * @return palauttaa tietokanta id:n jos löytyy ja 0 jos ei.
      */
     public Integer getSearchedUsernameId(String username) {
         try {
@@ -113,7 +113,7 @@ public class UsernameDatabase {
      * Poistaa tietokannan.
      * 
      * 
-     * @throws SQLException
+     * @throws SQLException virhe.
      */
     public void removeDatabase() throws SQLException {
         try {

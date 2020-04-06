@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
+/** Ominaisuuksien parametri tietokanta.
  *
  * @author niila
  */
@@ -53,12 +53,12 @@ public class AbilityParametersDatabase {
         }
     }
     /**
-     * Luokkan lisääjä
-     * @param givenClass annettu luokka
-     * @return antaa totuusarvon, onko luokka lisätty vai ei
+     * Luokkan lisääjä.
+     * @param givenClass annettu luokka.
+     * @return antaa totuusarvon, onko luokka lisätty vai ei.
      * 
      */
-    public Boolean addClassIntoDatabase(String givenClass){
+    public Boolean addClassIntoDatabase(String givenClass) {
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Classes(Class) VALUES (?);");
             command.setString(1, givenClass);
@@ -67,13 +67,13 @@ public class AbilityParametersDatabase {
             return true;
         } catch (SQLException k) {
             System.out.println("Error:" + k);
-        }
+        } 
        return false;
     }
     /**
-     * Tarkastaa luokan olemassa olon tietokannasta
-     * @param givenClass annettu luokka
-     * @return antaa totuusarvon true jos luokka löytyi ja false jos ei
+     * Tarkastaa luokan olemassa olon tietokannasta.
+     * @param givenClass annettu luokka.
+     * @return antaa totuusarvon true jos luokka löytyi ja false jos ei.
      * 
      */
     public Boolean searchClassFromDatabase(String givenClass) {
@@ -107,14 +107,14 @@ public class AbilityParametersDatabase {
      * @return antaa löydetyn Id ja jos se ei löydy, niin 0;
      * 
      */
-    public Integer getSearchedClassIdFromDatabase(String givenClass){
+    public Integer getSearchedClassIdFromDatabase(String givenClass) {
         try {
-            PreparedStatement command=connection.prepareStatement("SELECT id FROM Classes WHERE Class=?;");
+            PreparedStatement command = connection.prepareStatement("SELECT id FROM Classes WHERE Class=?;");
             command.setString(1, givenClass);
-            ResultSet querrySet=command.executeQuery();
-            int classId=0;
+            ResultSet querrySet = command.executeQuery();
+            int classId = 0;
             if (querrySet.next()) {
-                classId=querrySet.getInt("id");
+                classId = querrySet.getInt("id");
             }
             
             querrySet.close();
@@ -128,9 +128,9 @@ public class AbilityParametersDatabase {
         return 0;
     }
     /**
-     * Lisää nimen tietokantaan
-     * @param givenName annettu nimi
-     * @return antaa totuusarvon true jos nimi lisättiin ja false jos ei
+     * Lisää nimen tietokantaan.
+     * @param givenName annettu nimi.
+     * @return antaa totuusarvon true jos nimi lisättiin ja false jos ei.
      *
      */
     public Boolean addNameIntoDatabase(String givenName) {
@@ -146,12 +146,12 @@ public class AbilityParametersDatabase {
         return false;
     }
     /**
-     * Tarkastaa nimen olemassa olon tietokannasta
-     * @param givenName annettu nimi
-     * @return antaa totuusarvon true jos nimi löytyi ja false jos ei
+     * Tarkastaa nimen olemassa olon tietokannasta.
+     * @param givenName annettu nimi.
+     * @return antaa totuusarvon true jos nimi löytyi ja false jos ei.
      * 
      */
-    public Boolean searchNameFromDatabase(String givenName){
+    public Boolean searchNameFromDatabase(String givenName) {
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Name FROM Names;");
             ResultSet querySet = command.executeQuery();
@@ -177,20 +177,20 @@ public class AbilityParametersDatabase {
         return false;
     }
     /**
-     * Hakee nimen id:n tietokannasta
-     * @param givenName annettu nimi
-     * @return antaa tietokannassa olevan id ja jos se ei löydä sitä, niin antaa 0
+     * Hakee nimen id:n tietokannasta.
+     * @param givenName annettu nimi.
+     * @return antaa tietokannassa olevan id ja jos se ei löydä sitä, niin antaa 0.
      * 
      * 
      */
     public Integer getSearchedNameIdFromDatabase(String givenName) {
         try {
-            PreparedStatement command=connection.prepareStatement("SELECT id FROM Names WHERE Name=?;");
+            PreparedStatement command = connection.prepareStatement("SELECT id FROM Names WHERE Name=?;");
             command.setString(1, givenName);
-            ResultSet querrySet=command.executeQuery();
-            int classId=0;
+            ResultSet querrySet = command.executeQuery();
+            int classId = 0;
             if (querrySet.next()) {
-                classId=querrySet.getInt("id");
+                classId = querrySet.getInt("id");
             }
             
             querrySet.close();
@@ -201,13 +201,14 @@ public class AbilityParametersDatabase {
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
+        
         return 0;
         
     }
     /**
-     * Lisää selosteen tietokantaan
-     * @param givenDescription annettu seloste
-     * @return antaa totuusarvon true jos seloste lisättiin ja false jos ei
+     * Lisää selosteen tietokantaan.
+     * @param givenDescription annettu seloste.
+     * @return antaa totuusarvon true jos seloste lisättiin ja false jos ei.
      * 
      */
     public Boolean addDescriptionIntoDatabase(String givenDescription) {
@@ -223,12 +224,12 @@ public class AbilityParametersDatabase {
         return false;
     }
     /**
-     * Tarkastaa selosteen olemassa olon tietokannasta
-     * @param givenDescription annettu seloste
-     * @return antaa totuusarvon true jos seloste löytyi ja false jos ei
+     * Tarkastaa selosteen olemassa olon tietokannasta.
+     * @param givenDescription annettu seloste.
+     * @return antaa totuusarvon true jos seloste löytyi ja false jos ei.
      * 
      */
-    public Boolean searchDescriptionFromDatabase(String givenDescription){
+    public Boolean searchDescriptionFromDatabase(String givenDescription) {
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
             ResultSet querySet = command.executeQuery();
@@ -251,22 +252,23 @@ public class AbilityParametersDatabase {
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
+        
         return false;
     }
     /**
-     * Hakee selosteen id:n tietokannasta
-     * @param givenDescription annettu seloste
-     * @return antaa saadun id,jos löytyy ja 0 jos ei
+     * Hakee selosteen id:n tietokannasta.
+     * @param givenDescription annettu seloste.
+     * @return antaa saadun id,jos löytyy ja 0 jos ei.
      * 
      */
     public Integer getSearchedDescriptionIdFromDatabase(String givenDescription)  {
         try {
-            PreparedStatement command=connection.prepareStatement("SELECT id FROM Descriptions WHERE Description=?;");
+            PreparedStatement command = connection.prepareStatement("SELECT id FROM Descriptions WHERE Description=?;");
             command.setString(1, givenDescription);
-            ResultSet querrySet=command.executeQuery();
-            int classId=0;
+            ResultSet querrySet = command.executeQuery();
+            int classId = 0;
             if (querrySet.next()) {
-                classId=querrySet.getInt("id");
+                classId = querrySet.getInt("id");
             }
             
             querrySet.close();
@@ -281,10 +283,10 @@ public class AbilityParametersDatabase {
         
     }
     /**
-     * Lisää vaatimuksen tietokantaan
-     * @param givenRequriment annettu vaatimus
-     * @return antaa totuusarvon true jos vaatimus lisättiin ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * Lisää vaatimuksen tietokantaan.
+     * @param givenRequriment annettu vaatimus.
+     * @return antaa totuusarvon true jos vaatimus lisättiin ja false jos ei.
+     * 
      */
     public Boolean addRequrimentIntoDatabase(String givenRequriment) {
         try {
@@ -296,13 +298,14 @@ public class AbilityParametersDatabase {
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
+        
         return false;
     }
     /**
-     * Tarkastaa vaatimuksen olemassa olon tietokannasta
-     * @param givenRequriment annettu vaatimus
-     * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * Tarkastaa vaatimuksen olemassa olon tietokannasta.
+     * @param givenRequriment annettu vaatimus.
+     * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei.
+     * 
      */
     public Boolean searchRequrimentFromDatabase(String givenRequriment) {
         try {
@@ -333,16 +336,16 @@ public class AbilityParametersDatabase {
      * Hakee vaatimuksen id:n tietokannasta
      * @param givenRequriment annettu vaatimus
      * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0
-     * @throws SQLException virheen huomatessa annettaan 0
+     * 
      */
     public Integer getSearchedRequrimentIdFromDatabase(String givenRequriment)  {
         try {
-            PreparedStatement command=connection.prepareStatement("SELECT id FROM Requriments WHERE Requriment=?;");
+            PreparedStatement command = connection.prepareStatement("SELECT id FROM Requriments WHERE Requriment=?;");
             command.setString(1, givenRequriment);
-            ResultSet querrySet=command.executeQuery();
-            int classId=0;
+            ResultSet querrySet = command.executeQuery();
+            int classId = 0;
             if (querrySet.next()) {
-                classId=querrySet.getInt("id");
+                classId = querrySet.getInt("id");
             }
             
             querrySet.close();
@@ -358,9 +361,9 @@ public class AbilityParametersDatabase {
     }
     
     /**
-     * Tarkastaa todellisuuden olemassa olon tietokannasta
-     * @param givenReality annettu todellisuus
-     * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei
+     * Tarkastaa todellisuuden olemassa olon tietokannasta.
+     * @param givenReality annettu todellisuus.
+     * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei.
      * 
      */
     public Boolean addRealityIntoDatabase(String givenReality) {
@@ -376,9 +379,9 @@ public class AbilityParametersDatabase {
         return false;
     }
     /**
-     * Tarkastaa todellisuuden olemassa olon tietokannasta
-     * @param givenReality annettu todellisuus
-     * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei
+     * Tarkastaa todellisuuden olemassa olon tietokannasta.
+     * @param givenReality annettu todellisuus.
+     * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei.
      * 
      */
     public Boolean searchRealityFromDatabase(String givenReality) {
@@ -404,23 +407,24 @@ public class AbilityParametersDatabase {
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
+        
         return false;
     }
     
     /**
-     * Hakee todellisuuden id:n tietokannasta
-     * @param givenReality annettu todellisuus
-     * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0
+     * Hakee todellisuuden id:n tietokannasta.
+     * @param givenReality annettu todellisuus.
+     * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0.
      * 
      */
     public Integer getSearchedRealityIdFromDatabase(String givenReality)  {
         try {
-            PreparedStatement command=connection.prepareStatement("SELECT id FROM Realities WHERE Reality=?;");
+            PreparedStatement command = connection.prepareStatement("SELECT id FROM Realities WHERE Reality=?;");
             command.setString(1, givenReality);
-            ResultSet querrySet=command.executeQuery();
-            int classId=0;
+            ResultSet querrySet = command.executeQuery();
+            int classId = 0;
             if (querrySet.next()) {
-                classId=querrySet.getInt("id");
+                classId = querrySet.getInt("id");
             }
             
             querrySet.close();
@@ -431,13 +435,14 @@ public class AbilityParametersDatabase {
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
+        
         return 0;
         
     }
     /**
-     * Poistaa olemassa olevan tietokannan
-     * @return antaa totuusarvon true, jos tietokanta on poistettu ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * Poistaa olemassa olevan tietokannan.
+     * @return antaa totuusarvon true, jos tietokanta on poistettu ja false jos ei.
+     * @throws SQLException virheen huomatessa annettaan false.
      */
     public Boolean removeDatabase() throws SQLException {
         try {

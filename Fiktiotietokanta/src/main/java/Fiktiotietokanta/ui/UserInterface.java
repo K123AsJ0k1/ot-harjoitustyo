@@ -227,6 +227,7 @@ public class UserInterface extends Application {
         //Transition from login scene to signin scene when signin
         signIn_Login.setOnAction((event) -> {
             loginerror_Login.setText("");
+            usernameInput_Login.clear();
             primaryStage.setTitle("Sign in screen");
             primaryStage.setScene(screen_SignIn);
         });
