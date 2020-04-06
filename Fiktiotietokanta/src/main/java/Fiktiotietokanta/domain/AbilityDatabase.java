@@ -20,7 +20,7 @@ import java.sql.Statement;
 public class AbilityDatabase {
 
     Connection connection = DriverManager.getConnection("jdbc:sqlite:abilitydatabase:connection");
-    Boolean databaseExists=false;
+    Boolean databaseExists = false;
     /**
      * Tietokannan konstruktori.
      *
@@ -37,11 +37,11 @@ public class AbilityDatabase {
             command.execute("CREATE INDEX idx_Ability ON Abilities (Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id);");
 
             command.close();
-            databaseExists=true;
+            databaseExists = true;
         } catch (SQLException k) {
             System.out.println("Error:" + k);
-            databaseExists=false;
-        }
+            databaseExists = false;
+        } 
     }
     
     public Boolean getDatabaseExists() {
@@ -60,7 +60,7 @@ public class AbilityDatabase {
      * @return palauttaa true jos ominaisuus on lisätty ja false jos ei
      * @throws SQLException 
      */
-    public Boolean addAbilityIntoDatabase(int usernameId,int classId, int nameId,int descriptionId, int requrimentId, int realityId) throws SQLException {
+    public Boolean addAbilityIntoDatabase(int usernameId , int classId , int nameId , int descriptionId , int requrimentId , int realityId ) throws SQLException {
         try {
             PreparedStatement command=connection.prepareStatement("INSERT INTO Abilities(Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id) VALUES (?,?,?,?,?,?);");
             command.setInt(1, usernameId);
@@ -90,7 +90,7 @@ public class AbilityDatabase {
      * @return palauttaa true jos ominaisuus on lisätty ja false jos ei
      * @throws SQLException 
      */
-    public Boolean searchAbilityFromDatabase(int usernameId,int classId, int nameId,int descriptionId, int requrimentId, int realityId) throws SQLException {
+    public Boolean searchAbilityFromDatabase( int usernameId , int classId , int nameId , int descriptionId , int requrimentId , int realityId ) throws SQLException {
         try {
             PreparedStatement command=connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
             ResultSet querrySet=command.executeQuery();
