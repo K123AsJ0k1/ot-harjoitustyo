@@ -27,17 +27,17 @@ import Fiktiotietokanta.domain.AbilityDatabase;
 public class UserInterface extends Application {
 
     private UsernameDatabase username_Database;
-    private AbilityDatabase ability_Database;
+    
 
     @Override
     public void init() throws Exception {
         username_Database = new UsernameDatabase();
-        ability_Database = new AbilityDatabase();
+        
     }
     
     public void reset() throws Exception {
         username_Database.removeDatabase();
-        ability_Database.removeDatabase();
+        
     }
 
     @Override
@@ -155,6 +155,49 @@ public class UserInterface extends Application {
         layout_ProfileMenu.setPadding(new Insets(20, 20, 20, 20));
 
         Scene screen_ProfileMenu = new Scene(layout_ProfileMenu);
+        
+        //Add abilities Scene
+        
+        GridPane addAbilityMenu=new GridPane();
+        
+        Label addAbilityMenuInsturctions=new Label("Fill all the blanks");
+        Label addAbilityMenuClass=new Label("What class does the ability belong to?");
+        Label addAbilityMenuName=new Label("What name does the ability have?");
+        Label addAbilityMenuDescription=new Label("What description does the ability have?");
+        Label addAbilityMenuRequriment=new Label("What requriment does the ability have?");
+        Label addAbilityMenuReality=new Label("In what reality is the ability?");
+        Button addAbilityMenuInsertNewAbility=new Button("Create ability");
+        Button addAbilityMenuReturn=new Button("Return");
+        
+        
+        TextField writenGlass=new TextField();
+        TextField writenName=new TextField();
+        TextField writenDescription=new TextField();
+        TextField writenRequriment=new TextField();
+        TextField writenReality=new TextField();
+        
+        addAbilityMenu.add(addAbilityMenuInsturctions,0,0);
+        addAbilityMenu.add(addAbilityMenuClass,0,1);
+        addAbilityMenu.add(writenGlass,0,2);
+        addAbilityMenu.add(addAbilityMenuName,0,3);
+        addAbilityMenu.add(writenName,0,4);
+        addAbilityMenu.add(addAbilityMenuDescription,0,5);
+        addAbilityMenu.add(writenDescription,0,6);
+        addAbilityMenu.add(addAbilityMenuRequriment,0,7);
+        addAbilityMenu.add(writenRequriment,0,8);
+        addAbilityMenu.add(addAbilityMenuReality,0,9);
+        addAbilityMenu.add(writenReality,0,10);
+        addAbilityMenu.add(addAbilityMenuInsertNewAbility,0,11);
+        addAbilityMenu.add(addAbilityMenuReturn,0,12);
+        
+        addAbilityMenu.setPrefSize(500, 500);
+        addAbilityMenu.setAlignment(Pos.CENTER);
+        addAbilityMenu.setVgap(10);
+        addAbilityMenu.setHgap(10);
+        addAbilityMenu.setPadding(new Insets(20, 20, 20, 20));
+        
+        Scene screenAddAbilityMenu= new Scene(addAbilityMenu);
+        
 
         //All UI actions and events
         //Login screen transitions
@@ -232,6 +275,14 @@ public class UserInterface extends Application {
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(screen_MainMenu);
         });
+        
+        //Transition from ability menu scene to add ability scene when add ability
+        
+        addAbilities_AbilityMenu.setOnAction((event) -> {
+           primaryStage.setTitle("Add ability");
+           primaryStage.setScene(screenAddAbilityMenu);
+        });
+        
 
         //Profile menu transitions;
         //Transition from profile menu scene to main menu scene when return
@@ -239,6 +290,16 @@ public class UserInterface extends Application {
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(screen_MainMenu);
         });
+        
+        //Add ability transition
+        //Transition from add ability scene to ability main menu scene when return
+        
+        addAbilityMenuReturn.setOnAction((event) ->{
+           primaryStage.setTitle("Ability menu");
+           primaryStage.setScene(screen_AbilityMenu);
+        });
+        
+        
 
         //UI start code
         primaryStage.setTitle("Login screen");
@@ -253,7 +314,7 @@ public class UserInterface extends Application {
     @Override
     public void stop() throws Exception{
         username_Database.removeDatabase();
-        ability_Database.removeDatabase();
+        
     }
     
     public static void main(String[] args) {
