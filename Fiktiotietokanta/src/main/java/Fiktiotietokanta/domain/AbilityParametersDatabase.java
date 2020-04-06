@@ -21,7 +21,7 @@ public class AbilityParametersDatabase {
     Connection connection = DriverManager.getConnection("jdbc:sqlite:abilityparametersdatabase:connection");
 
     /**
-     * Tietokannan konstruktori
+     * Tietokannan konstruktori.
      *
      * @throws SQLException huomaa mahdolliset virheet
      */
@@ -102,6 +102,32 @@ public class AbilityParametersDatabase {
         return false;
     }
     /**
+     * Hakee luokan Id:n tietokannasta.
+     * @param givenClass annettu luokka
+     * @return antaa löydetyn Id ja jos se ei löydy, niin 0;
+     * @throws SQLException virheen huomatessa annettaan 0
+     */
+    public Integer getSearchedClassIdFromDatabase(String givenClass) throws SQLException{
+        try {
+            PreparedStatement command=connection.prepareStatement("SELECT id FROM Classes WHERE Class=?;");
+            command.setString(1, givenClass);
+            ResultSet querrySet=command.executeQuery();
+            int classId=0;
+            if (querrySet.next()) {
+                classId=querrySet.getInt("id");
+            }
+            
+            querrySet.close();
+            command.close();
+            
+            return classId;
+            
+        } catch (SQLException k) {
+            System.out.println("Error:" + k);
+        }
+        return 0;
+    }
+    /**
      * Lisää nimen tietokantaan
      * @param givenName annettu nimi
      * @return antaa totuusarvon true jos nimi lisättiin ja false jos ei
@@ -149,6 +175,34 @@ public class AbilityParametersDatabase {
             System.out.println("Error:" + k);
         }
         return false;
+    }
+    /**
+     * Hakee nimen id:n tietokannasta
+     * @param givenName annettu nimi
+     * @return antaa tietokannassa olevan id ja jos se ei löydä sitä, niin antaa 0
+     * @throws SQLException virheen huomatessa annettaan 0
+     * 
+     */
+    public Integer getSearchedNameIdFromDatabase(String givenName) throws SQLException {
+        try {
+            PreparedStatement command=connection.prepareStatement("SELECT id FROM Names WHERE Name=?;");
+            command.setString(1, givenName);
+            ResultSet querrySet=command.executeQuery();
+            int classId=0;
+            if (querrySet.next()) {
+                classId=querrySet.getInt("id");
+            }
+            
+            querrySet.close();
+            command.close();
+            
+            return classId;
+            
+        } catch (SQLException k) {
+            System.out.println("Error:" + k);
+        }
+        return 0;
+        
     }
     /**
      * Lisää selosteen tietokantaan
@@ -200,6 +254,33 @@ public class AbilityParametersDatabase {
         return false;
     }
     /**
+     * Hakee selosteen id:n tietokannasta
+     * @param givenDescription annettu seloste
+     * @return antaa saadun id,jos löytyy ja 0 jos ei
+     * @throws SQLException virheen huomatessa annettaan 0
+     */
+    public Integer getSearchedDescriptionIdFromDatabase(String givenDescription) throws SQLException  {
+        try {
+            PreparedStatement command=connection.prepareStatement("SELECT id FROM Descriptions WHERE Description=?;");
+            command.setString(1, givenDescription);
+            ResultSet querrySet=command.executeQuery();
+            int classId=0;
+            if (querrySet.next()) {
+                classId=querrySet.getInt("id");
+            }
+            
+            querrySet.close();
+            command.close();
+            
+            return classId;
+            
+        } catch (SQLException k) {
+            System.out.println("Error:" + k);
+        }
+        return 0;
+        
+    }
+    /**
      * Lisää vaatimuksen tietokantaan
      * @param givenRequriment annettu vaatimus
      * @return antaa totuusarvon true jos vaatimus lisättiin ja false jos ei
@@ -247,6 +328,33 @@ public class AbilityParametersDatabase {
             System.out.println("Error:" + k);
         }
         return false;
+    }
+    /**
+     * Hakee vaatimuksen id:n tietokannasta
+     * @param givenRequriment annettu vaatimus
+     * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0
+     * @throws SQLException virheen huomatessa annettaan 0
+     */
+    public Integer getSearchedRequrimentIdFromDatabase(String givenRequriment) throws SQLException  {
+        try {
+            PreparedStatement command=connection.prepareStatement("SELECT id FROM Requriments WHERE Requriment=?;");
+            command.setString(1, givenRequriment);
+            ResultSet querrySet=command.executeQuery();
+            int classId=0;
+            if (querrySet.next()) {
+                classId=querrySet.getInt("id");
+            }
+            
+            querrySet.close();
+            command.close();
+            
+            return classId;
+            
+        } catch (SQLException k) {
+            System.out.println("Error:" + k);
+        }
+        return 0;
+        
     }
     
     /**
@@ -297,6 +405,34 @@ public class AbilityParametersDatabase {
             System.out.println("Error:" + k);
         }
         return false;
+    }
+    
+    /**
+     * Hakee todellisuuden id:n tietokannasta
+     * @param givenReality annettu todellisuus
+     * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0
+     * @throws SQLException virheen huomatessa annettaan 0
+     */
+    public Integer getSearchedRealityIdFromDatabase(String givenReality) throws SQLException  {
+        try {
+            PreparedStatement command=connection.prepareStatement("SELECT id FROM Realities WHERE Reality=?;");
+            command.setString(1, givenReality);
+            ResultSet querrySet=command.executeQuery();
+            int classId=0;
+            if (querrySet.next()) {
+                classId=querrySet.getInt("id");
+            }
+            
+            querrySet.close();
+            command.close();
+            
+            return classId;
+            
+        } catch (SQLException k) {
+            System.out.println("Error:" + k);
+        }
+        return 0;
+        
     }
     /**
      * Poistaa olemassa olevan tietokannan

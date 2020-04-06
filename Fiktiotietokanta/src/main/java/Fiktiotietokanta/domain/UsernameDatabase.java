@@ -20,7 +20,7 @@ import java.sql.Statement;
 public class UsernameDatabase {
 
     Connection username_Connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
-
+    Boolean databaseExists=false;
     public UsernameDatabase() throws SQLException {
         
         try {
@@ -29,9 +29,11 @@ public class UsernameDatabase {
             main_Command.execute("CREATE TABLE Usernames (id INTEGER PRIMARY KEY, Username TEXT UNIQUE);");
             main_Command.execute("CREATE INDEX idx_Username ON Usernames (Username);");
             main_Command.close();
+            databaseExists=true;
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
+        databaseExists=false;
     }
     
     public void addUsernameIntoDatabase(String username) {
@@ -77,6 +79,7 @@ public class UsernameDatabase {
             Statement main_Command = username_Connection.createStatement();
             main_Command.execute("DROP TABLE Usernames");
             main_Command.close();
+            databaseExists=false;
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
