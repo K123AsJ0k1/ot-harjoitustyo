@@ -58,9 +58,9 @@ public class AbilityDatabase {
      * @param requrimentId luodun vaatimuksen id
      * @param realityId luodun todellisuuden id
      * @return palauttaa true jos ominaisuus on lisätty ja false jos ei
-     * @throws SQLException 
+     * 
      */
-    public Boolean addAbilityIntoDatabase(int usernameId , int classId , int nameId , int descriptionId , int requrimentId , int realityId ) throws SQLException {
+    public Boolean addAbilityIntoDatabase(int usernameId , int classId , int nameId , int descriptionId , int requrimentId , int realityId ){
         try {
             PreparedStatement command=connection.prepareStatement("INSERT INTO Abilities(Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id) VALUES (?,?,?,?,?,?);");
             command.setInt(1, usernameId);
@@ -88,9 +88,9 @@ public class AbilityDatabase {
      * @param requrimentId luodun vaatimuksen id
      * @param realityId luodun todellisuuden id
      * @return palauttaa true jos ominaisuus on lisätty ja false jos ei
-     * @throws SQLException 
+     *  
      */
-    public Boolean searchAbilityFromDatabase( int usernameId , int classId , int nameId , int descriptionId , int requrimentId , int realityId ) throws SQLException {
+    public Boolean searchAbilityFromDatabase( int usernameId , int classId , int nameId , int descriptionId , int requrimentId , int realityId ) {
         try {
             PreparedStatement command=connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
             ResultSet querrySet=command.executeQuery();

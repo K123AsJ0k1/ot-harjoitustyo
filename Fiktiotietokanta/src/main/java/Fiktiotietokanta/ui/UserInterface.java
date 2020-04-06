@@ -19,6 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import Fiktiotietokanta.domain.UsernameDatabase;
 import Fiktiotietokanta.domain.AbilityDatabase;
+import Fiktiotietokanta.domain.AbilityParametersDatabase;
 
 /**
  *
@@ -27,17 +28,22 @@ import Fiktiotietokanta.domain.AbilityDatabase;
 public class UserInterface extends Application {
 
     private UsernameDatabase username_Database;
-    
+    private AbilityParametersDatabase parameterDatabase;
+    private AbilityDatabase abilityDatabase;
+    private Integer usernameId;
 
     @Override
     public void init() throws Exception {
         username_Database = new UsernameDatabase();
-        
+        parameterDatabase = new AbilityParametersDatabase();
+        abilityDatabase = new AbilityDatabase();
+        usernameId=0;
     }
     
     public void reset() throws Exception {
         username_Database.removeDatabase();
-        
+        parameterDatabase.removeDatabase();
+        abilityDatabase.removeDatabase();
     }
 
     @Override
@@ -168,7 +174,7 @@ public class UserInterface extends Application {
         Label addAbilityMenuReality=new Label("In what reality is the ability?");
         Button addAbilityMenuInsertNewAbility=new Button("Create ability");
         Button addAbilityMenuReturn=new Button("Return");
-        
+        Label addAbilityMenuError=new Label("");
         
         TextField writenGlass=new TextField();
         TextField writenName=new TextField();
@@ -189,6 +195,7 @@ public class UserInterface extends Application {
         addAbilityMenu.add(writenReality,0,10);
         addAbilityMenu.add(addAbilityMenuInsertNewAbility,0,11);
         addAbilityMenu.add(addAbilityMenuReturn,0,12);
+        addAbilityMenu.add(addAbilityMenuError,0,13);
         
         addAbilityMenu.setPrefSize(500, 500);
         addAbilityMenu.setAlignment(Pos.CENTER);
@@ -209,6 +216,8 @@ public class UserInterface extends Application {
                 loginerror_Login.setText("Username doesn't exist");
                 return;
             }
+            usernameId=username_Database.getSearchedUsernameId(givenUsername_Login);
+            usernameInput_Login.clear();
             loginerror_Login.setText("");
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(screen_MainMenu);
@@ -239,6 +248,7 @@ public class UserInterface extends Application {
             username_Database.addUsernameIntoDatabase(givenUsername_SignIn);
             accountIsToShortError_SignIn.setText("");
             accountExistsError_SignIn.setText("");
+            createUsernameInput_SignIn.clear();
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screen_Login);
         });
@@ -247,6 +257,7 @@ public class UserInterface extends Application {
         return_SignIn.setOnAction((event) -> {
             accountIsToShortError_SignIn.setText("");
             accountExistsError_SignIn.setText("");
+            createUsernameInput_SignIn.clear();
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screen_Login);
         });
@@ -265,6 +276,7 @@ public class UserInterface extends Application {
 
         //Transition from main menu scene to login scene when sign out
         signOut_MainMenu.setOnAction((event) -> {
+            usernameId=0;
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screen_Login);
         });
@@ -291,14 +303,117 @@ public class UserInterface extends Application {
             primaryStage.setScene(screen_MainMenu);
         });
         
-        //Add ability transition
+        //Add ability menu transition
         //Transition from add ability scene to ability main menu scene when return
         
         addAbilityMenuReturn.setOnAction((event) ->{
+           addAbilityMenuError.setText("");
            primaryStage.setTitle("Ability menu");
            primaryStage.setScene(screen_AbilityMenu);
         });
         
+        //Adding of new ability
+        
+        addAbilityMenuInsertNewAbility.setOnAction((event) -> {
+           addAbilityMenuError.setText("");
+           String textFieldClass = writenGlass.getText().trim();
+           String textFieldName = writenName.getText().trim();
+           String textFieldDescription = writenDescription.getText().trim();
+           String textFieldRequriment = writenRequriment.getText().trim();
+           String textFieldReality = writenReality.getText().trim();
+           if (textFieldClass.length()==0 || textFieldName.length()==0 || textFieldDescription.length()==0 || textFieldRequriment.length()==0 || textFieldReality.length()==0){
+               addAbilityMenuError.setText("Not all blanks are full");
+               return;
+           }
+           
+           Boolean addClass = false;
+           Boolean addName = false;
+           Boolean addDescription = false;
+           Boolean addRequriment = false;
+           Boolean addReality = false;
+           
+           if (!parameterDatabase.searchClassFromDatabase(textFieldClass)) {
+               addClass = true;
+           }
+           
+           if (!parameterDatabase.searchNameFromDatabase(textFieldName)) {
+               addName = true;
+           }
+           
+           if (!parameterDatabase.searchDescriptionFromDatabase(textFieldDescription)) {
+               addDescription = true;
+           }
+           
+           if (!parameterDatabase.searchRequrimentFromDatabase(textFieldRequriment)) {
+               addRequriment = true;
+           }
+           
+           if (!parameterDatabase.searchRealityFromDatabase(textFieldReality)) {
+               addReality = true;
+           }
+           Boolean classHasBeenAdded = false;
+           
+           if (addClass) {
+               classHasBeenAdded=parameterDatabase.addClassIntoDatabase(textFieldClass);
+           }
+           
+           Boolean nameHasBeenAdded = false;
+           
+           if (addName) {
+               nameHasBeenAdded = parameterDatabase.addNameIntoDatabase(textFieldName);
+           }
+           
+           Boolean descriptionHasBeenAdded = false;
+           
+           if (addDescription) {
+               descriptionHasBeenAdded = parameterDatabase.addDescriptionIntoDatabase(textFieldDescription);
+           }
+           
+           Boolean requrimentHasBeenAdded = false;
+           
+           if (addRequriment) {
+               requrimentHasBeenAdded = parameterDatabase.addRequrimentIntoDatabase(textFieldRequriment);
+           }
+           
+           Boolean realityHasBeenAdded = false;
+           
+           if (addReality) {
+               realityHasBeenAdded = parameterDatabase.addRealityIntoDatabase(textFieldReality);
+           }
+           
+           
+           
+           int classId=parameterDatabase.getSearchedClassIdFromDatabase(textFieldClass);
+           int nameId=parameterDatabase.getSearchedNameIdFromDatabase(textFieldName);
+           int descriptionId=parameterDatabase.getSearchedDescriptionIdFromDatabase(textFieldDescription);
+           int requrimentId=parameterDatabase.getSearchedRequrimentIdFromDatabase(textFieldRequriment);
+           int realityId=parameterDatabase.getSearchedRealityIdFromDatabase(textFieldReality);
+           
+           if (usernameId==0 || classId==0 || nameId==0 || descriptionId==0 || requrimentId==0 || realityId==0) {
+               addAbilityMenuError.setText("Error has happened");
+               return;
+           }
+           
+           if (abilityDatabase.searchAbilityFromDatabase(usernameId, classId, nameId, descriptionId, requrimentId, realityId)) {
+               addAbilityMenuError.setText("Ability already exists");
+               return;
+           }
+           
+           Boolean abilityHasBeenAdded=abilityDatabase.addAbilityIntoDatabase(usernameId, classId, nameId, descriptionId, requrimentId, realityId);
+           
+           if (!abilityHasBeenAdded) {
+               addAbilityMenuError.setText("Error has happened");
+               return;
+           }
+           
+           addAbilityMenuError.setText("Ability has been added");
+                
+           writenGlass.clear();
+           writenName.clear();
+           writenDescription.clear();
+           writenRequriment.clear();
+           writenReality.clear();
+        });
         
 
         //UI start code
@@ -314,7 +429,8 @@ public class UserInterface extends Application {
     @Override
     public void stop() throws Exception{
         username_Database.removeDatabase();
-        
+        parameterDatabase.removeDatabase();
+        abilityDatabase.removeDatabase();
     }
     
     public static void main(String[] args) {

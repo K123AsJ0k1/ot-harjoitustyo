@@ -56,9 +56,9 @@ public class AbilityParametersDatabase {
      * Luokkan lisääjä
      * @param givenClass annettu luokka
      * @return antaa totuusarvon, onko luokka lisätty vai ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * 
      */
-    public Boolean addClassIntoDatabase(String givenClass) throws SQLException {
+    public Boolean addClassIntoDatabase(String givenClass){
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Classes(Class) VALUES (?);");
             command.setString(1, givenClass);
@@ -74,9 +74,9 @@ public class AbilityParametersDatabase {
      * Tarkastaa luokan olemassa olon tietokannasta
      * @param givenClass annettu luokka
      * @return antaa totuusarvon true jos luokka löytyi ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * 
      */
-    public Boolean searchClassFromDatabase(String givenClass) throws SQLException {
+    public Boolean searchClassFromDatabase(String givenClass) {
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Class FROM Classes;");
             ResultSet querySet = command.executeQuery();
@@ -105,9 +105,9 @@ public class AbilityParametersDatabase {
      * Hakee luokan Id:n tietokannasta.
      * @param givenClass annettu luokka
      * @return antaa löydetyn Id ja jos se ei löydy, niin 0;
-     * @throws SQLException virheen huomatessa annettaan 0
+     * 
      */
-    public Integer getSearchedClassIdFromDatabase(String givenClass) throws SQLException{
+    public Integer getSearchedClassIdFromDatabase(String givenClass){
         try {
             PreparedStatement command=connection.prepareStatement("SELECT id FROM Classes WHERE Class=?;");
             command.setString(1, givenClass);
@@ -131,9 +131,9 @@ public class AbilityParametersDatabase {
      * Lisää nimen tietokantaan
      * @param givenName annettu nimi
      * @return antaa totuusarvon true jos nimi lisättiin ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     *
      */
-    public Boolean addNameIntoDatabase(String givenName) throws SQLException {
+    public Boolean addNameIntoDatabase(String givenName) {
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Names(Name) VALUES (?);");
             command.setString(1, givenName);
@@ -149,9 +149,9 @@ public class AbilityParametersDatabase {
      * Tarkastaa nimen olemassa olon tietokannasta
      * @param givenName annettu nimi
      * @return antaa totuusarvon true jos nimi löytyi ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * 
      */
-    public Boolean searchNameFromDatabase(String givenName) throws SQLException {
+    public Boolean searchNameFromDatabase(String givenName){
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Name FROM Names;");
             ResultSet querySet = command.executeQuery();
@@ -180,10 +180,10 @@ public class AbilityParametersDatabase {
      * Hakee nimen id:n tietokannasta
      * @param givenName annettu nimi
      * @return antaa tietokannassa olevan id ja jos se ei löydä sitä, niin antaa 0
-     * @throws SQLException virheen huomatessa annettaan 0
+     * 
      * 
      */
-    public Integer getSearchedNameIdFromDatabase(String givenName) throws SQLException {
+    public Integer getSearchedNameIdFromDatabase(String givenName) {
         try {
             PreparedStatement command=connection.prepareStatement("SELECT id FROM Names WHERE Name=?;");
             command.setString(1, givenName);
@@ -208,9 +208,9 @@ public class AbilityParametersDatabase {
      * Lisää selosteen tietokantaan
      * @param givenDescription annettu seloste
      * @return antaa totuusarvon true jos seloste lisättiin ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * 
      */
-    public Boolean addDescriptionIntoDatabase(String givenDescription) throws SQLException {
+    public Boolean addDescriptionIntoDatabase(String givenDescription) {
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Descriptions(Description) VALUES (?);");
             command.setString(1, givenDescription);
@@ -226,9 +226,9 @@ public class AbilityParametersDatabase {
      * Tarkastaa selosteen olemassa olon tietokannasta
      * @param givenDescription annettu seloste
      * @return antaa totuusarvon true jos seloste löytyi ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * 
      */
-    public Boolean searchDescriptionFromDatabase(String givenDescription) throws SQLException {
+    public Boolean searchDescriptionFromDatabase(String givenDescription){
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
             ResultSet querySet = command.executeQuery();
@@ -257,9 +257,9 @@ public class AbilityParametersDatabase {
      * Hakee selosteen id:n tietokannasta
      * @param givenDescription annettu seloste
      * @return antaa saadun id,jos löytyy ja 0 jos ei
-     * @throws SQLException virheen huomatessa annettaan 0
+     * 
      */
-    public Integer getSearchedDescriptionIdFromDatabase(String givenDescription) throws SQLException  {
+    public Integer getSearchedDescriptionIdFromDatabase(String givenDescription)  {
         try {
             PreparedStatement command=connection.prepareStatement("SELECT id FROM Descriptions WHERE Description=?;");
             command.setString(1, givenDescription);
@@ -286,7 +286,7 @@ public class AbilityParametersDatabase {
      * @return antaa totuusarvon true jos vaatimus lisättiin ja false jos ei
      * @throws SQLException virheen huomatessa annettaan false
      */
-    public Boolean addRequrimentIntoDatabase(String givenRequriment) throws SQLException {
+    public Boolean addRequrimentIntoDatabase(String givenRequriment) {
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Requriments(Requriment) VALUES (?);");
             command.setString(1, givenRequriment);
@@ -304,7 +304,7 @@ public class AbilityParametersDatabase {
      * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei
      * @throws SQLException virheen huomatessa annettaan false
      */
-    public Boolean searchRequrimentFromDatabase(String givenRequriment) throws SQLException {
+    public Boolean searchRequrimentFromDatabase(String givenRequriment) {
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Requriment FROM Requriments;");
             ResultSet querySet = command.executeQuery();
@@ -335,7 +335,7 @@ public class AbilityParametersDatabase {
      * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0
      * @throws SQLException virheen huomatessa annettaan 0
      */
-    public Integer getSearchedRequrimentIdFromDatabase(String givenRequriment) throws SQLException  {
+    public Integer getSearchedRequrimentIdFromDatabase(String givenRequriment)  {
         try {
             PreparedStatement command=connection.prepareStatement("SELECT id FROM Requriments WHERE Requriment=?;");
             command.setString(1, givenRequriment);
@@ -361,9 +361,9 @@ public class AbilityParametersDatabase {
      * Tarkastaa todellisuuden olemassa olon tietokannasta
      * @param givenReality annettu todellisuus
      * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * 
      */
-    public Boolean addRealityIntoDatabase(String givenReality) throws SQLException {
+    public Boolean addRealityIntoDatabase(String givenReality) {
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Realities(Reality) VALUES (?);");
             command.setString(1, givenReality);
@@ -379,9 +379,9 @@ public class AbilityParametersDatabase {
      * Tarkastaa todellisuuden olemassa olon tietokannasta
      * @param givenReality annettu todellisuus
      * @return antaa totuusarvon true jos vaatimus löytyi ja false jos ei
-     * @throws SQLException virheen huomatessa annettaan false
+     * 
      */
-    public Boolean searchRealityFromDatabase(String givenReality) throws SQLException {
+    public Boolean searchRealityFromDatabase(String givenReality) {
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities;");
             ResultSet querySet = command.executeQuery();
@@ -411,9 +411,9 @@ public class AbilityParametersDatabase {
      * Hakee todellisuuden id:n tietokannasta
      * @param givenReality annettu todellisuus
      * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0
-     * @throws SQLException virheen huomatessa annettaan 0
+     * 
      */
-    public Integer getSearchedRealityIdFromDatabase(String givenReality) throws SQLException  {
+    public Integer getSearchedRealityIdFromDatabase(String givenReality)  {
         try {
             PreparedStatement command=connection.prepareStatement("SELECT id FROM Realities WHERE Reality=?;");
             command.setString(1, givenReality);
