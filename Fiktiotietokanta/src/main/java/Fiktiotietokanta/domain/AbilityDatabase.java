@@ -124,6 +124,19 @@ public class AbilityDatabase {
     }
     
     /**
+     * Tarkastaa tietokannan olemassa olon.
+     *
+     *
+     * @return palauttaa true, jos tietokanta on olemassa ja false jos ei
+     * 
+     * 
+     */
+    
+    public boolean getDatabase() {
+        return databaseExists;
+    }
+    
+    /**
      * Poistaa tietokannan.
      *
      *

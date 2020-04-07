@@ -26,7 +26,6 @@ public class UsernameDatabase {
      * @throws SQLException virhe. 
      */
     public UsernameDatabase() throws SQLException {
-
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
@@ -37,21 +36,24 @@ public class UsernameDatabase {
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
-        databaseExists = false;
+        
     }
     /**
      * Lisää uuden käyttäjän tietokantaan.
      * @param username käyttäjä nimi. 
+     * @return antaa true, jos lisäys onnistuu ja false jos ei. 
      */
-    public void addUsernameIntoDatabase(String username) {
+    public Boolean addUsernameIntoDatabase(String username) {
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Usernames(Username) VALUES (?);");
             command.setString(1, username);
             command.executeUpdate();
             command.close();
+            return true;
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
+        return false;
     }
     /**
      * Hakee käyttäjän tietokannasta.
@@ -110,20 +112,35 @@ public class UsernameDatabase {
     }
     
     /**
+     * tarkastaa tietokannan olemassaolon.
+     * 
+     * 
+     * 
+     * @return antaa true, jos tietokanta on olemassa ja false, jos ei.
+     */
+    
+    public boolean getDatabase() {
+        return databaseExists;
+    }
+    
+    /**
      * Poistaa tietokannan.
      * 
      * 
+     * @return palauttaa true, jos tietokanta on poistettu ja false jos ei.
      * @throws SQLException virhe.
      */
-    public void removeDatabase() throws SQLException {
+    public Boolean removeDatabase() throws SQLException {
         try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Usernames");
             command.close();
             databaseExists = false;
+            return true;
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
+        return false;
     }
 
 }

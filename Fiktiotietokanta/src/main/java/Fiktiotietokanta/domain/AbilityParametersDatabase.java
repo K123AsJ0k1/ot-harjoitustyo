@@ -19,7 +19,7 @@ import java.sql.Statement;
 public class AbilityParametersDatabase {
     
     Connection connection = DriverManager.getConnection("jdbc:sqlite:abilityparametersdatabase:connection");
-
+    Boolean databaseExists = false;
     /**
      * Tietokannan konstruktori.
      *
@@ -48,6 +48,7 @@ public class AbilityParametersDatabase {
             command.execute("CREATE INDEX idx_Reality ON Realities (Reality);");
 
             command.close();
+            databaseExists = true;
         } catch (SQLException k) {
             System.out.println("Error:" + k);
         }
@@ -444,6 +445,19 @@ public class AbilityParametersDatabase {
         return 0;
         
     }
+    
+    /**
+     * tarkastaa tietokannan olemassaolon.
+     * 
+     * 
+     * 
+     * @return antaa true, jos tietokanta on olemassa ja false, jos ei.
+     */
+    
+    public boolean getDatabase() {
+        return databaseExists;
+    }
+    
     /**
      * Poistaa olemassa olevan tietokannan.
      * @return antaa totuusarvon true, jos tietokanta on poistettu ja false jos ei.
@@ -458,6 +472,7 @@ public class AbilityParametersDatabase {
             command.execute("DROP TABLE Requriments");
             command.execute("DROP TABLE Realities");
             command.close();
+            databaseExists = false;
             return true;
         } catch (SQLException k) {
             System.out.println("Error:" + k);
