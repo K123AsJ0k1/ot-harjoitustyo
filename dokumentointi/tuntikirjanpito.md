@@ -1,6 +1,6 @@
 # Tuntikirjanpito
 
-| Päivä        | Tunti          | Mitä tein  |                     |Päivä | Perusversion toiminnallisuus | Onko valmis? |
+| Päivä        | Tunti          | Mitä tein  |                     
 | ------------- |:-------------:| -----:|                          
 |  23.3     | 4 | Vaatimusmäärittely |
 |  26.3     | 4      |   JavaFX asettelua |
@@ -21,3 +21,4 @@
 |7.4|   | Testien lisäys ja entisen testien muokkaus|
 |7.4|   | Luokka/pakkauskaavion luominen|
 
+|Päivä | Perusversion toiminnallisuus | Onko valmis? |
