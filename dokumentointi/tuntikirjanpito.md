@@ -33,19 +33,19 @@
 | Sovelluksen pääkäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
 | Päävalikko | On | 31.3 |
 | Ominaisuushallinnan siirtyminen | On | 31.3 |
-| Profiilinhallinan siirtyminen | On | 31.3 |
-| Uloskirjautumisent palautus | On | 31.3 |
+| Profiilinhallinnan siirtyminen | On | 31.3 |
+| Uloskirjautumisen palautus kirjautumiseen | On | 31.3 |
 | Sovelluksen ominaisuushallinta käyttöliittymä | Ei ole vielä valmis |  |
 | Ominaisuushallinnan valikko | On | 7.4 |
 | Ominaisuuden lisäys tietokantaan | On | 7.4 |
 | Ominaisuuden poisto tietokannasta | Ei | |
 | Siirtyminen takaisin päävalikkoon | On | 7.4 |
 | Sovelluksen profiilinhallinta käyttöliittymä | Ei ole vielä valmis | |
-| Profiilinhallinan valikko | On | 31.3 |
+| Profiilinhallinnan valikko | On | 31.3 |
 | Profiilin luominen | Ei | |
 | Tiedoston luominen profiilista | Ei | |
 | Profiilin resetointi | Ei | |
-| Siirtyminen takaisn päävalikkoon |On | 31.3 |
+| Siirtyminen takaisin päävalikkoon |On | 31.3 |
 
 
 
