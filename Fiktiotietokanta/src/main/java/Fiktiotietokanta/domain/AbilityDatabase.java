@@ -60,15 +60,15 @@ public class AbilityDatabase {
      * @return palauttaa true jos ominaisuus on lisätty ja false jos ei
      * 
      */
-    public Boolean addAbilityIntoDatabase(int usernameId,int classId,int nameId,int descriptionId,int requrimentId,int realityId) {
+    public Boolean addAbilityIntoDatabase(int usernameId, int classId, int nameId, int descriptionId, int requrimentId, int realityId) {
         try {
-            PreparedStatement command = connection.prepareStatement( "INSERT INTO Abilities(Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id) VALUES (?,?,?,?,?,?);" );
-            command.setInt(1,usernameId);
-            command.setInt(2,classId);
-            command.setInt(3,nameId);
-            command.setInt(4,descriptionId);
-            command.setInt(5,requrimentId);
-            command.setInt(6,realityId);
+            PreparedStatement command = connection.prepareStatement("INSERT INTO Abilities(Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id) VALUES (?,?,?,?,?,?);");
+            command.setInt(1, usernameId);
+            command.setInt(2, classId);
+            command.setInt(3, nameId);
+            command.setInt(4, descriptionId);
+            command.setInt(5, requrimentId);
+            command.setInt(6, realityId);
             command.executeUpdate();
             command.close();
             return true;
@@ -90,11 +90,12 @@ public class AbilityDatabase {
      * @return palauttaa true jos ominaisuus on lisätty ja false jos ei
      *  
      */
-    public Boolean searchAbilityFromDatabase(int usernameId,int classId,int nameId,int descriptionId,int requrimentId,int realityId) {
+    public Boolean searchAbilityFromDatabase(int usernameId, int classId, int nameId, int descriptionId, int requrimentId, int realityId) {
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
             ResultSet querrySet = command.executeQuery();
             Boolean abilityExists = false;
+            
             while(querrySet.next()) {
                 int userId = querrySet.getInt("Username_id");
                 int clasId = querrySet.getInt("Class_id");
@@ -127,7 +128,7 @@ public class AbilityDatabase {
      *
      *
      * @return palauttaa true, jos tietokanta on poistettu ja false jos ei.
-     * @throws java.sql.SQLException virhe.
+     * @throws SQLException virhe.
      * 
      */
     public Boolean removeDatabase() throws SQLException {

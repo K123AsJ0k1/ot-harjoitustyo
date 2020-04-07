@@ -56,7 +56,7 @@ public class UsernameDatabase {
     /**
      * Hakee käyttäjän tietokannasta.
      * @param username käyttäjä nimi. 
-     * @Return palauttaa true, jos löytyy ja false jos ei.
+     * @return palauttaa true, jos löytyy ja false jos ei.
      */
     public boolean searchForAnExistingUsername(String username) {
         try {

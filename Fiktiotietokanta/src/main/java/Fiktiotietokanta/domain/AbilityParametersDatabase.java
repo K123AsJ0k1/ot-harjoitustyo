@@ -60,15 +60,20 @@ public class AbilityParametersDatabase {
      */
     public Boolean addClassIntoDatabase(String givenClass) {
         try {
+            
             PreparedStatement command = connection.prepareStatement("INSERT INTO Classes(Class) VALUES (?);");
             command.setString(1, givenClass);
             command.executeUpdate();
             command.close();
             return true;
+        
         } catch (SQLException k) {
             System.out.println("Error:" + k);
+        
         } 
-       return false;
+       
+        return false;
+    
     }
     /**
      * Tarkastaa luokan olemassa olon tietokannasta.
@@ -333,9 +338,9 @@ public class AbilityParametersDatabase {
         return false;
     }
     /**
-     * Hakee vaatimuksen id:n tietokannasta
-     * @param givenRequriment annettu vaatimus
-     * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0
+     * Hakee vaatimuksen id:n tietokannasta.
+     * @param givenRequriment annettu vaatimus.
+     * @return antaa saadun id:n, jos se löydetään ja jos ei, niin 0.
      * 
      */
     public Integer getSearchedRequrimentIdFromDatabase(String givenRequriment)  {
