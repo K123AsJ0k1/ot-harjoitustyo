@@ -26,11 +26,11 @@
 
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
-| Sovelluksen kirjautumiskäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan | 30.3 |
+| Sovelluksen kirjautumiskäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
 | Tunnuksen luominen | On | 30.3 |
 | Tunnuksen vaatimukset | On | 30.3 |
 | Tunnuksella kirjautuminen | On | 30.3 |
-| Sovelluksen pääkäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan | 31.3 |
+| Sovelluksen pääkäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
 | Päävalikko | On | 31.3 |
 | Ominaisuushallinnan siirtyminen | On | 31.3 |
 | Profiilinhallinan siirtyminen | On | 31.3 |
