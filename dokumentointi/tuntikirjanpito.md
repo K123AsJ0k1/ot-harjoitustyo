@@ -7,7 +7,10 @@
 | 27.3 | 4      |  JavaFX tutustumista |
 | 29.3 | 3 | Projektin asettelua |
 |30.3 | 3 | Käyttöliittymän luominen|
-|31.3| 4 | Projektin asettelua|
+|30.3 |   | Käyttäjä tietokannan luominen |
+|30.3 |   | Perusmetodien luonti |
+|31.3| 4 | Käyttöliittymän muokkaus |
+|31.3|   | Tietokantaa testaavien testien luonti |
 |31.3| 2 | Projektin asetusten tarkastusta|
 |5.4| 4 | Lisää ominaisuus käyttöliittymän luonti |
 |5.4|   | Tarvittavien tietokantojen ideointi |
@@ -23,4 +26,27 @@
 
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
-| Sovelluksen kirjautumiskäyttöliittymä | On | 30.3 |
+| Sovelluksen kirjautumiskäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan | 30.3 |
+| Tunnuksen luominen | On | 30.3 |
+| Tunnuksen vaatimukset | On | 30.3 |
+| Tunnuksella kirjautuminen | On | 30.3 |
+| Sovelluksen pääkäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan | 31.3 |
+| Päävalikko | On | 31.3 |
+| Ominaisuushallinnan siirtyminen | On | 31.3 |
+| Profiilinhallinan siirtyminen | On | 31.3 |
+| Uloskirjautumisent palautus | On | 31.3 |
+| Sovelluksen ominaisuushallinta käyttöliittymä | Ei ole vielä valmis |  |
+| Ominaisuushallinnan valikko | On | 7.4 |
+| Ominaisuuden lisäys tietokantaan | On | 7.4 |
+| Ominaisuuden poisto tietokannasta | Ei | |
+| Siirtyminen takaisin päävalikkoon | On | 7.4 |
+| Sovelluksen profiilinhallinta käyttöliittymä | Ei ole vielä valmis | |
+| Profiilinhallinan valikko | On | 31.3 |
+| Profiilin luominen | Ei | |
+| Tiedoston luominen profiilista | Ei | |
+| Profiilin resetointi | Ei | |
+| Siirtyminen takaisn päävalikkoon |On | 31.3 |
+
+
+
+
