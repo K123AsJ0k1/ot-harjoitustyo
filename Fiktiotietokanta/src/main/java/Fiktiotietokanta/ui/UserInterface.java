@@ -246,7 +246,11 @@ public class UserInterface extends Application {
                 accountExistsError_SignIn.setText("Given username already exists");
                 return;
             }
-            username_Database.addUsernameIntoDatabase(givenUsername_SignIn);
+            Boolean isAdded=username_Database.addUsernameIntoDatabase(givenUsername_SignIn);
+            if (!isAdded) {
+                accountExistsError_SignIn.setText("Error has occured");
+                return;
+            }
             accountIsToShortError_SignIn.setText("");
             accountExistsError_SignIn.setText("");
             createUsernameInput_SignIn.clear();
