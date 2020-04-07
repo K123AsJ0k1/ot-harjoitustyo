@@ -7,7 +7,7 @@ Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia 
 
 [Vaatimusmäärittely](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/Vaatimusmaarittely.md)
 
-[Arkkitehtuuikuvaus]
+[Arkkitehtuuikuvaus](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/Arkkitehtuurikuvaus.md)
 
 [Testausdokumentti]
 
