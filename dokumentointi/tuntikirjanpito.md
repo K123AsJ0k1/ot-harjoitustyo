@@ -21,6 +21,6 @@
 |7.4|   | Testien lisäys ja entisen testien muokkaus|
 |7.4|   | Luokka/pakkauskaavion luominen|
 
-| Perusversion toiminnallisuus | Onko toimiva? | Milloin tehtiin valmiiksi |
-| ------------- |:-------------:| -----:|     
-| Yleinen käyttöliittymä | On | 30.3 |
+| Perusversion toiminnallisuus | Onko toimiva? |Tuleeko muuttumaan?| Milloin tehtiin valmiiksi |
+| ------------- |:-------------:| |:-------------:| -----:|     
+| Sovelluksen kirjautumiskäyttöliittymä | On |Todennäköisesti| 30.3 |
