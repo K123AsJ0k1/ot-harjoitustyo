@@ -47,7 +47,7 @@ JavaDoc generoidaan komennolla
 
 ```mvn javadoc:javadoc```
 
-JavaDocia voi tarkastealla avamaalla selaimellal tiedosto target/site/apidocs/index.html
+JavaDocia voi tarkastella avamaalla selaimella tiedosto target/site/apidocs/index.html
 
 **Checkstyle**
 
