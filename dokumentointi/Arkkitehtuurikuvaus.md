@@ -16,9 +16,9 @@ Sovelluksen perusversion datamalli koostuu kolmesta tietokannasta nimiltään Us
 
 **AblityDatabase**
 
-- Boolean addAbilityIntoDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_i)
-- Boolean searchAbilityFromDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_i)
-- Integer getAbilityIdFromDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_i)
+- Boolean addAbilityIntoDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_id)
+- Boolean searchAbilityFromDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_id)
+- Integer getAbilityIdFromDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_id)
 
 Kyseisten metodien avulla käyttöliittymä pystyy lisäämään, tarkastamaan ja hakemaan tietokannan antamia id numeroita. Mainittujen metodien ollessa toisteisia, tullaan niistä todennäköisesti tekemään tulevaisuudessa erillisiä rajapintoja, minkä takia sovelluslogiikka mainittu sovelluslogiikka tulee vielä muuttuumaan.
 
