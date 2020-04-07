@@ -96,7 +96,7 @@ public class AbilityDatabase {
             ResultSet querrySet = command.executeQuery();
             Boolean abilityExists = false;
             
-            while(querrySet.next()) {
+            while (querrySet.next()) {
                 int userId = querrySet.getInt("Username_id");
                 int clasId = querrySet.getInt("Class_id");
                 int namId = querrySet.getInt("Name_id");
