@@ -22,3 +22,4 @@
 |7.4|   | Luokka/pakkauskaavion luominen|
 
 |Päivä | Perusversion toiminnallisuus | Onko valmis? |
+| ------------- |:-------------:| -----:|     
