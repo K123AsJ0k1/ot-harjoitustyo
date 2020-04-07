@@ -22,5 +22,5 @@
 |7.4|   | Luokka/pakkauskaavion luominen|
 
 | Perusversion toiminnallisuus | Onko toimiva? |Tuleeko muuttumaan?| Milloin tehtiin valmiiksi |
-| ------------- |:-------------:| |:-------------:| -----:|     
-| Sovelluksen kirjautumiskäyttöliittymä | On |Todennäköisesti| 30.3 |
+| ------------- |:-------------:|  -----:|     
+| Sovelluksen kirjautumiskäyttöliittymä | On | 30.3 |
