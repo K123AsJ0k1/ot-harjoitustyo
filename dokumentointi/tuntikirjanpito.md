@@ -10,3 +10,5 @@
 |31.3| 4 | Projektin asettelua|
 |31.3| 2 | Projektin asetusten tarkastusta|
 |5.4| 4 | Projektin muokkaus|
+|6.4| 5 | Projektin muokkaus|
+|7.4| 4 | Projektin muokkaus|
