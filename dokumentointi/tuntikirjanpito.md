@@ -23,6 +23,8 @@
 |7.4|   | Tietokanta metodien muokkaus |
 |7.4|   | Testien lisäys ja entisen testien muokkaus|
 |7.4|   | Luokka/pakkauskaavion luominen|
+|12.4|4 | Lisää JavaFx tutustumista |
+|12.4|  | Käyttöliittymä testailua |
 
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
