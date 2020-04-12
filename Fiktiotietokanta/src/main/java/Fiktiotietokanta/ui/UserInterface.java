@@ -20,6 +20,12 @@ import javafx.stage.Stage;
 import Fiktiotietokanta.domain.UsernameDatabase;
 import Fiktiotietokanta.domain.AbilityDatabase;
 import Fiktiotietokanta.domain.AbilityParametersDatabase;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -38,6 +44,7 @@ public class UserInterface extends Application {
         parameterDatabase = new AbilityParametersDatabase();
         abilityDatabase = new AbilityDatabase();
         usernameId=0;
+        username_Database.addUsernameIntoDatabase("Tester");
     }
     
     public void reset() throws Exception {
@@ -205,6 +212,50 @@ public class UserInterface extends Application {
         
         Scene screenAddAbilityMenu= new Scene(addAbilityMenu);
         
+        //Remove Abilities Scene
+        
+        //Create profile Scene
+        
+        VBox createProfileLayout=new VBox();
+        
+        GridPane createProfileMenu = new GridPane();
+        
+        BorderPane menuRoot = new BorderPane();
+        
+        MenuBar createProfileMenuBar = new MenuBar();
+        
+        Menu exitProfileMenu = new Menu("Exit profile creator");
+        
+        MenuItem exitProfileMenu1 = new MenuItem("Save and return");
+        MenuItem exitProfileMenu2 = new MenuItem("Return without saving");
+        
+        exitProfileMenu.getItems().addAll(exitProfileMenu1,exitProfileMenu2);
+        
+        createProfileMenuBar.getMenus().addAll(exitProfileMenu);
+        
+        menuRoot.setTop(createProfileMenuBar);
+        
+        TextArea profileEditorCreateProfileMenu=new TextArea();
+        
+        profileEditorCreateProfileMenu.setMinSize(480, 425);
+        profileEditorCreateProfileMenu.setMaxSize(480, 425);
+        profileEditorCreateProfileMenu.setWrapText(true);
+        
+        
+        createProfileMenu.getChildren().addAll(menuRoot);
+        createProfileMenu.add(profileEditorCreateProfileMenu, 0, 0);
+        
+        createProfileLayout.getChildren().addAll(menuRoot,createProfileMenu);
+        
+        createProfileLayout.setPrefSize(500, 500);
+        
+        Scene createProfileScene=new Scene(createProfileLayout);
+        
+        
+        
+        //Create a file from Profile Scene
+        
+        //Reset current profile Scene      
 
         //All UI actions and events
         //Login screen transitions
@@ -302,6 +353,15 @@ public class UserInterface extends Application {
         
 
         //Profile menu transitions;
+        
+        //Transition from profile menu scene to create profile scene when create profile
+        
+        createProfile_ProfileMenu.setOnAction((event) -> {
+            primaryStage.setTitle("Profile creator");
+            primaryStage.setScene(createProfileScene);
+            
+        });
+        
         //Transition from profile menu scene to main menu scene when return
         return_ProfileMenu.setOnAction((event) -> {
             primaryStage.setTitle("Main menu");
@@ -419,6 +479,24 @@ public class UserInterface extends Application {
            writenRequriment.clear();
            writenReality.clear();
         });
+        
+        //Create profile transitions
+        
+        //Transition from create profile scene to profile menu when save and return
+        
+        exitProfileMenu1.setOnAction((event) -> {
+            primaryStage.setTitle("Profile menu");
+            primaryStage.setScene(screen_ProfileMenu);         
+        });
+        
+        //Transition from create profile scene to profile menu when return without saving
+        
+        exitProfileMenu2.setOnAction((event) -> {
+            primaryStage.setTitle("Profile menu");
+            primaryStage.setScene(screen_ProfileMenu);        
+        });
+        
+        
         
 
         //UI start code
