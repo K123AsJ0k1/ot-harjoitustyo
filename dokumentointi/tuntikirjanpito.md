@@ -25,6 +25,9 @@
 |7.4|   | Luokka/pakkauskaavion luominen|
 |12.4|4 | Lisää JavaFx tutustumista |
 |12.4|  | Käyttöliittymä testailua |
+|13.4|8 | Tarvittujen rajapintojen luonti |
+|13.4|  | Projektin muokkaus |
+|13.4|  | Uusien testien luominen |
 
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
