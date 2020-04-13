@@ -486,7 +486,7 @@ public class userInterface extends Application {
            int realityId = realityDatabase.searchInfromationId(textFieldReality);
            
            String information = String.valueOf(usernameId)+"/"+String.valueOf(classId)+"/"+String.valueOf(nameId)+"/"+String.valueOf(descriptionId)+"/"+String.valueOf(requrimentId)+"/"+String.valueOf(realityId);
-           System.out.println(information);
+           
            if (usernameId==0 || classId==0 || nameId==0 || descriptionId==0 || requrimentId==0 || realityId==0) {
                addAbilityMenuError.setText("Error has happened");
                return;
