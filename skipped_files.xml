@@ -5,6 +5,6 @@
     "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress files="Fiktiotietokanta.ui.Main.java" checks="[a-zA-Z0-9]*"/>
-    <suppress files="Fiktiotietokanta.ui.UserInterface.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="Fiktiotietokanta.ui.main.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="Fiktiotietokanta.ui.userInterface.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

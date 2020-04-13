@@ -82,7 +82,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>Fiktiotietokanta.Main</mainClass>
+                                    <mainClass>Fiktiotietokanta.main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

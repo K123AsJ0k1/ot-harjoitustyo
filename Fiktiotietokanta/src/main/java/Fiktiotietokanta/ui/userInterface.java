@@ -5,6 +5,8 @@
  */
 package Fiktiotietokanta.ui;
 
+import Fiktiotietokanta.dao.databaseInterface;
+import Fiktiotietokanta.dao.usernameInterface;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,9 +19,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import Fiktiotietokanta.domain.UsernameDatabase;
-import Fiktiotietokanta.domain.AbilityDatabase;
-import Fiktiotietokanta.domain.AbilityParametersDatabase;
+import Fiktiotietokanta.domain.usernameDatabase;
+import Fiktiotietokanta.domain.abilityDatabase;
+import Fiktiotietokanta.domain.classDatabase;
+import Fiktiotietokanta.domain.descriptionDatabase;
+import Fiktiotietokanta.domain.nameDatabase;
+import Fiktiotietokanta.domain.realityDatabase;
+import Fiktiotietokanta.domain.requrimentDatabase;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -31,28 +38,42 @@ import javafx.scene.layout.VBox;
  *
  * @author niila
  */
-public class UserInterface extends Application {
-
-    private UsernameDatabase username_Database;
-    private AbilityParametersDatabase parameterDatabase;
-    private AbilityDatabase abilityDatabase;
+public class userInterface extends Application {
+     
+    private usernameInterface usernameDatabase;
+    private databaseInterface classDatabase;
+    private databaseInterface nameDatabase;
+    private databaseInterface descriptionDatabase;
+    private databaseInterface requrimentDatabase;
+    private databaseInterface realityDatabase;
+    private databaseInterface abilityDatabase;
     private Integer usernameId;
-
+    
+    
+    
     @Override
     public void init() throws Exception {
-        username_Database = new UsernameDatabase();
-        parameterDatabase = new AbilityParametersDatabase();
-        abilityDatabase = new AbilityDatabase();
+        usernameDatabase = new usernameDatabase();
+        classDatabase = new classDatabase();
+        nameDatabase = new nameDatabase();
+        descriptionDatabase = new descriptionDatabase();
+        requrimentDatabase = new requrimentDatabase();
+        realityDatabase = new realityDatabase();
+        abilityDatabase = new abilityDatabase();
+        
+        usernameDatabase.createUsernameDatabase();
+        classDatabase.createDatabase();
+        nameDatabase.createDatabase();
+        descriptionDatabase.createDatabase();
+        requrimentDatabase.createDatabase();
+        realityDatabase.createDatabase();
+        abilityDatabase.createDatabase();
+               
         usernameId=0;
-        username_Database.addUsernameIntoDatabase("Tester");
+        
     }
     
-    public void reset() throws Exception {
-        username_Database.removeDatabase();
-        parameterDatabase.removeDatabase();
-        abilityDatabase.removeDatabase();
-    }
-
+       
     @Override
     public void start(Stage primaryStage) {
 
@@ -263,11 +284,14 @@ public class UserInterface extends Application {
         login_Login.setOnAction((event) -> {
             loginerror_Login.setText("");
             String givenUsername_Login = usernameInput_Login.getText().trim();
-            if (!(username_Database.searchForAnExistingUsername(givenUsername_Login))) {
+                
+            if (!(usernameDatabase.searchUserInformation(givenUsername_Login))) {
                 loginerror_Login.setText("Username doesn't exist");
                 return;
             }
-            usernameId=username_Database.getSearchedUsernameId(givenUsername_Login);
+            
+            
+            usernameId=usernameDatabase.searchUsernameId(givenUsername_Login);
             usernameInput_Login.clear();
             loginerror_Login.setText("");
             primaryStage.setTitle("Main menu");
@@ -293,15 +317,19 @@ public class UserInterface extends Application {
                 accountIsToShortError_SignIn.setText("Given username is too short");
                 return;
             }
-            if (username_Database.searchForAnExistingUsername(givenUsername_SignIn)) {
+            
+            if (usernameDatabase.searchUserInformation(givenUsername_SignIn)) {
                 accountExistsError_SignIn.setText("Given username already exists");
                 return;
             }
-            Boolean isAdded=username_Database.addUsernameIntoDatabase(givenUsername_SignIn);
+            
+            Boolean isAdded = usernameDatabase.addUserInformation(givenUsername_SignIn);
+            
             if (!isAdded) {
                 accountExistsError_SignIn.setText("Error has occured");
                 return;
             }
+            
             accountIsToShortError_SignIn.setText("");
             accountExistsError_SignIn.setText("");
             createUsernameInput_SignIn.clear();
@@ -332,7 +360,7 @@ public class UserInterface extends Application {
 
         //Transition from main menu scene to login scene when sign out
         signOut_MainMenu.setOnAction((event) -> {
-            usernameId=0;
+            //usernameId=0;
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screen_Login);
         });
@@ -397,74 +425,79 @@ public class UserInterface extends Application {
            Boolean addRequriment = false;
            Boolean addReality = false;
            
-           if (!parameterDatabase.searchClassFromDatabase(textFieldClass)) {
+             
+           if (!classDatabase.searchInformation(textFieldClass)) {
                addClass = true;
            }
            
-           if (!parameterDatabase.searchNameFromDatabase(textFieldName)) {
+           if (!nameDatabase.searchInformation(textFieldName)) {
                addName = true;
            }
            
-           if (!parameterDatabase.searchDescriptionFromDatabase(textFieldDescription)) {
+           if (!descriptionDatabase.searchInformation(textFieldDescription)) {
                addDescription = true;
            }
            
-           if (!parameterDatabase.searchRequrimentFromDatabase(textFieldRequriment)) {
+           if (!requrimentDatabase.searchInformation(textFieldRequriment)) {
                addRequriment = true;
            }
            
-           if (!parameterDatabase.searchRealityFromDatabase(textFieldReality)) {
+           if (!realityDatabase.searchInformation(textFieldReality)) {
                addReality = true;
            }
+           
+           
            Boolean classHasBeenAdded = false;
            
            if (addClass) {
-               classHasBeenAdded=parameterDatabase.addClassIntoDatabase(textFieldClass);
+               classHasBeenAdded=classDatabase.addInformation(textFieldClass);
            }
            
            Boolean nameHasBeenAdded = false;
            
            if (addName) {
-               nameHasBeenAdded = parameterDatabase.addNameIntoDatabase(textFieldName);
+               nameHasBeenAdded = nameDatabase.addInformation(textFieldName);
            }
            
            Boolean descriptionHasBeenAdded = false;
            
            if (addDescription) {
-               descriptionHasBeenAdded = parameterDatabase.addDescriptionIntoDatabase(textFieldDescription);
+               descriptionHasBeenAdded = descriptionDatabase.addInformation(textFieldDescription);
            }
            
            Boolean requrimentHasBeenAdded = false;
            
            if (addRequriment) {
-               requrimentHasBeenAdded = parameterDatabase.addRequrimentIntoDatabase(textFieldRequriment);
+               requrimentHasBeenAdded = requrimentDatabase.addInformation(textFieldRequriment);
            }
            
            Boolean realityHasBeenAdded = false;
            
            if (addReality) {
-               realityHasBeenAdded = parameterDatabase.addRealityIntoDatabase(textFieldReality);
+               realityHasBeenAdded = realityDatabase.addInformation(textFieldReality);
            }
            
            
            
-           int classId=parameterDatabase.getSearchedClassIdFromDatabase(textFieldClass);
-           int nameId=parameterDatabase.getSearchedNameIdFromDatabase(textFieldName);
-           int descriptionId=parameterDatabase.getSearchedDescriptionIdFromDatabase(textFieldDescription);
-           int requrimentId=parameterDatabase.getSearchedRequrimentIdFromDatabase(textFieldRequriment);
-           int realityId=parameterDatabase.getSearchedRealityIdFromDatabase(textFieldReality);
+           int classId = classDatabase.searchInfromationId(textFieldClass);
+           int nameId = nameDatabase.searchInfromationId(textFieldName);
+           int descriptionId = descriptionDatabase.searchInfromationId(textFieldDescription);
+           int requrimentId = requrimentDatabase.searchInfromationId(textFieldRequriment);
+           int realityId = realityDatabase.searchInfromationId(textFieldReality);
            
+           String information = String.valueOf(usernameId)+"/"+String.valueOf(classId)+"/"+String.valueOf(nameId)+"/"+String.valueOf(descriptionId)+"/"+String.valueOf(requrimentId)+"/"+String.valueOf(realityId);
+           System.out.println(information);
            if (usernameId==0 || classId==0 || nameId==0 || descriptionId==0 || requrimentId==0 || realityId==0) {
                addAbilityMenuError.setText("Error has happened");
                return;
            }
            
-           if (abilityDatabase.searchAbilityFromDatabase(usernameId, classId, nameId, descriptionId, requrimentId, realityId)) {
+           if (abilityDatabase.searchInformation(information)) {
                addAbilityMenuError.setText("Ability already exists");
                return;
            }
            
-           Boolean abilityHasBeenAdded=abilityDatabase.addAbilityIntoDatabase(usernameId, classId, nameId, descriptionId, requrimentId, realityId);
+           Boolean abilityHasBeenAdded=abilityDatabase.addInformation(information);
            
            if (!abilityHasBeenAdded) {
                addAbilityMenuError.setText("Error has happened");
@@ -479,6 +512,8 @@ public class UserInterface extends Application {
            writenRequriment.clear();
            writenReality.clear();
         });
+           
+           
         
         //Create profile transitions
         
@@ -503,18 +538,24 @@ public class UserInterface extends Application {
         primaryStage.setTitle("Login screen");
         primaryStage.setScene(screen_Login);
         primaryStage.show();
+        
+        
     }
+        
 
-    /**
-     * @param args the command line arguments
-     */
+    
     
     @Override
-    public void stop() throws Exception{
-        username_Database.removeDatabase();
-        parameterDatabase.removeDatabase();
-        abilityDatabase.removeDatabase();
+    public void stop() throws Exception {   
+        usernameDatabase.removeUsernameDatabase();
+        classDatabase.removeDatabase();
+        nameDatabase.removeDatabase();
+        descriptionDatabase.removeDatabase();
+        requrimentDatabase.removeDatabase();
+        realityDatabase.removeDatabase();
+        abilityDatabase.removeDatabase();       
     }
+                
     
     public static void main(String[] args) {
         launch(args);

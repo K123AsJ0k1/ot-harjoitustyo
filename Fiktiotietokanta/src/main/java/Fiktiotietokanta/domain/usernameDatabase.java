@@ -1,5 +1,7 @@
 package Fiktiotietokanta.domain;
 
+import Fiktiotietokanta.dao.databaseInterface;
+import Fiktiotietokanta.dao.usernameInterface;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,20 +14,25 @@ import java.sql.Statement;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  * Käyttäjä tietokanta.
  *
  */
-public class UsernameDatabase {
+public class usernameDatabase implements usernameInterface {
 
-    Connection connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
-    Boolean databaseExists = false;
+    private Connection connection;
+    private Boolean databaseExists;
 
-    /**
-     * Käyttäjä tietokannan konstruktori.
-     * @throws SQLException virhe. 
-     */
-    public UsernameDatabase() throws SQLException {
+    
+    
+    public usernameDatabase() throws Exception {
+        this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
+        this.databaseExists = false;
+    }
+    
+    @Override
+    public boolean createUsernameDatabase() throws Exception  {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
@@ -33,17 +40,24 @@ public class UsernameDatabase {
             command.execute("CREATE INDEX idx_Username ON Usernames (Username);");
             command.close();
             databaseExists = true;
+            return true;
         } catch (SQLException k) {
-            System.out.println("Error:" + k);
+            
         }
-        
+        return false;
     }
-    /**
-     * Lisää uuden käyttäjän tietokantaan.
-     * @param username käyttäjä nimi. 
-     * @return antaa true, jos lisäys onnistuu ja false jos ei. 
-     */
-    public Boolean addUsernameIntoDatabase(String username) {
+    
+    
+    
+
+    @Override
+    public boolean usernameDatabaseExists()  {
+        return databaseExists;
+    }
+    
+    
+    @Override
+    public boolean addUserInformation(String username) {
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Usernames(Username) VALUES (?);");
             command.setString(1, username);
@@ -51,16 +65,14 @@ public class UsernameDatabase {
             command.close();
             return true;
         } catch (SQLException k) {
-            System.out.println("Error:" + k);
+            
         }
         return false;
     }
-    /**
-     * Hakee käyttäjän tietokannasta.
-     * @param username käyttäjä nimi. 
-     * @return palauttaa true, jos löytyy ja false jos ei.
-     */
-    public boolean searchForAnExistingUsername(String username) {
+    
+    
+    @Override
+    public boolean searchUserInformation(String username) {
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Username FROM Usernames;");
             ResultSet querySet = command.executeQuery();
@@ -82,17 +94,16 @@ public class UsernameDatabase {
             return false;
 
         } catch (SQLException k) {
-            System.out.println("Error:" + k);
+            
         }
         return false;
     }
-    /**
-     * Hakee käyttäjän id:n tietokannasta.
-     * @param username käyttäjä nimi.
-     * @return palauttaa tietokanta id:n jos löytyy ja 0 jos ei.
-     */
-    public Integer getSearchedUsernameId(String username) {
-        try {
+    
+    
+    
+    @Override
+    public Integer searchUsernameId(String username) {
+       try {
             PreparedStatement command = connection.prepareStatement("SELECT id FROM Usernames WHERE Username=?;");
             command.setString(1, username);
             ResultSet querySet = command.executeQuery();
@@ -106,31 +117,28 @@ public class UsernameDatabase {
             return userId;
                     
         } catch (SQLException k) {
-            System.out.println("Error:" + k);
+            
         }
         return 0;
     }
-    
-    /**
-     * tarkastaa tietokannan olemassaolon.
-     * 
-     * 
-     * 
-     * @return antaa true, jos tietokanta on olemassa ja false, jos ei.
-     */
-    
-    public boolean getDatabase() {
-        return databaseExists;
+
+    @Override
+    public boolean removeUserInformation(String username)  {
+        try {
+            PreparedStatement command = connection.prepareStatement("DELETE FROM Usernames WHERE Username=?;");
+            command.setString(1, username);
+            command.executeUpdate();
+            command.close();
+            return true;
+        } catch (SQLException k) {
+            
+        }
+        return false;
     }
     
-    /**
-     * Poistaa tietokannan.
-     * 
-     * 
-     * @return palauttaa true, jos tietokanta on poistettu ja false jos ei.
-     * @throws SQLException virhe.
-     */
-    public Boolean removeDatabase() throws SQLException {
+    
+    @Override
+    public boolean removeUsernameDatabase() throws Exception {
         try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Usernames");
@@ -138,9 +146,10 @@ public class UsernameDatabase {
             databaseExists = false;
             return true;
         } catch (SQLException k) {
-            System.out.println("Error:" + k);
+           
         }
         return false;
     }
-
+    
+   
 }

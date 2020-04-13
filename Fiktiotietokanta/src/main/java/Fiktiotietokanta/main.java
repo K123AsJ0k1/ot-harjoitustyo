@@ -1,13 +1,13 @@
 package Fiktiotietokanta;
 
-import Fiktiotietokanta.ui.UserInterface;
+import Fiktiotietokanta.ui.userInterface;
 
 /**
  * Ohjelman main.
  *
  * 
  */
-public class Main {
+public class main {
 
     /**
      * Ohjelman main.
@@ -16,6 +16,6 @@ public class Main {
      * @param args annettu string taulukko. 
      */
     public static void main(String[] args) {
-        UserInterface.main(args);
+        userInterface.main(args);
     }
 }
