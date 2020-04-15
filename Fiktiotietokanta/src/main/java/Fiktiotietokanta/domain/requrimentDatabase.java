@@ -182,5 +182,10 @@ public class requrimentDatabase implements databaseInterface {
         } 
         return null;
     }
+
+    @Override
+    public List<String> showDatabaseAsARestrictedList(String information) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

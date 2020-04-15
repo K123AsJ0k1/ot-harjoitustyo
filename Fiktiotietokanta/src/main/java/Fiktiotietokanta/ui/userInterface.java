@@ -27,6 +27,8 @@ import Fiktiotietokanta.domain.descriptionDatabase;
 import Fiktiotietokanta.domain.nameDatabase;
 import Fiktiotietokanta.domain.realityDatabase;
 import Fiktiotietokanta.domain.requrimentDatabase;
+import java.util.List;
+import javafx.collections.ObservableList;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -267,7 +269,6 @@ public class userInterface extends Application {
 
         removeAbilityLayout.setPrefSize(320, 400);
 
-        
         TableViewSelectionModel<ability> selectionModelTableView = removeAbilityTableView.getSelectionModel();
         selectionModelTableView.setSelectionMode(SelectionMode.SINGLE);
 
@@ -537,7 +538,19 @@ public class userInterface extends Application {
         //Transition from ability menu scene to remove ability scene when remove ability
         removeAbilitiesAbilityMenu.setOnAction((event) -> {
             
+            List<String> abilityList = abilityDatabase.showDatabaseAsARestrictedList(String.valueOf(usernameId));
             
+            for (String ability : abilityList) {
+                String[] split = ability.split("/");
+                String classIdentity = classDatabase.searchInformationTextIdentity(split[0]);
+                String nameIdentity = nameDatabase.searchInformationTextIdentity(split[1]);
+                String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
+                String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
+                String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
+                ability addedAbility = new ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
+                removeAbilityTableView.getItems().add(addedAbility);
+            }
+
             primaryStage.setTitle("Remove Abilities table");
             primaryStage.setScene(removeAbilityTable);
             //removeAbilityTableView.getItems().add(new ability("Test", "Test", "Test", "Test", "Test"));
@@ -546,19 +559,33 @@ public class userInterface extends Application {
         
         //Removal of ability
         removeSelectedAbilityTableView.setOnAction((event) -> {
-            
+            if (selectionModelTableView.getSelectedItems().size() > 0) {
+                ObservableList selectedItems = selectionModelTableView.getSelectedItems();
+                int removedIndex=selectionModelTableView.getFocusedIndex();
+                String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
+                int classId = classDatabase.searchInfromationId(givenAbilitySplit[0]);
+                int nameId = nameDatabase.searchInfromationId(givenAbilitySplit[1]);
+                int descriptionId = descriptionDatabase.searchInfromationId(givenAbilitySplit[2]);
+                int requrimentId = requrimentDatabase.searchInfromationId(givenAbilitySplit[3]);
+                int realityId = realityDatabase.searchInfromationId(givenAbilitySplit[4]);
+                String removedId = String.valueOf(usernameId)+"/"+String.valueOf(classId)+"/"+String.valueOf(nameId)+"/"+String.valueOf(descriptionId)+"/"+String.valueOf(requrimentId)+"/"+String.valueOf(realityId);
+                abilityDatabase.removeInformation(removedId);
+                removeAbilityTableView.getItems().remove(removedIndex);
+                removeAbilityTableView.refresh();
+            }
         });
-
+        
         //Transition from remove ability scene to ability menu
         returnAbilityMenuTableView.setOnAction((event) -> {
+            removeAbilityTableView.getItems().clear();
             primaryStage.setTitle("Ability menu");
             primaryStage.setScene(screenAbilityMenu);
 
         });
-        
+
         //Refreash of table view
-        refreshAbilityMenuTableView.setOnAction((event) ->{
-            
+        refreshAbilityMenuTableView.setOnAction((event) -> {
+
         });
 
         //Create profile transitions

@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -232,6 +233,55 @@ public class abilityDatabase implements databaseInterface {
 
     @Override
     public List<String> showDatabaseAsAList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> databaseAsAList = new ArrayList<>();
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
+            ResultSet querySet = command.executeQuery();
+            while (querySet.next()) {
+                int givenUsernameId = querySet.getInt("Username_id");
+                int givenClassId = querySet.getInt("Class_id");
+                int givenNameId = querySet.getInt("Name_id");
+                int givenDescriptionId = querySet.getInt("Description_id");
+                int givenRequrimentId = querySet.getInt("Requriment_id");
+                int givenRealityId = querySet.getInt("Reality_id");
+                String givenTextIdentity = String.valueOf(givenUsernameId)+"/"+String.valueOf(givenClassId)+"/"+String.valueOf(givenNameId)+"/"+String.valueOf(givenDescriptionId)+"/"+String.valueOf(givenRequrimentId)+"/"+String.valueOf(givenRealityId);
+                databaseAsAList.add(givenTextIdentity);
+            }
+            querySet.close();
+            command.close();
+            
+            return databaseAsAList;
+            
+        } catch (SQLException k) {
+            
+        } 
+        return null;
+    }
+    @Override
+    public List<String> showDatabaseAsARestrictedList(String givenUsernameId) {
+        List<String> databaseAsAList = new ArrayList<>();
+        int checkId=Integer.valueOf(givenUsernameId);
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities WHERE Username_id=?;");
+            command.setInt(1, checkId);
+            ResultSet querySet = command.executeQuery();
+            while (querySet.next()) {   
+                int givenClassId = querySet.getInt("Class_id");
+                int givenNameId = querySet.getInt("Name_id");
+                int givenDescriptionId = querySet.getInt("Description_id");
+                int givenRequrimentId = querySet.getInt("Requriment_id");
+                int givenRealityId = querySet.getInt("Reality_id");
+                String givenTextIdentity = String.valueOf(givenClassId)+"/"+String.valueOf(givenNameId)+"/"+String.valueOf(givenDescriptionId)+"/"+String.valueOf(givenRequrimentId)+"/"+String.valueOf(givenRealityId);
+                databaseAsAList.add(givenTextIdentity);
+            }
+            querySet.close();
+            command.close();
+            
+            return databaseAsAList;
+            
+        } catch (SQLException k) {
+            
+        } 
+        return null;
     }
 }

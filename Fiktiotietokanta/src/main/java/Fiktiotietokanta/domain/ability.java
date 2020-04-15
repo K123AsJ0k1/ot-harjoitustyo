@@ -45,5 +45,9 @@ public class ability {
         return this.realityIdentity;
     }
     
-    
+    @Override
+    public String toString() {
+        return this.classIdentity+"/"+this.nameIdentity+"/"+this.descriptionIdentity+"/"+this.requrimentIdentity+"/"+this.realityIdentity;
+    }
+        
 }

@@ -7,6 +7,7 @@ package Fiktiotietokanta;
 
 import Fiktiotietokanta.dao.databaseInterface;
 import Fiktiotietokanta.domain.abilityDatabase;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -300,5 +301,41 @@ public class abilityDatabaseTest {
         databaseInterface databaseTest = new abilityDatabase();
         boolean doesntWork = databaseTest.removeInformation("1/1/1/1/1/1");
         assertEquals(false, doesntWork);
+    }
+    
+    @Test
+    public void puttingDatabaseIntoAListWorks() throws Exception {
+        databaseInterface databaseTest = new abilityDatabase();
+        boolean isCreated = databaseTest.createDatabase();
+        assertEquals(true, isCreated);  
+        boolean isAdded = databaseTest.addInformation("1/1/1/1/1/1");
+        assertEquals(true, isAdded);
+        List<String> testList = databaseTest.showDatabaseAsAList();
+        String firstAdded = testList.get(0);
+        assertEquals("1/1/1/1/1/1", firstAdded);
+        boolean isRemoved = databaseTest.removeDatabase();
+        assertEquals(true, isRemoved); 
+    }
+    
+    @Test
+    public void puttingDatabaseIntoaAListWorksCorrectly() throws Exception {
+        databaseInterface databaseTest = new abilityDatabase();
+        boolean isCreated = databaseTest.createDatabase();
+        assertEquals(true, isCreated); 
+        boolean isAdded1 = databaseTest.addInformation("1/1/1/1/1/1");
+        assertEquals(true, isAdded1);
+        boolean isAdded2 = databaseTest.addInformation("1/1/1/2/1/1");
+        assertEquals(true, isAdded2);
+        boolean isAdded3 = databaseTest.addInformation("1/1/1/3/1/1");
+        assertEquals(true, isAdded3);
+        List<String> testList = databaseTest.showDatabaseAsAList();
+        String firstAdded = testList.get(0);
+        assertEquals("1/1/1/1/1/1", firstAdded);
+        String secondAdded = testList.get(1);
+        assertEquals("1/1/1/2/1/1", secondAdded);
+        String thirdAdded = testList.get(2);
+        assertEquals("1/1/1/3/1/1", thirdAdded);
+        boolean isRemoved = databaseTest.removeDatabase();
+        assertEquals(true, isRemoved); 
     }
 }

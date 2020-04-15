@@ -28,6 +28,8 @@ public interface databaseInterface {
     
     public List<String> showDatabaseAsAList();
     
+    public List<String> showDatabaseAsARestrictedList(String information);
+    
     public boolean removeInformation(String information);
     
     public boolean removeDatabase() throws Exception;
