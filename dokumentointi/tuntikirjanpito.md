@@ -28,6 +28,10 @@
 |13.4|8 | Tarvittujen rajapintojen luonti |
 |13.4|  | Projektin muokkaus |
 |13.4|  | Uusien testien luominen |
+|15.3|6 | JavaFx opiskelua |
+|15.3|  | Projektin muokkaus |
+|15.3|  | Uusien testien luominen |
+|15.3|  | Käyttöliittymä muokkauksia |
 
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
@@ -40,10 +44,10 @@
 | Ominaisuushallinnan siirtyminen | On | 31.3 |
 | Profiilinhallinnan siirtyminen | On | 31.3 |
 | Uloskirjautumisen palautus kirjautumiseen | On | 31.3 |
-| Sovelluksen ominaisuushallinta käyttöliittymä | Ei ole vielä valmis |  |
+| Sovelluksen ominaisuushallinta käyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
 | Ominaisuushallinnan valikko | On | 7.4 |
 | Ominaisuuden lisäys tietokantaan | On | 7.4 |
-| Ominaisuuden poisto tietokannasta | Ei | |
+| Ominaisuuden poisto tietokannasta | ON | 15.4 |
 | Siirtyminen takaisin päävalikkoon | On | 7.4 |
 | Sovelluksen profiilinhallinta käyttöliittymä | Ei ole vielä valmis | |
 | Profiilinhallinnan valikko | On | 31.3 |
