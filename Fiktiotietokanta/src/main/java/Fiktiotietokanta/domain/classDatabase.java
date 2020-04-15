@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -141,6 +143,47 @@ public class classDatabase implements databaseInterface {
             
         }
         return false;
+    }
+
+    @Override
+    public String searchInformationTextIdentity(String givenClassId) {
+        int checkId = Integer.valueOf(givenClassId);
+        try{
+            PreparedStatement command = connection.prepareStatement("SELECT Class FROM Classes WHERE id=?");
+            command.setInt(1, checkId);
+            ResultSet querySet = command.executeQuery();
+            String givenTextIdentity = "null";
+            if (querySet.next()) {
+                givenTextIdentity = querySet.getString("Class");
+            }
+            querySet.close();
+            command.close();        
+            return givenTextIdentity;              
+        }catch (SQLException k) {
+            
+        } 
+        return "null";
+    }
+
+    @Override
+    public List<String> showDatabaseAsAList() {
+        List<String> databaseAsAList = new ArrayList<>();
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT Class FROM Classes;");
+            ResultSet querySet = command.executeQuery();
+            while (querySet.next()) {
+                String givenClass = querySet.getString("Class");
+                databaseAsAList.add(givenClass);
+            }
+            querySet.close();
+            command.close();
+            
+            return databaseAsAList;
+            
+        } catch (SQLException k) {
+            
+        } 
+        return null;
     }
     
 }

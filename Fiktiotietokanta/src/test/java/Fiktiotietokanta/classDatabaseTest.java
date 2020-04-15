@@ -7,6 +7,7 @@ package Fiktiotietokanta;
 
 import Fiktiotietokanta.dao.databaseInterface;
 import Fiktiotietokanta.domain.classDatabase;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -316,4 +317,77 @@ public class classDatabaseTest {
         assertEquals(false, doesntWork);
     }
     
+    @Test
+    public void textIdentitySearchWorks() throws Exception {
+        databaseInterface databaseTest = new classDatabase();
+        boolean isCreated = databaseTest.createDatabase();
+        assertEquals(true, isCreated);
+        boolean isAdded = databaseTest.addInformation("Test");
+        assertEquals(true, isAdded);
+        Integer existingId = databaseTest.searchInfromationId("Test");
+        assertEquals(1, existingId.intValue());
+        String existingName = databaseTest.searchInformationTextIdentity("1");
+        assertEquals("Test", existingName);
+        boolean isRemoved = databaseTest.removeDatabase();
+        assertEquals(true, isRemoved);
+    }
+    
+    @Test
+    public void textIdentitySearchGivesCorrectIndentity() throws Exception {
+        databaseInterface databaseTest = new classDatabase();
+        boolean isCreated = databaseTest.createDatabase();
+        assertEquals(true, isCreated);
+        boolean isAdded1 = databaseTest.addInformation("Test1");
+        assertEquals(true, isAdded1);
+        Integer existingId1 = databaseTest.searchInfromationId("Test1");
+        assertEquals(1, existingId1.intValue());
+        boolean isAdded2 = databaseTest.addInformation("Test2");
+        assertEquals(true, isAdded2);
+        Integer existingId2 = databaseTest.searchInfromationId("Test2");
+        assertEquals(2, existingId2.intValue());
+        boolean isAdded3 = databaseTest.addInformation("Test3");
+        assertEquals(true, isAdded3);
+        Integer existingId3 = databaseTest.searchInfromationId("Test3");
+        assertEquals(3, existingId3.intValue());
+        String existingName = databaseTest.searchInformationTextIdentity("2");
+        assertEquals("Test2", existingName);
+        boolean isRemoved = databaseTest.removeDatabase();
+        assertEquals(true, isRemoved);
+    }
+    
+    @Test
+    public void puttingDatabaseIntoAListWorks() throws Exception {
+        databaseInterface databaseTest = new classDatabase();
+        boolean isCreated = databaseTest.createDatabase();
+        assertEquals(true, isCreated);
+        boolean isAdded = databaseTest.addInformation("Test");
+        assertEquals(true, isAdded);
+        List<String> testList = databaseTest.showDatabaseAsAList();
+        String firstAdded = testList.get(0);
+        assertEquals("Test", firstAdded);
+        boolean isRemoved = databaseTest.removeDatabase();
+        assertEquals(true, isRemoved);
+    }
+    
+    @Test
+    public void puttingDatabaseIntoAListIsCorrect() throws Exception {
+        databaseInterface databaseTest = new classDatabase();
+        boolean isCreated = databaseTest.createDatabase();
+        assertEquals(true, isCreated);
+        boolean isAdded1 = databaseTest.addInformation("Test1");
+        assertEquals(true, isAdded1);
+        boolean isAdded2 = databaseTest.addInformation("Test2");
+        assertEquals(true, isAdded2);
+        boolean isAdded3 = databaseTest.addInformation("Test3");
+        assertEquals(true, isAdded3);
+        List<String> testList = databaseTest.showDatabaseAsAList();
+        String firstAdded = testList.get(0);
+        assertEquals("Test1", firstAdded);
+        String secondAdded = testList.get(1);
+        assertEquals("Test2", secondAdded);
+        String thirdAdded = testList.get(2);
+        assertEquals("Test3", thirdAdded);
+        boolean isRemoved = databaseTest.removeDatabase();
+        assertEquals(true, isRemoved);
+    }
 }

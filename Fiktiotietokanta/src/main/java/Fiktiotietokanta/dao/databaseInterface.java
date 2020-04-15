@@ -6,6 +6,7 @@
 package Fiktiotietokanta.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -22,6 +23,10 @@ public interface databaseInterface {
     public boolean searchInformation(String information);
     
     public Integer searchInfromationId(String information);
+    
+    public String searchInformationTextIdentity(String information);
+    
+    public List<String> showDatabaseAsAList();
     
     public boolean removeInformation(String information);
     

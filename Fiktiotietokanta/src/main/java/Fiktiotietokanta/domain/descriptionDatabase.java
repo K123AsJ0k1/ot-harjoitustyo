@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -139,6 +141,47 @@ public class descriptionDatabase implements databaseInterface {
             
         }
         return false;
+    }
+
+    @Override
+    public String searchInformationTextIdentity(String givenDescriptionId) {
+        int checkId = Integer.valueOf(givenDescriptionId);
+        try{
+            PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions WHERE id=?");
+            command.setInt(1, checkId);
+            ResultSet querySet = command.executeQuery();
+            String givenTextIdentity = "null";
+            if (querySet.next()) {
+                givenTextIdentity = querySet.getString("Description");
+            }
+            querySet.close();
+            command.close();        
+            return givenTextIdentity;              
+        }catch (SQLException k) {
+            
+        } 
+        return "null";
+    }
+
+    @Override
+    public List<String> showDatabaseAsAList() {
+        List<String> databaseAsAList = new ArrayList<>();
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
+            ResultSet querySet = command.executeQuery();
+            while (querySet.next()) {
+                String givenClass = querySet.getString("Descriptions");
+                databaseAsAList.add(givenClass);
+            }
+            querySet.close();
+            command.close();
+            
+            return databaseAsAList;
+            
+        } catch (SQLException k) {
+            
+        } 
+        return null;
     }
     
 }
