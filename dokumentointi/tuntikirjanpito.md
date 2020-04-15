@@ -47,7 +47,7 @@
 | Sovelluksen ominaisuushallinta käyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
 | Ominaisuushallinnan valikko | On | 7.4 |
 | Ominaisuuden lisäys tietokantaan | On | 7.4 |
-| Ominaisuuden poisto tietokannasta | ON | 15.4 |
+| Ominaisuuden poisto tietokannasta | On | 15.4 |
 | Siirtyminen takaisin päävalikkoon | On | 7.4 |
 | Sovelluksen profiilinhallinta käyttöliittymä | Ei ole vielä valmis | |
 | Profiilinhallinnan valikko | On | 31.3 |
