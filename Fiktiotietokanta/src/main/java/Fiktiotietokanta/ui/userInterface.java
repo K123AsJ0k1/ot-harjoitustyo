@@ -553,8 +553,7 @@ public class userInterface extends Application {
 
             primaryStage.setTitle("Remove Abilities table");
             primaryStage.setScene(removeAbilityTable);
-            //removeAbilityTableView.getItems().add(new ability("Test", "Test", "Test", "Test", "Test"));
-            //removeAbilityTableView.getItems().add(new ability("Test", "Test", "Test", "Test", "Test"));
+            
         });
         
         //Removal of ability
