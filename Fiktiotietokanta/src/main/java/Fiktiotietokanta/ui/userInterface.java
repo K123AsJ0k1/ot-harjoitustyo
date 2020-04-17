@@ -248,9 +248,9 @@ public class userInterface extends Application {
 
         Button removeSelectedAbilityTableView = new Button("Remove selected ability");
         Button returnAbilityMenuTableView = new Button("Return");
-        Button refreshAbilityMenuTableView = new Button("Refresh the table");
+        
 
-        removeAbilityButtonLayout.getChildren().addAll(returnAbilityMenuTableView, removeSelectedAbilityTableView, refreshAbilityMenuTableView);
+        removeAbilityButtonLayout.getChildren().addAll(returnAbilityMenuTableView, removeSelectedAbilityTableView);
         TableView removeAbilityTableView = new TableView();
 
         TableColumn<String, ability> classTableViewColumn = new TableColumn<>("Class");
@@ -582,10 +582,6 @@ public class userInterface extends Application {
 
         });
 
-        //Refreash of table view
-        refreshAbilityMenuTableView.setOnAction((event) -> {
-
-        });
 
         //Create profile transitions
         //Transition from create profile scene to profile menu when save and return
