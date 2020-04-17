@@ -29,6 +29,7 @@ import Fiktiotietokanta.domain.realityDatabase;
 import Fiktiotietokanta.domain.requrimentDatabase;
 import java.util.List;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ContextMenu;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -57,6 +58,7 @@ public class userInterface extends Application {
     private databaseInterface realityDatabase;
     private databaseInterface abilityDatabase;
     private Integer usernameId;
+    private String chosenAbility;
 
     @Override
     public void init() throws Exception {
@@ -78,6 +80,7 @@ public class userInterface extends Application {
 
         usernameDatabase.addUserInformation("Tester");
         usernameId = 0;
+        chosenAbility = "";
 
     }
 
@@ -282,7 +285,13 @@ public class userInterface extends Application {
         BorderPane menuRoot = new BorderPane();
 
         MenuBar createProfileMenuBar = new MenuBar();
-
+        
+        ContextMenu contextMenuCreateProfile = new ContextMenu();
+        MenuItem chooseAnAbilityContextMenu = new MenuItem("Choose an Ability");
+        MenuItem currenAbilityProgressContextMenu = new MenuItem("Ability parameters left:");
+        MenuItem resetAnAbilityContextMenu = new MenuItem("Resets current ability");
+        
+        contextMenuCreateProfile.getItems().addAll(chooseAnAbilityContextMenu,currenAbilityProgressContextMenu,resetAnAbilityContextMenu);   
         Menu exitProfileMenu = new Menu("Exit profile creator");
 
         MenuItem exitProfileMenu1 = new MenuItem("Save and return");
@@ -295,6 +304,7 @@ public class userInterface extends Application {
         menuRoot.setTop(createProfileMenuBar);
 
         TextArea profileEditorCreateProfileMenu = new TextArea();
+        profileEditorCreateProfileMenu.setContextMenu(contextMenuCreateProfile);
 
         profileEditorCreateProfileMenu.setMinSize(480, 425);
         profileEditorCreateProfileMenu.setMaxSize(480, 425);
@@ -308,6 +318,41 @@ public class userInterface extends Application {
         createProfileLayout.setPrefSize(500, 500);
 
         Scene createProfileScene = new Scene(createProfileLayout);
+        
+        //Choose ability scene
+        
+        VBox chooseAbilityLayout = new VBox();
+
+        Label chooseAbilityTableViewLable = new Label("List of abilities you have created");
+
+        HBox chooseAbilityButtonLayout = new HBox();
+
+        Button chooseSelectedAbilityTableView = new Button("Choose selected ability");
+        Button returnChooseAbilityMenuTableView = new Button("Return");
+        
+        chooseAbilityLayout.getChildren().addAll(returnChooseAbilityMenuTableView, chooseSelectedAbilityTableView);
+        TableView chooseAbilityTableView = new TableView();
+
+        TableColumn<String, ability> classChooseAbilityTableViewColumn = new TableColumn<>("Class");
+        classChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("classIdentity"));
+        TableColumn<String, ability> nameChooseAbilityTableViewColumn = new TableColumn<>("Name");
+        nameChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("nameIdentity"));
+        TableColumn<String, ability> descriptionChooseAbilityTableViewColumn = new TableColumn<>("Description");
+        descriptionChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionIdentity"));
+        TableColumn<String, ability> requrimentChooseAbilityTableViewColumn = new TableColumn<>("Requriment");
+        requrimentChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentIdentity"));
+        TableColumn<String, ability> realityChooseAbilityTableViewColumn = new TableColumn<>("Reality");
+        realityChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("realityIdentity"));
+
+        chooseAbilityTableView.getColumns().addAll(classChooseAbilityTableViewColumn, nameChooseAbilityTableViewColumn, descriptionChooseAbilityTableViewColumn, requrimentChooseAbilityTableViewColumn, realityChooseAbilityTableViewColumn);
+        chooseAbilityLayout.getChildren().addAll(chooseAbilityTableViewLable, chooseAbilityTableView, chooseAbilityButtonLayout);
+
+        chooseAbilityLayout.setPrefSize(320, 400);
+
+        TableViewSelectionModel<ability> selectionModelChooseAbilityTableView = chooseAbilityTableView.getSelectionModel();
+        selectionModelChooseAbilityTableView.setSelectionMode(SelectionMode.SINGLE);
+
+        Scene chooseAbilityTable = new Scene(chooseAbilityLayout);
 
         //Create a file from Profile Scene
         //Reset current profile Scene      
@@ -595,6 +640,94 @@ public class userInterface extends Application {
             primaryStage.setTitle("Profile menu");
             primaryStage.setScene(screenProfileMenu);
         });
+        
+        //Transition from create profile scene to choose ability scene when choose ability
+        chooseAnAbilityContextMenu.setOnAction((event) ->{
+            List<String> abilityList = abilityDatabase.showDatabaseAsARestrictedList(String.valueOf(usernameId));
+            
+            for (String ability : abilityList) {
+                String[] split = ability.split("/");
+                String classIdentity = classDatabase.searchInformationTextIdentity(split[0]);
+                String nameIdentity = nameDatabase.searchInformationTextIdentity(split[1]);
+                String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
+                String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
+                String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
+                ability addedAbility = new ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
+                chooseAbilityTableView.getItems().add(addedAbility);
+            }
+
+            primaryStage.setTitle("Choose Abilities table");
+            primaryStage.setScene(chooseAbilityTable);
+        });
+        
+        //Resets choosen ability
+        resetAnAbilityContextMenu.setOnAction((event) ->{
+            chosenAbility = "";
+            currenAbilityProgressContextMenu.setText("Ability parameters left:"+chosenAbility);
+        });
+        
+        
+        profileEditorCreateProfileMenu.setOnKeyTyped((event) ->{
+            /*
+            String givenTextFromTextArea = profileEditorCreateProfileMenu.getText();
+            String[] textSplit = givenTextFromTextArea.split(" ");
+            String[] abilitySplit = chosenAbility.split(",");
+            if (abilitySplit.length==5) {
+            for (String text: textSplit) {
+                
+                if (text.equals(abilitySplit[0])) {
+                    String leftParameters = currenAbilityProgressContextMenu.getText();
+                    
+                    
+                    
+                }
+                
+                if (text.equals(abilitySplit[1])) {
+                    
+                }
+                
+                if (text.equals(abilitySplit[2])) {
+                    
+                }
+                
+                if (text.equals(abilitySplit[3])) {
+                    
+                }
+                
+                if (text.equals(abilitySplit[4])) {
+                    
+                }
+            }
+            }
+            */
+        });
+        
+        //Choose ability transitions
+        
+        //Transition from choose ability scene to create profile scene when return
+        returnChooseAbilityMenuTableView.setOnAction((event) ->{
+            chooseAbilityTableView.getItems().clear();
+            primaryStage.setTitle("Profile creator");
+            primaryStage.setScene(createProfileScene);
+        });
+        
+        //Transition from choose ability scene to create profile scene when choose ability
+        chooseSelectedAbilityTableView.setOnAction((event) ->{
+            if (selectionModelChooseAbilityTableView.getSelectedItems().size() > 0) {
+                ObservableList selectedItems = selectionModelChooseAbilityTableView.getSelectedItems();
+                String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
+                String selectedParameters = givenAbilitySplit[0]+","+givenAbilitySplit[1]+","+givenAbilitySplit[2]+","+givenAbilitySplit[3]+","+givenAbilitySplit[4];
+                chosenAbility = selectedParameters;
+                System.out.println(chosenAbility);
+                currenAbilityProgressContextMenu.setText("Ability parameters left:"+chosenAbility);
+                chooseAbilityTableView.getItems().clear();
+                primaryStage.setTitle("Profile creator");
+                primaryStage.setScene(createProfileScene);
+            }
+        });
+        
+        
+        
 
         //UI start code
         primaryStage.setTitle("Login screen");
