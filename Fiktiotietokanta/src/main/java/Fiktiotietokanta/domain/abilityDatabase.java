@@ -208,7 +208,9 @@ public class abilityDatabase implements databaseInterface {
     @Override
     public String searchInformationTextIdentity(String givenAbilityId) {
         int checkId = Integer.valueOf(givenAbilityId);
-        try{
+        
+        try {
+            
             PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
@@ -220,21 +222,27 @@ public class abilityDatabase implements databaseInterface {
                 int givenDescriptionId = querySet.getInt("Description_id");
                 int givenRequrimentId = querySet.getInt("Requriment_id");
                 int givenRealityId = querySet.getInt("Reality_id");
-                givenTextIdentity = String.valueOf(givenUsernameId)+"/"+String.valueOf(givenClassId)+"/"+String.valueOf(givenNameId)+"/"+String.valueOf(givenDescriptionId)+"/"+String.valueOf(givenRequrimentId)+"/"+String.valueOf(givenRealityId);
+                givenTextIdentity = String.valueOf(givenUsernameId) + "/" + String.valueOf(givenClassId) + "/" + String.valueOf(givenNameId) + "/" + String.valueOf(givenDescriptionId) + "/" + String.valueOf(givenRequrimentId) + "/" + String.valueOf(givenRealityId);
             }
             querySet.close();
             command.close();        
             return givenTextIdentity;              
-        }catch (SQLException k) {
+        
+        } catch (SQLException k) {
             
+        
         } 
+        
         return "null";
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
+        
         List<String> databaseAsAList = new ArrayList<>();
+        
         try {
+            
             PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
             ResultSet querySet = command.executeQuery();
             while (querySet.next()) {
@@ -244,9 +252,10 @@ public class abilityDatabase implements databaseInterface {
                 int givenDescriptionId = querySet.getInt("Description_id");
                 int givenRequrimentId = querySet.getInt("Requriment_id");
                 int givenRealityId = querySet.getInt("Reality_id");
-                String givenTextIdentity = String.valueOf(givenUsernameId)+"/"+String.valueOf(givenClassId)+"/"+String.valueOf(givenNameId)+"/"+String.valueOf(givenDescriptionId)+"/"+String.valueOf(givenRequrimentId)+"/"+String.valueOf(givenRealityId);
+                String givenTextIdentity = String.valueOf(givenUsernameId) + "/" + String.valueOf(givenClassId) + "/" + String.valueOf(givenNameId) + "/" + String.valueOf(givenDescriptionId) + "/" + String.valueOf(givenRequrimentId) + "/" + String.valueOf(givenRealityId);
                 databaseAsAList.add(givenTextIdentity);
             }
+            
             querySet.close();
             command.close();
             
@@ -254,14 +263,20 @@ public class abilityDatabase implements databaseInterface {
             
         } catch (SQLException k) {
             
+            
         } 
+        
         return null;
+        
     }
     @Override
     public List<String> showDatabaseAsARestrictedList(String givenUsernameId) {
+        
         List<String> databaseAsAList = new ArrayList<>();
-        int checkId=Integer.valueOf(givenUsernameId);
+        int checkId = Integer.valueOf(givenUsernameId);
+        
         try {
+            
             PreparedStatement command = connection.prepareStatement("SELECT Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities WHERE Username_id=?;");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
@@ -271,9 +286,10 @@ public class abilityDatabase implements databaseInterface {
                 int givenDescriptionId = querySet.getInt("Description_id");
                 int givenRequrimentId = querySet.getInt("Requriment_id");
                 int givenRealityId = querySet.getInt("Reality_id");
-                String givenTextIdentity = String.valueOf(givenClassId)+"/"+String.valueOf(givenNameId)+"/"+String.valueOf(givenDescriptionId)+"/"+String.valueOf(givenRequrimentId)+"/"+String.valueOf(givenRealityId);
+                String givenTextIdentity = String.valueOf(givenClassId) + "/" + String.valueOf(givenNameId) + "/" + String.valueOf(givenDescriptionId) + "/" + String.valueOf(givenRequrimentId) + "/" + String.valueOf(givenRealityId);
                 databaseAsAList.add(givenTextIdentity);
             }
+            
             querySet.close();
             command.close();
             
@@ -282,6 +298,8 @@ public class abilityDatabase implements databaseInterface {
         } catch (SQLException k) {
             
         } 
+        
         return null;
+        
     }
 }
