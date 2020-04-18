@@ -132,7 +132,8 @@ public class RequrimentDatabase implements DatabaseInterface {
 
     @Override
     public boolean removeDatabase() throws Exception {
-         try {
+         
+        try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Requriments");
             command.close();

@@ -88,13 +88,10 @@ public class DescriptionDatabase implements DatabaseInterface {
             if (descriptionExists) {
                 return true;
             }
-
             return false;
-
         } catch (SQLException k) {
             
         }
-        
         return false;
     }
 
@@ -107,13 +104,10 @@ public class DescriptionDatabase implements DatabaseInterface {
             int classId = 0;
             if (querrySet.next()) {
                 classId = querrySet.getInt("id");
-            }
-            
+            }  
             querrySet.close();
             command.close();
-            
             return classId;
-            
         } catch (SQLException k) {
             
         }
@@ -122,96 +116,70 @@ public class DescriptionDatabase implements DatabaseInterface {
 
     @Override
     public boolean removeInformation(String givenDescription) {
-        
-        try {
-            
+        try { 
             PreparedStatement command = connection.prepareStatement("DELETE FROM Descriptions WHERE Description=?");
             command.setString(1, givenDescription);
             command.executeUpdate();
             command.close();
-            
             return true;
         } catch (SQLException k) {
             
         }
-        
         return false;
-        
     }
 
     @Override
     public boolean removeDatabase() throws Exception {
-        
-        try {
-            
+        try {   
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Descriptions;");
             command.close();
             databaseExists = false;
-            return true;
-            
+            return true;    
         } catch (SQLException k) {
             
         }
-        
         return false;
         
     }
 
     @Override
     public String searchInformationTextIdentity(String givenDescriptionId) {
-        
         int checkId = Integer.valueOf(givenDescriptionId);
-        
         try {
-            
             PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
             String givenTextIdentity = "null";
-            
             if (querySet.next()) {
                 givenTextIdentity = querySet.getString("Description");
             }
-            
             querySet.close();
             command.close();        
             return givenTextIdentity;  
-            
         } catch (SQLException k) {
             
         } 
-        
         return "null";
-        
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
-        
         List<String> databaseAsAList = new ArrayList<>();
-        
         try {
-            
             PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
             ResultSet querySet = command.executeQuery();
-            
             while (querySet.next()) {
                 String givenClass = querySet.getString("Descriptions");
                 databaseAsAList.add(givenClass);
             }
-            
             querySet.close();
             command.close();
-            
             return databaseAsAList;
-            
         } catch (SQLException k) {
             
         } 
-        
         return null;
-        
     }
 
     @Override
