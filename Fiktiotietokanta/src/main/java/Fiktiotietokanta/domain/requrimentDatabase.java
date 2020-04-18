@@ -15,15 +15,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author niila
+/** Vaatimus tietokanta.
  */
 public class requrimentDatabase implements databaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
     
+    /** Vaatimus tietokannan konstruktori.
+     * @throws java.lang.Exception virhe.
+    */
     public requrimentDatabase() throws Exception {
         this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabase:connection");
         this.databaseExists = false;
@@ -116,15 +117,16 @@ public class requrimentDatabase implements databaseInterface {
 
     @Override
     public boolean removeInformation(String givenRequriment) {
-        try{
+        try {
             PreparedStatement command = connection.prepareStatement("DELETE FROM Requriments WHERE Requriment=?");
             command.setString(1, givenRequriment);
             command.executeUpdate();
             command.close();
             return true;
-        }catch (SQLException k) {
+        } catch (SQLException k) {
             
         }
+        
         return false;
     }
 
@@ -139,13 +141,16 @@ public class requrimentDatabase implements databaseInterface {
         } catch (SQLException k) {
             
         }
+         
         return false;
     }
 
     @Override
     public String searchInformationTextIdentity(String givenRequrimentId) {
+        
         int checkId = Integer.valueOf(givenRequrimentId);
-        try{
+        
+        try {
             PreparedStatement command = connection.prepareStatement("SELECT Requriment FROM Requriments WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
@@ -156,15 +161,17 @@ public class requrimentDatabase implements databaseInterface {
             querySet.close();
             command.close();        
             return givenTextIdentity;              
-        }catch (SQLException k) {
+        } catch (SQLException k) {
             
         } 
+        
         return "null";
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
         List<String> databaseAsAList = new ArrayList<>();
+        
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Requriment FROM Requriments;");
             ResultSet querySet = command.executeQuery();
@@ -180,6 +187,7 @@ public class requrimentDatabase implements databaseInterface {
         } catch (SQLException k) {
             
         } 
+        
         return null;
     }
 
