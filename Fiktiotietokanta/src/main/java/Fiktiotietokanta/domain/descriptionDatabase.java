@@ -15,15 +15,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/** Selitys tietokanta.
  *
- * @author niila
+ * 
  */
 public class descriptionDatabase implements databaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
     
+    /** Selitys tietokannan konstruktori.
+    *
+    * 
+     * @throws java.lang.Exception virhe.
+    */
     public descriptionDatabase() throws Exception {
         this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabase:connection");
         this.databaseExists = false;
@@ -117,62 +122,85 @@ public class descriptionDatabase implements databaseInterface {
 
     @Override
     public boolean removeInformation(String givenDescription) {
-        try{
+        
+        try {
+            
             PreparedStatement command = connection.prepareStatement("DELETE FROM Descriptions WHERE Description=?");
             command.setString(1, givenDescription);
             command.executeUpdate();
             command.close();
+            
             return true;
-        }catch (SQLException k) {
+        } catch (SQLException k) {
             
         }
+        
         return false;
+        
     }
 
     @Override
     public boolean removeDatabase() throws Exception {
+        
         try {
+            
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Descriptions;");
             command.close();
             databaseExists = false;
             return true;
+            
         } catch (SQLException k) {
             
         }
+        
         return false;
+        
     }
 
     @Override
     public String searchInformationTextIdentity(String givenDescriptionId) {
+        
         int checkId = Integer.valueOf(givenDescriptionId);
-        try{
+        
+        try {
+            
             PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
             String givenTextIdentity = "null";
+            
             if (querySet.next()) {
                 givenTextIdentity = querySet.getString("Description");
             }
+            
             querySet.close();
             command.close();        
-            return givenTextIdentity;              
-        }catch (SQLException k) {
+            return givenTextIdentity;  
+            
+        } catch (SQLException k) {
             
         } 
+        
         return "null";
+        
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
+        
         List<String> databaseAsAList = new ArrayList<>();
+        
         try {
+            
             PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
             ResultSet querySet = command.executeQuery();
+            
             while (querySet.next()) {
                 String givenClass = querySet.getString("Descriptions");
                 databaseAsAList.add(givenClass);
             }
+            
             querySet.close();
             command.close();
             
@@ -181,7 +209,9 @@ public class descriptionDatabase implements databaseInterface {
         } catch (SQLException k) {
             
         } 
+        
         return null;
+        
     }
 
     @Override

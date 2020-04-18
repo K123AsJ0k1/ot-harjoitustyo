@@ -128,7 +128,7 @@ public class classDatabase implements databaseInterface {
     @Override
     public boolean removeInformation(String givenClass) {
         
-        try{
+        try {
             
             PreparedStatement command = connection.prepareStatement("DELETE FROM Classes WHERE Class=?");
             command.setString(1, givenClass);
