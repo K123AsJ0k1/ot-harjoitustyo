@@ -15,15 +15,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author niila
+/** Todellisuus tietokanta.
  */
 public class realityDatabase implements databaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
     
+    /** Todellisuus tietokanta konstruktori.
+     * @throws java.lang.Exception virhe.
+     */
     public realityDatabase() throws Exception {
         this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabase:connection");
         this.databaseExists = false;
@@ -84,7 +85,6 @@ public class realityDatabase implements databaseInterface {
             }
 
             return false;
-
         } catch (SQLException k) {
             
         }
@@ -113,40 +113,45 @@ public class realityDatabase implements databaseInterface {
         }
         
         return 0;
+        
     }
 
     @Override
-    public boolean removeInformation(String givenReality) {
-        try{
+    public boolean removeInformation(String givenReality) { 
+        try {
             PreparedStatement command = connection.prepareStatement("DELETE FROM Realities WHERE Reality=?");
             command.setString(1, givenReality);
             command.executeUpdate();
             command.close();
-            return true;
-        }catch (SQLException k) {
+            return true;     
+        } catch (SQLException k) {
             
         }
-        return false;
+        
+        return false;     
     }
 
     @Override
-    public boolean removeDatabase() throws Exception {
-        try {
+    public boolean removeDatabase() throws Exception {     
+        try {        
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Realities");
             command.close();
-            databaseExists = false;
+            databaseExists = false;      
             return true;
         } catch (SQLException k) {
             
         }
-        return false;
+        
+        return false;   
     }
 
     @Override
     public String searchInformationTextIdentity(String givenRealityId) {
+        
         int checkId = Integer.valueOf(givenRealityId);
-        try{
+  
+        try {
             PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
@@ -156,16 +161,19 @@ public class realityDatabase implements databaseInterface {
             }
             querySet.close();
             command.close();        
-            return givenTextIdentity;              
-        }catch (SQLException k) {
+            return givenTextIdentity;            
+        } catch (SQLException k) {
             
         } 
-        return "null";
+        
+        return "null"; 
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
+        
         List<String> databaseAsAList = new ArrayList<>();
+        
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities;");
             ResultSet querySet = command.executeQuery();
@@ -174,13 +182,12 @@ public class realityDatabase implements databaseInterface {
                 databaseAsAList.add(givenClass);
             }
             querySet.close();
-            command.close();
-            
-            return databaseAsAList;
-            
+            command.close();  
+            return databaseAsAList;    
         } catch (SQLException k) {
             
         } 
+       
         return null;
     }
 
