@@ -5,9 +5,9 @@
  */
 package Fiktiotietokanta.domain;
 
-/**
+/** Ability olio käyttöliittymälle.
  *
- * @author niila
+ * 
  */
 public class ability {
     
@@ -16,8 +16,16 @@ public class ability {
     private String descriptionIdentity = null;
     private String requrimentIdentity = null;
     private String realityIdentity = null;
-    
-    public ability(String givenClass,String givenName,String givenDescription,String givenRequriment,String givenReality) {
+    /** Ability olion konstruktori.
+     *
+    * 
+     * @param givenClass annettu luokka.
+     * @param givenName annettu nimi.
+     * @param givenDescription annettu selitys.
+     * @param givenRequriment annettu vaatimus.
+     * @param givenReality annettu todellisuus.
+    */
+    public ability(String givenClass, String givenName, String givenDescription, String givenRequriment, String givenReality) {
         this.classIdentity = givenClass;
         this.nameIdentity = givenName;
         this.descriptionIdentity = givenDescription;
@@ -47,7 +55,7 @@ public class ability {
     
     @Override
     public String toString() {
-        return this.classIdentity+"/"+this.nameIdentity+"/"+this.descriptionIdentity+"/"+this.requrimentIdentity+"/"+this.realityIdentity;
+        return this.classIdentity + "/" + this.nameIdentity + "/" + this.descriptionIdentity + "/" + this.requrimentIdentity + "/" + this.realityIdentity;
     }
         
 }
