@@ -37,7 +37,7 @@ public interface databaseInterface {
     * 
      * 
      * 
-     * @param information.
+     * @param information haluttu tieto.
      * @return palauttaa true, jos tiedon lisääminen onnistui ja false, jos ei. 
      * 
     */ 
@@ -49,7 +49,7 @@ public interface databaseInterface {
     * 
      * 
      * 
-     * @param information.
+     * @param information haluttu tieto.
      * @return palauttaa true, jos tietokannasta löytyy haettu tieto ja false jos ei.
      * 
     */ 
@@ -61,7 +61,7 @@ public interface databaseInterface {
     * 
      * 
      * 
-     * @param information.
+     * @param information haluttu tieto.
      * @return palauttaa tietokannan antaman id onnistuessa ja nollan, jos haettua tietoa ei löydy tietokannasta.
      * 
     */ 
@@ -72,7 +72,7 @@ public interface databaseInterface {
     * 
      * 
      * 
-     * @param information.
+     * @param information haluttu tieto.
      * @return palauttaa tietokannasta saadun tekstin jos onnistuu ja tyhjän merkkijonon jos ei.
      * 
     */ 
@@ -92,7 +92,7 @@ public interface databaseInterface {
     * 
      * 
      * 
-     * @param information.
+     * @param information haluttu tieto.
      * @return palauttaa tietokantaa edustavan listan jos se onnistuu ja tyhjä null, jos ei.
      * 
     */ 
@@ -102,7 +102,7 @@ public interface databaseInterface {
     * 
      * 
      * 
-     * @param information.
+     * @param information haluttu tieto.
      * @return palauttaa true, jos poisto onnistui ja false jos ei.
      * 
     */ 
@@ -111,7 +111,7 @@ public interface databaseInterface {
     * 
     * 
      * @return palauttaa true, jos poisto onnistui ja false jos ei.
-     * @throws java.lang.Exception
+     * @throws java.lang.Exception virhe.
     */ 
     public boolean removeDatabase() throws Exception;
     
