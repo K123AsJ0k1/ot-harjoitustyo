@@ -5,7 +5,7 @@
  */
 package Fiktiotietokanta;
 
-import Fiktiotietokanta.domain.abilityDatabase;
+import Fiktiotietokanta.domain.AbilityDatabase;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,14 +23,14 @@ public class abilityDatabaseTest {
     
     @Test
     public void constructorWorks() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean works = databaseTest.databaseExists();
         assertEquals(false, works);
     }
     
     @Test
     public void abilityDatabaseIsCreated() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         databaseTest.removeDatabase();
@@ -38,7 +38,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void abilitydatabaseCantBeCreatedTwice() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated1 = databaseTest.createDatabase();
         assertEquals(true, isCreated1);
         boolean isCreated2 = databaseTest.createDatabase();
@@ -48,7 +48,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void abilityDatabaseIsRemoved() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved = databaseTest.removeDatabase();
@@ -57,7 +57,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void abilityDatabaseIsntRemovedTwice() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved1 = databaseTest.removeDatabase();
@@ -68,14 +68,14 @@ public class abilityDatabaseTest {
     
     @Test
     public void noExistingDatabaseIsntRemoved() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isRemoved = databaseTest.removeDatabase();
         assertEquals(false, isRemoved);
     }
     
     @Test
     public void abilityCanBeAdded() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("1/1/1/1/1/1");
@@ -86,7 +86,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void duplicateAbilitiesCanBeAdded() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("1/1/1/1/1/1");
@@ -99,14 +99,14 @@ public class abilityDatabaseTest {
     
     @Test
     public void abilityCantBeAddedIntoNoExistingDatabase() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isAdded = databaseTest.addInformation("1/1/1/1/1/1");
         assertEquals(false, isAdded);
     }
     
     @Test
     public void abilityIsFound() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("1/1/1/1/1/1");
@@ -119,7 +119,7 @@ public class abilityDatabaseTest {
     
      @Test
     public void noAddedAbilityIsntFound() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("1/1/1/1/1/1");
@@ -136,14 +136,14 @@ public class abilityDatabaseTest {
     
     @Test
     public void abilitySearchDoesntWorkOnNoExistingDatabase() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean doesntWork = databaseTest.searchInformation("1/1/1/1/1/1");
         assertEquals(false, doesntWork);
     }
     
     @Test
     public void abilityIdSearchWorks() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("1/1/1/1/1/1");
@@ -156,7 +156,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void noExistingAbilityIdIsZero() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         Integer noId = databaseTest.searchInfromationId("1/1/1/1/1/1");
@@ -167,7 +167,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void correctAbilityIdIsFound() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("1/1/1/1/1/1");
@@ -184,7 +184,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void allAbilityIDsAreCorrect() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("1/1/1/1/1/1");
@@ -205,7 +205,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void noExistingAbilityDoesntHaveAnId() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("1/1/1/1/1/1");
@@ -228,14 +228,14 @@ public class abilityDatabaseTest {
     
     @Test
     public void idSearchDoesntWorkOnNoExistingDatabase() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         Integer doesntWork = databaseTest.searchInfromationId("1/1/1/1/1/1");
         assertEquals(0, doesntWork.intValue());
     }
     
     @Test
     public void abilityInformationRemovalWorks() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("1/1/1/1/1/1");
@@ -248,7 +248,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void abilityInformationIsActuallyRemoved() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("1/1/1/1/1/1");
@@ -267,7 +267,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void correctUsernameIsRemoved() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);  
         boolean isAdded1 = databaseTest.addInformation("1/1/1/1/1/1");
@@ -298,14 +298,14 @@ public class abilityDatabaseTest {
     
     @Test
     public void removalDoesntWorkWhenDatabaseDoesntExist() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean doesntWork = databaseTest.removeInformation("1/1/1/1/1/1");
         assertEquals(false, doesntWork);
     }
     
     @Test
     public void puttingDatabaseIntoAListWorks() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);  
         boolean isAdded = databaseTest.addInformation("1/1/1/1/1/1");
@@ -319,7 +319,7 @@ public class abilityDatabaseTest {
     
     @Test
     public void puttingDatabaseIntoaAListWorksCorrectly() throws Exception {
-        DatabaseInterface databaseTest = new abilityDatabase();
+        DatabaseInterface databaseTest = new AbilityDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated); 
         boolean isAdded1 = databaseTest.addInformation("1/1/1/1/1/1");

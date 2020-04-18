@@ -20,7 +20,7 @@ import Fiktiotietokanta.dao.DatabaseInterface;
  *
  *
  */
-public class abilityDatabase implements DatabaseInterface {
+public class AbilityDatabase implements DatabaseInterface {
 
     private Connection connection;
     private Boolean databaseExists;
@@ -31,7 +31,7 @@ public class abilityDatabase implements DatabaseInterface {
      *
      * @throws SQLException virhe.
      */
-    public abilityDatabase() throws SQLException {
+    public AbilityDatabase() throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:sqlite:abilitydatabase:connection");
         this.databaseExists = false;
     }

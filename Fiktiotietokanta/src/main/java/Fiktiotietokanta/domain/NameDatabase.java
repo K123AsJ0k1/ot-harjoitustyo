@@ -15,33 +15,34 @@ import java.util.ArrayList;
 import java.util.List;
 import Fiktiotietokanta.dao.DatabaseInterface;
 
-/** Selitys tietokanta.
+/** Nimi tietokanta.
  *
  * 
  */
-public class descriptionDatabase implements DatabaseInterface {
+public class NameDatabase implements DatabaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
     
-    /** Selitys tietokannan konstruktori.
+    
+    /** Nimi tietokanta konstruktori.
     *
     * 
      * @throws java.lang.Exception virhe.
     */
-    public descriptionDatabase() throws Exception {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabase:connection");
-        this.databaseExists = false;
+    public NameDatabase() throws Exception {
+        this.connection = DriverManager.getConnection("jdbc:sqlite:namedatabase:connection");
+        this.databaseExists = false;           
     }
 
     @Override
     public boolean createDatabase() throws Exception {
         try {
             Statement command = connection.createStatement();
-            command.execute("PRAGMA foreign_keys = ON;");
-            command.execute("CREATE TABLE Descriptions (id INTEGER PRIMARY KEY, Description TEXT UNIQUE);");
-            command.execute("CREATE INDEX idx_Description ON Descriptions (Description);");
 
+            command.execute("PRAGMA foreign_keys = ON;");
+            command.execute("CREATE TABLE Names (id INTEGER PRIMARY KEY, Name TEXT UNIQUE);");
+            command.execute("CREATE INDEX idx_Name ON Names (Name);");
             command.close();
             databaseExists = true;
             return true;
@@ -57,10 +58,10 @@ public class descriptionDatabase implements DatabaseInterface {
     }
 
     @Override
-    public boolean addInformation(String givenDescription) {
+    public boolean addInformation(String givenName) {
         try {
-            PreparedStatement command = connection.prepareStatement("INSERT INTO Descriptions(Description) VALUES (?);");
-            command.setString(1, givenDescription);
+            PreparedStatement command = connection.prepareStatement("INSERT INTO Names(Name) VALUES (?);");
+            command.setString(1, givenName);
             command.executeUpdate();
             command.close();
             return true;
@@ -71,21 +72,21 @@ public class descriptionDatabase implements DatabaseInterface {
     }
 
     @Override
-    public boolean searchInformation(String givenDescription) {
+    public boolean searchInformation(String givenName) {
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
+            PreparedStatement command = connection.prepareStatement("SELECT Name FROM Names;");
             ResultSet querySet = command.executeQuery();
-            Boolean descriptionExists = false;
+            Boolean nameExists = false;
             while (querySet.next()) {
-                String searchedDescription = querySet.getString("Description");
-                if (searchedDescription.equals(givenDescription)) {
-                    descriptionExists = true;
+                String searchedName = querySet.getString("Name");
+                if (searchedName.equals(givenName)) {
+                    nameExists = true;
                     break;
                 }
             }
             querySet.close();
             command.close();
-            if (descriptionExists) {
+            if (nameExists) {
                 return true;
             }
 
@@ -94,15 +95,14 @@ public class descriptionDatabase implements DatabaseInterface {
         } catch (SQLException k) {
             
         }
-        
         return false;
     }
 
     @Override
-    public Integer searchInfromationId(String givenDescription) {
+    public Integer searchInfromationId(String givenName) {
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT id FROM Descriptions WHERE Description=?;");
-            command.setString(1, givenDescription);
+            PreparedStatement command = connection.prepareStatement("SELECT id FROM Names WHERE Name=?;");
+            command.setString(1, givenName);
             ResultSet querrySet = command.executeQuery();
             int classId = 0;
             if (querrySet.next()) {
@@ -117,20 +117,21 @@ public class descriptionDatabase implements DatabaseInterface {
         } catch (SQLException k) {
             
         }
+        
         return 0;
     }
 
     @Override
-    public boolean removeInformation(String givenDescription) {
+    public boolean removeInformation(String givenName) {
         
         try {
             
-            PreparedStatement command = connection.prepareStatement("DELETE FROM Descriptions WHERE Description=?");
-            command.setString(1, givenDescription);
+            PreparedStatement command = connection.prepareStatement("DELETE FROM Names WHERE Name=?");
+            command.setString(1, givenName);
             command.executeUpdate();
             command.close();
-            
             return true;
+            
         } catch (SQLException k) {
             
         }
@@ -145,7 +146,7 @@ public class descriptionDatabase implements DatabaseInterface {
         try {
             
             Statement command = connection.createStatement();
-            command.execute("DROP TABLE Descriptions;");
+            command.execute("DROP TABLE Names;");
             command.close();
             databaseExists = false;
             return true;
@@ -159,24 +160,24 @@ public class descriptionDatabase implements DatabaseInterface {
     }
 
     @Override
-    public String searchInformationTextIdentity(String givenDescriptionId) {
+    public String searchInformationTextIdentity(String givenNameId) {
         
-        int checkId = Integer.valueOf(givenDescriptionId);
+        int checkId = Integer.valueOf(givenNameId);
         
         try {
             
-            PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions WHERE id=?");
+            PreparedStatement command = connection.prepareStatement("SELECT Name FROM Names WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
             String givenTextIdentity = "null";
             
             if (querySet.next()) {
-                givenTextIdentity = querySet.getString("Description");
+                givenTextIdentity = querySet.getString("Name");
             }
             
             querySet.close();
             command.close();        
-            return givenTextIdentity;  
+            return givenTextIdentity;       
             
         } catch (SQLException k) {
             
@@ -193,11 +194,11 @@ public class descriptionDatabase implements DatabaseInterface {
         
         try {
             
-            PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
+            PreparedStatement command = connection.prepareStatement("SELECT Name FROM Names;");
             ResultSet querySet = command.executeQuery();
             
             while (querySet.next()) {
-                String givenClass = querySet.getString("Descriptions");
+                String givenClass = querySet.getString("Name");
                 databaseAsAList.add(givenClass);
             }
             
@@ -216,6 +217,7 @@ public class descriptionDatabase implements DatabaseInterface {
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

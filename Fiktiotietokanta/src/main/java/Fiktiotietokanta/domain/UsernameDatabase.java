@@ -19,7 +19,7 @@ import Fiktiotietokanta.dao.UsernameInterface;
  * Käyttäjä tietokanta.
  *
  */
-public class usernameDatabase implements UsernameInterface {
+public class UsernameDatabase implements UsernameInterface {
 
     private Connection connection;
     private Boolean databaseExists;
@@ -29,7 +29,7 @@ public class usernameDatabase implements UsernameInterface {
     * @throws java.lang.Exception virhe.
     */
     
-    public usernameDatabase() throws Exception {
+    public UsernameDatabase() throws Exception {
         this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
         this.databaseExists = false;
     }

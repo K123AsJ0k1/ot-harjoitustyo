@@ -5,7 +5,7 @@
  */
 package Fiktiotietokanta.ui;
 
-import Fiktiotietokanta.domain.ability;
+import Fiktiotietokanta.domain.Ability;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,13 +18,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import Fiktiotietokanta.domain.usernameDatabase;
-import Fiktiotietokanta.domain.abilityDatabase;
-import Fiktiotietokanta.domain.classDatabase;
-import Fiktiotietokanta.domain.descriptionDatabase;
-import Fiktiotietokanta.domain.nameDatabase;
-import Fiktiotietokanta.domain.realityDatabase;
-import Fiktiotietokanta.domain.requrimentDatabase;
+import Fiktiotietokanta.domain.UsernameDatabase;
+import Fiktiotietokanta.domain.AbilityDatabase;
+import Fiktiotietokanta.domain.ClassDatabase;
+import Fiktiotietokanta.domain.DescriptionDatabase;
+import Fiktiotietokanta.domain.NameDatabase;
+import Fiktiotietokanta.domain.RealityDatabase;
+import Fiktiotietokanta.domain.RequrimentDatabase;
 import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ContextMenu;
@@ -62,13 +62,13 @@ public class userInterface extends Application {
 
     @Override
     public void init() throws Exception {
-        usernameDatabase = new usernameDatabase();
-        classDatabase = new classDatabase();
-        nameDatabase = new nameDatabase();
-        descriptionDatabase = new descriptionDatabase();
-        requrimentDatabase = new requrimentDatabase();
-        realityDatabase = new realityDatabase();
-        abilityDatabase = new abilityDatabase();
+        usernameDatabase = new UsernameDatabase();
+        classDatabase = new ClassDatabase();
+        nameDatabase = new NameDatabase();
+        descriptionDatabase = new DescriptionDatabase();
+        requrimentDatabase = new RequrimentDatabase();
+        realityDatabase = new RealityDatabase();
+        abilityDatabase = new AbilityDatabase();
 
         usernameDatabase.createUsernameDatabase();
         classDatabase.createDatabase();
@@ -256,15 +256,15 @@ public class userInterface extends Application {
         removeAbilityButtonLayout.getChildren().addAll(returnAbilityMenuTableView, removeSelectedAbilityTableView);
         TableView removeAbilityTableView = new TableView();
 
-        TableColumn<String, ability> classTableViewColumn = new TableColumn<>("Class");
+        TableColumn<String, Ability> classTableViewColumn = new TableColumn<>("Class");
         classTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("classIdentity"));
-        TableColumn<String, ability> nameTableViewColumn = new TableColumn<>("Name");
+        TableColumn<String, Ability> nameTableViewColumn = new TableColumn<>("Name");
         nameTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("nameIdentity"));
-        TableColumn<String, ability> descriptionTableViewColumn = new TableColumn<>("Description");
+        TableColumn<String, Ability> descriptionTableViewColumn = new TableColumn<>("Description");
         descriptionTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionIdentity"));
-        TableColumn<String, ability> requrimentTableViewColumn = new TableColumn<>("Requriment");
+        TableColumn<String, Ability> requrimentTableViewColumn = new TableColumn<>("Requriment");
         requrimentTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentIdentity"));
-        TableColumn<String, ability> realityTableViewColumn = new TableColumn<>("Reality");
+        TableColumn<String, Ability> realityTableViewColumn = new TableColumn<>("Reality");
         realityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("realityIdentity"));
 
         removeAbilityTableView.getColumns().addAll(classTableViewColumn, nameTableViewColumn, descriptionTableViewColumn, requrimentTableViewColumn, realityTableViewColumn);
@@ -272,7 +272,7 @@ public class userInterface extends Application {
 
         removeAbilityLayout.setPrefSize(320, 400);
 
-        TableViewSelectionModel<ability> selectionModelTableView = removeAbilityTableView.getSelectionModel();
+        TableViewSelectionModel<Ability> selectionModelTableView = removeAbilityTableView.getSelectionModel();
         selectionModelTableView.setSelectionMode(SelectionMode.SINGLE);
 
         Scene removeAbilityTable = new Scene(removeAbilityLayout);
@@ -333,15 +333,15 @@ public class userInterface extends Application {
         chooseAbilityLayout.getChildren().addAll(returnChooseAbilityMenuTableView, chooseSelectedAbilityTableView);
         TableView chooseAbilityTableView = new TableView();
 
-        TableColumn<String, ability> classChooseAbilityTableViewColumn = new TableColumn<>("Class");
+        TableColumn<String, Ability> classChooseAbilityTableViewColumn = new TableColumn<>("Class");
         classChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("classIdentity"));
-        TableColumn<String, ability> nameChooseAbilityTableViewColumn = new TableColumn<>("Name");
+        TableColumn<String, Ability> nameChooseAbilityTableViewColumn = new TableColumn<>("Name");
         nameChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("nameIdentity"));
-        TableColumn<String, ability> descriptionChooseAbilityTableViewColumn = new TableColumn<>("Description");
+        TableColumn<String, Ability> descriptionChooseAbilityTableViewColumn = new TableColumn<>("Description");
         descriptionChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionIdentity"));
-        TableColumn<String, ability> requrimentChooseAbilityTableViewColumn = new TableColumn<>("Requriment");
+        TableColumn<String, Ability> requrimentChooseAbilityTableViewColumn = new TableColumn<>("Requriment");
         requrimentChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentIdentity"));
-        TableColumn<String, ability> realityChooseAbilityTableViewColumn = new TableColumn<>("Reality");
+        TableColumn<String, Ability> realityChooseAbilityTableViewColumn = new TableColumn<>("Reality");
         realityChooseAbilityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("realityIdentity"));
 
         chooseAbilityTableView.getColumns().addAll(classChooseAbilityTableViewColumn, nameChooseAbilityTableViewColumn, descriptionChooseAbilityTableViewColumn, requrimentChooseAbilityTableViewColumn, realityChooseAbilityTableViewColumn);
@@ -349,7 +349,7 @@ public class userInterface extends Application {
 
         chooseAbilityLayout.setPrefSize(320, 400);
 
-        TableViewSelectionModel<ability> selectionModelChooseAbilityTableView = chooseAbilityTableView.getSelectionModel();
+        TableViewSelectionModel<Ability> selectionModelChooseAbilityTableView = chooseAbilityTableView.getSelectionModel();
         selectionModelChooseAbilityTableView.setSelectionMode(SelectionMode.SINGLE);
 
         Scene chooseAbilityTable = new Scene(chooseAbilityLayout);
@@ -592,7 +592,7 @@ public class userInterface extends Application {
                 String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
                 String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
                 String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
-                ability addedAbility = new ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
+                Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
                 removeAbilityTableView.getItems().add(addedAbility);
             }
 
@@ -652,7 +652,7 @@ public class userInterface extends Application {
                 String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
                 String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
                 String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
-                ability addedAbility = new ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
+                Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
                 chooseAbilityTableView.getItems().add(addedAbility);
             }
 

@@ -9,7 +9,7 @@ package Fiktiotietokanta.domain;
  *
  * 
  */
-public class ability {
+public class Ability {
     
     private String classIdentity = null;
     private String nameIdentity = null;
@@ -25,7 +25,7 @@ public class ability {
      * @param givenRequriment annettu vaatimus.
      * @param givenReality annettu todellisuus.
     */
-    public ability(String givenClass, String givenName, String givenDescription, String givenRequriment, String givenReality) {
+    public Ability(String givenClass, String givenName, String givenDescription, String givenRequriment, String givenReality) {
         this.classIdentity = givenClass;
         this.nameIdentity = givenName;
         this.descriptionIdentity = givenDescription;

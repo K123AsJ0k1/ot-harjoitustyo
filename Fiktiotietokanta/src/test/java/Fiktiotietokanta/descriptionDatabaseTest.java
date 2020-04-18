@@ -5,7 +5,7 @@
  */
 package Fiktiotietokanta;
 
-import Fiktiotietokanta.domain.descriptionDatabase;
+import Fiktiotietokanta.domain.DescriptionDatabase;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,14 +22,14 @@ public class descriptionDatabaseTest {
     
     @Test
     public void constructorWorks() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean works = databaseTest.databaseExists();
         assertEquals(false, works);
     }
     
     @Test
     public void descriptionDatabaseIsCreated() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         databaseTest.removeDatabase();
@@ -37,7 +37,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void descriptiondatabaseCantBeCreatedTwice() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated1 = databaseTest.createDatabase();
         assertEquals(true, isCreated1);
         boolean isCreated2 = databaseTest.createDatabase();
@@ -47,7 +47,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void descriptionDatabaseIsRemoved() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved = databaseTest.removeDatabase();
@@ -56,7 +56,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void descriptionDatabaseIsntRemovedTwice() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved1 = databaseTest.removeDatabase();
@@ -67,14 +67,14 @@ public class descriptionDatabaseTest {
     
     @Test
     public void noExistingDatabaseIsntRemoved() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isRemoved = databaseTest.removeDatabase();
         assertEquals(false, isRemoved);
     }
     
     @Test
     public void descriptionCanBeAdded() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -85,14 +85,14 @@ public class descriptionDatabaseTest {
     
     @Test
     public void descriptionCantBeAddedIntoNoExistingDatabase() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isAdded = databaseTest.addInformation("Test");
         assertEquals(false, isAdded);
     }
     
     @Test
     public void duplicateDescriptionCantBeAdded() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test");
@@ -105,7 +105,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void descriptionIsFound() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -118,7 +118,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void correctDescriptionIsFound() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -131,7 +131,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void noAddedDescriptionIsntFound() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -148,7 +148,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void descriptionSearchDoesntWorkOnNoExistingDatabase() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean doesntWork = databaseTest.searchInformation("Test");
         assertEquals(false, doesntWork);
     }
@@ -156,7 +156,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void descriptionIdSearchWorks() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -169,7 +169,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void noExistingDescriptionIdIsZero() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         Integer noId = databaseTest.searchInfromationId("Test");
@@ -180,7 +180,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void correctDescriptionIdIsFound() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -197,7 +197,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void allDescriptionIDsAreCorrect() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -218,7 +218,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void noExistingDescriptionDoesntHaveAnId() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -241,14 +241,14 @@ public class descriptionDatabaseTest {
     
     @Test
     public void idSearchDoesntWorkOnNoExistingDatabase() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         Integer doesntWork = databaseTest.searchInfromationId("Test");
         assertEquals(0, doesntWork.intValue());
     }
     
     @Test
     public void descriptionInformationRemovalWorks() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -261,7 +261,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void descriptionInformationIsActuallyRemoved() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -280,7 +280,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void correctDescriptionIsRemoved() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);  
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -311,7 +311,7 @@ public class descriptionDatabaseTest {
     
     @Test
     public void removalDoesntWorkWhenDatabaseDoesntExist() throws Exception {
-        DatabaseInterface databaseTest = new descriptionDatabase();
+        DatabaseInterface databaseTest = new DescriptionDatabase();
         boolean doesntWork = databaseTest.removeInformation("Test");
         assertEquals(false, doesntWork);
     }
