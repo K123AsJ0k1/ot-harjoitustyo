@@ -35,8 +35,9 @@ public interface databaseInterface {
     /** Lisää tietoa tietokantaan.
     * 
     * 
-     * @param information
      * 
+     * 
+     * @param information.
      * @return palauttaa true, jos tiedon lisääminen onnistui ja false, jos ei. 
      * 
     */ 
@@ -46,8 +47,9 @@ public interface databaseInterface {
     /** Tarkistaa halutun tiedon tietokannasta.
     * 
     * 
-     * @param information
      * 
+     * 
+     * @param information.
      * @return palauttaa true, jos tietokannasta löytyy haettu tieto ja false jos ei.
      * 
     */ 
@@ -57,22 +59,60 @@ public interface databaseInterface {
     /** Hakee tietokannan antamaan id haetulle tiedolle.
     * 
     * 
-     * @param information
      * 
+     * 
+     * @param information.
      * @return palauttaa tietokannan antaman id onnistuessa ja nollan, jos haettua tietoa ei löydy tietokannasta.
      * 
     */ 
     public Integer searchInfromationId(String information);
     
-    
+    /** Hakee tietokannassa olevat data identiteetit.
+    * 
+    * 
+     * 
+     * 
+     * @param information.
+     * @return palauttaa tietokannasta saadun tekstin jos onnistuu ja tyhjän merkkijonon jos ei.
+     * 
+    */ 
     public String searchInformationTextIdentity(String information);
-    
+    /** Antaa tietokannan listana.
+    * 
+    * 
+     * 
+     * 
+     * @return palauttaa tietokantaa edustavan listan jos se onnistuu ja tyhjä null, jos ei.
+     * 
+    */ 
     public List<String> showDatabaseAsAList();
     
+    /** Antaa tietokannan rajoitettuna listana.
+    * 
+    * 
+     * 
+     * 
+     * @param information.
+     * @return palauttaa tietokantaa edustavan listan jos se onnistuu ja tyhjä null, jos ei.
+     * 
+    */ 
     public List<String> showDatabaseAsARestrictedList(String information);
-    
+    /** Poistaa halutun asian tietokannasta.
+    * 
+    * 
+     * 
+     * 
+     * @param information.
+     * @return palauttaa true, jos poisto onnistui ja false jos ei.
+     * 
+    */ 
     public boolean removeInformation(String information);
-    
+    /** Poistaa tietokannan kokonaan.
+    * 
+    * 
+     * @return palauttaa true, jos poisto onnistui ja false jos ei.
+     * @throws java.lang.Exception
+    */ 
     public boolean removeDatabase() throws Exception;
     
 }
