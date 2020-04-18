@@ -1,4 +1,4 @@
-package Fiktiotietokanta;
+package Fiktiotietokanta.main;
 
 import Fiktiotietokanta.ui.userInterface;
 

@@ -44,7 +44,7 @@ import javafx.scene.layout.VBox;
 import Fiktiotietokanta.dao.DatabaseInterface;
 import Fiktiotietokanta.dao.UsernameInterface;
 
-/**
+/** Käyttöliittymä.
  *
  * @author niila
  */
