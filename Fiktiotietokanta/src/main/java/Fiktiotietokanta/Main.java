@@ -7,7 +7,7 @@ import Fiktiotietokanta.ui.userInterface;
  *
  * 
  */
-public class main {
+public class Main {
 
     /**
      * Ohjelman main.
