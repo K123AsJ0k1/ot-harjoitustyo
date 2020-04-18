@@ -18,7 +18,7 @@ import Fiktiotietokanta.dao.DatabaseInterface;
  *
  * @author niila
  */
-public class realityDatabaseTest {
+public class RealityDatabaseTest {
     
     @Test
     public void constructorWorks() throws Exception {

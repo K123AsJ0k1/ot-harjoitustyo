@@ -19,7 +19,7 @@ import Fiktiotietokanta.dao.DatabaseInterface;
  *
  * @author niila
  */
-public class classDatabaseTest {
+public class ClassDatabaseTest {
     
     @Test
     public void constructorWorks() throws Exception {

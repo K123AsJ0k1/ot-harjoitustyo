@@ -5,6 +5,7 @@
  */
 package Fiktiotietokanta;
 
+
 import Fiktiotietokanta.domain.AbilityDatabase;
 import java.util.List;
 import org.junit.After;
@@ -19,7 +20,7 @@ import Fiktiotietokanta.dao.DatabaseInterface;
  *
  * @author niila
  */
-public class abilityDatabaseTest {
+public class AbilityDatabaseTest {
     
     @Test
     public void constructorWorks() throws Exception {
