@@ -15,16 +15,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/** Luokka tietokanta.
  *
- * @author niila
+ * 
  */
 public class classDatabase implements databaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
     
-    
+    /** Luokka tietokannan konstruktori.
+    *
+    * 
+     * @throws java.lang.Exception virhe.
+    */
     public classDatabase() throws Exception {
         this.connection = DriverManager.getConnection("jdbc:sqlite:classdatabase:connection");
         this.databaseExists = false;
@@ -97,7 +101,9 @@ public class classDatabase implements databaseInterface {
 
     @Override
     public Integer searchInfromationId(String givenClass) {
-         try {
+         
+        try {
+            
             PreparedStatement command = connection.prepareStatement("SELECT id FROM Classes WHERE Class=?;");
             command.setString(1, givenClass);
             ResultSet querrySet = command.executeQuery();
@@ -114,41 +120,56 @@ public class classDatabase implements databaseInterface {
         } catch (SQLException k) {
             
         }
+        
         return 0;
+        
     }
 
     @Override
     public boolean removeInformation(String givenClass) {
+        
         try{
+            
             PreparedStatement command = connection.prepareStatement("DELETE FROM Classes WHERE Class=?");
             command.setString(1, givenClass);
             command.executeUpdate();
             command.close();
             return true;
-        }catch (SQLException k) {
+            
+        } catch (SQLException k) {
             
         }
+        
         return false;
+        
     }
 
     @Override
     public boolean removeDatabase() throws Exception {
+        
         try {
+            
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Classes;");
             command.close();
             databaseExists = false;
             return true;
+            
         } catch (SQLException k) {
             
         }
+        
         return false;
+        
     }
 
     @Override
     public String searchInformationTextIdentity(String givenClassId) {
+        
         int checkId = Integer.valueOf(givenClassId);
-        try{
+        
+        try {
+            
             PreparedStatement command = connection.prepareStatement("SELECT Class FROM Classes WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
@@ -156,25 +177,34 @@ public class classDatabase implements databaseInterface {
             if (querySet.next()) {
                 givenTextIdentity = querySet.getString("Class");
             }
+            
             querySet.close();
             command.close();        
-            return givenTextIdentity;              
-        }catch (SQLException k) {
+            return givenTextIdentity;
+            
+        } catch (SQLException k) {
             
         } 
+        
         return "null";
+        
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
+        
         List<String> databaseAsAList = new ArrayList<>();
+        
         try {
+            
             PreparedStatement command = connection.prepareStatement("SELECT Class FROM Classes;");
             ResultSet querySet = command.executeQuery();
+            
             while (querySet.next()) {
                 String givenClass = querySet.getString("Class");
                 databaseAsAList.add(givenClass);
             }
+            
             querySet.close();
             command.close();
             
@@ -183,12 +213,16 @@ public class classDatabase implements databaseInterface {
         } catch (SQLException k) {
             
         } 
+        
         return null;
+        
     }
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }
