@@ -5,7 +5,6 @@
  */
 package Fiktiotietokanta;
 
-import Fiktiotietokanta.dao.databaseInterface;
 import Fiktiotietokanta.domain.classDatabase;
 import java.util.List;
 import org.junit.After;
@@ -14,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import Fiktiotietokanta.dao.DatabaseInterface;
 
 /**
  *
@@ -23,14 +23,14 @@ public class classDatabaseTest {
     
     @Test
     public void constructorWorks() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean works = databaseTest.databaseExists();
         assertEquals(false, works);
     }
     
     @Test
     public void classDatabaseIsCreated() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         databaseTest.removeDatabase();
@@ -38,7 +38,7 @@ public class classDatabaseTest {
     
     @Test
     public void classdatabaseCantBeCreatedTwice() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated1 = databaseTest.createDatabase();
         assertEquals(true, isCreated1);
         boolean isCreated2 = databaseTest.createDatabase();
@@ -48,7 +48,7 @@ public class classDatabaseTest {
     
     @Test
     public void classDatabaseIsRemoved() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved = databaseTest.removeDatabase();
@@ -57,7 +57,7 @@ public class classDatabaseTest {
     
     @Test
     public void classDatabaseIsntRemovedTwice() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved1 = databaseTest.removeDatabase();
@@ -68,14 +68,14 @@ public class classDatabaseTest {
     
     @Test
     public void noExistingDatabaseIsntRemoved() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isRemoved = databaseTest.removeDatabase();
         assertEquals(false, isRemoved);
     }
     
     @Test
     public void classCanBeAdded() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -86,14 +86,14 @@ public class classDatabaseTest {
     
     @Test
     public void classCantBeAddedIntoNoExistingDatabase() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isAdded = databaseTest.addInformation("Test");
         assertEquals(false, isAdded);
     }
     
     @Test
     public void duplicateClassesCantBeAdded() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test");
@@ -106,7 +106,7 @@ public class classDatabaseTest {
     
     @Test
     public void classIsFound() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -119,7 +119,7 @@ public class classDatabaseTest {
     
     @Test
     public void correctClassIsFound() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -132,7 +132,7 @@ public class classDatabaseTest {
     
     @Test
     public void noAddedClassIsntFound() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -149,7 +149,7 @@ public class classDatabaseTest {
     
     @Test
     public void classSearchDoesntWorkOnNoExistingDatabase() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean doesntWork = databaseTest.searchInformation("Test");
         assertEquals(false, doesntWork);
     }
@@ -157,7 +157,7 @@ public class classDatabaseTest {
     
     @Test
     public void classIdSearchWorks() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -170,7 +170,7 @@ public class classDatabaseTest {
     
     @Test
     public void noExistingClassIdIsZero() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         Integer noId = databaseTest.searchInfromationId("Test");
@@ -181,7 +181,7 @@ public class classDatabaseTest {
     
     @Test
     public void correctClassIdIsFound() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -198,7 +198,7 @@ public class classDatabaseTest {
     
     @Test
     public void allClassIDsAreCorrect() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -219,7 +219,7 @@ public class classDatabaseTest {
     
     @Test
     public void noExistingClassDoesntHaveAnId() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -242,14 +242,14 @@ public class classDatabaseTest {
     
     @Test
     public void idSearchDoesntWorkOnNoExistingDatabase() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         Integer doesntWork = databaseTest.searchInfromationId("Test");
         assertEquals(0, doesntWork.intValue());
     }
     
     @Test
     public void usernameInformationRemovalWorks() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -262,7 +262,7 @@ public class classDatabaseTest {
     
     @Test
     public void usernameInformationIsActuallyRemoved() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -281,7 +281,7 @@ public class classDatabaseTest {
     
     @Test
     public void correctUsernameIsRemoved() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);  
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -312,14 +312,14 @@ public class classDatabaseTest {
     
     @Test
     public void removalDoesntWorkWhenDatabaseDoesntExist() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean doesntWork = databaseTest.removeInformation("Test");
         assertEquals(false, doesntWork);
     }
     
     @Test
     public void textIdentitySearchWorks() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -334,7 +334,7 @@ public class classDatabaseTest {
     
     @Test
     public void textIdentitySearchGivesCorrectIndentity() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");
@@ -357,7 +357,7 @@ public class classDatabaseTest {
     
     @Test
     public void puttingDatabaseIntoAListWorks() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addInformation("Test");
@@ -371,7 +371,7 @@ public class classDatabaseTest {
     
     @Test
     public void puttingDatabaseIntoAListIsCorrect() throws Exception {
-        databaseInterface databaseTest = new classDatabase();
+        DatabaseInterface databaseTest = new classDatabase();
         boolean isCreated = databaseTest.createDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addInformation("Test1");

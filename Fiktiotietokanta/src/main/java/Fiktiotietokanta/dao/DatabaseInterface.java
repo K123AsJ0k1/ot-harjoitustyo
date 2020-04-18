@@ -12,7 +12,7 @@ import java.util.List;
  * 
  * 
  */
-public interface databaseInterface {
+public interface DatabaseInterface {
     /** Luo tietokannan.
     * 
     * 

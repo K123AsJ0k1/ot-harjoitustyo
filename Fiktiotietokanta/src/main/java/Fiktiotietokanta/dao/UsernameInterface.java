@@ -9,7 +9,7 @@ package Fiktiotietokanta.dao;
  *
  * 
  */
-public interface usernameInterface {
+public interface UsernameInterface {
     
     /** Luo tietokannan.
     *

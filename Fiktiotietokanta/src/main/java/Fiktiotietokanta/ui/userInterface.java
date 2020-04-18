@@ -5,8 +5,6 @@
  */
 package Fiktiotietokanta.ui;
 
-import Fiktiotietokanta.dao.databaseInterface;
-import Fiktiotietokanta.dao.usernameInterface;
 import Fiktiotietokanta.domain.ability;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -43,6 +41,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import Fiktiotietokanta.dao.DatabaseInterface;
+import Fiktiotietokanta.dao.UsernameInterface;
 
 /**
  *
@@ -50,13 +50,13 @@ import javafx.scene.layout.VBox;
  */
 public class userInterface extends Application {
 
-    private usernameInterface usernameDatabase;
-    private databaseInterface classDatabase;
-    private databaseInterface nameDatabase;
-    private databaseInterface descriptionDatabase;
-    private databaseInterface requrimentDatabase;
-    private databaseInterface realityDatabase;
-    private databaseInterface abilityDatabase;
+    private UsernameInterface usernameDatabase;
+    private DatabaseInterface classDatabase;
+    private DatabaseInterface nameDatabase;
+    private DatabaseInterface descriptionDatabase;
+    private DatabaseInterface requrimentDatabase;
+    private DatabaseInterface realityDatabase;
+    private DatabaseInterface abilityDatabase;
     private Integer usernameId;
     private String chosenAbility;
 

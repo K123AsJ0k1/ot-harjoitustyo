@@ -1,13 +1,13 @@
 package Fiktiotietokanta.domain;
 
-import Fiktiotietokanta.dao.databaseInterface;
-import Fiktiotietokanta.dao.usernameInterface;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import Fiktiotietokanta.dao.DatabaseInterface;
+import Fiktiotietokanta.dao.UsernameInterface;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,12 +19,15 @@ import java.sql.Statement;
  * Käyttäjä tietokanta.
  *
  */
-public class usernameDatabase implements usernameInterface {
+public class usernameDatabase implements UsernameInterface {
 
     private Connection connection;
     private Boolean databaseExists;
 
-    
+    /**
+    * Käyttäjä tietokannan konstruktori.
+    * @throws java.lang.Exception virhe.
+    */
     
     public usernameDatabase() throws Exception {
         this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
@@ -103,7 +106,8 @@ public class usernameDatabase implements usernameInterface {
     
     @Override
     public Integer searchUsernameId(String username) {
-       try {
+       
+        try {
             PreparedStatement command = connection.prepareStatement("SELECT id FROM Usernames WHERE Username=?;");
             command.setString(1, username);
             ResultSet querySet = command.executeQuery();

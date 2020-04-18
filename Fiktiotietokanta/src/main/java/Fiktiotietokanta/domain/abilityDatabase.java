@@ -5,7 +5,6 @@
  */
 package Fiktiotietokanta.domain;
 
-import Fiktiotietokanta.dao.databaseInterface;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,13 +13,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import Fiktiotietokanta.dao.DatabaseInterface;
 
 /**
  * Tietokanta annettuille fiktiivisille ominaisuuksille.
  *
  *
  */
-public class abilityDatabase implements databaseInterface {
+public class abilityDatabase implements DatabaseInterface {
 
     private Connection connection;
     private Boolean databaseExists;

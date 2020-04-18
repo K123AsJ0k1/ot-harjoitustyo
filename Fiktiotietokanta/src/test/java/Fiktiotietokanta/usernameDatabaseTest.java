@@ -5,7 +5,6 @@
  */
 package Fiktiotietokanta;
 
-import Fiktiotietokanta.dao.usernameInterface;
 import Fiktiotietokanta.domain.usernameDatabase;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import Fiktiotietokanta.dao.UsernameInterface;
 
 /**
  *
@@ -22,14 +22,14 @@ public class usernameDatabaseTest {
     
     @Test
     public void constructorWorks() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean doesntExist = databaseTest.usernameDatabaseExists();
         assertEquals(false, doesntExist);
     }
     
     @Test
     public void usernameDatabaseIsCreated() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         databaseTest.removeUsernameDatabase();
@@ -37,7 +37,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void usernameDatabaseCantBeCreatedTwice() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated1 = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated1);
         boolean isCreated2 = databaseTest.createUsernameDatabase();
@@ -47,7 +47,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void usernameDatabaseIsRemoved() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved = databaseTest.removeUsernameDatabase();
@@ -56,7 +56,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void usernameDatabaseIsntRemovedTwice() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved1 = databaseTest.removeUsernameDatabase();
@@ -67,7 +67,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void noExistantUsernameDatabaseIsntRemoved() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isRemoved1 = databaseTest.removeUsernameDatabase();
@@ -78,14 +78,14 @@ public class usernameDatabaseTest {
     
     @Test
     public void usernameCanBeAdded() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isntRemoved = databaseTest.removeUsernameDatabase();
         assertEquals(false, isntRemoved);      
     }
     
     @Test
     public void duplicatesCantBeAdded() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addUserInformation("Test");
@@ -98,14 +98,14 @@ public class usernameDatabaseTest {
     
     @Test
     public void usernameCantBeAddedIntoNoExistingDatabase() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isntAdded = databaseTest.addUserInformation("Test");
         assertEquals(false, isntAdded);
     }
     
     @Test
     public void usernameIsFound() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addUserInformation("Test");
@@ -118,7 +118,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void correctUsernameIsFound() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addUserInformation("Test1");
@@ -135,7 +135,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void noAddedUsernameIsntFound() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addUserInformation("Test1");
@@ -152,7 +152,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void usernameIdSearchWorks() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addUserInformation("Test");
@@ -167,7 +167,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void correctUsernameIdIsFound() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addUserInformation("Test1");
@@ -190,14 +190,14 @@ public class usernameDatabaseTest {
     
     @Test
     public void searchDoesntWorkOnNoExistingDatabase() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         Boolean doesntWork = databaseTest.searchUserInformation("Test");
         assertEquals(false, doesntWork);
     }
     
     @Test
     public void allUsernameIdsAreCorrect() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addUserInformation("Test1");
@@ -224,7 +224,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void noExistingUsernameIdIsZero() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         Integer noId = databaseTest.searchUsernameId("Test1");
@@ -235,7 +235,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void noExistingUsernameDoesntHaveId() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addUserInformation("Test1");
@@ -258,14 +258,14 @@ public class usernameDatabaseTest {
     
     @Test
     public void idSearchDoesntWorkOnNoExistingDatabase() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         Integer isntFound = databaseTest.searchUsernameId("Test");
         assertEquals(0, isntFound.intValue());
     }
     
     @Test
     public void usernameInformationRemovalWorks() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addUserInformation("Test");
@@ -280,7 +280,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void usernameInformationIsActuallyRemoved() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded = databaseTest.addUserInformation("Test");
@@ -301,7 +301,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void correctUsernameIsRemoved() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
         boolean isAdded1 = databaseTest.addUserInformation("Test1");
@@ -338,7 +338,7 @@ public class usernameDatabaseTest {
     
     @Test
     public void removalDoesntWorkWhenDatabaseDoesntExist() throws Exception {
-        usernameInterface databaseTest = new usernameDatabase();
+        UsernameInterface databaseTest = new usernameDatabase();
         Boolean doesntRemove = databaseTest.removeUserInformation("Test");
         assertEquals(false, doesntRemove);
     }
