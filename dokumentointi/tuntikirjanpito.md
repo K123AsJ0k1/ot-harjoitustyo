@@ -56,7 +56,7 @@
 | Ominaisuuden lisäys tietokantaan | On | 7.4 |
 | Ominaisuuden poisto tietokannasta | On | 15.4 |
 | Siirtyminen takaisin päävalikkoon | On | 7.4 |
-| Sovelluksen profiilinhallinta käyttöliittymä | Ei ole vielä valmis | |
+| Sovelluksen profiilinhallinta käyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan | |
 | Profiilinhallinnan valikko | On | 31.3 |
 | Profiilin luominen | Perusidea toimii, mutta vaatii vielä muokkausta | |
 | Tiedoston luominen profiilista | On | 19.4 |
