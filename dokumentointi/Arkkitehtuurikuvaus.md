@@ -46,7 +46,7 @@ Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltä�
 
 Tiivistettynä DatabaseInterface mahdollistaa tietokantojen hallitsemisen, UsernameInterface mahdollistaa käyttäjien hallitsemisen, FileWriterInterface mahdollistaa tiedostojen luonnin hallitsemisen ja Ability-olio mahdollistaa tietokantojen tiedon keräämisen käyttöliittymän ymmärtään muotoon.
 
-Alla olevan luokka/pakkauskaavio näyttää tämän hetkisen (7.4.2020) sovelluslogiikan suhdettaa UserInterfacen ja tietokantojen välillä: 
+Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (19.4.2020) sovelluslogiikan suhdetta UserInterfacen, sen käyttämien rajapintojen, tietokantojen ja olion välillä
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
 
 # Tietojen pysyväistallennus
