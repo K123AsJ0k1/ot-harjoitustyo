@@ -6,7 +6,7 @@
 
 # Sovelluslogiikka
 
-Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltään UsernameDatabase,ClassDatabase,NameDatabase,DesriptionDatabase,RequrimentDatabase,RealityDatabase ja AbilityDatabase, joiden metodit keskustelevat rajapintojen DatabaseInterface ja UsernameInterfacen kautta käyttäliittymän kanssa ja jotka mahdollistavat tietokantojen luomisen, tietokantojen olemassaolon tarkastamisen, tiedon lisäämisen tietokantaan, tiedon tarkastamisen tietokannasta, tiedon id haun tietokannasta, tiedon identitetti haun tietokannasta, listan luomisen tietokannasta, rajoitetun listan luomisen tietokannasta, tiedon poistamisen tietokannasta ja tietokannan poistamisen.Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle, jolloin kokonaisuudessaan kaikki käyttöliittymän toiminoille tarjotut metodit ovat:
+Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltään UsernameDatabase, ClassDatabase, NameDatabase, DesriptionDatabase, RequrimentDatabase, RealityDatabaseja AbilityDatabase, joiden metodit keskustelevat rajapintojen DatabaseInterface ja UsernameInterfacen kautta käyttöliittymän kanssa ja jotka mahdollistavat tietokantojen luomisen, tietokantojen olemassaolon tarkastamisen, tiedon lisäämisen tietokantaan, tiedon tarkastamisen tietokannasta, tiedon id haun tietokannasta, tiedon identitetti haun tietokannasta, listan luomisen tietokannasta, rajoitetun listan luomisen tietokannasta, tiedon poistamisen tietokannasta ja tietokannan poistamisen. Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle ja Ability olio, joka mahdollistaa tietokantojen yhdistämisen käyttöliittymän toiminnallisuuksiksi, jolloin käyttöliittymän toiminoille tarjotu metodit ovat:
 
 **DatabaseInterface**
 
@@ -34,6 +34,17 @@ Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltä�
 **FileWriterInterface**
 
 - public boolean saveTextAsAFile(String information, File file)
+
+**Ability**
+
+- public String getClassIdentity()
+- public String getNameIdentity()
+- public String getDescriptionIdentity()
+- public String getRequrimentIdentity()
+- public String getRealityIdentity()
+- public String toString()
+
+
 
 Alla olevan luokka/pakkauskaavio näyttää tämän hetkisen (7.4.2020) sovelluslogiikan suhdettaa UserInterfacen ja tietokantojen välillä: 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
