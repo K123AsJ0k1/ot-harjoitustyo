@@ -416,6 +416,7 @@ public class UserInterface extends Application {
         //Create a file from Profile Scene
         //Reset current profile Scene      
         //All UI actions and events
+        
         //Login screen transitions
         //Transition from login scene to mainmenu scene when login
         loginLogin.setOnAction((event) -> {
@@ -909,8 +910,6 @@ public class UserInterface extends Application {
         });
         
         
-        
-
         //UI start code
         primaryStage.setTitle("Login screen");
         primaryStage.setScene(screenLogin);
