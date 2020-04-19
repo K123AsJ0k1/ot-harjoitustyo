@@ -42,7 +42,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import dao.DatabaseInterface;
+import dao.FileWriterInterface;
 import dao.UsernameInterface;
+import domain.FileWriter;
+import java.io.File;
+import java.util.Arrays;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 
 /** Käyttöliittymä.
  *
@@ -57,9 +65,11 @@ public class UserInterface extends Application {
     private DatabaseInterface requrimentDatabase;
     private DatabaseInterface realityDatabase;
     private DatabaseInterface abilityDatabase;
+    private FileWriterInterface fileWriter;
     private Integer usernameId;
     private String chosenAbility;
-
+    private String leftOverParameters;
+    
     @Override
     public void init() throws Exception {
         usernameDatabase = new UsernameDatabase();
@@ -69,6 +79,7 @@ public class UserInterface extends Application {
         requrimentDatabase = new RequrimentDatabase();
         realityDatabase = new RealityDatabase();
         abilityDatabase = new AbilityDatabase();
+        fileWriter = new FileWriter();
 
         usernameDatabase.createUsernameDatabase();
         classDatabase.createDatabase();
@@ -81,6 +92,7 @@ public class UserInterface extends Application {
         usernameDatabase.addUserInformation("Tester");
         usernameId = 0;
         chosenAbility = "";
+        leftOverParameters = "";
 
     }
 
@@ -199,6 +211,30 @@ public class UserInterface extends Application {
         layoutProfileMenu.setPadding(new Insets(20, 20, 20, 20));
 
         Scene screenProfileMenu = new Scene(layoutProfileMenu);
+        
+        //Create file from profile scene
+        
+        VBox saveProfileLayOut = new VBox();
+        
+        Text profileViewSaveProfile = new Text();
+        profileViewSaveProfile.setFont(new Font(14));
+        
+        
+        HBox saveProfileButtonLayOut = new HBox();
+        
+        Button saveButtonSaveProfile = new Button("Save");
+        Button returnButtonSaveProfile = new Button("Return");
+        
+        saveProfileButtonLayOut.setAlignment(Pos.CENTER);
+        
+        saveProfileButtonLayOut.getChildren().addAll(saveButtonSaveProfile, returnButtonSaveProfile);
+        
+        saveProfileLayOut.getChildren().addAll(profileViewSaveProfile,saveProfileButtonLayOut);
+        
+        saveProfileLayOut.setAlignment(Pos.CENTER);
+        saveProfileLayOut.setPrefSize(500, 500);
+        
+        Scene saveProfileMenu = new Scene(saveProfileLayOut); 
 
         //Add abilities Scene
         GridPane addAbilityMenu = new GridPane();
@@ -290,16 +326,39 @@ public class UserInterface extends Application {
         MenuItem chooseAnAbilityContextMenu = new MenuItem("Choose an Ability");
         MenuItem currenAbilityProgressContextMenu = new MenuItem("Ability parameters left:");
         MenuItem resetAnAbilityContextMenu = new MenuItem("Resets current ability");
+        MenuItem checkTextAreaContextMenu = new MenuItem("Check the textarea for ability parameters");
+        MenuItem wordCountContextMenu = new MenuItem("Current wordcount:0");
+        MenuItem characterCountContextMenu = new MenuItem("Current character count:0");
         
-        contextMenuCreateProfile.getItems().addAll(chooseAnAbilityContextMenu, currenAbilityProgressContextMenu, resetAnAbilityContextMenu);   
+        contextMenuCreateProfile.getItems().addAll(chooseAnAbilityContextMenu, currenAbilityProgressContextMenu, resetAnAbilityContextMenu,checkTextAreaContextMenu,wordCountContextMenu,characterCountContextMenu);   
         Menu exitProfileMenu = new Menu("Exit profile creator");
 
         MenuItem exitProfileMenu1 = new MenuItem("Save and return");
         MenuItem exitProfileMenu2 = new MenuItem("Return without saving");
 
         exitProfileMenu.getItems().addAll(exitProfileMenu1, exitProfileMenu2);
-
-        createProfileMenuBar.getMenus().addAll(exitProfileMenu);
+        
+        Menu textTemplatesAreaProfileMenu = new Menu("Templates");
+        
+        MenuItem editTextAreaProfileMenu1 = new MenuItem("Unspesified profile template");
+        MenuItem editTextAreaProfileMenu2 = new MenuItem("Person profile template");
+        MenuItem editTextAreaProfileMenu3 = new MenuItem("Culture profile template");
+        MenuItem editTextAreaProfileMenu4 = new MenuItem("Object profile template");
+        MenuItem editTextAreaProfileMenu5 = new MenuItem("Place profile template");
+        MenuItem editTextAreaProfileMenu6 = new MenuItem("World profile template");
+        MenuItem editTextAreaProfileMenu7 = new MenuItem("Universe profile template");
+        
+        textTemplatesAreaProfileMenu.getItems().addAll(editTextAreaProfileMenu1, editTextAreaProfileMenu2, editTextAreaProfileMenu3, editTextAreaProfileMenu4, editTextAreaProfileMenu5, editTextAreaProfileMenu6,editTextAreaProfileMenu7);
+        
+        Menu helpProfileMenu = new Menu("Help");
+        
+        MenuItem helpProfileMenu1 = new MenuItem("How to use this editor");
+        MenuItem helpProfileMenu2 = new MenuItem("Quick tips");
+        MenuItem helpProfileMenu3 = new MenuItem("General questions answered");
+        
+        helpProfileMenu.getItems().addAll(helpProfileMenu1, helpProfileMenu2, helpProfileMenu3);
+          
+        createProfileMenuBar.getMenus().addAll(exitProfileMenu, textTemplatesAreaProfileMenu, helpProfileMenu);
 
         menuRoot.setTop(createProfileMenuBar);
 
@@ -347,7 +406,7 @@ public class UserInterface extends Application {
         chooseAbilityTableView.getColumns().addAll(classChooseAbilityTableViewColumn, nameChooseAbilityTableViewColumn, descriptionChooseAbilityTableViewColumn, requrimentChooseAbilityTableViewColumn, realityChooseAbilityTableViewColumn);
         chooseAbilityLayout.getChildren().addAll(chooseAbilityTableViewLable, chooseAbilityTableView, chooseAbilityButtonLayout);
 
-        chooseAbilityLayout.setPrefSize(320, 400);
+        chooseAbilityLayout.setPrefSize(400, 400);
 
         TableViewSelectionModel<Ability> selectionModelChooseAbilityTableView = chooseAbilityTableView.getSelectionModel();
         selectionModelChooseAbilityTableView.setSelectionMode(SelectionMode.SINGLE);
@@ -467,6 +526,42 @@ public class UserInterface extends Application {
         returnProfileMenu.setOnAction((event) -> {
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(screenMainMenu);
+        });
+        
+        //Transitions from profile menu scene to create file from profile scene
+        createFileProfileProfileMenu.setOnAction((event) -> {
+            primaryStage.setTitle("Save profile as a file menu");
+            primaryStage.setScene(saveProfileMenu);
+        });
+        
+        //Resets profile
+        resetProfileProfileMenu.setOnAction((event) -> {
+            profileEditorCreateProfileMenu.clear();
+            profileViewSaveProfile.setText("");
+        });
+        
+        //Save profile as a file scene
+        
+        //Transition from create file from profile scene to profile menu scene 
+        returnButtonSaveProfile.setOnAction((event) -> {
+            primaryStage.setTitle("Profile menu");
+            primaryStage.setScene(screenProfileMenu);
+        });
+        
+        //Saving current profile as a file
+        saveButtonSaveProfile.setOnAction((event) -> {
+            String unRefinedText = profileEditorCreateProfileMenu.getText();
+            profileViewSaveProfile.setText(unRefinedText);
+            FileChooser fileChooser = new FileChooser();
+            
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+            fileChooser.getExtensionFilters().add(extFilter);
+ 
+            File file = fileChooser.showSaveDialog(primaryStage);
+ 
+            if (file != null) {
+                fileWriter.saveTextAsAFile(unRefinedText, file);
+            }
         });
 
         //Add ability menu transition
@@ -631,14 +726,23 @@ public class UserInterface extends Application {
         //Create profile transitions
         //Transition from create profile scene to profile menu when save and return
         exitProfileMenu1.setOnAction((event) -> {
+            String unRefinedText = profileEditorCreateProfileMenu.getText();
+            profileViewSaveProfile.setText(unRefinedText);
             primaryStage.setTitle("Profile menu");
             primaryStage.setScene(screenProfileMenu);
         });
 
         //Transition from create profile scene to profile menu when return without saving
         exitProfileMenu2.setOnAction((event) -> {
+            profileEditorCreateProfileMenu.clear();
             primaryStage.setTitle("Profile menu");
             primaryStage.setScene(screenProfileMenu);
+        });
+        
+        //Unspecified text template
+        editTextAreaProfileMenu1.setOnAction((event) -> {
+           String unspecifiedTemplate = "";
+           profileEditorCreateProfileMenu.setText(unspecifiedTemplate); 
         });
         
         //Transition from create profile scene to choose ability scene when choose ability
@@ -663,43 +767,121 @@ public class UserInterface extends Application {
         //Resets choosen ability
         resetAnAbilityContextMenu.setOnAction((event) -> {
             chosenAbility = "";
-            currenAbilityProgressContextMenu.setText("Ability parameters left:" + chosenAbility);
+            leftOverParameters = "";
+            currenAbilityProgressContextMenu.setText("Ability parameters left:" + "");
         });
         
+        //Checks textarea string for ability parameters
+        checkTextAreaContextMenu.setOnAction((event) -> {
+            
+            String[] wordTable = profileEditorCreateProfileMenu.getText().trim().split(" ");
+            String[] parameterTable = chosenAbility.trim().split(",");
+            
+            if (parameterTable.length==5) {
+            Boolean classIsPresent = false;
+            Boolean nameIsPresent = false;
+            Boolean descriptionIsPresent = false;
+            Boolean requrimentIsPresent = false;
+            Boolean realityIsPresent = false;
+            
+            String classString = parameterTable[0];
+            String nameString = parameterTable[1];
+            String descriptionString = parameterTable[2];
+            String requrimentString = parameterTable[3];
+            String realityString = parameterTable[4];
+            System.out.println(classString);
+            System.out.println(nameString);
+            System.out.println(descriptionString);
+            System.out.println(requrimentString);
+            System.out.println(realityString);
+            for (String text: wordTable) {
+                
+                if (text.equals(parameterTable[0])) {
+                    classIsPresent = true;
+                }
+                
+                if (text.equals(parameterTable[1])) {
+                    nameIsPresent = true;
+                }
+                
+                if (text.equals(parameterTable[2])) {
+                    descriptionIsPresent = true;
+                }
+                
+                if (text.equals(parameterTable[3])) {
+                    requrimentIsPresent = true;
+                }
+                
+                if (text.equals(parameterTable[4])) {
+                    realityIsPresent = true;
+                }
+                
+            }
+            
+            String modifiedAbilityString = "";
+            
+            if (!classIsPresent) {
+                modifiedAbilityString = classString;
+            }
+            
+            if (!nameIsPresent) {
+                if (modifiedAbilityString.equals(classString)) {
+                   modifiedAbilityString = modifiedAbilityString + "," + nameString; 
+                }
+                if (modifiedAbilityString.equals("")) {
+                    modifiedAbilityString = nameString; 
+                }
+                
+            }
+            
+            if (!descriptionIsPresent) {
+                if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString) ) {
+                   modifiedAbilityString = modifiedAbilityString + "," + descriptionString;
+                }
+                if (modifiedAbilityString.equals("")) {
+                    modifiedAbilityString = descriptionString; 
+                }
+                       
+            }
+            
+            if (!requrimentIsPresent) {
+                if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString) || modifiedAbilityString.contains(descriptionString)) {
+                   modifiedAbilityString = modifiedAbilityString + "," + requrimentString;
+                }
+                if (modifiedAbilityString.equals("")) {
+                    modifiedAbilityString = requrimentString; 
+                }
+                
+            }
+            
+            if (!realityIsPresent) {
+                if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString) || modifiedAbilityString.contains(descriptionString) || modifiedAbilityString.contains(requrimentString)) {
+                   modifiedAbilityString = modifiedAbilityString + "," + realityString;
+                }
+                if (modifiedAbilityString.equals("")) {
+                    modifiedAbilityString = realityString; 
+                }
+                
+            }
+            
+            leftOverParameters = modifiedAbilityString;
+            
+            currenAbilityProgressContextMenu.setText("Ability parameters left:" + leftOverParameters);
+            
+            }
+        });
         
+        //Checks textarea wordcount and charactedcount
         profileEditorCreateProfileMenu.setOnKeyTyped((event) -> {
-            /*
-            String givenTextFromTextArea = profileEditorCreateProfileMenu.getText();
-            String[] textSplit = givenTextFromTextArea.split(" ");
-            String[] abilitySplit = chosenAbility.split(",");
-            if (abilitySplit.length==5) {
-            for (String text: textSplit) {
-                
-                if (text.equals(abilitySplit[0])) {
-                    String leftParameters = currenAbilityProgressContextMenu.getText();
-                    
-                    
-                    
-                }
-                
-                if (text.equals(abilitySplit[1])) {
-                    
-                }
-                
-                if (text.equals(abilitySplit[2])) {
-                    
-                }
-                
-                if (text.equals(abilitySplit[3])) {
-                    
-                }
-                
-                if (text.equals(abilitySplit[4])) {
-                    
-                }
-            }
-            }
-            */
+           String[] wordTable = profileEditorCreateProfileMenu.getText().split(" ");
+           char[] characterTable = profileEditorCreateProfileMenu.getText().toCharArray();
+           if (characterTable.length==0) {
+               wordCountContextMenu.setText("Current wordcount:0");
+               characterCountContextMenu.setText("Current character count:0");
+               return;
+           }
+           wordCountContextMenu.setText("Current wordcount:"+ wordTable.length);
+           characterCountContextMenu.setText("Current charactercount:"+characterTable.length);
         });
         
         //Choose ability transitions
@@ -718,8 +900,8 @@ public class UserInterface extends Application {
                 String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
                 String selectedParameters = givenAbilitySplit[0] + "," + givenAbilitySplit[1] + "," + givenAbilitySplit[2] + "," + givenAbilitySplit[3] + "," + givenAbilitySplit[4];
                 chosenAbility = selectedParameters;
-                System.out.println(chosenAbility);
-                currenAbilityProgressContextMenu.setText("Ability parameters left:" + chosenAbility);
+                leftOverParameters = selectedParameters;
+                currenAbilityProgressContextMenu.setText("Ability parameters left:" + leftOverParameters);
                 chooseAbilityTableView.getItems().clear();
                 primaryStage.setTitle("Profile creator");
                 primaryStage.setScene(createProfileScene);
