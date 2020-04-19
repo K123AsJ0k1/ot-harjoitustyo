@@ -389,18 +389,18 @@ public class UserInterface extends Application {
         createSignIn.setOnAction((event) -> {
             accountIsToShortErrorSignIn.setText("");
             accountExistsErrorSignIn.setText("");
-            String givenUsername_SignIn = createUsernameInputSignIn.getText().trim();
-            if (givenUsername_SignIn.length() < 5) {
+            String givenUsernameSignIn = createUsernameInputSignIn.getText().trim();
+            if (givenUsernameSignIn.length() < 5) {
                 accountIsToShortErrorSignIn.setText("Given username is too short");
                 return;
             }
 
-            if (usernameDatabase.searchUserInformation(givenUsername_SignIn)) {
+            if (usernameDatabase.searchUserInformation(givenUsernameSignIn)) {
                 accountExistsErrorSignIn.setText("Given username already exists");
                 return;
             }
 
-            Boolean isAdded = usernameDatabase.addUserInformation(givenUsername_SignIn);
+            Boolean isAdded = usernameDatabase.addUserInformation(givenUsernameSignIn);
 
             if (!isAdded) {
                 accountExistsErrorSignIn.setText("Error has occured");
@@ -746,7 +746,11 @@ public class UserInterface extends Application {
         realityDatabase.removeDatabase();
         abilityDatabase.removeDatabase();
     }
-
+    
+    /** Käyttöliittymä.
+    *
+    * 
+    */
     public static void main(String[] args) {
         launch(args);
     }
