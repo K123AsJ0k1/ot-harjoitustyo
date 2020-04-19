@@ -28,10 +28,17 @@
 |13.4|8 | Tarvittujen rajapintojen luonti |
 |13.4|  | Projektin muokkaus |
 |13.4|  | Uusien testien luominen |
-|15.3|6 | JavaFx opiskelua |
-|15.3|  | Projektin muokkaus |
-|15.3|  | Uusien testien luominen |
-|15.3|  | Käyttöliittymä muokkauksia |
+|15.4|6 | JavaFx opiskelua |
+|15.4|  | Projektin muokkaus |
+|15.4|  | Uusien testien luominen |
+|15.4|  | Käyttöliittymä muokkauksia |
+|16.4|2 | JavaFx opiskelua |
+|17.4|4 | Projektin muokkausta ja JavaFx opiskelua |
+|18.4|2 | Ideointia ja projektin tarkastelua |
+|19.4|6 | Projektin muokkausta |
+|19.4|  | Tiedostojen luonti |
+|19.4|  | Käyttöliittyymä parannuksia |
+|19.4|  | Profiilin luonti perusasioiden luonti |
 
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
@@ -51,9 +58,9 @@
 | Siirtyminen takaisin päävalikkoon | On | 7.4 |
 | Sovelluksen profiilinhallinta käyttöliittymä | Ei ole vielä valmis | |
 | Profiilinhallinnan valikko | On | 31.3 |
-| Profiilin luominen | Ei | |
-| Tiedoston luominen profiilista | Ei | |
-| Profiilin resetointi | Ei | |
+| Profiilin luominen | Perusidea toimii, mutta vaatii vielä muokkausta | |
+| Tiedoston luominen profiilista | On | 19.4 |
+| Profiilin resetointi | On | 19.4 |
 | Siirtyminen takaisin päävalikkoon |On | 31.3 |
 
 
