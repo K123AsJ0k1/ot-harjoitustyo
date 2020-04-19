@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Fiktiotietokanta.domain;
+package domain;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,24 +13,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import Fiktiotietokanta.dao.DatabaseInterface;
+import dao.DatabaseInterface;
 
-/** Selitys tietokanta.
- *
- * 
+/** Todellisuus tietokanta.
  */
-public class DescriptionDatabase implements DatabaseInterface {
+public class RealityDatabase implements DatabaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
     
-    /** Selitys tietokannan konstruktori.
-    *
-    * 
+    /** Todellisuus tietokanta konstruktori.
      * @throws java.lang.Exception virhe.
-    */
-    public DescriptionDatabase() throws Exception {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabase:connection");
+     */
+    public RealityDatabase() throws Exception {
+        this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabase:connection");
         this.databaseExists = false;
     }
 
@@ -39,9 +35,8 @@ public class DescriptionDatabase implements DatabaseInterface {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
-            command.execute("CREATE TABLE Descriptions (id INTEGER PRIMARY KEY, Description TEXT UNIQUE);");
-            command.execute("CREATE INDEX idx_Description ON Descriptions (Description);");
-
+            command.execute("CREATE TABLE Realities (id INTEGER PRIMARY KEY, Reality TEXT UNIQUE);");
+            command.execute("CREATE INDEX idx_Reality ON Realities (Reality);");
             command.close();
             databaseExists = true;
             return true;
@@ -57,10 +52,10 @@ public class DescriptionDatabase implements DatabaseInterface {
     }
 
     @Override
-    public boolean addInformation(String givenDescription) {
+    public boolean addInformation(String givenReality) {
         try {
-            PreparedStatement command = connection.prepareStatement("INSERT INTO Descriptions(Description) VALUES (?);");
-            command.setString(1, givenDescription);
+            PreparedStatement command = connection.prepareStatement("INSERT INTO Realities(Reality) VALUES (?);");
+            command.setString(1, givenReality);
             command.executeUpdate();
             command.close();
             return true;
@@ -71,114 +66,128 @@ public class DescriptionDatabase implements DatabaseInterface {
     }
 
     @Override
-    public boolean searchInformation(String givenDescription) {
+    public boolean searchInformation(String givenReality) {
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
+            PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities;");
             ResultSet querySet = command.executeQuery();
-            Boolean descriptionExists = false;
+            Boolean realityExists = false;
             while (querySet.next()) {
-                String searchedDescription = querySet.getString("Description");
-                if (searchedDescription.equals(givenDescription)) {
-                    descriptionExists = true;
+                String searchedReality = querySet.getString("Reality");
+                if (searchedReality.equals(givenReality)) {
+                    realityExists = true;
                     break;
                 }
             }
             querySet.close();
             command.close();
-            if (descriptionExists) {
+            if (realityExists) {
                 return true;
             }
+
             return false;
         } catch (SQLException k) {
             
         }
+        
         return false;
     }
 
     @Override
-    public Integer searchInfromationId(String givenDescription) {
+    public Integer searchInfromationId(String givenReality) {
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT id FROM Descriptions WHERE Description=?;");
-            command.setString(1, givenDescription);
+            PreparedStatement command = connection.prepareStatement("SELECT id FROM Realities WHERE Reality=?;");
+            command.setString(1, givenReality);
             ResultSet querrySet = command.executeQuery();
             int classId = 0;
             if (querrySet.next()) {
                 classId = querrySet.getInt("id");
-            }  
+            }
+            
             querrySet.close();
             command.close();
+            
             return classId;
+            
         } catch (SQLException k) {
             
         }
+        
         return 0;
-    }
-
-    @Override
-    public boolean removeInformation(String givenDescription) {
-        try { 
-            PreparedStatement command = connection.prepareStatement("DELETE FROM Descriptions WHERE Description=?");
-            command.setString(1, givenDescription);
-            command.executeUpdate();
-            command.close();
-            return true;
-        } catch (SQLException k) {
-            
-        }
-        return false;
-    }
-
-    @Override
-    public boolean removeDatabase() throws Exception {
-        try {   
-            Statement command = connection.createStatement();
-            command.execute("DROP TABLE Descriptions;");
-            command.close();
-            databaseExists = false;
-            return true;    
-        } catch (SQLException k) {
-            
-        }
-        return false;
         
     }
 
     @Override
-    public String searchInformationTextIdentity(String givenDescriptionId) {
-        int checkId = Integer.valueOf(givenDescriptionId);
+    public boolean removeInformation(String givenReality) { 
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions WHERE id=?");
+            PreparedStatement command = connection.prepareStatement("DELETE FROM Realities WHERE Reality=?");
+            command.setString(1, givenReality);
+            command.executeUpdate();
+            command.close();
+            return true;     
+        } catch (SQLException k) {
+            
+        }
+        
+        return false;     
+    }
+
+    @Override
+    public boolean removeDatabase() throws Exception {     
+        try {        
+            Statement command = connection.createStatement();
+            command.execute("DROP TABLE Realities");
+            command.close();
+            databaseExists = false;      
+            return true;
+        } catch (SQLException k) {
+            
+        }
+        
+        return false;   
+    }
+
+    @Override
+    public String searchInformationTextIdentity(String givenRealityId) {
+        
+        int checkId = Integer.valueOf(givenRealityId);
+  
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
             String givenTextIdentity = "null";
             if (querySet.next()) {
-                givenTextIdentity = querySet.getString("Description");
+                givenTextIdentity = querySet.getString("Reality");
             }
             querySet.close();
             command.close();        
-            return givenTextIdentity;  
+            return givenTextIdentity;            
         } catch (SQLException k) {
             
         } 
-        return "null";
+        
+        return "null"; 
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
+        
         List<String> databaseAsAList = new ArrayList<>();
+        
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
+            PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities;");
             ResultSet querySet = command.executeQuery();
             while (querySet.next()) {
-                String givenClass = querySet.getString("Descriptions");
+                String givenClass = querySet.getString("Reality");
                 databaseAsAList.add(givenClass);
             }
             querySet.close();
-            command.close();
-            return databaseAsAList;
+            command.close();  
+            return databaseAsAList;    
         } catch (SQLException k) {
             
         } 
+       
         return null;
     }
 

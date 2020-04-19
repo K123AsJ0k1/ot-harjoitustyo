@@ -1,4 +1,4 @@
-package Fiktiotietokanta.domain;
+package domain;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import Fiktiotietokanta.dao.DatabaseInterface;
-import Fiktiotietokanta.dao.UsernameInterface;
+import dao.DatabaseInterface;
+import dao.UsernameInterface;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

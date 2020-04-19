@@ -5,14 +5,14 @@
  */
 package Fiktiotietokanta;
 
-import Fiktiotietokanta.domain.UsernameDatabase;
+import domain.UsernameDatabase;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import Fiktiotietokanta.dao.UsernameInterface;
+import dao.UsernameInterface;
 
 /**
  *

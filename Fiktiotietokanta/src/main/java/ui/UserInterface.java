@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Fiktiotietokanta.ui;
+package ui;
 
-import Fiktiotietokanta.domain.Ability;
+import domain.Ability;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,13 +18,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import Fiktiotietokanta.domain.UsernameDatabase;
-import Fiktiotietokanta.domain.AbilityDatabase;
-import Fiktiotietokanta.domain.ClassDatabase;
-import Fiktiotietokanta.domain.DescriptionDatabase;
-import Fiktiotietokanta.domain.NameDatabase;
-import Fiktiotietokanta.domain.RealityDatabase;
-import Fiktiotietokanta.domain.RequrimentDatabase;
+import domain.UsernameDatabase;
+import domain.AbilityDatabase;
+import domain.ClassDatabase;
+import domain.DescriptionDatabase;
+import domain.NameDatabase;
+import domain.RealityDatabase;
+import domain.RequrimentDatabase;
 import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ContextMenu;
@@ -41,14 +41,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import Fiktiotietokanta.dao.DatabaseInterface;
-import Fiktiotietokanta.dao.UsernameInterface;
+import dao.DatabaseInterface;
+import dao.UsernameInterface;
 
 /** Käyttöliittymä.
  *
  * @author niila
  */
-public class userInterface extends Application {
+public class UserInterface extends Application {
 
     private UsernameInterface usernameDatabase;
     private DatabaseInterface classDatabase;
@@ -291,7 +291,7 @@ public class userInterface extends Application {
         MenuItem currenAbilityProgressContextMenu = new MenuItem("Ability parameters left:");
         MenuItem resetAnAbilityContextMenu = new MenuItem("Resets current ability");
         
-        contextMenuCreateProfile.getItems().addAll(chooseAnAbilityContextMenu,currenAbilityProgressContextMenu,resetAnAbilityContextMenu);   
+        contextMenuCreateProfile.getItems().addAll(chooseAnAbilityContextMenu, currenAbilityProgressContextMenu, resetAnAbilityContextMenu);   
         Menu exitProfileMenu = new Menu("Exit profile creator");
 
         MenuItem exitProfileMenu1 = new MenuItem("Save and return");
@@ -361,14 +361,14 @@ public class userInterface extends Application {
         //Transition from login scene to mainmenu scene when login
         loginLogin.setOnAction((event) -> {
             loginerrorLogin.setText("");
-            String givenUsername_Login = usernameInputLogin.getText().trim();
+            String givenUsernameLogin = usernameInputLogin.getText().trim();
 
-            if (!(usernameDatabase.searchUserInformation(givenUsername_Login))) {
+            if (!(usernameDatabase.searchUserInformation(givenUsernameLogin))) {
                 loginerrorLogin.setText("Username doesn't exist");
                 return;
             }
 
-            usernameId = usernameDatabase.searchUsernameId(givenUsername_Login);
+            usernameId = usernameDatabase.searchUsernameId(givenUsernameLogin);
             usernameInputLogin.clear();
             loginerrorLogin.setText("");
             primaryStage.setTitle("Main menu");
@@ -605,14 +605,14 @@ public class userInterface extends Application {
         removeSelectedAbilityTableView.setOnAction((event) -> {
             if (selectionModelTableView.getSelectedItems().size() > 0) {
                 ObservableList selectedItems = selectionModelTableView.getSelectedItems();
-                int removedIndex=selectionModelTableView.getFocusedIndex();
+                int removedIndex = selectionModelTableView.getFocusedIndex();
                 String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
                 int classId = classDatabase.searchInfromationId(givenAbilitySplit[0]);
                 int nameId = nameDatabase.searchInfromationId(givenAbilitySplit[1]);
                 int descriptionId = descriptionDatabase.searchInfromationId(givenAbilitySplit[2]);
                 int requrimentId = requrimentDatabase.searchInfromationId(givenAbilitySplit[3]);
                 int realityId = realityDatabase.searchInfromationId(givenAbilitySplit[4]);
-                String removedId = String.valueOf(usernameId)+"/"+String.valueOf(classId)+"/"+String.valueOf(nameId)+"/"+String.valueOf(descriptionId)+"/"+String.valueOf(requrimentId)+"/"+String.valueOf(realityId);
+                String removedId = String.valueOf(usernameId) + "/" + String.valueOf(classId) + "/" + String.valueOf(nameId) + "/" + String.valueOf(descriptionId) + "/" + String.valueOf(requrimentId) + "/" + String.valueOf(realityId);
                 abilityDatabase.removeInformation(removedId);
                 removeAbilityTableView.getItems().remove(removedIndex);
                 removeAbilityTableView.refresh();
@@ -642,7 +642,7 @@ public class userInterface extends Application {
         });
         
         //Transition from create profile scene to choose ability scene when choose ability
-        chooseAnAbilityContextMenu.setOnAction((event) ->{
+        chooseAnAbilityContextMenu.setOnAction((event) -> {
             List<String> abilityList = abilityDatabase.showDatabaseAsARestrictedList(String.valueOf(usernameId));
             
             for (String ability : abilityList) {
@@ -661,13 +661,13 @@ public class userInterface extends Application {
         });
         
         //Resets choosen ability
-        resetAnAbilityContextMenu.setOnAction((event) ->{
+        resetAnAbilityContextMenu.setOnAction((event) -> {
             chosenAbility = "";
-            currenAbilityProgressContextMenu.setText("Ability parameters left:"+chosenAbility);
+            currenAbilityProgressContextMenu.setText("Ability parameters left:" + chosenAbility);
         });
         
         
-        profileEditorCreateProfileMenu.setOnKeyTyped((event) ->{
+        profileEditorCreateProfileMenu.setOnKeyTyped((event) -> {
             /*
             String givenTextFromTextArea = profileEditorCreateProfileMenu.getText();
             String[] textSplit = givenTextFromTextArea.split(" ");
@@ -705,21 +705,21 @@ public class userInterface extends Application {
         //Choose ability transitions
         
         //Transition from choose ability scene to create profile scene when return
-        returnChooseAbilityMenuTableView.setOnAction((event) ->{
+        returnChooseAbilityMenuTableView.setOnAction((event) -> {
             chooseAbilityTableView.getItems().clear();
             primaryStage.setTitle("Profile creator");
             primaryStage.setScene(createProfileScene);
         });
         
         //Transition from choose ability scene to create profile scene when choose ability
-        chooseSelectedAbilityTableView.setOnAction((event) ->{
+        chooseSelectedAbilityTableView.setOnAction((event) -> {
             if (selectionModelChooseAbilityTableView.getSelectedItems().size() > 0) {
                 ObservableList selectedItems = selectionModelChooseAbilityTableView.getSelectedItems();
                 String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
-                String selectedParameters = givenAbilitySplit[0]+","+givenAbilitySplit[1]+","+givenAbilitySplit[2]+","+givenAbilitySplit[3]+","+givenAbilitySplit[4];
+                String selectedParameters = givenAbilitySplit[0] + "," + givenAbilitySplit[1] + "," + givenAbilitySplit[2] + "," + givenAbilitySplit[3] + "," + givenAbilitySplit[4];
                 chosenAbility = selectedParameters;
                 System.out.println(chosenAbility);
-                currenAbilityProgressContextMenu.setText("Ability parameters left:"+chosenAbility);
+                currenAbilityProgressContextMenu.setText("Ability parameters left:" + chosenAbility);
                 chooseAbilityTableView.getItems().clear();
                 primaryStage.setTitle("Profile creator");
                 primaryStage.setScene(createProfileScene);
