@@ -23,7 +23,7 @@ Sovelluksen perusversion datamalli koostuu kolmesta tietokannasta nimiltään Us
 Kyseisten metodien avulla käyttöliittymä pystyy lisäämään, tarkastamaan ja hakemaan tietokannan antamia id numeroita. Mainittujen metodien ollessa toisteisia, tullaan niistä todennäköisesti tekemään tulevaisuudessa erillisiä rajapintoja, minkä takia sovelluslogiikka mainittu sovelluslogiikka tulee vielä muuttuumaan.
 
 Alla olevan luokka/pakkauskaavio näyttää tämän hetkisen (7.4.2020) sovelluslogiikan suhdettaa UserInterfacen ja tietokantojen välillä: 
-![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
+![alt text]()
 
 # Tietojen pysyväistallennus
 
