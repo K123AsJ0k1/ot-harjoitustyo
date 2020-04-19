@@ -50,6 +50,7 @@
                 <configuration>
                     <excludes>
                         <exclude>ui/*</exclude>
+                        <exclude>main/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
