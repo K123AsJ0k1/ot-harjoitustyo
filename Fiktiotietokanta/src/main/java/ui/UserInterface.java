@@ -750,6 +750,7 @@ public class UserInterface extends Application {
     /** Käyttöliittymä.
     *
     * 
+     * @param args parametri.
     */
     public static void main(String[] args) {
         launch(args);
