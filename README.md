@@ -19,9 +19,13 @@ Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia 
 
 Ohjelma voidaan suorittaa netbeansin vihreällä nappulalla Fiktiotietokannan mainissa tai menemällä komentorivillä Fiktiotietokanta kansioon ja laittamalla komennon
 
-```mvn compile exec:java -Dexec.mainClass=Fiktiotietokanta.Main```
+```mvn compile exec:java -Dexec.mainClass=Fiktiotietokanta.main.Main```
 
 **Testaus**
+
+Ohjelman testikäyttäjä 
+
+```Tester```
 
 Testit suoritetaan komennolla 
 
