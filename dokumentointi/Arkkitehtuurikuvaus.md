@@ -44,7 +44,7 @@ Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltä�
 - public String getRealityIdentity()
 - public String toString()
 
-
+Tiivistettynä DatabaseInterface mahdollistaa tietokantojen hallitsemisen, UsernameInterface mahdollistaa käyttäjien hallitsemisen, FileWriterInterface mahdollistaa tiedostojen luonnin hallitsemisen ja Ability-olio mahdollistaa tietokantojen tiedon keräämisen käyttöliittymän ymmärtään muotoon.
 
 Alla olevan luokka/pakkauskaavio näyttää tämän hetkisen (7.4.2020) sovelluslogiikan suhdettaa UserInterfacen ja tietokantojen välillä: 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
