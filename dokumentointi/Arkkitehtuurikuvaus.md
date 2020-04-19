@@ -6,21 +6,34 @@
 
 # Sovelluslogiikka
 
-Sovelluksen perusversion datamalli koostuu kolmesta tietokannasta nimiltään UsernameDatabase, AbilityParametersDatabase ja AblityDatabase, joissa olevat metodit keskustelevat sovelluksen käyttöliittymän kanssa ja näin mahdollistavat uuden tiedon lisäämisen, olemassa olevan tiedon tarkastamisen ja tiedolle tietokannan antaman Id numeroiden hakemisen.Jokainen näistä tietokannoista tarjoaa käyttöliittymän toiminoille metodit, jotka ovat yleisesti 
+Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltään UsernameDatabase,ClassDatabase,NameDatabase,DesriptionDatabase,RequrimentDatabase,RealityDatabase ja AbilityDatabase, joiden metodit keskustelevat rajapintojen DatabaseInterface ja UsernameInterfacen kautta käyttäliittymän kanssa ja jotka mahdollistavat tietokantojen luomisen, tietokantojen olemassaolon tarkastamisen, tiedon lisäämisen tietokantaan, tiedon tarkastamisen tietokannasta, tiedon id haun tietokannasta, tiedon identitetti haun tietokannasta, listan luomisen tietokannasta, rajoitetun listan luomisen tietokannasta, tiedon poistamisen tietokannasta ja tietokannan poistamisen.Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle, jolloin kokonaisuudessaan kaikki käyttöliittymän toiminoille tarjotut metodit ovat:
 
-**UsernameDatabase ja AbilityParametersDatabase**
+**DatabaseInterface**
 
-- Boolean add(haluttu asia)IntoDatabase(String (haluttu asia))
-- Boolean search(haluttu asia)FromDatabase(String (haluttu asia))
-- Integer get(haluttu asia)IdFromDatabase(String (haluttu asia))
+- public boolean createDatabase() throws Exception
+- public boolean databaseExists()
+- public boolean addInformation(String information)
+- public boolean searchInformation(String infromation)
+- public Integer searchInformationId(String infromation)
+- public String searchInformationTextIdentityt(String infromation)
+- public List<String> showDatabaseAsAList()
+- public List<String> showDatabaseAsARestrictedList(String infromation)
+- public boolean removeInformation(String information)
+- public boolean removeDatabase() throws Exception
 
-**AblityDatabase**
+**UsernameInterface**
 
-- Boolean addAbilityIntoDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_id)
-- Boolean searchAbilityFromDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_id)
-- Integer getAbilityIdFromDatabase(int username_id, int class_id, int name_id, int description_id, int requriment_id, int reality_id)
+- public boolean createUsernameDatabase() throws Exception
+- public boolean usernameDatabaseExists()
+- public boolean addUserInformation(String information)
+- public boolean searchUserInformation(String information)
+-  public Integer searchUsernameId(String information)
+- public boolean removeUserInformation(String information)
+- public boolean removeDatabase() throws Exception
 
-Kyseisten metodien avulla käyttöliittymä pystyy lisäämään, tarkastamaan ja hakemaan tietokannan antamia id numeroita. Mainittujen metodien ollessa toisteisia, tullaan niistä todennäköisesti tekemään tulevaisuudessa erillisiä rajapintoja, minkä takia sovelluslogiikka mainittu sovelluslogiikka tulee vielä muuttuumaan.
+**FileWriterInterface**
+
+- public boolean saveTextAsAFile(String information, File file)
 
 Alla olevan luokka/pakkauskaavio näyttää tämän hetkisen (7.4.2020) sovelluslogiikan suhdettaa UserInterfacen ja tietokantojen välillä: 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
