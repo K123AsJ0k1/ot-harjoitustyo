@@ -63,5 +63,7 @@ Alla olevat sekvenssikaaviot kuvaavat sovelluksen päätoiminallisuuden toiminta
 
 Käyttäjän luodessa uuden käyttäjän, eli hänen laitettuaan syötekentään haluamansa käyttäjän ja painettuaan create username painiketta, etenee sovelluksen kontrolli seuraavasti: 
 
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4nluonnin%20sekvenssikaavio.png)
+
 
 # Ohjelman rakenteeseen jääneet heikkoudet
