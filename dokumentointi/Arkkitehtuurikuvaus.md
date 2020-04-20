@@ -51,4 +51,17 @@ Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (19.4.2020) sovellus
 
 # Tietojen pysyväistallennus
 
+Pakkauksen dao luokat ClassDatabase,NameDatabase,DescriptionDatabase,RequrimentDatabase,RealityDatabase ja UsernameDatabase hyödyntävät SQLlite:ä tietojen tallentamiseen tietokannan nimen mukaisiin tiedostoihin. 
+
+Luokat noudattavat Data Acces Object-suunnitelumallia ja ne voidaan tarpeen mukaan korvata uusilla toteutuksilla, jos sovelluksen datan talletustapa halutaan vaihtaa, sillä ne ovat eristettyjä DatabaseInterface ja UsernameInterfacen taakse ja sovelluslogiikka ei hyödynnä näitä luokkia suoraan.
+
+**Päätoiminnallisuudet**
+
+Alla olevat sekvenssikaaviot kuvaavat sovelluksen päätoiminallisuuden toimintalogiikkaa
+
+**Käyttäjän luominen**
+
+Käyttäjän luodessa uuden käyttäjän, eli hänen laitettuaan syötekentään haluamansa käyttäjän ja painettuaan create username painiketta, etenee sovelluksen kontrolli seuraavasti: 
+
+
 # Ohjelman rakenteeseen jääneet heikkoudet
