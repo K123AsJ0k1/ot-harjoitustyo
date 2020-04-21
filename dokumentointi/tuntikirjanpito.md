@@ -41,6 +41,8 @@
 |19.4|  | Profiilin luonti perusasioiden luonti |
 |20.4|4 | Projektin muokkausta ja dokumentointia |
 
+- Tuntien yhteinen summa on 73.
+
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
 | Sovelluksen kirjautumiskäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
