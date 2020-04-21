@@ -60,7 +60,7 @@
 | Sovelluksen profiilinhallinta käyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan | |
 | Profiilinhallinnan valikko | On | 31.3 |
 | Profiilin luominen | Perusidea toimii, mutta vaatii vielä muokkausta | |
-| Tiedoston luominen profiilista | On | 19.4 |
+| Tiedoston luominen profiilista | Perusidea toimii, mutta vaati vielä muokkausta | 19.4 |
 | Profiilin resetointi | On | 19.4 |
 | Siirtyminen takaisin päävalikkoon |On | 31.3 |
 
