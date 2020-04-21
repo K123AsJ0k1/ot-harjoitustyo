@@ -872,7 +872,7 @@ public class UserInterface extends Application {
             }
         });
         
-        //Checks textarea wordcount and charactedcount
+        //Checks textarea wordcount and character count
         profileEditorCreateProfileMenu.setOnKeyTyped((event) -> {
            String[] wordTable = profileEditorCreateProfileMenu.getText().split(" ");
            char[] characterTable = profileEditorCreateProfileMenu.getText().toCharArray();
