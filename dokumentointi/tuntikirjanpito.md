@@ -39,6 +39,7 @@
 |19.4|  | Tiedostojen luonti |
 |19.4|  | Käyttöliittyymä parannuksia |
 |19.4|  | Profiilin luonti perusasioiden luonti |
+|20.4|4 | Projektin muokkausta ja dokumentointia |
 
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
