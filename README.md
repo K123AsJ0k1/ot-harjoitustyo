@@ -13,6 +13,11 @@ Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia 
 
 [Työaikakirjanpito](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
 
+# Sovelluksen release
+
+[release 1](https://github.com/K123AsJ0k1/ot-harjoitustyo/releases/tag/viikko5)
+
+
 # Komentorivitoiminnot
 
 **Ohjelman suorittaminen**
