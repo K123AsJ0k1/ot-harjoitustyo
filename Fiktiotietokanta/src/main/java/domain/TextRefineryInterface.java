@@ -11,16 +11,12 @@ package domain;
  */
 public interface TextRefineryInterface {
     
-    /**Tarkastaa, voiko annettu teksti jalostaa.
+    /**Tarkastaa, onko annettu teksti luettavassa kunnossa.    
     * @param information on mitä tahansa merkkijonoja
     * @return palauttaa true, jos teksti voidaan jalostaa ja false,jos ei.
     */
-    public boolean givenTextCanBeRefined(String information);
+    public boolean givenTextIsRefined(String information);
     
-    /**Jalostaa tekstieditorista saadun tekstin paremmaksi.
-    * @param information on mitä tahansa parametreja.
-    * @return palauttaa jalostetun tekstin.
-    */
-    public String refineGivenText(String information);
+    
     
 }

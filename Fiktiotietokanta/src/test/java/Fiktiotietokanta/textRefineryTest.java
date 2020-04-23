@@ -20,11 +20,7 @@ import static org.junit.Assert.*;
  */
 public class textRefineryTest {
     
-    @Test
-    public void test() {
-        TextRefineryInterface test = new TextRefinery();
-        System.out.println(test.refineGivenText("--------------------------------------------------hek pklksdlöa sdkadkaslkdm kdgmkmsdkjasmdkasns dsd--------------------------------------------------"));
-    }
+    
     
     
 }

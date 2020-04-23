@@ -7,7 +7,7 @@ package dao;
 
 import domain.TextRefineryInterface;
 
-/** Jalostaa tekstin.
+/** Auttaa kirjoittajaa tekstin jalostamisessa.
  *
  * 
  */
@@ -22,7 +22,7 @@ public class TextRefinery implements TextRefineryInterface {
     }
     
     @Override
-    public boolean givenTextCanBeRefined(String information) {
+    public boolean givenTextIsRefined(String information) {
         char[] characterTable = information.toCharArray();
         
         if (characterTable.length<100) {
@@ -51,32 +51,7 @@ public class TextRefinery implements TextRefineryInterface {
         return truthValue;
     }
     
-    @Override
-    public String refineGivenText(String information) {
-        char[] characterTable = information.toCharArray();
-        
-        int tableIndex = 0;
-        int lastLine = characterTable.length-51;
-        int lines = 1;
-        int allLines = characterTable.length;
-        int backSpaceLine = 0;
-        String refinedText = "";
-        while (lines <= allLines) {
-            char character = characterTable[tableIndex];
-            
-            if (backSpaceLine == 50) {
-                refinedText = refinedText + "\n";
-                backSpaceLine = 0;
-            }
-            
-            refinedText = refinedText + character;
-            lines = lines + 1;
-            tableIndex = tableIndex + 1;
-            backSpaceLine = backSpaceLine + 1; 
-        }
-        
-        return refinedText;
-    }
+    
 
     
     
