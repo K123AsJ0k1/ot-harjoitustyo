@@ -18,7 +18,7 @@ import domain.DatabaseInterface;
  *
  * @author niila
  */
-public class RequrimentDatabaseTest {
+public class requrimentDatabaseTest {
     
     @Test
     public void constructorWorks() throws Exception {
