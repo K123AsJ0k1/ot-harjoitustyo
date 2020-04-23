@@ -790,11 +790,7 @@ public class UserInterface extends Application {
             String descriptionString = parameterTable[2];
             String requrimentString = parameterTable[3];
             String realityString = parameterTable[4];
-            System.out.println(classString);
-            System.out.println(nameString);
-            System.out.println(descriptionString);
-            System.out.println(requrimentString);
-            System.out.println(realityString);
+            
             for (String text: wordTable) {
                 
                 if (text.equals(parameterTable[0])) {
