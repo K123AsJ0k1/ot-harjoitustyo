@@ -23,8 +23,8 @@ public class templateMakerTest {
     
     @Test
     public void test() {
-        TextTemplateInterface test = new TemplateMaker();
-        System.out.println(test.templateMaker("hei"));       
+        
+             
     }
 
     

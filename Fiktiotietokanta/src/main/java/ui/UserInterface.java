@@ -45,6 +45,8 @@ import domain.DatabaseInterface;
 import domain.FileWriterInterface;
 import domain.UsernameInterface;
 import dao.FileWriter;
+import dao.TemplateMaker;
+import domain.TextTemplateInterface;
 import java.io.File;
 import java.util.Arrays;
 import javafx.scene.text.Font;
@@ -66,6 +68,7 @@ public class UserInterface extends Application {
     private DatabaseInterface realityDatabase;
     private DatabaseInterface abilityDatabase;
     private FileWriterInterface fileWriter;
+    private TextTemplateInterface templateFactory;
     private Integer usernameId;
     private String chosenAbility;
     private String leftOverParameters;
@@ -80,6 +83,7 @@ public class UserInterface extends Application {
         realityDatabase = new RealityDatabase();
         abilityDatabase = new AbilityDatabase();
         fileWriter = new FileWriter();
+        templateFactory = new TemplateMaker();
 
         usernameDatabase.createUsernameDatabase();
         classDatabase.createDatabase();
@@ -232,7 +236,7 @@ public class UserInterface extends Application {
         saveProfileLayOut.getChildren().addAll(profileViewSaveProfile,saveProfileButtonLayOut);
         
         saveProfileLayOut.setAlignment(Pos.CENTER);
-        saveProfileLayOut.setPrefSize(500, 500);
+        saveProfileLayOut.setPrefSize(700, 500);
         
         Scene saveProfileMenu = new Scene(saveProfileLayOut); 
 
@@ -340,7 +344,7 @@ public class UserInterface extends Application {
         
         Menu textTemplatesAreaProfileMenu = new Menu("Templates");
         
-        MenuItem editTextAreaProfileMenu1 = new MenuItem("Unspesified profile template");
+        MenuItem editTextAreaProfileMenu1 = new MenuItem("Create unspecified template");
         MenuItem editTextAreaProfileMenu2 = new MenuItem("Person profile template");
         MenuItem editTextAreaProfileMenu3 = new MenuItem("Culture profile template");
         MenuItem editTextAreaProfileMenu4 = new MenuItem("Object profile template");
@@ -365,8 +369,8 @@ public class UserInterface extends Application {
         TextArea profileEditorCreateProfileMenu = new TextArea();
         profileEditorCreateProfileMenu.setContextMenu(contextMenuCreateProfile);
 
-        profileEditorCreateProfileMenu.setMinSize(480, 425);
-        profileEditorCreateProfileMenu.setMaxSize(480, 425);
+        profileEditorCreateProfileMenu.setMinSize(500, 425);
+        profileEditorCreateProfileMenu.setMaxSize(500, 425);
         profileEditorCreateProfileMenu.setWrapText(true);
 
         createProfileMenu.getChildren().addAll(menuRoot);
@@ -374,7 +378,7 @@ public class UserInterface extends Application {
 
         createProfileLayout.getChildren().addAll(menuRoot, createProfileMenu);
 
-        createProfileLayout.setPrefSize(500, 500);
+        createProfileLayout.setPrefSize(501, 500);
 
         Scene createProfileScene = new Scene(createProfileLayout);
         
@@ -742,8 +746,8 @@ public class UserInterface extends Application {
         
         //Unspecified text template
         editTextAreaProfileMenu1.setOnAction((event) -> {
-           String unspecifiedTemplate = "";
-           profileEditorCreateProfileMenu.setText(unspecifiedTemplate); 
+           String template = templateFactory.simpleMaker();
+           profileEditorCreateProfileMenu.setText(template); 
         });
         
         //Transition from create profile scene to choose ability scene when choose ability

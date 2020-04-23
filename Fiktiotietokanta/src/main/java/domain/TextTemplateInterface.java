@@ -12,9 +12,8 @@ package domain;
 public interface TextTemplateInterface {
     
     /**Luo mallin tekstieditorille.
-     * @param information on mitä tahansa parametreja.
      * @return palauttaa halutun mallin string muodossa.
     */
-    public String templateMaker(String information);
+    public String simpleMaker();
     
 }
