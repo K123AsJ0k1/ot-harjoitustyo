@@ -7,6 +7,8 @@ package Fiktiotietokanta;
 
 import dao.TextRefinery;
 import domain.TextRefineryInterface;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,7 +22,15 @@ import static org.junit.Assert.*;
  */
 public class textRefineryTest {
     
-    
+    @Test
+    public void test() {
+        TextRefineryInterface test = new TextRefinery();
+        List<String> testList = new ArrayList<>();
+        testList.add("hei,koi,hoi,toi,loi");
+        testList.add("mina,sina,te,me,he");
+        List<String> gottenList = test.choosenAbilitiesAreFoundFromText("hei ja koi ja hoi ja toi ja loi ja mina ja sina ja te ja me ja he",testList);
+        System.out.println(gottenList.toString());
+    }
     
     
 }

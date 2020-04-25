@@ -5,18 +5,28 @@
  */
 package domain;
 
+import java.util.List;
+
 /** Saadun tekstin jalostamiseen rajapinta.
  *
  * 
  */
 public interface TextRefineryInterface {
     
+    
+   
+    
     /**Tarkastaa, onko annettu teksti luettavassa kunnossa.    
     * @param information on mitä tahansa merkkijonoja
-    * @return palauttaa true, jos teksti voidaan jalostaa ja false,jos ei.
+     * @return true tai false.
+    * 
     */
-    public boolean givenTextIsRefined(String information);
+    public boolean givenTextLineChecker(String information);
     
+    public boolean givenTextLineHasSpaces(String information);
     
+    public String choosenAbilityIsFoundFromText(String information, String abilityInformation);
+    
+    public List<String> choosenAbilitiesAreFoundFromText(String information,List<String> abilityList);
     
 }

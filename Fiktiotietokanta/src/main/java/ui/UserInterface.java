@@ -46,6 +46,8 @@ import domain.FileWriterInterface;
 import domain.UsernameInterface;
 import dao.FileWriter;
 import dao.TemplateMaker;
+import dao.TextRefinery;
+import domain.TextRefineryInterface;
 import domain.TextTemplateInterface;
 import java.io.File;
 import java.util.Arrays;
@@ -69,6 +71,7 @@ public class UserInterface extends Application {
     private DatabaseInterface abilityDatabase;
     private FileWriterInterface fileWriter;
     private TextTemplateInterface templateFactory;
+    private TextRefineryInterface textRefinery;
     private Integer usernameId;
     private String chosenAbility;
     private String leftOverParameters;
@@ -84,6 +87,7 @@ public class UserInterface extends Application {
         abilityDatabase = new AbilityDatabase();
         fileWriter = new FileWriter();
         templateFactory = new TemplateMaker();
+        textRefinery = new TextRefinery();
 
         usernameDatabase.createUsernameDatabase();
         classDatabase.createDatabase();
@@ -333,8 +337,11 @@ public class UserInterface extends Application {
         MenuItem checkTextAreaContextMenu = new MenuItem("Check the textarea for ability parameters");
         MenuItem wordCountContextMenu = new MenuItem("Current wordcount:0");
         MenuItem characterCountContextMenu = new MenuItem("Current character count:0");
+        MenuItem textHasLinesContextMenu = new MenuItem("Text has different lines:");
+        MenuItem textHasSpacesContextMenu = new MenuItem("Words have spaces between them:");
+        MenuItem textHasFullAbilitesContextMenu = new MenuItem("The amount of abilities found in text:0");
         
-        contextMenuCreateProfile.getItems().addAll(chooseAnAbilityContextMenu, currenAbilityProgressContextMenu, resetAnAbilityContextMenu,checkTextAreaContextMenu,wordCountContextMenu,characterCountContextMenu);   
+        contextMenuCreateProfile.getItems().addAll(chooseAnAbilityContextMenu, currenAbilityProgressContextMenu, resetAnAbilityContextMenu,checkTextAreaContextMenu,wordCountContextMenu,characterCountContextMenu,textHasLinesContextMenu,textHasSpacesContextMenu,textHasFullAbilitesContextMenu);   
         Menu exitProfileMenu = new Menu("Exit profile creator");
 
         MenuItem exitProfileMenu1 = new MenuItem("Save and return");
@@ -555,7 +562,7 @@ public class UserInterface extends Application {
         
         //Saving current profile as a file
         saveButtonSaveProfile.setOnAction((event) -> {
-            String unRefinedText = profileEditorCreateProfileMenu.getText();
+            String unRefinedText = profileEditorCreateProfileMenu.getText().trim();
             profileViewSaveProfile.setText(unRefinedText);
             FileChooser fileChooser = new FileChooser();
             
@@ -778,112 +785,30 @@ public class UserInterface extends Application {
         
         //Checks textarea string for ability parameters
         checkTextAreaContextMenu.setOnAction((event) -> {
-            
-            String[] wordTable = profileEditorCreateProfileMenu.getText().trim().split(" ");
-            String[] parameterTable = chosenAbility.trim().split(",");
-            
-            if (parameterTable.length==5) {
-            Boolean classIsPresent = false;
-            Boolean nameIsPresent = false;
-            Boolean descriptionIsPresent = false;
-            Boolean requrimentIsPresent = false;
-            Boolean realityIsPresent = false;
-            
-            String classString = parameterTable[0];
-            String nameString = parameterTable[1];
-            String descriptionString = parameterTable[2];
-            String requrimentString = parameterTable[3];
-            String realityString = parameterTable[4];
-            
-            for (String text: wordTable) {
-                
-                if (text.equals(parameterTable[0])) {
-                    classIsPresent = true;
-                }
-                
-                if (text.equals(parameterTable[1])) {
-                    nameIsPresent = true;
-                }
-                
-                if (text.equals(parameterTable[2])) {
-                    descriptionIsPresent = true;
-                }
-                
-                if (text.equals(parameterTable[3])) {
-                    requrimentIsPresent = true;
-                }
-                
-                if (text.equals(parameterTable[4])) {
-                    realityIsPresent = true;
-                }
-                
-            }
-            
-            String modifiedAbilityString = "";
-            
-            if (!classIsPresent) {
-                modifiedAbilityString = classString;
-            }
-            
-            if (!nameIsPresent) {
-                if (modifiedAbilityString.equals(classString)) {
-                   modifiedAbilityString = modifiedAbilityString + "," + nameString; 
-                }
-                if (modifiedAbilityString.equals("")) {
-                    modifiedAbilityString = nameString; 
-                }
-                
-            }
-            
-            if (!descriptionIsPresent) {
-                if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString) ) {
-                   modifiedAbilityString = modifiedAbilityString + "," + descriptionString;
-                }
-                if (modifiedAbilityString.equals("")) {
-                    modifiedAbilityString = descriptionString; 
-                }
-                       
-            }
-            
-            if (!requrimentIsPresent) {
-                if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString) || modifiedAbilityString.contains(descriptionString)) {
-                   modifiedAbilityString = modifiedAbilityString + "," + requrimentString;
-                }
-                if (modifiedAbilityString.equals("")) {
-                    modifiedAbilityString = requrimentString; 
-                }
-                
-            }
-            
-            if (!realityIsPresent) {
-                if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString) || modifiedAbilityString.contains(descriptionString) || modifiedAbilityString.contains(requrimentString)) {
-                   modifiedAbilityString = modifiedAbilityString + "," + realityString;
-                }
-                if (modifiedAbilityString.equals("")) {
-                    modifiedAbilityString = realityString; 
-                }
-                
-            }
-            
-            leftOverParameters = modifiedAbilityString;
-            
+            leftOverParameters = textRefinery.choosenAbilityIsFoundFromText(profileEditorCreateProfileMenu.getText(), chosenAbility);
             currenAbilityProgressContextMenu.setText("Ability parameters left:" + leftOverParameters);
-            
-            }
         });
         
-        //Checks textarea wordcount and character count
+        //Checks textarea 
         profileEditorCreateProfileMenu.setOnKeyTyped((event) -> {
-           String[] wordTable = profileEditorCreateProfileMenu.getText().split(" ");
-           char[] characterTable = profileEditorCreateProfileMenu.getText().toCharArray();
+           
+           textHasLinesContextMenu.setText("Text has different lines:"+textRefinery.givenTextLineChecker(profileEditorCreateProfileMenu.getText().trim()));
+           textHasSpacesContextMenu.setText("Words have spaces between them:"+textRefinery.givenTextLineHasSpaces(profileEditorCreateProfileMenu.getText().trim()));
+           
+           String[] wordTable = profileEditorCreateProfileMenu.getText().trim().split(" ");
+           char[] characterTable = profileEditorCreateProfileMenu.getText().trim().toCharArray();
+           
            if (characterTable.length==0) {
                wordCountContextMenu.setText("Current wordcount:0");
                characterCountContextMenu.setText("Current character count:0");
                return;
            }
+           
            wordCountContextMenu.setText("Current wordcount:"+ wordTable.length);
            characterCountContextMenu.setText("Current charactercount:"+characterTable.length);
         });
+        
+        
         
         //Choose ability transitions
         
