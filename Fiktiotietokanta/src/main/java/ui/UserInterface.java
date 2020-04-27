@@ -5,7 +5,7 @@
  */
 package ui;
 
-import domain.Ability;
+import service.Ability;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -44,9 +44,9 @@ import javafx.scene.layout.VBox;
 import domain.DatabaseInterface;
 import domain.FileWriterInterface;
 import domain.UsernameInterface;
-import dao.FileWriter;
-import dao.TemplateMaker;
-import dao.TextRefinery;
+import service.FileWriter;
+import textEditorLogic.TemplateMaker;
+import textEditorLogic.TextRefinery;
 import domain.TextRefineryInterface;
 import domain.TextTemplateInterface;
 import java.io.File;
@@ -55,6 +55,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
+import service.UiLogic;
 
 /** Käyttöliittymä.
  *
@@ -109,6 +110,7 @@ public class UserInterface extends Application {
 
         //All UI Scenes
         //Login scene
+        
         GridPane layoutLogin = new GridPane();
 
         Label titleLogin = new Label("What is your username?");
@@ -131,7 +133,7 @@ public class UserInterface extends Application {
         layoutLogin.setPadding(new Insets(20, 20, 20, 20));
 
         Scene screenLogin = new Scene(layoutLogin);
-
+        
         //Sign in scene
         GridPane layoutSignIn = new GridPane();
 
@@ -583,7 +585,7 @@ public class UserInterface extends Application {
             primaryStage.setTitle("Ability menu");
             primaryStage.setScene(screenAbilityMenu);
         });
-
+        addAbilityMenuError.setText("");
         //Adding of new ability
         addAbilityMenuInsertNewAbility.setOnAction((event) -> {
             addAbilityMenuError.setText("");
@@ -592,94 +594,11 @@ public class UserInterface extends Application {
             String textFieldDescription = writenDescription.getText().trim();
             String textFieldRequriment = writenRequriment.getText().trim();
             String textFieldReality = writenReality.getText().trim();
-            if (textFieldClass.length() == 0 || textFieldName.length() == 0 || textFieldDescription.length() == 0 || textFieldRequriment.length() == 0 || textFieldReality.length() == 0) {
-                addAbilityMenuError.setText("Not all blanks are full");
-                return;
-            }
-
-            Boolean addClass = false;
-            Boolean addName = false;
-            Boolean addDescription = false;
-            Boolean addRequriment = false;
-            Boolean addReality = false;
-
-            if (!classDatabase.searchInformation(textFieldClass)) {
-                addClass = true;
-            }
-
-            if (!nameDatabase.searchInformation(textFieldName)) {
-                addName = true;
-            }
-
-            if (!descriptionDatabase.searchInformation(textFieldDescription)) {
-                addDescription = true;
-            }
-
-            if (!requrimentDatabase.searchInformation(textFieldRequriment)) {
-                addRequriment = true;
-            }
-
-            if (!realityDatabase.searchInformation(textFieldReality)) {
-                addReality = true;
-            }
-
-            Boolean classHasBeenAdded = false;
-
-            if (addClass) {
-                classHasBeenAdded = classDatabase.addInformation(textFieldClass);
-            }
-
-            Boolean nameHasBeenAdded = false;
-
-            if (addName) {
-                nameHasBeenAdded = nameDatabase.addInformation(textFieldName);
-            }
-
-            Boolean descriptionHasBeenAdded = false;
-
-            if (addDescription) {
-                descriptionHasBeenAdded = descriptionDatabase.addInformation(textFieldDescription);
-            }
-
-            Boolean requrimentHasBeenAdded = false;
-
-            if (addRequriment) {
-                requrimentHasBeenAdded = requrimentDatabase.addInformation(textFieldRequriment);
-            }
-
-            Boolean realityHasBeenAdded = false;
-
-            if (addReality) {
-                realityHasBeenAdded = realityDatabase.addInformation(textFieldReality);
-            }
-
-            int classId = classDatabase.searchInfromationId(textFieldClass);
-            int nameId = nameDatabase.searchInfromationId(textFieldName);
-            int descriptionId = descriptionDatabase.searchInfromationId(textFieldDescription);
-            int requrimentId = requrimentDatabase.searchInfromationId(textFieldRequriment);
-            int realityId = realityDatabase.searchInfromationId(textFieldReality);
-
-            String information = String.valueOf(usernameId) + "/" + String.valueOf(classId) + "/" + String.valueOf(nameId) + "/" + String.valueOf(descriptionId) + "/" + String.valueOf(requrimentId) + "/" + String.valueOf(realityId);
-
-            if (usernameId == 0 || classId == 0 || nameId == 0 || descriptionId == 0 || requrimentId == 0 || realityId == 0) {
-                addAbilityMenuError.setText("Error has happened");
-                return;
-            }
-
-            if (abilityDatabase.searchInformation(information)) {
-                addAbilityMenuError.setText("Ability already exists");
-                return;
-            }
-
-            Boolean abilityHasBeenAdded = abilityDatabase.addInformation(information);
-
-            if (!abilityHasBeenAdded) {
-                addAbilityMenuError.setText("Error has happened");
-                return;
-            }
-
-            addAbilityMenuError.setText("Ability has been added");
-
+            
+            UiLogic temp = new UiLogic(classDatabase, nameDatabase, descriptionDatabase, requrimentDatabase, realityDatabase, abilityDatabase);
+            String addAbility = temp.addAbility(usernameId, textFieldClass, textFieldName, textFieldDescription, textFieldRequriment, textFieldReality);
+            addAbilityMenuError.setText(addAbility);
+            
             writenGlass.clear();
             writenName.clear();
             writenDescription.clear();

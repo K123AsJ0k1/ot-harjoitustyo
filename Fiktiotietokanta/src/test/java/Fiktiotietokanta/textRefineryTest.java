@@ -5,7 +5,7 @@
  */
 package Fiktiotietokanta;
 
-import dao.TextRefinery;
+import textEditorLogic.TextRefinery;
 import domain.TextRefineryInterface;
 import java.util.ArrayList;
 import java.util.List;
