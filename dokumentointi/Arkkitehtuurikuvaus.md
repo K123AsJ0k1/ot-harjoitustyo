@@ -155,5 +155,9 @@ Käyttäjän valittua haluamansa ominaisuuden ja paineuttaan choose ability pain
 
 Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan listassa valitun rivin ja sen sisältämät tiedot, jonka antamat tiedot käyttöliittymä tarkistaa ja sitten lähettää UIAbilityLogiksille, joka luo String taulun saadusta merkkijonosta ja sen jälkeen luo niistä halutun merkkijonon. Merkkijonon valmistuttua, se lähetään takaisin käyttöliittymään jossa se asetettaan choosenAbility, leftOverParameters ja Label olion arvoksi ja sen jälkeen käyttöliittymä kutsuu createProfileScene oliota ja näin käyttöliittymä siirtyy luo profiili sceneen.
 
+**Muut toiminallisuudet**
+
+Sovelluksen sovelluslogiikka toimii yleisesti yllä esitetyillä tavoilla, eli käyttöliittymä tapahtumakäsittelijä kutsuu sopivaa sovelluslogiikan metodia, käyttöliittmä joko kutsuu jotain erillään olevaa sovellusloogikkaa kansiota tai lähettää itse jonkin pyynnön rajapintojen kautta tietokannoille ja ne lähettävät pyynnön mukaisesti joko String, Integer tai Boolean arvon, jonka mukaisesti käyttöliittymä tai erillinen sovelluslogiikka pyytää käyttöliittymää mukautuu halutusti tilanteeseen.
+
 
 # Ohjelman rakenteeseen jääneet heikkoudet
