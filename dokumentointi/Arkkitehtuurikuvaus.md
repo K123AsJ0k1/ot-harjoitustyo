@@ -49,6 +49,7 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
 **FileWriterInterface**
 
 - public boolean saveTextAsAFile(String information, File file)
+- public void showSaveFileDialog(Stage primaryStage, String text)
 
 **TextRefineryInterface**
 
@@ -72,8 +73,7 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
 - public String getRealityIdentity()
 - public String toString()
 
-
-Tiivistettynä DatabaseInterface mahdollistaa tietokantojen hallitsemisen, UsernameInterface mahdollistaa käyttäjien hallitsemisen, FileWriterInterface mahdollistaa tiedostojen luonnin hallitsemisen ja Ability-olio mahdollistaa tietokantojen tiedon keräämisen käyttöliittymän ymmärtään muotoon.
+FileWriterInterface mahdollistaa tiedostojen tallentamisen ja siihen tarvittu käyttöliittymä dialogin, TextRefineryInterface mahdollistaa käyttöliittymän antaman profiili tekstin muokkauksen, TextTempalteInterface mahdollistaa erilaisten profiili mallien tuomisen käyttöliittymään ja ability olio mahdollistaa käyttöliittymässä käytety listat.
 
 Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (19.4.2020) sovelluslogiikan suhdetta UserInterfacen, sen käyttämien rajapintojen, tietokantojen ja olioiden välillä
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
