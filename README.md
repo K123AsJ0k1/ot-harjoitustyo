@@ -3,7 +3,7 @@
 Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia ominaisuuksia ja luoda niiden avulla fiktiivisiä profiili tiedostoja. Sovellusta on mahdollista käyttää useampi rekisteroitynyt käyttäjä, joilla kaikilla on oma yksilöllinen ominaisuus- ja profiililista. 
 
 # Dokumentaatio
-[Käyttöohje]
+[Käyttöohje](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/Kayttoohje.md)
 
 [Vaatimusmäärittely](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/Vaatimusmaarittely.md)
 
@@ -16,6 +16,8 @@ Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia 
 # Sovelluksen release
 
 [release 1](https://github.com/K123AsJ0k1/ot-harjoitustyo/releases/tag/viikko5)
+
+[release 2]
 
 
 # Komentorivitoiminnot
