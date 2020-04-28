@@ -21,16 +21,7 @@ import static org.junit.Assert.*;
  * @author niila
  */
 public class textRefineryTest {
-    /*
-    @Test
-    public void test() {
-        TextRefineryInterface test = new TextRefinery();
-        List<String> testList = new ArrayList<>();
-        testList.add("hei,koi,hoi,toi,loi");
-        testList.add("mina,sina,te,me,he");
-        List<String> gottenList = test.choosenAbilitiesAreFoundFromText("hei ja koi ja hoi ja toi ja loi ja mina ja sina ja te ja me ja he",testList);
-    }
-    */
+    
     
     @Test
     public void textLineCheckerWorks() {
@@ -95,6 +86,59 @@ public class textRefineryTest {
         Integer givenCharacterCount = test.giveCharacterCount(exampleString);
         assertEquals(22, givenCharacterCount.intValue());
     }
+    
+    
+    @Test
+    public void choosenAbilitiesAreFoundFromTextWorks() {
+        TextRefineryInterface test = new TextRefinery();
+        List<String> testList = new ArrayList<>();
+        testList.add("hei,koi,hoi,toi,loi");
+        List<String> givenList = test.choosenAbilitiesAreFoundFromText("hei ja koi ja hoi ja toi ja loi",testList);
+        assertEquals("hei,koi,hoi,toi,loi",givenList.get(0));
+    }
+    
+    @Test
+    public void choosenAbilitiesAreFoundFromTextGivesEmptyWhenNoAllParameters() {
+        TextRefineryInterface test = new TextRefinery();
+        List<String> testList = new ArrayList<>();
+        testList.add("hei,koi,hoi,toi,loi");
+        List<String> givenList = test.choosenAbilitiesAreFoundFromText("hei ja hoi ja toi ja loi",testList);
+        assertEquals(0, givenList.size());
+    }
+    
+    @Test
+    public void choosenAbilitiesAreFoundFromTextIsCorrect() {
+        TextRefineryInterface test = new TextRefinery();
+        List<String> testList = new ArrayList<>();
+        testList.add("hei,koi,hoi,toi,loi");
+        testList.add("test,te,he,me,le");
+        testList.add("1,2,3,4,5");
+        List<String> givenList = test.choosenAbilitiesAreFoundFromText("hei ja koi ja hoi ja toi ja loi ja test ja te ja he ja me ja le",testList);
+        assertEquals("test,te,he,me,le", givenList.get(0));
+        assertEquals("hei,koi,hoi,toi,loi",givenList.get(1));
+        assertEquals(2, givenList.size());
+    }
+    
+    @Test
+    public void choosenAbilityIsFoundFromTextWorks() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "hei ja tei ja goi ja lei ja mei";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("", leftOverParameters);
+    }
+    
+    @Test
+    public void choosenAbilityIsFoundFromTextIsCorrect() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "hei ja tei ja lei ja mei";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("goi", leftOverParameters);
+    }
+            
+    
+    
     
     
     
