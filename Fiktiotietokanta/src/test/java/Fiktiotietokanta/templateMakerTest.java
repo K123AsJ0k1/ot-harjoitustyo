@@ -5,7 +5,7 @@
  */
 package Fiktiotietokanta;
 
-import textEditorLogic.TemplateMaker;
+import textlogic.TemplateMaker;
 import domain.TextTemplateInterface;
 import org.junit.After;
 import org.junit.AfterClass;

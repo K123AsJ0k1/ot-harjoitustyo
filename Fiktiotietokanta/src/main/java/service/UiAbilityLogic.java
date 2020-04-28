@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
-import textEditorLogic.TemplateMaker;
-import textEditorLogic.TextRefinery;
+import textlogic.TemplateMaker;
+import textlogic.TextRefinery;
 
 /**
  *

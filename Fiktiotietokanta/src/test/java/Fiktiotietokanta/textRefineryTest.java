@@ -5,7 +5,7 @@
  */
 package Fiktiotietokanta;
 
-import textEditorLogic.TextRefinery;
+import textlogic.TextRefinery;
 import domain.TextRefineryInterface;
 import java.util.ArrayList;
 import java.util.List;
