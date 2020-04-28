@@ -16,7 +16,7 @@ Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltä�
 - RealityDatabase
 - AbilityDatabase
 
-Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterface ja UsernameInterface kautta,jotka tarjoavat metodit: 
+Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterface ja UsernameInterface kautta, jotka tarjoavat metodit: 
 
 **DatabaseInterface**
 
@@ -31,32 +31,24 @@ Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterfa
 - public boolean removeInformation(String information)
 - public boolean removeDatabase() throws Exception
   
- 
 **UsernameInterface**
 
 - public boolean createUsernameDatabase() throws Exception
 - public boolean usernameDatabaseExists()
-- public boolean addUserInformation(String information)
+- public boolean addUserInformation(String information, String secondInformation)
 - public boolean searchUserInformation(String information)
+- public boolean userPasswordCheck(String username, String password)
 - public Integer searchUsernameId(String information)
 - public boolean removeUserInformation(String information)
 - public boolean removeDatabase() throws Exception
 
+Kummankin rajapinnan metodit mahdollistavat perustoiminnot, kuten tiedot lisäyksen, haun, tarkastuksen ja poistamisen, mutta DatabaseInterface mahdollistaa myös tietokannan listaamisen, joko kokonaisena tai rajoitettuna.  
 
-Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle, Ability olio, joka mahdollistaa tietokantojen yhdistämisen käyttöliittymän toiminnallisuuksiksi, TextRefineryInterface, joka mahdollistaa eri teksti editointi tapojen tuomisen ja TextTemplateInterface, joka mahdollistaa erilaisten profiili mallien tuomisen, jolloin käyttöliittymän toiminoille tarjotu metodit ovat:
+Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja TextTemplateInterface ja lisäksi Ability-olio, joiden metodit ovat
 
 **FileWriterInterface**
 
 - public boolean saveTextAsAFile(String information, File file)
-
-**Ability**
-
-- public String getClassIdentity()
-- public String getNameIdentity()
-- public String getDescriptionIdentity()
-- public String getRequrimentIdentity()
-- public String getRealityIdentity()
-- public String toString()
 
 **TextRefineryInterface**
 
@@ -70,6 +62,15 @@ Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostoje
  **TextTemplateInterface**
  
  -public String simpleMaker()
+  
+**Ability**
+
+- public String getClassIdentity()
+- public String getNameIdentity()
+- public String getDescriptionIdentity()
+- public String getRequrimentIdentity()
+- public String getRealityIdentity()
+- public String toString()
 
 
 Tiivistettynä DatabaseInterface mahdollistaa tietokantojen hallitsemisen, UsernameInterface mahdollistaa käyttäjien hallitsemisen, FileWriterInterface mahdollistaa tiedostojen luonnin hallitsemisen ja Ability-olio mahdollistaa tietokantojen tiedon keräämisen käyttöliittymän ymmärtään muotoon.
