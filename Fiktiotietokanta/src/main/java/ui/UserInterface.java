@@ -55,7 +55,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
-import service.UiLogic;
+import scenes.CreateFileScene;
+import service.UiAbilityLogic;
 
 /** Käyttöliittymä.
  *
@@ -76,6 +77,7 @@ public class UserInterface extends Application {
     private Integer usernameId;
     private String chosenAbility;
     private String leftOverParameters;
+    UiAbilityLogic uiAbilityLogic;
     
     @Override
     public void init() throws Exception {
@@ -89,7 +91,7 @@ public class UserInterface extends Application {
         fileWriter = new FileWriter();
         templateFactory = new TemplateMaker();
         textRefinery = new TextRefinery();
-
+        uiAbilityLogic = new UiAbilityLogic(classDatabase, nameDatabase, descriptionDatabase, requrimentDatabase, realityDatabase, abilityDatabase);
         usernameDatabase.createUsernameDatabase();
         classDatabase.createDatabase();
         nameDatabase.createDatabase();
@@ -228,7 +230,6 @@ public class UserInterface extends Application {
         
         Text profileViewSaveProfile = new Text();
         profileViewSaveProfile.setFont(new Font(14));
-        
         
         HBox saveProfileButtonLayOut = new HBox();
         
@@ -545,6 +546,7 @@ public class UserInterface extends Application {
         //Transitions from profile menu scene to create file from profile scene
         createFileProfileProfileMenu.setOnAction((event) -> {
             primaryStage.setTitle("Save profile as a file menu");
+            //CreateFileScene temp = new CreateFileScene(primaryStage,screenProfileMenu,profileEditorCreateProfileMenu,fileWriter);
             primaryStage.setScene(saveProfileMenu);
         });
         
@@ -564,20 +566,11 @@ public class UserInterface extends Application {
         
         //Saving current profile as a file
         saveButtonSaveProfile.setOnAction((event) -> {
-            String unRefinedText = profileEditorCreateProfileMenu.getText().trim();
-            profileViewSaveProfile.setText(unRefinedText);
-            FileChooser fileChooser = new FileChooser();
-            
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-            fileChooser.getExtensionFilters().add(extFilter);
- 
-            File file = fileChooser.showSaveDialog(primaryStage);
- 
-            if (file != null) {
-                fileWriter.saveTextAsAFile(unRefinedText, file);
-            }
+            String text = profileEditorCreateProfileMenu.getText().trim();
+            profileViewSaveProfile.setText(text);
+            fileWriter.showSaveFileDialog(primaryStage, text);
         });
-
+        
         //Add ability menu transition
         //Transition from add ability scene to ability main menu scene when return
         addAbilityMenuReturn.setOnAction((event) -> {
@@ -595,8 +588,7 @@ public class UserInterface extends Application {
             String textFieldRequriment = writenRequriment.getText().trim();
             String textFieldReality = writenReality.getText().trim();
             
-            UiLogic temp = new UiLogic(classDatabase, nameDatabase, descriptionDatabase, requrimentDatabase, realityDatabase, abilityDatabase);
-            String addAbility = temp.addAbility(usernameId, textFieldClass, textFieldName, textFieldDescription, textFieldRequriment, textFieldReality);
+            String addAbility = uiAbilityLogic.addAbility(usernameId, textFieldClass, textFieldName, textFieldDescription, textFieldRequriment, textFieldReality);
             addAbilityMenuError.setText(addAbility);
             
             writenGlass.clear();
@@ -608,20 +600,8 @@ public class UserInterface extends Application {
 
         //Transition from ability menu scene to remove ability scene when remove ability
         removeAbilitiesAbilityMenu.setOnAction((event) -> {
-            
             List<String> abilityList = abilityDatabase.showDatabaseAsARestrictedList(String.valueOf(usernameId));
-            
-            for (String ability : abilityList) {
-                String[] split = ability.split("/");
-                String classIdentity = classDatabase.searchInformationTextIdentity(split[0]);
-                String nameIdentity = nameDatabase.searchInformationTextIdentity(split[1]);
-                String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
-                String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
-                String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
-                Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
-                removeAbilityTableView.getItems().add(addedAbility);
-            }
-
+            removeAbilityTableView.getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
             primaryStage.setTitle("Remove Abilities table");
             primaryStage.setScene(removeAbilityTable);
             
@@ -632,14 +612,7 @@ public class UserInterface extends Application {
             if (selectionModelTableView.getSelectedItems().size() > 0) {
                 ObservableList selectedItems = selectionModelTableView.getSelectedItems();
                 int removedIndex = selectionModelTableView.getFocusedIndex();
-                String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
-                int classId = classDatabase.searchInfromationId(givenAbilitySplit[0]);
-                int nameId = nameDatabase.searchInfromationId(givenAbilitySplit[1]);
-                int descriptionId = descriptionDatabase.searchInfromationId(givenAbilitySplit[2]);
-                int requrimentId = requrimentDatabase.searchInfromationId(givenAbilitySplit[3]);
-                int realityId = realityDatabase.searchInfromationId(givenAbilitySplit[4]);
-                String removedId = String.valueOf(usernameId) + "/" + String.valueOf(classId) + "/" + String.valueOf(nameId) + "/" + String.valueOf(descriptionId) + "/" + String.valueOf(requrimentId) + "/" + String.valueOf(realityId);
-                abilityDatabase.removeInformation(removedId);
+                uiAbilityLogic.removeAbility(usernameId, selectedItems);
                 removeAbilityTableView.getItems().remove(removedIndex);
                 removeAbilityTableView.refresh();
             }
@@ -679,18 +652,7 @@ public class UserInterface extends Application {
         //Transition from create profile scene to choose ability scene when choose ability
         chooseAnAbilityContextMenu.setOnAction((event) -> {
             List<String> abilityList = abilityDatabase.showDatabaseAsARestrictedList(String.valueOf(usernameId));
-            
-            for (String ability : abilityList) {
-                String[] split = ability.split("/");
-                String classIdentity = classDatabase.searchInformationTextIdentity(split[0]);
-                String nameIdentity = nameDatabase.searchInformationTextIdentity(split[1]);
-                String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
-                String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
-                String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
-                Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
-                chooseAbilityTableView.getItems().add(addedAbility);
-            }
-
+            chooseAbilityTableView.getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
             primaryStage.setTitle("Choose Abilities table");
             primaryStage.setScene(chooseAbilityTable);
         });
@@ -710,23 +672,11 @@ public class UserInterface extends Application {
         
         //Checks textarea 
         profileEditorCreateProfileMenu.setOnKeyTyped((event) -> {
-           
            textHasLinesContextMenu.setText("Text has different lines:"+textRefinery.givenTextLineChecker(profileEditorCreateProfileMenu.getText().trim()));
            textHasSpacesContextMenu.setText("Words have spaces between them:"+textRefinery.givenTextLineHasSpaces(profileEditorCreateProfileMenu.getText().trim()));
-           
-           String[] wordTable = profileEditorCreateProfileMenu.getText().trim().split(" ");
-           char[] characterTable = profileEditorCreateProfileMenu.getText().trim().toCharArray();
-           
-           if (characterTable.length==0) {
-               wordCountContextMenu.setText("Current wordcount:0");
-               characterCountContextMenu.setText("Current character count:0");
-               return;
-           }
-           
-           wordCountContextMenu.setText("Current wordcount:"+ wordTable.length);
-           characterCountContextMenu.setText("Current charactercount:"+characterTable.length);
+           wordCountContextMenu.setText("Current wordcount:"+textRefinery.giveTextWordCount(profileEditorCreateProfileMenu.getText().trim()));
+           characterCountContextMenu.setText("Current charactercount:"+textRefinery.giveCharacterCount(profileEditorCreateProfileMenu.getText().trim()));
         });
-        
         
         
         //Choose ability transitions
@@ -742,11 +692,10 @@ public class UserInterface extends Application {
         chooseSelectedAbilityTableView.setOnAction((event) -> {
             if (selectionModelChooseAbilityTableView.getSelectedItems().size() > 0) {
                 ObservableList selectedItems = selectionModelChooseAbilityTableView.getSelectedItems();
-                String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
-                String selectedParameters = givenAbilitySplit[0] + "," + givenAbilitySplit[1] + "," + givenAbilitySplit[2] + "," + givenAbilitySplit[3] + "," + givenAbilitySplit[4];
-                chosenAbility = selectedParameters;
-                leftOverParameters = selectedParameters;
-                currenAbilityProgressContextMenu.setText("Ability parameters left:" + leftOverParameters);
+                String givenString = uiAbilityLogic.chooseAbility(selectedItems);
+                chosenAbility = givenString;
+                leftOverParameters = givenString;
+                currenAbilityProgressContextMenu.setText("Ability parameters left:" + givenString);
                 chooseAbilityTableView.getItems().clear();
                 primaryStage.setTitle("Profile creator");
                 primaryStage.setScene(createProfileScene);

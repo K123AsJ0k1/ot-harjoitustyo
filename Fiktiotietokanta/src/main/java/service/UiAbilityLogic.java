@@ -17,6 +17,10 @@ import domain.FileWriterInterface;
 import domain.TextRefineryInterface;
 import domain.TextTemplateInterface;
 import domain.UsernameInterface;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import textEditorLogic.TemplateMaker;
 import textEditorLogic.TextRefinery;
 
@@ -24,7 +28,7 @@ import textEditorLogic.TextRefinery;
  *
  * @author niila
  */
-public class UiLogic {
+public class UiAbilityLogic {
 
     DatabaseInterface classDatabase;
     DatabaseInterface nameDatabase;
@@ -33,14 +37,13 @@ public class UiLogic {
     DatabaseInterface realityDatabase;
     DatabaseInterface abilityDatabase;
 
-    public UiLogic(DatabaseInterface classDatabase, DatabaseInterface nameDatabase, DatabaseInterface descriptionDatabase, DatabaseInterface requrimentDatabase, DatabaseInterface realityDatabase, DatabaseInterface abilityDatabase) {
+    public UiAbilityLogic(DatabaseInterface classDatabase, DatabaseInterface nameDatabase, DatabaseInterface descriptionDatabase, DatabaseInterface requrimentDatabase, DatabaseInterface realityDatabase, DatabaseInterface abilityDatabase) {
         this.classDatabase = classDatabase;
         this.nameDatabase = nameDatabase;
         this.descriptionDatabase = descriptionDatabase;
         this.requrimentDatabase = requrimentDatabase;
         this.realityDatabase = realityDatabase;
         this.abilityDatabase = abilityDatabase;
-
     }
 
     public String addAbility(int usernameId, String textFieldClass, String textFieldName, String textFieldDescription, String textFieldRequriment, String textFieldReality) {
@@ -105,7 +108,6 @@ public class UiLogic {
             realityHasBeenAdded = realityDatabase.addInformation(textFieldReality);
         }
 
-        System.out.println("hei");
         int classId = classDatabase.searchInfromationId(textFieldClass);
         int nameId = nameDatabase.searchInfromationId(textFieldName);
         int descriptionId = descriptionDatabase.searchInfromationId(textFieldDescription);
@@ -113,7 +115,7 @@ public class UiLogic {
         int realityId = realityDatabase.searchInfromationId(textFieldReality);
 
         String information = String.valueOf(usernameId) + "/" + String.valueOf(classId) + "/" + String.valueOf(nameId) + "/" + String.valueOf(descriptionId) + "/" + String.valueOf(requrimentId) + "/" + String.valueOf(realityId);
-        System.out.println(information);
+
         if (usernameId == 0 || classId == 0 || nameId == 0 || descriptionId == 0 || requrimentId == 0 || realityId == 0) {
             return "Error has happened";
         }
@@ -129,6 +131,38 @@ public class UiLogic {
         }
 
         return "Ability has been added";
+    }
+
+    public List<Ability> addAbilitiesIntoList(List<String> abilityList) {
+        List<Ability> returnedList = new ArrayList<>();
+        for (String ability : abilityList) {
+            String[] split = ability.split("/");
+            String classIdentity = classDatabase.searchInformationTextIdentity(split[0]);
+            String nameIdentity = nameDatabase.searchInformationTextIdentity(split[1]);
+            String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
+            String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
+            String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
+            Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
+            returnedList.add(addedAbility);
+        }
+        return returnedList;
+    }
+
+    public void removeAbility(int usernameId, ObservableList selectedItems) {
+        String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
+        int classId = classDatabase.searchInfromationId(givenAbilitySplit[0]);
+        int nameId = nameDatabase.searchInfromationId(givenAbilitySplit[1]);
+        int descriptionId = descriptionDatabase.searchInfromationId(givenAbilitySplit[2]);
+        int requrimentId = requrimentDatabase.searchInfromationId(givenAbilitySplit[3]);
+        int realityId = realityDatabase.searchInfromationId(givenAbilitySplit[4]);
+        String removedId = String.valueOf(usernameId) + "/" + String.valueOf(classId) + "/" + String.valueOf(nameId) + "/" + String.valueOf(descriptionId) + "/" + String.valueOf(requrimentId) + "/" + String.valueOf(realityId);
+        abilityDatabase.removeInformation(removedId);
+    }
+
+    public String chooseAbility(ObservableList selectedItems) {
+        String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
+        String selectedParameters = givenAbilitySplit[0] + "," + givenAbilitySplit[1] + "," + givenAbilitySplit[2] + "," + givenAbilitySplit[3] + "," + givenAbilitySplit[4];
+        return selectedParameters;
     }
 
 }

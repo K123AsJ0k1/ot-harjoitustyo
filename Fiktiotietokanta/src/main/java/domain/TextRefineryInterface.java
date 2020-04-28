@@ -29,4 +29,8 @@ public interface TextRefineryInterface {
     
     public List<String> choosenAbilitiesAreFoundFromText(String information,List<String> abilityList);
     
+    public Integer giveTextWordCount(String infromation);
+    
+    public Integer giveCharacterCount(String infromation);
+    
 }

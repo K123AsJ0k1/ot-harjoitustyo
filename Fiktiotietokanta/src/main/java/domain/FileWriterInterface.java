@@ -6,6 +6,7 @@
 package domain;
 
 import java.io.File;
+import javafx.stage.Stage;
 
 /** Tiedoston tallentamisen rajapinta.
  *
@@ -18,5 +19,11 @@ public interface FileWriterInterface {
      * @return palauttaa true, jos tiedoston tallentaminen onnistui ja false, jos ei.
      */
     public boolean saveTextAsAFile(String information, File file);
+    
+    /** Luo tallentamiseen tarvitun dialogin. 
+     * @param primaryStage stage.
+     * @param text teksti.
+     */
+    public void showSaveFileDialog(Stage primaryStage, String text);
     
 }

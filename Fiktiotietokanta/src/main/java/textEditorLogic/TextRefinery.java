@@ -262,6 +262,20 @@ public class TextRefinery implements TextRefineryInterface {
         
         return foundAbilityList;  
     }
+
+    @Override
+    public Integer giveTextWordCount(String infromation) {
+        String[] wordTable = infromation.split(" ");
+        return wordTable.length;   
+    }
+
+    @Override
+    public Integer giveCharacterCount(String infromation) {
+        char[] characterTable = infromation.toCharArray();
+        return characterTable.length;
+    }
+    
+    
     
 
 }
