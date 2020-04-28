@@ -2,7 +2,33 @@
 
 # Rakenne 
 
+Ohjelma on rakenteeltaan nelitasoinen, ja koodin pakkausrakenne on seuraava:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkausrakenne.png)
+
+Pakkaus main sisältää sovelluksen käynnistykseen tarvitun mainin, pakkaus ui sisältää tarvitun käyttöliittymä koodin, pakkaus domain sisältää tarvittavat rajapinnat ja pakkaus dao sisältää käyttöliittymän tarvitsemat tietokannat. Lisäksi on huomioitava se, että pakkaus ui siirtää sovellusloogikan pakkauksille scene, service ja textlogic, missä scene pakkaus sisältää osan käyttöliittmän scene olioista, service sisältää osan sovelluslogiikasta ja textlogic sisältää käyttöliittymän tekstieditori sovelluslogiikan.
+
 # Käyttöliittymä
+
+Käyttöliittymä sisältää yksitoista erillistä näkymää 
+
+- kirjautuminen
+- uuden käyttäjän luominen
+- päävalikko
+- ominaisuusvalikko
+- ominaisuuksien lisäys
+- ominaisuuksien poistaminen
+- profiili valikko
+- profiilin luonti 
+- ominaisuuden valitseminen
+- tiedoston luonti
+- pääkäyttäjä näkymä
+
+jokainen näistä on toteutettu omana Scene-oliona. Näkymistä yksi kerrallaan on näkyvänä eli sijoitettuna sovelluksena stageen. Käyttöliittymä on rakennettu ohjelmallisesti luokassa ui.UserInterface.
+
+Käyttöliittymä tullaan eristämään kokonaan sovelluslogiikasta, eli käyttöliittymä kutsuu tilanteeseen sopivia metodeja ja asettaa tarvitut parametrit niihin.
+
+
 
 # Sovelluslogiikka
 
@@ -82,7 +108,7 @@ Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (28.4.2020) sovellus
 
 Pakkauksen dao luokat ClassDatabase,NameDatabase,DescriptionDatabase,RequrimentDatabase,RealityDatabase ja UsernameDatabase hyödyntävät SQLlite:ä tietojen tallentamiseen tietokannan nimen mukaisiin tiedostoihin. 
 
-Luokat noudattavat Data Acces Object-suunnitelumallia ja ne voidaan tarpeen mukaan korvata uusilla toteutuksilla, jos sovelluksen datan talletustapa halutaan vaihtaa, sillä ne ovat eristettyjä DatabaseInterface ja UsernameInterfacen taakse ja sovelluslogiikka ei hyödynnä näitä luokkia suoraan.
+Luokat noudattavat Data Access Object-suunnitelumallia ja ne voidaan tarpeen mukaan korvata uusilla toteutuksilla, jos sovelluksen datan talletustapa halutaan vaihtaa, sillä ne ovat eristettyjä DatabaseInterface ja UsernameInterfacen taakse ja sovelluslogiikka ei hyödynnä näitä luokkia suoraan.
 
 **Päätoiminnallisuudet**
 
