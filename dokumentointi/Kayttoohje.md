@@ -26,15 +26,17 @@ Uusi käyttäjä luodaan syöttämällä käyttäjä nimi ja salasana syötekent
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20uuden%20k%C3%A4ytt%C3%A4j%C3%A4n%20luomisn%C3%A4kym%C3%A4.PNG)
 
-Jos käyttäjän luominen onnistuu, palataan kirjautumis näkymään.
+Jos käyttäjän luominen onnistuu, palataan kirjautumis näkymään tai vaihtoehtoisesti painamalla return.
 
 # Päävalikko 
+
+Kirjautumisnäkymästä siirrytään päävalikkoon, jossa voidaan valita siirtyä joko ominaisuus valikkoon, profiili valikkoon, pääkäyttäjä valikkoon tai palata takaisin kirjautumisnäkymään kirjautumalla ulos
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4valikko%20n%C3%A4kym%C3%A4.PNG)
 
 # Ominaisuus valikko 
 
-|[alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20omaisuus%20valikko%20n%C3%A4kym%C3%A4.PNG)
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20omaisuus%20valikko%20n%C3%A4kym%C3%A4.PNG)
 
 # Omaisuuden lisääminen
 
