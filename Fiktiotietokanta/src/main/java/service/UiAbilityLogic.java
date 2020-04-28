@@ -171,7 +171,7 @@ public class UiAbilityLogic {
             String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
             Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
             return addedAbility;
-        }).forEachOrdered((addedAbility) -> {
+        })  .forEachOrdered((addedAbility) -> {
             returnedList.add(addedAbility);
         });
         return returnedList;
