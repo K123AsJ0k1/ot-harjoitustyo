@@ -88,7 +88,7 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
   
  **TextTemplateInterface**
  
- -public String simpleMaker()
+ - public String simpleMaker()
   
 **Ability**
 
