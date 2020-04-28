@@ -30,7 +30,7 @@ Ohjelma voidaan suorittaa netbeansin vihreällä nappulalla Fiktiotietokannan ma
 
 **Testaus**
 
-Ohjelman testikäyttäjä 
+Ohjelman testikäyttäjä ja salasana ovat
 
 ```Tester```
 
