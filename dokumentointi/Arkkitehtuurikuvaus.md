@@ -16,9 +16,7 @@ Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltä�
 - RealityDatabase
 - AbilityDatabase
 
-UsernameDatabase, ClassDatabase, NameDatabase, DesriptionDatabase, RequrimentDatabase, RealityDatabase ja AbilityDatabase, joiden metodit keskustelevat rajapintojen DatabaseInterface ja UsernameInterfacen kautta käyttöliittymän kanssa ja jotka mahdollistavat tietokantojen luomisen, tietokantojen olemassaolon tarkastamisen, tiedon lisäämisen tietokantaan, tiedon tarkastamisen tietokannasta, tiedon id haun tietokannasta, tiedon identitetti haun tietokannasta, listan luomisen tietokannasta, rajoitetun listan luomisen tietokannasta, tiedon poistamisen tietokannasta ja tietokannan poistamisen. 
-
-Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle, Ability olio, joka mahdollistaa tietokantojen yhdistämisen käyttöliittymän toiminnallisuuksiksi, TextRefineryInterface, joka mahdollistaa eri teksti editointi tapojen tuomisen ja TextTemplateInterface, joka mahdollistaa erilaisten profiili mallien tuomisen, jolloin käyttöliittymän toiminoille tarjotu metodit ovat:
+Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterface ja UsernameInterface kautta,jotka tarjoavat metodit: 
 
 **DatabaseInterface**
 
@@ -32,16 +30,20 @@ Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostoje
 - public List<String> showDatabaseAsARestrictedList(String infromation)
 - public boolean removeInformation(String information)
 - public boolean removeDatabase() throws Exception
-
+  
+ 
 **UsernameInterface**
 
 - public boolean createUsernameDatabase() throws Exception
 - public boolean usernameDatabaseExists()
 - public boolean addUserInformation(String information)
 - public boolean searchUserInformation(String information)
--  public Integer searchUsernameId(String information)
+- public Integer searchUsernameId(String information)
 - public boolean removeUserInformation(String information)
 - public boolean removeDatabase() throws Exception
+
+
+Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle, Ability olio, joka mahdollistaa tietokantojen yhdistämisen käyttöliittymän toiminnallisuuksiksi, TextRefineryInterface, joka mahdollistaa eri teksti editointi tapojen tuomisen ja TextTemplateInterface, joka mahdollistaa erilaisten profiili mallien tuomisen, jolloin käyttöliittymän toiminoille tarjotu metodit ovat:
 
 **FileWriterInterface**
 
