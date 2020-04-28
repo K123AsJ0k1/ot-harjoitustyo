@@ -2,7 +2,31 @@
 
 # Rakenne 
 
+Ohjelma on rakenteeltaan nelitasoinen, ja koodin pakkausrakenne on seuraava:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkausrakenne.png)
+
 # Käyttöliittymä
+
+Käyttöliittymä sisältää yksitoista erillistä näkymää 
+
+- kirjautuminen
+- uuden käyttäjän luominen
+- päävalikko
+- ominaisuusvalikko
+- ominaisuuksien lisäys
+- ominaisuuksien poistaminen
+- profiili valikko
+- profiilin luonti 
+- ominaisuuden valitseminen
+- tiedoston luonti
+- pääkäyttäjä näkymä
+
+jokainen näistä on toteutettu omana Scene-oliona. Näkymistä yksi kerrallaan on näkyvänä eli sijoitettuna sovelluksena stageen. Käyttöliittymä on rakennettu ohjelmallisesti luokassa ui.UserInterface.
+
+Käyttöliittymä tullaan eristämään kokonaan sovelluslogiikasta, eli käyttöliittymä kutsuu tilanteeseen sopivia metodeja ja asettaa tarvitut parametrit niihin.
+
+
 
 # Sovelluslogiikka
 
