@@ -163,7 +163,7 @@ public class UserInterface extends Application {
         layoutSignIn.add(accountExistsErrorSignIn, 0, 5);
         layoutSignIn.add(accountIsToShortErrorSignIn, 0, 6);
 
-        layoutSignIn.setPrefSize(300, 300);
+        layoutSignIn.setPrefSize(500, 500);
         layoutSignIn.setAlignment(Pos.CENTER);
         layoutSignIn.setVgap(10);
         layoutSignIn.setHgap(10);
