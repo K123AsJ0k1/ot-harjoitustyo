@@ -7,12 +7,17 @@ package textlogic;
 
 import domain.TextTemplateInterface;
 
-/**
+/** Template tuottaja.
  *
- * @author niila
+ * 
  */
 public class TemplateMaker implements TextTemplateInterface {
-
+    
+    
+    /** Konstruktori.
+    *
+    * 
+    */
     public TemplateMaker() {
 
     }

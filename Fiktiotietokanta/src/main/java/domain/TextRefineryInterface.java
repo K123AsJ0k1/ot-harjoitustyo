@@ -25,19 +25,19 @@ public interface TextRefineryInterface {
     */
     public boolean givenTextLineHasSpaces(String information);
     
-    /**Tarkastaa, löytyykö tekstistä valitun ominaisuuden parameterja 
+    /** Tarkastaa, löytyykö tekstistä valitun ominaisuuden parameterja. 
     * @param information on mikä tahansa merkkijono.
     * @param abilityInformation on ominaisuuden parametreja sisältävä merkkijono.
     * @return palauttaa ne parametrit, jotka löytyivät.
     */
     public String choosenAbilityIsFoundFromText(String information, String abilityInformation);
     
-    /**Tarkastaa, löytyykö tekstistä valitun ominaisuuden parameterja 
+    /**Tarkastaa, löytyykö tekstistä valitun ominaisuuden parameterja. 
     * @param information on mikä tahansa merkkijono.
      * @param abilityList on lista eri ominaisuuksia.
      * @return palauttaa ne parametrit, jotka löytyivät.
     */
-    public List<String> choosenAbilitiesAreFoundFromText(String information,List<String> abilityList);
+    public List<String> choosenAbilitiesAreFoundFromText(String information, List<String> abilityList);
     
     /**Tarkastaa annettun merkkijonon sana määrän.
      * @param infromation annettu merkkijono.
@@ -45,7 +45,7 @@ public interface TextRefineryInterface {
     */
     public Integer giveTextWordCount(String infromation);
     
-    /**Tarkastaa annettun merkkijonon merkki märään
+    /**Tarkastaa annettun merkkijonon merkki märään.
      * @param infromation annettu merkkijono.
      * @return Palauttaa merkkijonosta löydetty merkki määrä.
     */

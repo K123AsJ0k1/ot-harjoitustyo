@@ -24,9 +24,10 @@ import javafx.scene.control.TableView;
 import textlogic.TemplateMaker;
 import textlogic.TextRefinery;
 
-/** Ominaisuuksiin liittyvää käyttöliittymä logiikkaa.
+/**
+ * Ominaisuuksiin liittyvää käyttöliittymä logiikkaa.
  *
- * 
+ *
  */
 public class UiAbilityLogic {
 
@@ -36,16 +37,17 @@ public class UiAbilityLogic {
     DatabaseInterface requrimentDatabase;
     DatabaseInterface realityDatabase;
     DatabaseInterface abilityDatabase;
-    
-    
-    /** Konstruktori.
+
+    /**
+     * Konstruktori.
+     *
      * @param classDatabase luokkatietokanta.
      * @param nameDatabase nimitietokanta.
      * @param descriptionDatabase selitystietokanta.
      * @param requrimentDatabase vaatimusietokanta.
      * @param realityDatabase todellisuustietokanta.
      * @param abilityDatabase ominaisuustietokanta.
-    */
+     */
     public UiAbilityLogic(DatabaseInterface classDatabase, DatabaseInterface nameDatabase, DatabaseInterface descriptionDatabase, DatabaseInterface requrimentDatabase, DatabaseInterface realityDatabase, DatabaseInterface abilityDatabase) {
         this.classDatabase = classDatabase;
         this.nameDatabase = nameDatabase;
@@ -54,9 +56,10 @@ public class UiAbilityLogic {
         this.realityDatabase = realityDatabase;
         this.abilityDatabase = abilityDatabase;
     }
-    
-    
-    /** Lisää ominaisuuden.
+
+    /**
+     * Lisää ominaisuuden.
+     *
      * @param usernameId käyttäjän id-
      * @param textFieldClass saatu merkkijono.
      * @param textFieldName saatu merkkijono.
@@ -64,7 +67,7 @@ public class UiAbilityLogic {
      * @param textFieldRequriment saatu merkkijono.
      * @param textFieldReality saatu merkkijono.
      * @return palauttaa koodin tilaa merkitsevän merkkijono.
-    */
+     */
     public String addAbility(int usernameId, String textFieldClass, String textFieldName, String textFieldDescription, String textFieldRequriment, String textFieldReality) {
 
         if (textFieldClass.length() == 0 || textFieldName.length() == 0 || textFieldDescription.length() == 0 || textFieldRequriment.length() == 0 || textFieldReality.length() == 0) {
@@ -151,12 +154,13 @@ public class UiAbilityLogic {
 
         return "Ability has been added";
     }
-    
-    
-    /** Lisää ominaisuuksia listaksi.
-     * @param abilityList
+
+    /**
+     * Lisää ominaisuuksia listaksi.
+     *
+     * @param abilityList lista ominaisuuksia.
      * @return palauttaa koodin tilaa merkitsevän merkkijono.
-    */
+     */
     public List<Ability> addAbilitiesIntoList(List<String> abilityList) {
         List<Ability> returnedList = new ArrayList<>();
         abilityList.stream().map((ability) -> ability.split("/")).map((split) -> {
@@ -167,15 +171,18 @@ public class UiAbilityLogic {
             String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
             Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
             return addedAbility;
-        }).forEachOrdered((addedAbility) -> {
+            }).forEachOrdered((addedAbility) -> {
             returnedList.add(addedAbility);
         });
         return returnedList;
     }
-    /** Poistaa ominaisuuden.
+
+    /**
+     * Poistaa ominaisuuden.
+     *
      * @param usernameId käyttäjän id.
      * @param selectedItems valitut asiat.
-    */
+     */
     public void removeAbility(int usernameId, ObservableList selectedItems) {
         String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
         int classId = classDatabase.searchInfromationId(givenAbilitySplit[0]);
@@ -186,10 +193,13 @@ public class UiAbilityLogic {
         String removedId = String.valueOf(usernameId) + "/" + String.valueOf(classId) + "/" + String.valueOf(nameId) + "/" + String.valueOf(descriptionId) + "/" + String.valueOf(requrimentId) + "/" + String.valueOf(realityId);
         abilityDatabase.removeInformation(removedId);
     }
-    /** Valitsee ominaisuuden.
+
+    /**
+     * Valitsee ominaisuuden.
+     *
      * @param selectedItems valitut asiat.
      * @return palauttaa parametrit.
-    */
+     */
     public String chooseAbility(ObservableList selectedItems) {
         String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
         String selectedParameters = givenAbilitySplit[0] + "," + givenAbilitySplit[1] + "," + givenAbilitySplit[2] + "," + givenAbilitySplit[3] + "," + givenAbilitySplit[4];

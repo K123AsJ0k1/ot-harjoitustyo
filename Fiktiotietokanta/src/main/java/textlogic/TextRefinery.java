@@ -169,7 +169,7 @@ public class TextRefinery implements TextRefineryInterface {
     @Override
     public List<String> choosenAbilitiesAreFoundFromText(String information, List<String> abilityList) {
         List<String> foundAbilityList = new ArrayList<>();
-        HashMap<String,String[]> foundParametersList = new HashMap<>();
+        HashMap<String, String[]> foundParametersList = new HashMap<>();
         String[] wordTable = information.trim().split(" ");
        
         for (String word:wordTable) {
