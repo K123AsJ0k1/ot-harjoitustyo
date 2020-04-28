@@ -48,7 +48,7 @@
 |28.4|  | Käyttöliittymän muokkaus |
 |28.4|  | Pääkäyttäjän luominen |
 |28.4|  | Pääkäyttäjä valikon luominen |
-|28.4|  | Projetin dokumentointi |
+|28.4|  | Projektin dokumentointi |
 
 - Tuntien yhteinen summa on 97.
 
