@@ -15,12 +15,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-/**
+/** Testi.
  *
- * @author niila
+ * 
  */
 public class LoginScene {
     
+    
+    /** Testi.
+    *
+    * 
+    */
     public LoginScene() {
        
         GridPane layoutLogin = new GridPane();

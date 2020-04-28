@@ -16,15 +16,21 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
+/** Testi scene.
  *
- * @author niila
+ * 
  */
 public class CreateFileScene {
     
     Scene saveProfileMenu;
     
-    public CreateFileScene(Stage primaryStage,Scene screenProfileMenu,TextArea profileEditorCreateProfileMenu,FileWriterInterface fileWriter) {
+    /** Testi scene konstruktori.
+     * @param primaryStage testi.
+     * @param screenProfileMenu testi.
+     * @param profileEditorCreateProfileMenu testi.
+     * @param fileWriter testi.
+     */
+    public CreateFileScene(Stage primaryStage, Scene screenProfileMenu, TextArea profileEditorCreateProfileMenu, FileWriterInterface fileWriter) {
         VBox saveProfileLayOut = new VBox();
         
         Text profileViewSaveProfile = new Text();
@@ -39,7 +45,7 @@ public class CreateFileScene {
         
         saveProfileButtonLayOut.getChildren().addAll(saveButtonSaveProfile, returnButtonSaveProfile);
         
-        saveProfileLayOut.getChildren().addAll(profileViewSaveProfile,saveProfileButtonLayOut);
+        saveProfileLayOut.getChildren().addAll(profileViewSaveProfile, saveProfileButtonLayOut);
         
         saveProfileLayOut.setAlignment(Pos.CENTER);
         saveProfileLayOut.setPrefSize(700, 500);
