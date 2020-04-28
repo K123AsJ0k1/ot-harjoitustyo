@@ -114,6 +114,12 @@ Luokat noudattavat Data Access Object-suunnitelumallia ja ne voidaan tarpeen muk
 
 Alla olevat sekvenssikaaviot kuvaavat sovelluksen päätoiminallisuuden toimintalogiikkaa
 
+**Käyttäjän kirjaantuminen**
+Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus, salasana ja login painiketta painetaan, etenee sovelluksen kontrolli seuraavasti:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4n%20kirjautumisen%20sekvenssikaavio.png)
+
+
 **Käyttäjän luominen**
 
 Käyttäjän luodessa uuden käyttäjän, eli hänen laitettuaan syötekentään haluamansa käyttäjän, salasanan ja painettuaan create username painiketta, etenee sovelluksen kontrolli seuraavasti: 
