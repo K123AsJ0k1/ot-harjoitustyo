@@ -116,11 +116,11 @@ Alla olevat sekvenssikaaviot kuvaavat sovelluksen päätoiminallisuuden toiminta
 
 **Käyttäjän luominen**
 
-Käyttäjän luodessa uuden käyttäjän, eli hänen laitettuaan syötekentään haluamansa käyttäjän ja painettuaan create username painiketta, etenee sovelluksen kontrolli seuraavasti: 
+Käyttäjän luodessa uuden käyttäjän, eli hänen laitettuaan syötekentään haluamansa käyttäjän, salasanan ja painettuaan create username painiketta, etenee sovelluksen kontrolli seuraavasti: 
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4nluonnin%20sekvenssikaavio.png)
 
-Painikkeen painamiseen reagoiva tapahtumakäsittelijä saa sen sisällä olevan sovelluslogiikan ottamaan tekstikentässä olevan merkkijonon ja jos merkkijono on pidempi kuin 5, niin käyttöliittymä pääsee jatkamaan käyttäjä tunnuksen olemassaolon tarkastukseen. Käyttöliittymä tarkastaa UsernameInterfacen avulla, löytyykö annettu käyttäjä nimi UsernameDatabase tietokannasta ja jos se ei löydy, niin UsernameDatabase lähettää falsen, jonka UsernameInterface viestittään takaisin käyttöliittymälle. Saadun tiedon ollessaan false, käyttöliittymä lisää UsernameInterfacen kautta uuden käyttäjän UsernameDatabasen tietokantaan, jonka jälkeen UsernameDatabase lähetää true ja tämä estää errori if-lauseen aktivoitumisen ja näin käyttöliittymä vaihtaa näkymäksi screenMainMenu scenen, eli sovelluksen päävalikon jossa näkyy kolme sovelluksen hallinnoitiin tärkeätä nappia. 
+Painikkeen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja tarkastamaan käyttäjä nimen ja salasanan pituuden, joiden on oltava vähintään 5 merkkiä pitkiä. Tarkastuksen jälkeen käyttöliittymä tarkastaa rajapinnan kautta, onko käyttäjä nimeä olemassa ja hyväksymisen jälkeen käyttäjä nimen ja salasanan olemassa olon tietokannasta, joiden antaessa false voi käyttöliittymä jatkaa käyttäjänimen ja salasanan lisäämistä tietokantaan. Lisäämisen tuottaessa true arvon ja tultua rajapinnan kautta, käyttöliittymä kutsuu screenMainMenu Scene oliota ja muuttaa näkymän päävalikoksi.
 
 
 # Ohjelman rakenteeseen jääneet heikkoudet
