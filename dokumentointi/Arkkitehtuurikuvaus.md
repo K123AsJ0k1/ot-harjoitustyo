@@ -131,5 +131,12 @@ Käyttäjän luodessa uuden käyttäjän, eli hänen laitettuaan syötekentään
 
 Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja tarkastamaan käyttäjä nimen ja salasanan pituuden, joiden on oltava vähintään 5 merkkiä pitkiä. Tarkastuksen jälkeen käyttöliittymä tarkastaa rajapinnan kautta, onko käyttäjä nimeä olemassa ja hyväksymisen jälkeen käyttäjä nimen ja salasanan olemassa olon tietokannasta, joiden antaessa false voi käyttöliittymä jatkaa käyttäjänimen ja salasanan lisäämistä tietokantaan. Lisäämisen tuottaessa true arvon ja tultua rajapinnan kautta, käyttöliittymä kutsuu screenMainMenu Scene oliota ja muuttaa näkymän päävalikoksi.
 
+**Ominaisuuden luominen**
+
+Käyttäjän täyttäess jokaisen tekstikentän ja painettuaan add ability painiketta, etenee sovelluksen kontrolli seuraavasti:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20lis%C3%A4%C3%A4misen%20sekvenssikaavio.png)
+
+Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja lähettää asettaa ne lisättäksi parametreiksi, mikä saa UiAblity Logikin tarkastamaan saatujen parametrien pituudet ja jos ne ovat nolla suuremmat, niin UiAbility lähettää jokaisen parametrin tarkastettavaksi tietokantoihin. Jos kaikki ovat False, niin kaikki parametrit lisätään tietokantoihin ja lisäämisen jälkeen jokaisen parametrin id haetaan, ja jos kaikki ovat 0 suurempia niin ne läpäisevät ja niistä luodaan ominaisuus tietokantaan lisättä merkkijono. Luotu merkkijonon olemassa olo tarkastetaan ominaisuus tietokannasta ja jos sitä ei ole, niin se lisätään ja jos lisääminen onnistuu, niin käyttöliittymään lähetetään viesti. Viesti asetettaan käyttöliittymän käyttämään Label olioon, jonka jälkeen käytetyt tekstikentät tyhjennettään ja käyttöliittymä palautuu normaalin tilaansa. 
 
 # Ohjelman rakenteeseen jääneet heikkoudet
