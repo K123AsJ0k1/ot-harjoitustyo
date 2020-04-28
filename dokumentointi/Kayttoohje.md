@@ -12,6 +12,10 @@ Ohjelma voidaan käynnistää joko luomalla jar mvn Packagen avulla,hakemalla ot
 
 # Kirjautuminen
 
+Sovellus käynnistyy kirjautumisnäkymään:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20kirjautumisn%C3%A4kym%C3%A4.PNG)
+
 # Uuden käyttäjän luominen
 
 # Siirtyminen valikkoissa
