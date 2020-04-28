@@ -40,8 +40,17 @@
 |19.4|  | Käyttöliittyymä parannuksia |
 |19.4|  | Profiilin luonti perusasioiden luonti |
 |20.4|4 | Projektin muokkausta ja dokumentointia |
+|23.4|2 | Projektin muokkauksen ideointia |
+|24.4|4 | Eri ideoiden testausta ja projekti muokkausta |
+|25.5|4 | Projektin muokkausta ja testausta |
+|27.5|4 | Teksti editori idean testaus ja luominen|
+|28.4|10| Käyttäjä tietokannan muokkaus salasanaa varten |
+|28.4|  | Käyttöliittymän muokkaus |
+|28.4|  | Pääkäyttäjän luominen |
+|28.4|  | Pääkäyttäjä valikon luominen |
+|28.4|  | Projetin dokumentointi |
 
-- Tuntien yhteinen summa on 73.
+- Tuntien yhteinen summa on 97.
 
 | Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
 | ------------- |:-------------:|  -----:|     
@@ -61,7 +70,7 @@
 | Siirtyminen takaisin päävalikkoon | On | 7.4 |
 | Sovelluksen profiilinhallinta käyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan | |
 | Profiilinhallinnan valikko | On | 31.3 |
-| Profiilin luominen | Perusidea toimii, mutta vaatii vielä muokkausta | |
+| Profiilin luominen | Perusidea toimii, mutta vaatii vielä muokkausta | 19.4 |
 | Tiedoston luominen profiilista | Perusidea toimii, mutta vaati vielä muokkausta | 19.4 |
 | Profiilin resetointi | On | 19.4 |
 | Siirtyminen takaisin päävalikkoon |On | 31.3 |
