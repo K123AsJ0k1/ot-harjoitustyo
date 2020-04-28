@@ -147,5 +147,13 @@ Käyttäjän valittua poistettava ominaisuus ja painettua remove ability painike
 
 Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan listassa valitun rivin ja sen sisältämät tiedot, jonka antamat tiedot käyttöliittymä lähettää UIAbilityLogiksille, joka ensin luo String taulun saadusta merkkijonosta ja sen jälkeen UiABilityLogic lähettää id pyynnön rajapinnan kautta parametrien tietokannoille. Saatuaan tarvitut id, se luo niistä Abilitydatabase mukaisen merkkijonon, jonka se lähettää rajapinnan kautta tietokannalle. Abilitydatabasen lähetettyä truen, sen tarkastetaan, jonka jälkeen siirrytään takaisin käyttöliittymään. Käyttöliittmän listasta poistetaan valittu ominaisuus ja tämä saa käyttöliittän pudottamaan sen listasta, jolloin käyttäjä ei näe kyseistä ominaisuutta enää listassa.
 
+**Ominaisuuden valitseminen**
+
+Käyttäjän valittua haluamansa ominaisuuden ja paineuttaan choose ability painikettta, etenee sovelluksen kontrolli seuraavasti:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20valitsemisen%20sekvenssikaavio.png)
+
+Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan listassa valitun rivin ja sen sisältämät tiedot, jonka antamat tiedot käyttöliittymä tarkistaa ja sitten lähettää UIAbilityLogiksille, joka luo String taulun saadusta merkkijonosta ja sen jälkeen luo niistä halutun merkkijonon. Merkkijonon valmistuttua, se lähetään takaisin käyttöliittymään jossa se asetettaan choosenAbility, leftOverParameters ja Label olion arvoksi ja sen jälkeen käyttöliittymä kutsuu createProfileScene oliota ja näin käyttöliittymä siirtyy luo profiili sceneen.
+
 
 # Ohjelman rakenteeseen jääneet heikkoudet
