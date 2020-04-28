@@ -75,7 +75,7 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
 
 FileWriterInterface mahdollistaa tiedostojen tallentamisen ja siihen tarvittu käyttöliittymä dialogin, TextRefineryInterface mahdollistaa käyttöliittymän antaman profiili tekstin muokkauksen, TextTempalteInterface mahdollistaa erilaisten profiili mallien tuomisen käyttöliittymään ja ability olio mahdollistaa käyttöliittymässä käytety listat.
 
-Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (19.4.2020) sovelluslogiikan suhdetta UserInterfacen, sen käyttämien rajapintojen, tietokantojen ja olioiden välillä
+Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (28.4.2020) sovelluslogiikan suhdetta eri rajapintojen välillä
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
 
 # Tietojen pysyväistallennus
