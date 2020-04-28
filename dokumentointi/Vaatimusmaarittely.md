@@ -36,7 +36,7 @@ Sovelluksessa on alussa ainoastaan yksi käyttäjärooli, joka on normaali käyt
 
 - käyttäjä näkee valikossa luo profiili, luo tiedosto profiilista, resetoi nykyinen profiili ja siirry takaisin päävalikkoon (Valmis)
  - luo profiili mahdollistaa tietokannassa olevien ominaisuuksien käyttämisen profiilin luomisessa (Valmis)
- - luo tiedosto profiilista mahdollistaa valmiista profiilista generoidun tiedoston luomisen 
+ - luo tiedosto profiilista mahdollistaa valmiista profiilista generoidun tiedoston luomisen (Valmis)
  - resetoi nykyinen profiili mahdollistaa luodun profiilin tyhjentämisen (Valmis)
  - siirry takaisin siirtää käyttäjän takaisin pääkäyttöliittymään (Valmis)
    
@@ -44,22 +44,22 @@ Sovelluksessa on alussa ainoastaan yksi käyttäjärooli, joka on normaali käyt
 
 Perusversion valmistumisen jälkeen sitä tullaan täydentämään ajan salliessa esimerkiksi seuraavilla toiminnallisuuksilla
 
-- tietokannassa olevien ominaisuuksien tarkastelu
-- profiilien tallentaminen tietokantaan
-- tietokannassa olevien profiilien tarkastaminen
-- tietokannassa olevien ominaisuuksien muokkaus
-- tietokannassa olevien profiilien muokkaus
-- muiden käyttäjien omnaisuuksien ja profiilien tarkastelu
-- käyttäjän profiilin monipuolisuus ja muokkaaminen
-- käyttäjä tiimit ja niihin liittyvän jakamisominaisuudet
-- pääkäyttäjän luominen 
+- tietokannassa olevien ominaisuuksien tarkastelu (Melkein valmis)
+- profiilien tallentaminen tietokantaan (Ei valmis)
+- tietokannassa olevien profiilien tarkastaminen (Ei valmis)
+- tietokannassa olevien ominaisuuksien muokkaus (Ei valmis)
+- tietokannassa olevien profiilien muokkaus (Ei valmis)
+- muiden käyttäjien omnaisuuksien ja profiilien tarkastelu (Ei valmis)
+- käyttäjän profiilin monipuolisuus ja muokkaaminen (Ei valmis)
+- käyttäjä tiimit ja niihin liittyvän jakamisominaisuudet (Ei valmis)
+- pääkäyttäjän luominen (Valmis)
 - käyttäjien salasana tarkastuksen ja tallennuksen luominen (Valmis)
-- sovelluksen käyttäminen yksityisessä tilassa ilman käyttäjätunnusten kysymistä
-- pääkäyttäjien sovelluksen ylläpito työkalut 
-- olemassa olevien käyttäjä tunnusten ja niihin liittyvien ominaisuuksien ja profiilien poisto
-- ominaisuuksien ja profiilien paremmusjärjestys
-- muiden käyttäjien ominaisuuksien ja profiilien hyödyntäminen
-- uusien ominaisuuksien ja profiilien luominen satunnaisuudella 
+- sovelluksen käyttäminen yksityisessä tilassa ilman käyttäjätunnusten kysymistä (Ei valmis)
+- pääkäyttäjien sovelluksen ylläpito työkalut (Ei valmis)
+- olemassa olevien käyttäjä tunnusten ja niihin liittyvien ominaisuuksien ja profiilien poisto (Ei valmis)
+- ominaisuuksien ja profiilien paremmusjärjestys (Ei valmis)
+- muiden käyttäjien ominaisuuksien ja profiilien hyödyntäminen (Ei valmis)
+- uusien ominaisuuksien ja profiilien luominen satunnaisuudella (Ei valmis)
 
 
 
