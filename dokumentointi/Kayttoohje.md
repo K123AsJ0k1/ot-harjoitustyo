@@ -72,14 +72,18 @@ Profiilin luonnista voidaan siirtyä ominaisuuden luontiin painamalla oikeaa hii
 
 # Profiilin muuttaminen tiedostoksi
 
-
+Profiili valikosta voidaan siirtyä profillin luomiseen tiedostoksi näkymään, jossa näkyy editorissa luotu teksti ja jossa painamalla save voidaan siirtyä tallenna nimellä näkymään, ja taas return palauttaa takaisin profiili valikkoon.
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20muuta%20profilli%20tiedostoksi%20n%C3%A4kym%C3%A4.PNG)
 
 # Tallenna tiedosto näkymä
 
+Luo profiilista tiedosto näkymästä voidaan siirtyä painamalla save tallenna nimellä näkymään, jossa voidaan standardin tapaan valita tiedoston paikka ja nimi.Painamalla tallenna tiedosto tallentuu ja painamalla peruuta palataan takaisin luo profiilista tiedostoon näkymään.
+
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20tallenna%20tiedosto%20n%C3%A4kym%C3%A4.PNG)
 
 # Pääkäyttäjän valikko
+
+Päävalikosta voidaan siirtyä pääkäyttäjä valikkoon, jos käyttäjä on oikea ja siellä tullaan tulevaisuudessa varastoimaan pääkäyttäjän työkaluja.
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4k%C3%A4ytt%C3%A4j%C3%A4%20valikko%20n%C3%A4kym%C3%A4.PNG)
