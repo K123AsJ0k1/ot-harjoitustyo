@@ -6,7 +6,7 @@
 
 # Sovelluslogiikka
 
-Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltään UsernameDatabase, ClassDatabase, NameDatabase, DesriptionDatabase, RequrimentDatabase, RealityDatabaseja AbilityDatabase, joiden metodit keskustelevat rajapintojen DatabaseInterface ja UsernameInterfacen kautta käyttöliittymän kanssa ja jotka mahdollistavat tietokantojen luomisen, tietokantojen olemassaolon tarkastamisen, tiedon lisäämisen tietokantaan, tiedon tarkastamisen tietokannasta, tiedon id haun tietokannasta, tiedon identitetti haun tietokannasta, listan luomisen tietokannasta, rajoitetun listan luomisen tietokannasta, tiedon poistamisen tietokannasta ja tietokannan poistamisen. Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle ja Ability olio, joka mahdollistaa tietokantojen yhdistämisen käyttöliittymän toiminnallisuuksiksi, jolloin käyttöliittymän toiminoille tarjotu metodit ovat:
+Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltään UsernameDatabase, ClassDatabase, NameDatabase, DesriptionDatabase, RequrimentDatabase, RealityDatabaseja AbilityDatabase, joiden metodit keskustelevat rajapintojen DatabaseInterface ja UsernameInterfacen kautta käyttöliittymän kanssa ja jotka mahdollistavat tietokantojen luomisen, tietokantojen olemassaolon tarkastamisen, tiedon lisäämisen tietokantaan, tiedon tarkastamisen tietokannasta, tiedon id haun tietokannasta, tiedon identitetti haun tietokannasta, listan luomisen tietokannasta, rajoitetun listan luomisen tietokannasta, tiedon poistamisen tietokannasta ja tietokannan poistamisen. Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle, Ability olio, joka mahdollistaa tietokantojen yhdistämisen käyttöliittymän toiminnallisuuksiksi, TextRefineryInterface, joka mahdollistaa eri teksti editointi tapojen tuomisen ja TextTemplateInterface, joka mahdollistaa erilaisten profiili mallien tuomisen, jolloin käyttöliittymän toiminoille tarjotu metodit ovat:
 
 **DatabaseInterface**
 
@@ -43,6 +43,20 @@ Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltä�
 - public String getRequrimentIdentity()
 - public String getRealityIdentity()
 - public String toString()
+
+**TextRefineryInterface**
+
+- public boolean givenTextLineChecker(String information)
+- public boolean givenTextLineHasSpaces(String information)
+- public String choosenAbilityIsFoundFromText(String information, String abilityInformation)
+- public List<String> choosenAbilitiesAreFoundFromText(String information, List<String> abilityList)
+- public Integer giveTextWordCount(String infromation)
+- public Integer giveCharacterCount(String infromation)
+  
+ **TextTemplateInterface**
+ 
+ -public String simpleMaker()
+
 
 Tiivistettynä DatabaseInterface mahdollistaa tietokantojen hallitsemisen, UsernameInterface mahdollistaa käyttäjien hallitsemisen, FileWriterInterface mahdollistaa tiedostojen luonnin hallitsemisen ja Ability-olio mahdollistaa tietokantojen tiedon keräämisen käyttöliittymän ymmärtään muotoon.
 
