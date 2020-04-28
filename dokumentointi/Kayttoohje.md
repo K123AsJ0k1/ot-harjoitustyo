@@ -84,6 +84,6 @@ Luo profiilista tiedosto näkymästä voidaan siirtyä painamalla save tallenna 
 
 # Pääkäyttäjän valikko
 
-Päävalikosta voidaan siirtyä pääkäyttäjä valikkoon, jos käyttäjä on oikea ja siellä tullaan tulevaisuudessa varastoimaan pääkäyttäjän työkaluja.
+Päävalikosta voidaan siirtyä pääkäyttäjä valikkoon, jos käyttäjä on oikea ja siellä tullaan tulevaisuudessa varastoimaan pääkäyttäjän työkaluja.Return palauttaa takaisin päävalikkoon ja taas inspect information in parameter and ability databases ei tee mitään.
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4k%C3%A4ytt%C3%A4j%C3%A4%20valikko%20n%C3%A4kym%C3%A4.PNG)
