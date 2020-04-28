@@ -60,13 +60,19 @@ Päävalikosta voidaan siirtyä profiili valikkoon, jossa näkyy luo profiili, l
 
 # Profiilin luominen
 
+Profiili valikosta voidaan siirtyä profiilin luontiin, jossa voidaan luoda teksti dokumentti eri työkalujen avulla ja jotka voidaan avata painamalla oikeata hiiri näppäintä, taas editorista voidaan poistua painamalla yläpalkin exit profile creatoria ja valitsemalla haluttu tilanne.
+
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20profiili%20luoja%20n%C3%A4kym%C3%A4.PNG)
 
 # Ominaisuuden valitseminen
 
+Profiilin luonnista voidaan siirtyä ominaisuuden luontiin painamalla oikeaa hiiri näppäintä ja valitsemalla choose ability, itse näkymässä taas listasta painamalla haluttu ominaisuus ja painamalla choose ability palataan takaisin profiilin luontiin. Taas return palauttaa ilman ominaisuuden valitsemista.
+
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20valitse%20ominaisuus%20n%C3%A4kym%C3%A4.PNG)
 
 # Profiilin muuttaminen tiedostoksi
+
+
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20muuta%20profilli%20tiedostoksi%20n%C3%A4kym%C3%A4.PNG)
 
