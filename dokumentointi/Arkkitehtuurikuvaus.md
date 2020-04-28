@@ -145,5 +145,7 @@ Käyttäjän valittua poistettava ominaisuus ja painettua remove ability painike
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20poistamisen%20sekvenssikaavio.png)
 
+Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan listassa valitun rivin ja sen sisältämät tiedot, jonka antamat tiedot käyttöliittymä lähettää UIAbilityLogiksille, joka ensin luo String taulun saadusta merkkijonosta ja sen jälkeen UiABilityLogic lähettää id pyynnön rajapinnan kautta parametrien tietokannoille. Saatuaan tarvitut id, se luo niistä Abilitydatabase mukaisen merkkijonon, jonka se lähettää rajapinnan kautta tietokannalle. Abilitydatabasen lähetettyä truen, sen tarkastetaan, jonka jälkeen siirrytään takaisin käyttöliittymään. Käyttöliittmän listasta poistetaan valittu ominaisuus ja tämä saa käyttöliittän pudottamaan sen listasta, jolloin käyttäjä ei näe kyseistä ominaisuutta enää listassa.
+
 
 # Ohjelman rakenteeseen jääneet heikkoudet
