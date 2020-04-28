@@ -6,7 +6,17 @@
 
 # Sovelluslogiikka
 
-Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltään UsernameDatabase, ClassDatabase, NameDatabase, DesriptionDatabase, RequrimentDatabase, RealityDatabaseja AbilityDatabase, joiden metodit keskustelevat rajapintojen DatabaseInterface ja UsernameInterfacen kautta käyttöliittymän kanssa ja jotka mahdollistavat tietokantojen luomisen, tietokantojen olemassaolon tarkastamisen, tiedon lisäämisen tietokantaan, tiedon tarkastamisen tietokannasta, tiedon id haun tietokannasta, tiedon identitetti haun tietokannasta, listan luomisen tietokannasta, rajoitetun listan luomisen tietokannasta, tiedon poistamisen tietokannasta ja tietokannan poistamisen. Lisäksi on olemassa rajapinta FileWriterInterface, joka mahdollistaa tiedostojen luomisen toiminnallisuuden käyttöliittymälle ja Ability olio, joka mahdollistaa tietokantojen yhdistämisen käyttöliittymän toiminnallisuuksiksi, jolloin käyttöliittymän toiminoille tarjotu metodit ovat:
+Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltään:
+
+- UsernameDatabase
+- ClassDatabase
+- NameDatabase
+- DesriptionDatabase
+- RequrimentDatabase
+- RealityDatabase
+- AbilityDatabase
+
+Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterface ja UsernameInterface kautta, jotka tarjoavat metodit: 
 
 **DatabaseInterface**
 
@@ -20,21 +30,40 @@ Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltä�
 - public List<String> showDatabaseAsARestrictedList(String infromation)
 - public boolean removeInformation(String information)
 - public boolean removeDatabase() throws Exception
-
+  
 **UsernameInterface**
 
 - public boolean createUsernameDatabase() throws Exception
 - public boolean usernameDatabaseExists()
-- public boolean addUserInformation(String information)
+- public boolean addUserInformation(String information, String secondInformation)
 - public boolean searchUserInformation(String information)
--  public Integer searchUsernameId(String information)
+- public boolean userPasswordCheck(String username, String password)
+- public Integer searchUsernameId(String information)
 - public boolean removeUserInformation(String information)
 - public boolean removeDatabase() throws Exception
+
+Kummankin rajapinnan metodit mahdollistavat perustoiminnot, kuten tiedot lisäyksen, haun, tarkastuksen ja poistamisen, mutta DatabaseInterface mahdollistaa myös tietokannan listaamisen, joko kokonaisena tai rajoitettuna.  
+
+Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja TextTemplateInterface ja lisäksi Ability-olio, joiden metodit ovat
 
 **FileWriterInterface**
 
 - public boolean saveTextAsAFile(String information, File file)
+- public void showSaveFileDialog(Stage primaryStage, String text)
 
+**TextRefineryInterface**
+
+- public boolean givenTextLineChecker(String information)
+- public boolean givenTextLineHasSpaces(String information)
+- public String choosenAbilityIsFoundFromText(String information, String abilityInformation)
+- public List<String> choosenAbilitiesAreFoundFromText(String information, List<String> abilityList)
+- public Integer giveTextWordCount(String infromation)
+- public Integer giveCharacterCount(String infromation)
+  
+ **TextTemplateInterface**
+ 
+ -public String simpleMaker()
+  
 **Ability**
 
 - public String getClassIdentity()
@@ -44,9 +73,9 @@ Sovelluksen perusversion datamalli koostuu seitsemästä tietokannasta nimiltä�
 - public String getRealityIdentity()
 - public String toString()
 
-Tiivistettynä DatabaseInterface mahdollistaa tietokantojen hallitsemisen, UsernameInterface mahdollistaa käyttäjien hallitsemisen, FileWriterInterface mahdollistaa tiedostojen luonnin hallitsemisen ja Ability-olio mahdollistaa tietokantojen tiedon keräämisen käyttöliittymän ymmärtään muotoon.
+FileWriterInterface mahdollistaa tiedostojen tallentamisen ja siihen tarvittu käyttöliittymä dialogin, TextRefineryInterface mahdollistaa käyttöliittymän antaman profiili tekstin muokkauksen, TextTempalteInterface mahdollistaa erilaisten profiili mallien tuomisen käyttöliittymään ja ability olio mahdollistaa käyttöliittymässä käytety listat.
 
-Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (19.4.2020) sovelluslogiikan suhdetta UserInterfacen, sen käyttämien rajapintojen, tietokantojen ja olioiden välillä
+Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (28.4.2020) sovelluslogiikan suhdetta eri rajapintojen välillä
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
 
 # Tietojen pysyväistallennus
