@@ -88,9 +88,9 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded1 = databaseTest.addUserInformation("Test");
+        boolean isAdded1 = databaseTest.addUserInformation("Test","Test");
         assertEquals(true, isAdded1);
-        boolean isAdded2 = databaseTest.addUserInformation("Test");
+        boolean isAdded2 = databaseTest.addUserInformation("Test","Test");
         assertEquals(false, isAdded2);
         boolean isRemoved = databaseTest.removeUsernameDatabase();
         assertEquals(true, isRemoved);
@@ -99,7 +99,7 @@ public class usernameDatabaseTest {
     @Test
     public void usernameCantBeAddedIntoNoExistingDatabase() throws Exception {
         UsernameInterface databaseTest = new UsernameDatabase();
-        boolean isntAdded = databaseTest.addUserInformation("Test");
+        boolean isntAdded = databaseTest.addUserInformation("Test","Test");
         assertEquals(false, isntAdded);
     }
     
@@ -108,7 +108,7 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded = databaseTest.addUserInformation("Test");
+        boolean isAdded = databaseTest.addUserInformation("Test","Test");
         assertEquals(true, isAdded);
         boolean isFound = databaseTest.searchUserInformation("Test");
         assertEquals(true, isFound);
@@ -121,11 +121,11 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded1 = databaseTest.addUserInformation("Test1");
+        boolean isAdded1 = databaseTest.addUserInformation("Test1","Test1");
         assertEquals(true, isAdded1);
-        boolean isAdded2 = databaseTest.addUserInformation("Test2");
+        boolean isAdded2 = databaseTest.addUserInformation("Test2","Test2");
         assertEquals(true, isAdded2);
-        boolean isAdded3 = databaseTest.addUserInformation("Test3");
+        boolean isAdded3 = databaseTest.addUserInformation("Test3","Test3");
         assertEquals(true, isAdded3);
         boolean isFound = databaseTest.searchUserInformation("Test2");
         assertEquals(true, isFound);
@@ -138,11 +138,11 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded1 = databaseTest.addUserInformation("Test1");
+        boolean isAdded1 = databaseTest.addUserInformation("Test1","Test1");
         assertEquals(true, isAdded1);
-        boolean isAdded2 = databaseTest.addUserInformation("Test2");
+        boolean isAdded2 = databaseTest.addUserInformation("Test2","Test2");
         assertEquals(true, isAdded2);
-        boolean isAdded3 = databaseTest.addUserInformation("Test3");
+        boolean isAdded3 = databaseTest.addUserInformation("Test3","Test3");
         assertEquals(true, isAdded3);
         boolean isntFound = databaseTest.searchUserInformation("Test4");
         assertEquals(false, isntFound);
@@ -155,7 +155,7 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded = databaseTest.addUserInformation("Test");
+        boolean isAdded = databaseTest.addUserInformation("Test","Test");
         assertEquals(true, isAdded);        
         boolean isFound = databaseTest.searchUserInformation("Test");
         assertEquals(true, isFound);
@@ -170,15 +170,15 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded1 = databaseTest.addUserInformation("Test1");
+        boolean isAdded1 = databaseTest.addUserInformation("Test1","Test1");
         assertEquals(true, isAdded1);        
         boolean isFound1 = databaseTest.searchUserInformation("Test1");
         assertEquals(true, isFound1);
-        boolean isAdded2 = databaseTest.addUserInformation("Test2");
+        boolean isAdded2 = databaseTest.addUserInformation("Test2","Test2");
         assertEquals(true, isAdded2);        
         boolean isFound2 = databaseTest.searchUserInformation("Test2");
         assertEquals(true, isFound2);
-        boolean isAdded3 = databaseTest.addUserInformation("Test3");
+        boolean isAdded3 = databaseTest.addUserInformation("Test3","Test3");
         assertEquals(true, isAdded3);        
         boolean isFound3 = databaseTest.searchUserInformation("Test3");
         assertEquals(true, isFound3);
@@ -200,15 +200,15 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded1 = databaseTest.addUserInformation("Test1");
+        boolean isAdded1 = databaseTest.addUserInformation("Test1","Test1");
         assertEquals(true, isAdded1);        
         boolean isFound1 = databaseTest.searchUserInformation("Test1");
         assertEquals(true, isFound1);
-        boolean isAdded2 = databaseTest.addUserInformation("Test2");
+        boolean isAdded2 = databaseTest.addUserInformation("Test2","Test2");
         assertEquals(true, isAdded2);        
         boolean isFound2 = databaseTest.searchUserInformation("Test2");
         assertEquals(true, isFound2);
-        boolean isAdded3 = databaseTest.addUserInformation("Test3");
+        boolean isAdded3 = databaseTest.addUserInformation("Test3","Test3");
         assertEquals(true, isAdded3);        
         boolean isFound3 = databaseTest.searchUserInformation("Test3");
         assertEquals(true, isFound3);
@@ -238,15 +238,15 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded1 = databaseTest.addUserInformation("Test1");
+        boolean isAdded1 = databaseTest.addUserInformation("Test1","Test1");
         assertEquals(true, isAdded1);        
         boolean isFound1 = databaseTest.searchUserInformation("Test1");
         assertEquals(true, isFound1);
-        boolean isAdded2 = databaseTest.addUserInformation("Test2");
+        boolean isAdded2 = databaseTest.addUserInformation("Test2","Test2");
         assertEquals(true, isAdded2);        
         boolean isFound2 = databaseTest.searchUserInformation("Test2");
         assertEquals(true, isFound2);
-        boolean isAdded3 = databaseTest.addUserInformation("Test3");
+        boolean isAdded3 = databaseTest.addUserInformation("Test3","Test3");
         assertEquals(true, isAdded3);        
         boolean isFound3 = databaseTest.searchUserInformation("Test3");
         assertEquals(true, isFound3);
@@ -268,7 +268,7 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded = databaseTest.addUserInformation("Test");
+        boolean isAdded = databaseTest.addUserInformation("Test","Test");
         assertEquals(true, isAdded);
         boolean isFound = databaseTest.searchUserInformation("Test");
         assertEquals(true, isFound);
@@ -283,7 +283,7 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded = databaseTest.addUserInformation("Test");
+        boolean isAdded = databaseTest.addUserInformation("Test","Test");
         assertEquals(true, isAdded);
         boolean isFound = databaseTest.searchUserInformation("Test");
         assertEquals(true, isFound);
@@ -304,19 +304,19 @@ public class usernameDatabaseTest {
         UsernameInterface databaseTest = new UsernameDatabase();
         boolean isCreated = databaseTest.createUsernameDatabase();
         assertEquals(true, isCreated);
-        boolean isAdded1 = databaseTest.addUserInformation("Test1");
+        boolean isAdded1 = databaseTest.addUserInformation("Test1","Test1");
         assertEquals(true, isAdded1);
         boolean isFound1 = databaseTest.searchUserInformation("Test1");
         assertEquals(true, isFound1);
         Integer id1 = databaseTest.searchUsernameId("Test1");
         assertEquals(1, id1.intValue());
-        boolean isAdded2 = databaseTest.addUserInformation("Test2");
+        boolean isAdded2 = databaseTest.addUserInformation("Test2","Test2");
         assertEquals(true, isAdded2);
         boolean isFound2 = databaseTest.searchUserInformation("Test2");
         assertEquals(true, isFound2);
         Integer id2 = databaseTest.searchUsernameId("Test2");
         assertEquals(2, id2.intValue());
-        boolean isAdded3 = databaseTest.addUserInformation("Test3");
+        boolean isAdded3 = databaseTest.addUserInformation("Test3","Test3");
         assertEquals(true, isAdded3);
         boolean isFound3 = databaseTest.searchUserInformation("Test3");
         assertEquals(true, isFound3);

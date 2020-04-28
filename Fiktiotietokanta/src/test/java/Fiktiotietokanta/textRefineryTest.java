@@ -29,7 +29,6 @@ public class textRefineryTest {
         testList.add("hei,koi,hoi,toi,loi");
         testList.add("mina,sina,te,me,he");
         List<String> gottenList = test.choosenAbilitiesAreFoundFromText("hei ja koi ja hoi ja toi ja loi ja mina ja sina ja te ja me ja he",testList);
-        System.out.println(gottenList.toString());
     }
     
     

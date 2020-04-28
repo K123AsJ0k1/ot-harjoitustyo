@@ -38,8 +38,8 @@ public class UsernameDatabase implements UsernameInterface {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
-            command.execute("CREATE TABLE Usernames (id INTEGER PRIMARY KEY, Username TEXT UNIQUE);");
-            command.execute("CREATE INDEX idx_Username ON Usernames (Username);");
+            command.execute("CREATE TABLE Usernames (id INTEGER PRIMARY KEY, Username TEXT UNIQUE, Password TEXT UNIQUE);");
+            command.execute("CREATE INDEX idx_Username ON Usernames (Username,Password);");
             command.close();
             databaseExists = true;
             return true;
@@ -49,20 +49,17 @@ public class UsernameDatabase implements UsernameInterface {
         return false;
     }
     
-    
-    
-
     @Override
     public boolean usernameDatabaseExists()  {
         return databaseExists;
     }
-    
-    
+      
     @Override
-    public boolean addUserInformation(String username) {
+    public boolean addUserInformation(String username, String password) {
         try {
-            PreparedStatement command = connection.prepareStatement("INSERT INTO Usernames(Username) VALUES (?);");
+            PreparedStatement command = connection.prepareStatement("INSERT INTO Usernames(Username,Password) VALUES (?,?);");
             command.setString(1, username);
+            command.setString(2, password);
             command.executeUpdate();
             command.close();
             return true;
@@ -101,30 +98,6 @@ public class UsernameDatabase implements UsernameInterface {
         return false;
     }
     
-    
-    
-    @Override
-    public Integer searchUsernameId(String username) {
-       
-        try {
-            PreparedStatement command = connection.prepareStatement("SELECT id FROM Usernames WHERE Username=?;");
-            command.setString(1, username);
-            ResultSet querySet = command.executeQuery();
-            int userId = 0;
-            if (querySet.next()) {
-                userId = querySet.getInt("id");
-            }
-            querySet.close();
-            command.close();
-            
-            return userId;
-                    
-        } catch (SQLException k) {
-            
-        }
-        return 0;
-    }
-
     @Override
     public boolean removeUserInformation(String username)  {
         try {
@@ -150,6 +123,57 @@ public class UsernameDatabase implements UsernameInterface {
             return true;
         } catch (SQLException k) {
            
+        }
+        return false;
+    }
+
+    @Override
+    public Integer searchUsernameId(String username) {
+       
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT id FROM Usernames WHERE Username=?;");
+            command.setString(1, username);
+            ResultSet querySet = command.executeQuery();
+            int userId = 0;
+            if (querySet.next()) {
+                userId = querySet.getInt("id");
+            }
+            querySet.close();
+            command.close();
+            
+            return userId;
+                    
+        } catch (SQLException k) {
+            
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean userPasswordCheck(String username, String password) {
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT Username,Password FROM Usernames;");
+            ResultSet querySet = command.executeQuery();
+            Boolean usernameExists = false;
+            while (querySet.next()) {
+                String searchedUsername = querySet.getString("Username");
+                String searchedPassword = querySet.getString("Password");
+                if (searchedUsername.equals(username) && searchedPassword.equals(password)) {
+                    usernameExists = true;
+                    break;
+                }
+            }
+            querySet.close();
+            command.close();
+
+            if (usernameExists) {
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException k) {
+            
         }
         return false;
     }

@@ -51,6 +51,7 @@ import domain.TextRefineryInterface;
 import domain.TextTemplateInterface;
 import java.io.File;
 import java.util.Arrays;
+import javafx.scene.control.PasswordField;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -75,6 +76,8 @@ public class UserInterface extends Application {
     private TextTemplateInterface templateFactory;
     private TextRefineryInterface textRefinery;
     private Integer usernameId;
+    private String username;
+    private String password;
     private String chosenAbility;
     private String leftOverParameters;
     UiAbilityLogic uiAbilityLogic;
@@ -100,8 +103,10 @@ public class UserInterface extends Application {
         realityDatabase.createDatabase();
         abilityDatabase.createDatabase();
 
-        usernameDatabase.addUserInformation("Tester");
+        usernameDatabase.addUserInformation("Tester","Tester");
         usernameId = 0;
+        username = "";
+        password = "";
         chosenAbility = "";
         leftOverParameters = "";
 
@@ -121,12 +126,14 @@ public class UserInterface extends Application {
         Label loginerrorLogin = new Label("");
 
         TextField usernameInputLogin = new TextField();
+        PasswordField usernamePassowordInputLogin = new PasswordField();
 
         layoutLogin.add(titleLogin, 0, 0);
         layoutLogin.add(usernameInputLogin, 0, 1);
-        layoutLogin.add(loginLogin, 0, 2);
-        layoutLogin.add(signInLogin, 0, 3);
-        layoutLogin.add(loginerrorLogin, 0, 4);
+        layoutLogin.add(usernamePassowordInputLogin, 0, 2);
+        layoutLogin.add(loginLogin, 0, 3);
+        layoutLogin.add(signInLogin, 0, 4);
+        layoutLogin.add(loginerrorLogin, 0, 5);
 
         layoutLogin.setPrefSize(300, 300);
         layoutLogin.setAlignment(Pos.CENTER);
@@ -139,20 +146,22 @@ public class UserInterface extends Application {
         //Sign in scene
         GridPane layoutSignIn = new GridPane();
 
-        Label titleSignIn = new Label("Write a username atleast 5 letters long");
+        Label titleSignIn = new Label("Write a username and password atleast 5 letters long");
         Button createSignIn = new Button("Create a new account");
         Button returnSignIn = new Button("Return");
         Label accountExistsErrorSignIn = new Label("");
         Label accountIsToShortErrorSignIn = new Label("");
 
         TextField createUsernameInputSignIn = new TextField();
+        PasswordField createPasswordInputLogin = new PasswordField();
 
         layoutSignIn.add(titleSignIn, 0, 0);
         layoutSignIn.add(createUsernameInputSignIn, 0, 1);
-        layoutSignIn.add(createSignIn, 0, 2);
-        layoutSignIn.add(returnSignIn, 0, 3);
-        layoutSignIn.add(accountExistsErrorSignIn, 0, 4);
-        layoutSignIn.add(accountIsToShortErrorSignIn, 0, 4);
+        layoutSignIn.add(createPasswordInputLogin, 0, 2);
+        layoutSignIn.add(createSignIn, 0, 3);
+        layoutSignIn.add(returnSignIn, 0, 4);
+        layoutSignIn.add(accountExistsErrorSignIn, 0, 5);
+        layoutSignIn.add(accountIsToShortErrorSignIn, 0, 6);
 
         layoutSignIn.setPrefSize(300, 300);
         layoutSignIn.setAlignment(Pos.CENTER);
@@ -167,12 +176,16 @@ public class UserInterface extends Application {
         Label titleMainMenu = new Label("What do you want to do?");
         Button ablitiesMenuMainMenu = new Button("Ability Menu");
         Button profilesMenuMainMenu = new Button("Profiles Menu");
+        Button adminMenuMainMenu = new Button("Admin Menu");
         Button signOutMainMenu = new Button("Sign out");
+        Label errorMainMenu = new Label("");
 
         layoutMainMenu.add(titleMainMenu, 0, 0);
         layoutMainMenu.add(ablitiesMenuMainMenu, 0, 1);
         layoutMainMenu.add(profilesMenuMainMenu, 0, 2);
-        layoutMainMenu.add(signOutMainMenu, 0, 3);
+        layoutMainMenu.add(adminMenuMainMenu, 0, 3);
+        layoutMainMenu.add(signOutMainMenu, 0, 4);
+        layoutMainMenu.add(errorMainMenu, 0, 5);
 
         layoutMainMenu.setPrefSize(300, 300);
         layoutMainMenu.setAlignment(Pos.CENTER);
@@ -223,6 +236,28 @@ public class UserInterface extends Application {
         layoutProfileMenu.setPadding(new Insets(20, 20, 20, 20));
 
         Scene screenProfileMenu = new Scene(layoutProfileMenu);
+        
+        // Admin menu Scene
+        
+        GridPane adminMenu = new GridPane();
+
+        Label titleAdminMenu = new Label("What do you want to do?");
+        Button inspectDatabasesAdminMenu = new Button("Inspect information in parameter and ability databases");
+        Button returnAdminMenu = new Button("Return to the main menu");
+        Label informationAdminMenu = new Label("");
+
+        adminMenu.add(titleAdminMenu, 0, 0);
+        adminMenu.add(inspectDatabasesAdminMenu, 0, 1);
+        adminMenu.add(returnAdminMenu, 0, 2);
+        adminMenu.add(informationAdminMenu, 0, 3);
+
+        adminMenu.setPrefSize(300, 300);
+        adminMenu.setAlignment(Pos.CENTER);
+        adminMenu.setVgap(10);
+        adminMenu.setHgap(10);
+        adminMenu.setPadding(new Insets(20, 20, 20, 20));
+
+        Scene adminMenuScene = new Scene(adminMenu);
         
         //Create file from profile scene
         
@@ -299,7 +334,6 @@ public class UserInterface extends Application {
         Button removeSelectedAbilityTableView = new Button("Remove selected ability");
         Button returnAbilityMenuTableView = new Button("Return");
         
-
         removeAbilityButtonLayout.getChildren().addAll(returnAbilityMenuTableView, removeSelectedAbilityTableView);
         TableView removeAbilityTableView = new TableView();
 
@@ -436,14 +470,22 @@ public class UserInterface extends Application {
         loginLogin.setOnAction((event) -> {
             loginerrorLogin.setText("");
             String givenUsernameLogin = usernameInputLogin.getText().trim();
-
+            String givenPasswordLogin = usernamePassowordInputLogin.getText().trim();
+            
             if (!(usernameDatabase.searchUserInformation(givenUsernameLogin))) {
                 loginerrorLogin.setText("Username doesn't exist");
                 return;
             }
-
+            
+            if (!(usernameDatabase.userPasswordCheck(givenUsernameLogin, givenPasswordLogin))) {
+                loginerrorLogin.setText("Password doesn't exist");
+                return;
+            }
+            username = givenUsernameLogin;
+            password = givenPasswordLogin;
             usernameId = usernameDatabase.searchUsernameId(givenUsernameLogin);
             usernameInputLogin.clear();
+            usernamePassowordInputLogin.clear();
             loginerrorLogin.setText("");
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(screenMainMenu);
@@ -454,6 +496,7 @@ public class UserInterface extends Application {
         signInLogin.setOnAction((event) -> {
             loginerrorLogin.setText("");
             usernameInputLogin.clear();
+            usernamePassowordInputLogin.clear();
             primaryStage.setTitle("Sign in screen");
             primaryStage.setScene(screenSignIn);
         });
@@ -464,8 +507,14 @@ public class UserInterface extends Application {
             accountIsToShortErrorSignIn.setText("");
             accountExistsErrorSignIn.setText("");
             String givenUsernameSignIn = createUsernameInputSignIn.getText().trim();
+            String givenPasswordSignIn = createPasswordInputLogin.getText().trim();
             if (givenUsernameSignIn.length() < 5) {
                 accountIsToShortErrorSignIn.setText("Given username is too short");
+                return;
+            }
+            
+            if (givenPasswordSignIn.length() < 5) {
+                accountIsToShortErrorSignIn.setText("Given password is too short");
                 return;
             }
 
@@ -473,8 +522,13 @@ public class UserInterface extends Application {
                 accountExistsErrorSignIn.setText("Given username already exists");
                 return;
             }
-
-            Boolean isAdded = usernameDatabase.addUserInformation(givenUsernameSignIn);
+            
+            if (usernameDatabase.userPasswordCheck(givenUsernameSignIn, givenPasswordSignIn)) {
+                accountExistsErrorSignIn.setText("Given password already exists");
+                return;
+            }
+            
+            Boolean isAdded = usernameDatabase.addUserInformation(givenUsernameSignIn,givenPasswordSignIn);
 
             if (!isAdded) {
                 accountExistsErrorSignIn.setText("Error has occured");
@@ -484,6 +538,7 @@ public class UserInterface extends Application {
             accountIsToShortErrorSignIn.setText("");
             accountExistsErrorSignIn.setText("");
             createUsernameInputSignIn.clear();
+            createPasswordInputLogin.clear();
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screenLogin);
         });
@@ -493,6 +548,7 @@ public class UserInterface extends Application {
             accountIsToShortErrorSignIn.setText("");
             accountExistsErrorSignIn.setText("");
             createUsernameInputSignIn.clear();
+            createPasswordInputLogin.clear();
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screenLogin);
         });
@@ -500,20 +556,43 @@ public class UserInterface extends Application {
         //Main menu transitions
         //Transition from main menu scene to ability menu scene when ability menu
         ablitiesMenuMainMenu.setOnAction((event) -> {
+            errorMainMenu.setText("");
             primaryStage.setTitle("Ability menu");
             primaryStage.setScene(screenAbilityMenu);
         });
-
+        //Transition from main menu scene to profile menu scene when profile menu
         profilesMenuMainMenu.setOnAction((event) -> {
+            errorMainMenu.setText("");
             primaryStage.setTitle("Profile menu");
             primaryStage.setScene(screenProfileMenu);
         });
+        
+        //Transition from main menu scene to profile menu scene when admin menu
+        adminMenuMainMenu.setOnAction((event) ->{
+            if (!(username.equals("Tester")) && !(password.equals("Tester"))) {
+                errorMainMenu.setText("Your user doesn't have admin privileges");
+                return;
+            }
+            
+            primaryStage.setTitle("Admin menu");
+            primaryStage.setScene(adminMenuScene);
+        });
+        
 
         //Transition from main menu scene to login scene when sign out
         signOutMainMenu.setOnAction((event) -> {
-            //usernameId=0;
+            usernameId = 0;
+            username = "";
+            password = "";
+            errorMainMenu.setText("");
             primaryStage.setTitle("Login screen");
             primaryStage.setScene(screenLogin);
+        });
+        
+        //Admin menu transitions
+        inspectDatabasesAdminMenu.setOnAction((event) ->{
+            
+            
         });
 
         //Ability menu transitions
@@ -569,6 +648,12 @@ public class UserInterface extends Application {
             String text = profileEditorCreateProfileMenu.getText().trim();
             profileViewSaveProfile.setText(text);
             fileWriter.showSaveFileDialog(primaryStage, text);
+        });
+        
+        //Admin menu transitions
+        returnAdminMenu.setOnAction((event) ->{
+            primaryStage.setTitle("Main menu");
+            primaryStage.setScene(screenMainMenu);
         });
         
         //Add ability menu transition
