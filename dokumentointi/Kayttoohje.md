@@ -16,9 +16,17 @@ Sovellus käynnistyy kirjautumisnäkymään:
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20kirjautumisn%C3%A4kym%C3%A4.PNG)
 
+Kirjautuminen onnistuu kirjoittamalla olemassaoleva käyttäjätunnus ja salasana syötekenttiin ja painamalla login
+
 # Uuden käyttäjän luominen
 
-|[alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20uuden%20k%C3%A4ytt%C3%A4j%C3%A4n%20luomisn%C3%A4kym%C3%A4.PNG)
+Kirjautumisnäkymästä on mahdollista siirtyä uuden käyttäjän luomisnäkymään painikkeella sign in.
+
+Uusi käyttäjä luodaan syöttämällä käyttäjä nimi ja salasana syötekenttiin ja painamalla create
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20uuden%20k%C3%A4ytt%C3%A4j%C3%A4n%20luomisn%C3%A4kym%C3%A4.PNG)
+
+Jos käyttäjän luominen onnistuu, palataan kirjautumis näkymään.
 
 # Päävalikko 
 
