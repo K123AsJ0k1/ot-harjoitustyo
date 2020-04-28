@@ -129,14 +129,49 @@ public class textRefineryTest {
     }
     
     @Test
-    public void choosenAbilityIsFoundFromTextIsCorrect() {
+    public void choosenAbilityIsFoundFromTextHasClass() {
         TextRefineryInterface test = new TextRefinery();
-        String givenInformation = "hei ja tei ja lei ja mei";
+        String givenInformation = "hei";
         String givenAbility = "hei,tei,goi,lei,mei";
         String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
-        assertEquals("goi", leftOverParameters);
+        assertEquals("tei,goi,lei,mei", leftOverParameters);
     }
             
+    @Test
+    public void choosenAbilityIsFoundFromTextHasName() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "tei";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("hei,goi,lei,mei", leftOverParameters);
+    }
+    
+    @Test
+    public void choosenAbilityIsFoundFromTextHasDescription() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "goi";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("hei,tei,lei,mei", leftOverParameters);
+    }
+    
+    @Test
+    public void choosenAbilityIsFoundFromTextHasRequriment() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "lei";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("hei,tei,goi,mei", leftOverParameters);
+    }
+    
+    @Test
+    public void choosenAbilityIsFoundFromTextHasReality() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "mei";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("hei,tei,goi,lei", leftOverParameters);
+    }
     
     
     
