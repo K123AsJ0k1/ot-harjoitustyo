@@ -6,6 +6,8 @@ Ohjelma on rakenteeltaan nelitasoinen, ja koodin pakkausrakenne on seuraava:
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkausrakenne.png)
 
+Pakkaus main sisältää sovelluksen käynnistykseen tarvitun mainin, pakkaus ui sisältää tarvitun käyttöliittymä koodin, pakkaus domain sisältää tarvittavat rajapinnat ja pakkaus dao sisältää käyttöliittymän tarvitsemat tietokannat. Lisäksi on huomioitava se, että pakkaus ui siirtää sovellusloogikan pakkauksille scene, service ja textlogic, missä scene pakkaus sisältää osan käyttöliittmän scene olioista, service sisältää osan sovelluslogiikasta ja textlogic sisältää käyttöliittymän tekstieditori sovelluslogiikan.
+
 # Käyttöliittymä
 
 Käyttöliittymä sisältää yksitoista erillistä näkymää 
