@@ -163,17 +163,17 @@ public class UiAbilityLogic {
      */
     public List<Ability> addAbilitiesIntoList(List<String> abilityList) {
         List<Ability> returnedList = new ArrayList<>();
-        abilityList.stream().map((ability) -> ability.split("/")).map((split) -> {
+        
+        for (String ability : abilityList) {
+            String[] split = ability.split("/");
             String classIdentity = classDatabase.searchInformationTextIdentity(split[0]);
             String nameIdentity = nameDatabase.searchInformationTextIdentity(split[1]);
             String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
             String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
             String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
             Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
-            return addedAbility;
-        })  .forEachOrdered((addedAbility) -> {
             returnedList.add(addedAbility);
-        });
+        }
         return returnedList;
     }
 
