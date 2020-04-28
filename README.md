@@ -17,7 +17,7 @@ Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia 
 
 [release 1](https://github.com/K123AsJ0k1/ot-harjoitustyo/releases/tag/viikko5)
 
-[release 2]
+[release 2](https://github.com/K123AsJ0k1/ot-harjoitustyo/releases/tag/viikko6)
 
 
 # Komentorivitoiminnot
