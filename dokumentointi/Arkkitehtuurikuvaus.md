@@ -88,7 +88,7 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
   
  **TextTemplateInterface**
  
- -public String simpleMaker()
+ - public String simpleMaker()
   
 **Ability**
 
@@ -114,13 +114,22 @@ Luokat noudattavat Data Access Object-suunnitelumallia ja ne voidaan tarpeen muk
 
 Alla olevat sekvenssikaaviot kuvaavat sovelluksen päätoiminallisuuden toimintalogiikkaa
 
+**Käyttäjän kirjaantuminen**
+Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus, salasana ja login painiketta painetaan, etenee sovelluksen kontrolli seuraavasti:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4n%20kirjautumisen%20sekvenssikaavio.png)
+
+Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja tarkastamaan ensiksi käyttäjä nimen olemassa olon ja sitten käyttäjän ja siihen liitetyn salasanan olemassa olon tietokannasta, jotka hyväksymisen jälkeen saavat käyttöliittymän lisäämään käyttäjän ja salasanan username ja password string olioihin ja hakemaan tietokannan antama id numeron käyttäjälle, asettaen sen usernameid olioon ja lopuksi kutsumaan screenMainMenu olion ja näin vaihten näkymän päävalikkoon.
+
+
+
 **Käyttäjän luominen**
 
 Käyttäjän luodessa uuden käyttäjän, eli hänen laitettuaan syötekentään haluamansa käyttäjän, salasanan ja painettuaan create username painiketta, etenee sovelluksen kontrolli seuraavasti: 
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4nluonnin%20sekvenssikaavio.png)
 
-Painikkeen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja tarkastamaan käyttäjä nimen ja salasanan pituuden, joiden on oltava vähintään 5 merkkiä pitkiä. Tarkastuksen jälkeen käyttöliittymä tarkastaa rajapinnan kautta, onko käyttäjä nimeä olemassa ja hyväksymisen jälkeen käyttäjä nimen ja salasanan olemassa olon tietokannasta, joiden antaessa false voi käyttöliittymä jatkaa käyttäjänimen ja salasanan lisäämistä tietokantaan. Lisäämisen tuottaessa true arvon ja tultua rajapinnan kautta, käyttöliittymä kutsuu screenMainMenu Scene oliota ja muuttaa näkymän päävalikoksi.
+Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja tarkastamaan käyttäjä nimen ja salasanan pituuden, joiden on oltava vähintään 5 merkkiä pitkiä. Tarkastuksen jälkeen käyttöliittymä tarkastaa rajapinnan kautta, onko käyttäjä nimeä olemassa ja hyväksymisen jälkeen käyttäjä nimen ja salasanan olemassa olon tietokannasta, joiden antaessa false voi käyttöliittymä jatkaa käyttäjänimen ja salasanan lisäämistä tietokantaan. Lisäämisen tuottaessa true arvon ja tultua rajapinnan kautta, käyttöliittymä kutsuu screenMainMenu Scene oliota ja muuttaa näkymän päävalikoksi.
 
 
 # Ohjelman rakenteeseen jääneet heikkoudet
