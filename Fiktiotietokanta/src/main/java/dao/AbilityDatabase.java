@@ -264,4 +264,9 @@ public class AbilityDatabase implements DatabaseInterface {
         } 
         return null;    
     }
+
+    @Override
+    public String getConnectionString() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

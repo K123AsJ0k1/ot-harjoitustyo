@@ -84,12 +84,12 @@ public class UserInterface extends Application {
     
     @Override
     public void init() throws Exception {
-        usernameDatabase = new UsernameDatabase();
-        classDatabase = new ClassDatabase();
-        nameDatabase = new NameDatabase();
-        descriptionDatabase = new DescriptionDatabase();
-        requrimentDatabase = new RequrimentDatabase();
-        realityDatabase = new RealityDatabase();
+        usernameDatabase = new UsernameDatabase("Normal");
+        classDatabase = new ClassDatabase("Normal");
+        nameDatabase = new NameDatabase("Normal");
+        descriptionDatabase = new DescriptionDatabase("Normal");
+        requrimentDatabase = new RequrimentDatabase("Normal");
+        realityDatabase = new RealityDatabase("Normal");
         abilityDatabase = new AbilityDatabase();
         fileWriter = new FileWriter();
         templateFactory = new TemplateMaker();

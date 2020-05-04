@@ -17,7 +17,7 @@ import service.Ability;
  *
  * @author niila
  */
-public class abilityTest {
+public class AbilityTest {
     
     @Test
     public void construtorWorks() {
@@ -40,5 +40,4 @@ public class abilityTest {
         String testToString = test.toString();
         assertEquals("Test/Test/Test/Test/Test", testToString);
     }
-    
 }

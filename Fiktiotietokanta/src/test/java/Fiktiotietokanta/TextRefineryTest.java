@@ -5,7 +5,6 @@
  */
 package Fiktiotietokanta;
 
-import textlogic.TextRefinery;
 import domain.TextRefineryInterface;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +14,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import textlogic.TextRefinery;
 
 /**
  *
  * @author niila
  */
-public class textRefineryTest {
+public class TextRefineryTest {
     
-    
+    //TextLineChecker tests
     @Test
     public void textLineCheckerWorks() {
         TextRefineryInterface test = new TextRefinery();
@@ -32,13 +32,13 @@ public class textRefineryTest {
     }
     
     @Test
-    public void textLineCheckerGivesFalse() {
+    public void textLineCheckerCatchesErrors() {
         TextRefineryInterface test = new TextRefinery();
         String exampleString = "dsaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
         boolean givenVerdict = test.givenTextLineChecker(exampleString);
         assertEquals(false, givenVerdict);
     }
-    
+    //TextSpaceChecker tests
     @Test
     public void textSpaceCheckerWorks() {
         TextRefineryInterface test = new TextRefinery();
@@ -48,13 +48,13 @@ public class textRefineryTest {
     }
     
     @Test
-    public void textSpaceCheckerGivesFalse() {
+    public void textSpaceCheckerCatchesErrors() {
         TextRefineryInterface test = new TextRefinery();
         String exampleString = "dsad dddddddddd dddddddd ddddd ddddd dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
         boolean givenVerdict = test.givenTextLineHasSpaces(exampleString);
         assertEquals(false, givenVerdict);
     }
-    
+    //TextWordCount tests
     @Test
     public void textWordCountWorks() {
         TextRefineryInterface test = new TextRefinery();
@@ -70,7 +70,7 @@ public class textRefineryTest {
         Integer givenWordCount = test.giveTextWordCount(exampleString);
         assertEquals(8, givenWordCount.intValue());
     }
-    
+    //TextCharacterCount tests
     @Test
     public void characterCountWorks() {
         TextRefineryInterface test = new TextRefinery();
@@ -87,7 +87,7 @@ public class textRefineryTest {
         assertEquals(22, givenCharacterCount.intValue());
     }
     
-    
+    //Choosenabilities tests
     @Test
     public void choosenAbilitiesAreFoundFromTextWorks() {
         TextRefineryInterface test = new TextRefinery();
@@ -129,7 +129,7 @@ public class textRefineryTest {
     }
     
     @Test
-    public void choosenAbilityIsFoundFromTextHasClass() {
+    public void classParameterIsFound() {
         TextRefineryInterface test = new TextRefinery();
         String givenInformation = "hei";
         String givenAbility = "hei,tei,goi,lei,mei";
@@ -138,7 +138,7 @@ public class textRefineryTest {
     }
             
     @Test
-    public void choosenAbilityIsFoundFromTextHasName() {
+    public void nameParameterIsFound() {
         TextRefineryInterface test = new TextRefinery();
         String givenInformation = "tei";
         String givenAbility = "hei,tei,goi,lei,mei";
@@ -147,7 +147,7 @@ public class textRefineryTest {
     }
     
     @Test
-    public void choosenAbilityIsFoundFromTextHasDescription() {
+    public void descriptionParameterIsFound() {
         TextRefineryInterface test = new TextRefinery();
         String givenInformation = "goi";
         String givenAbility = "hei,tei,goi,lei,mei";
@@ -156,7 +156,7 @@ public class textRefineryTest {
     }
     
     @Test
-    public void choosenAbilityIsFoundFromTextHasRequriment() {
+    public void requrimentParameterIsFound() {
         TextRefineryInterface test = new TextRefinery();
         String givenInformation = "lei";
         String givenAbility = "hei,tei,goi,lei,mei";
@@ -165,7 +165,7 @@ public class textRefineryTest {
     }
     
     @Test
-    public void choosenAbilityIsFoundFromTextHasReality() {
+    public void realityParameterIsFound() {
         TextRefineryInterface test = new TextRefinery();
         String givenInformation = "mei";
         String givenAbility = "hei,tei,goi,lei,mei";
@@ -173,8 +173,42 @@ public class textRefineryTest {
         assertEquals("hei,tei,goi,lei", leftOverParameters);
     }
     
+    @Test
+    public void descriptionParameterIsAdded() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "hei ja tei ja lei ja mei";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("goi", leftOverParameters);
+    }
+    
+    @Test
+    public void requrimentParameterIsAdded() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "hei ja tei ja goi ja mei";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("lei", leftOverParameters);
+    }
+    
+    @Test
+    public void realityParameterIsAdded() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "hei ja tei ja goi ja lei";
+        String givenAbility = "hei,tei,goi,lei,mei";
+        String leftOverParameters = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("mei", leftOverParameters);
+    }
     
     
+    @Test
+    public void choosenAbilityIsFoundCatchesError1() {
+        TextRefineryInterface test = new TextRefinery();
+        String givenInformation = "mei";
+        String givenAbility = "hei,tei,goi,lei";
+        String searchGivesEmpty = test.choosenAbilityIsFoundFromText(givenInformation, givenAbility);
+        assertEquals("", searchGivesEmpty);
+    }
     
     
     

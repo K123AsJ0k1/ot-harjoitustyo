@@ -23,15 +23,24 @@ public class NameDatabase implements DatabaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
-    
+    private String connectionRepresentation;
     
     /** Nimi tietokanta konstruktori.
     *
     * 
+     * @param useCondition
      * @throws java.lang.Exception virhe.
     */
-    public NameDatabase() throws Exception {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:namedatabase:connection");
+    public NameDatabase(String useCondition) throws Exception {
+        if (useCondition.equals("Normal")) {
+           this.connection = DriverManager.getConnection("jdbc:sqlite:namedatabase:connection"); 
+           this.connectionRepresentation = "jdbc:sqlite:namedatabase:connection";
+        }
+        if (useCondition.equals("Test")) {
+            this.connection = DriverManager.getConnection("jdbc:sqlite:namedatabasetest:connection"); 
+           this.connectionRepresentation = "jdbc:sqlite:namedatabasetest:connection";
+        }
+        
         this.databaseExists = false;           
     }
 
@@ -211,14 +220,18 @@ public class NameDatabase implements DatabaseInterface {
             
         } 
         
-        return null;
+        return databaseAsAList;
         
     }
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
-        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getConnectionString() {
+        return this.connectionRepresentation;
     }
     
 }

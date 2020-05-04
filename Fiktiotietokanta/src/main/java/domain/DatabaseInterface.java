@@ -31,6 +31,14 @@ public interface DatabaseInterface {
     */  
     public boolean databaseExists();
     
+    /** Lisää tietoa käyttäjä tietokantaan.
+    *
+    * 
+     * @return palauttaa tietokannan käyttämän yhteys merkkijonon.
+    */
+    
+    public String getConnectionString();
+    
     
     /** Lisää tietoa tietokantaan.
     * 

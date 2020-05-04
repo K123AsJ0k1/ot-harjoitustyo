@@ -21,12 +21,21 @@ public class RequrimentDatabase implements DatabaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
-    
+    private String connectionRepresentation;
     /** Vaatimus tietokannan konstruktori.
+     * @param useCondition annettu tila.
      * @throws java.lang.Exception virhe.
     */
-    public RequrimentDatabase() throws Exception {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabase:connection");
+    public RequrimentDatabase(String useCondition) throws Exception {
+        if (useCondition.equals("Normal")) {
+            this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabase:connection");
+            this.connectionRepresentation = "jdbc:sqlite:requrimentdatabase:connection";
+        }
+        if (useCondition.equals("Test")) {
+            this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabasetest:connection");
+            this.connectionRepresentation = "jdbc:sqlite:requrimentdatabasetest:connection";
+        }
+        
         this.databaseExists = false;
     } 
 
@@ -189,12 +198,17 @@ public class RequrimentDatabase implements DatabaseInterface {
             
         } 
         
-        return null;
+        return databaseAsAList;
     }
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getConnectionString() {
+        return this.connectionRepresentation;
     }
     
 }

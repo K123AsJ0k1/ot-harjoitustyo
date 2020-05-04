@@ -22,14 +22,24 @@ public class UsernameDatabase implements UsernameInterface {
 
     private Connection connection;
     private Boolean databaseExists;
+    private String connectionRepresentation;
 
     /**
     * Käyttäjä tietokannan konstruktori.
+     * @param useCondition annettu tila vaatimus.
     * @throws java.lang.Exception virhe.
     */
     
-    public UsernameDatabase() throws Exception {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
+    public UsernameDatabase(String useCondition) throws Exception {
+        if (useCondition.equals("Normal")) {
+           this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection"); 
+           connectionRepresentation = "jdbc:sqlite:usernamedatabase:connection";
+        }
+        if (useCondition.equals("Test")) {
+           this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabasetest:connection"); 
+           connectionRepresentation = "jdbc:sqlite:usernamedatabasetest:connection";
+        }
+        
         this.databaseExists = false;
     }
     
@@ -53,7 +63,7 @@ public class UsernameDatabase implements UsernameInterface {
     public boolean usernameDatabaseExists()  {
         return databaseExists;
     }
-      
+     
     @Override
     public boolean addUserInformation(String username, String password) {
         try {
@@ -176,6 +186,11 @@ public class UsernameDatabase implements UsernameInterface {
             
         }
         return false;
+    }
+
+    @Override
+    public String getConnectionString() {
+        return this.connectionRepresentation;
     }
     
    

@@ -23,14 +23,24 @@ public class DescriptionDatabase implements DatabaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
+    private String connectionRepresentation;
     
     /** Selitys tietokannan konstruktori.
     *
     * 
+     * @param useCondition annettu tila.
      * @throws java.lang.Exception virhe.
     */
-    public DescriptionDatabase() throws Exception {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabase:connection");
+    public DescriptionDatabase(String useCondition) throws Exception {
+        if (useCondition.equals("Normal")) {
+           this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabase:connection");
+           this.connectionRepresentation = "jdbc:sqlite:descriptiondatabase:connection";
+        }
+        if (useCondition.equals("Test")) {
+            this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabasetest:connection"); 
+            this.connectionRepresentation = "jdbc:sqlite:descriptiondatabasetest:connection";
+        }
+        
         this.databaseExists = false;
     }
 
@@ -41,7 +51,6 @@ public class DescriptionDatabase implements DatabaseInterface {
             command.execute("PRAGMA foreign_keys = ON;");
             command.execute("CREATE TABLE Descriptions (id INTEGER PRIMARY KEY, Description TEXT UNIQUE);");
             command.execute("CREATE INDEX idx_Description ON Descriptions (Description);");
-
             command.close();
             databaseExists = true;
             return true;
@@ -170,7 +179,7 @@ public class DescriptionDatabase implements DatabaseInterface {
             PreparedStatement command = connection.prepareStatement("SELECT Description FROM Descriptions;");
             ResultSet querySet = command.executeQuery();
             while (querySet.next()) {
-                String givenClass = querySet.getString("Descriptions");
+                String givenClass = querySet.getString("Description");
                 databaseAsAList.add(givenClass);
             }
             querySet.close();
@@ -179,12 +188,17 @@ public class DescriptionDatabase implements DatabaseInterface {
         } catch (SQLException k) {
             
         } 
-        return null;
+        return databaseAsAList;
     }
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getConnectionString() {
+        return this.connectionRepresentation;
     }
     
 }

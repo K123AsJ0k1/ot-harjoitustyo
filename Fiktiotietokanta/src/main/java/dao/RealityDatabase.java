@@ -21,12 +21,20 @@ public class RealityDatabase implements DatabaseInterface {
     
     private Connection connection;
     private Boolean databaseExists;
-    
+    private String connectionRepresentation;
     /** Todellisuus tietokanta konstruktori.
      * @throws java.lang.Exception virhe.
      */
-    public RealityDatabase() throws Exception {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabase:connection");
+    public RealityDatabase(String useCondition) throws Exception {
+        if (useCondition.equals("Normal")) {
+           this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabase:connection");
+           this.connectionRepresentation = "jdbc:sqlite:realitydatabase:connection";
+        }
+        if (useCondition.equals("Test")) {
+            this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabasetest:connection");
+            this.connectionRepresentation = "jdbc:sqlite:realitydatabasetest:connection";
+        }
+        
         this.databaseExists = false;
     }
 
@@ -188,12 +196,17 @@ public class RealityDatabase implements DatabaseInterface {
             
         } 
        
-        return null;
+        return databaseAsAList;
     }
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getConnectionString() {
+        return this.connectionRepresentation;
     }
     
 }

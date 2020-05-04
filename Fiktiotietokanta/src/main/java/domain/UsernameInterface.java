@@ -29,10 +29,19 @@ public interface UsernameInterface {
     /** Lisää tietoa käyttäjä tietokantaan.
     *
     * 
+     * @return palauttaa tietokannan käyttämän yhteys merkkijonon.
+    */
+    
+    public String getConnectionString();
+    
+    /** Lisää tietoa käyttäjä tietokantaan.
+    *
+    * 
      * @param information annettu tieto.
      * @param secondInformation annettu tieto.
      * @return palauttaa true, jos tieto on lisätty ja false jos ei.
     */
+    
     public boolean addUserInformation(String information, String secondInformation);
     
     /** Tarkastaa halutun tiedon tietokannasta.
