@@ -90,7 +90,7 @@ public class UserInterface extends Application {
         descriptionDatabase = new DescriptionDatabase("Normal");
         requrimentDatabase = new RequrimentDatabase("Normal");
         realityDatabase = new RealityDatabase("Normal");
-        abilityDatabase = new AbilityDatabase();
+        abilityDatabase = new AbilityDatabase("Normal");
         fileWriter = new FileWriter();
         templateFactory = new TemplateMaker();
         textRefinery = new TextRefinery();

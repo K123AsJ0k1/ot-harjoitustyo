@@ -22,13 +22,23 @@ public class AbilityDatabase implements DatabaseInterface {
 
     private Connection connection;
     private Boolean databaseExists;
+    private String connectionRepresentation;
 
     /**
      * Tietokannan konstruktori.
+     * @param useCondition annettu tila.
      * @throws SQLException virhe.
      */
-    public AbilityDatabase() throws SQLException {
-        this.connection = DriverManager.getConnection("jdbc:sqlite:abilitydatabase:connection");
+    public AbilityDatabase(String useCondition) throws SQLException {
+        if (useCondition.equals("Normal")) {
+            this.connection = DriverManager.getConnection("jdbc:sqlite:abilitydatabase:connection");
+            this.connectionRepresentation = "jdbc:sqlite:abilitydatabase:connection";
+        }
+        if (useCondition.equals("Test")) {
+            this.connection = DriverManager.getConnection("jdbc:sqlite:abilitydatabasetest:connection");
+            this.connectionRepresentation = "jdbc:sqlite:abilitydatabasetest:connection";
+        }
+        
         this.databaseExists = false;
     }
 
@@ -56,12 +66,37 @@ public class AbilityDatabase implements DatabaseInterface {
     @Override
     public boolean addInformation(String information) {
         String[] split = information.split("/");
+        
+        if (!(split.length == 6)) {
+            return false;
+        }
+        
+        Boolean check = false;
+        try {
+            Integer first = Integer.parseInt(split[0]);
+            Integer second = Integer.parseInt(split[1]);
+            Integer third = Integer.parseInt(split[2]);
+            Integer fourth = Integer.parseInt(split[3]);
+            Integer fifth = Integer.parseInt(split[4]);
+            Integer sixth = Integer.parseInt(split[5]);
+            check = true;
+        } catch (NumberFormatException nfe) {
+            
+        }
+        
+        if (!check) {
+            return false;
+        }
+        
+        
         int usernameId = Integer.valueOf(split[0]);
         int classId = Integer.valueOf(split[1]);
         int nameId = Integer.valueOf(split[2]);
         int descriptionId = Integer.valueOf(split[3]);
         int requrimentId = Integer.valueOf(split[4]);
         int realityId = Integer.valueOf(split[5]);
+        
+        
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Abilities(Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id) VALUES (?,?,?,?,?,?);");
             command.setInt(1, usernameId);
@@ -82,12 +117,35 @@ public class AbilityDatabase implements DatabaseInterface {
     @Override
     public boolean searchInformation(String information) {
         String[] split = information.split("/");
+        
+        if (!(split.length == 6)) {
+            return false;
+        }
+        
+        Boolean check = false;
+        try {
+            Integer first = Integer.parseInt(split[0]);
+            Integer second = Integer.parseInt(split[1]);
+            Integer third = Integer.parseInt(split[2]);
+            Integer fourth = Integer.parseInt(split[3]);
+            Integer fifth = Integer.parseInt(split[4]);
+            Integer sixth = Integer.parseInt(split[5]);
+            check = true;
+        } catch (NumberFormatException nfe) {
+            
+        }
+        
+        if (!check) {
+            return false;
+        }
+        
         int usernameId = Integer.valueOf(split[0]);
         int classId = Integer.valueOf(split[1]);
         int nameId = Integer.valueOf(split[2]);
         int descriptionId = Integer.valueOf(split[3]);
         int requrimentId = Integer.valueOf(split[4]);
         int realityId = Integer.valueOf(split[5]);
+        
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
             ResultSet querrySet = command.executeQuery();
@@ -120,6 +178,28 @@ public class AbilityDatabase implements DatabaseInterface {
     @Override
     public Integer searchInfromationId(String information) {
         String[] split = information.split("/");
+        
+        if (!(split.length == 6)) {
+            return 0;
+        }
+        
+        Boolean check = false;
+        try {
+            Integer first = Integer.parseInt(split[0]);
+            Integer second = Integer.parseInt(split[1]);
+            Integer third = Integer.parseInt(split[2]);
+            Integer fourth = Integer.parseInt(split[3]);
+            Integer fifth = Integer.parseInt(split[4]);
+            Integer sixth = Integer.parseInt(split[5]);
+            check = true;
+        } catch (NumberFormatException nfe) {
+            
+        }
+        
+        if (!check) {
+            return 0;
+        }
+        
         int usernameId = Integer.valueOf(split[0]);
         int classId = Integer.valueOf(split[1]);
         int nameId = Integer.valueOf(split[2]);
@@ -151,6 +231,28 @@ public class AbilityDatabase implements DatabaseInterface {
     @Override
     public boolean removeInformation(String information) {
         String[] split = information.split("/");
+        
+        if (!(split.length == 6)) {
+            return false;
+        }
+        
+        Boolean check = false;
+        try {
+            Integer first = Integer.parseInt(split[0]);
+            Integer second = Integer.parseInt(split[1]);
+            Integer third = Integer.parseInt(split[2]);
+            Integer fourth = Integer.parseInt(split[3]);
+            Integer fifth = Integer.parseInt(split[4]);
+            Integer sixth = Integer.parseInt(split[5]);
+            check = true;
+        } catch (NumberFormatException nfe) {
+            
+        }
+        
+        if (!check) {
+            return false;
+        }
+        
         int usernameId = Integer.valueOf(split[0]);
         int classId = Integer.valueOf(split[1]);
         int nameId = Integer.valueOf(split[2]);
@@ -267,6 +369,6 @@ public class AbilityDatabase implements DatabaseInterface {
 
     @Override
     public String getConnectionString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.connectionRepresentation;
     }
 }
