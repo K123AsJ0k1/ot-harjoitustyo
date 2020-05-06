@@ -57,6 +57,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import scenes.CreateFileScene;
+import scenes.Test;
 import service.UiAbilityLogic;
 
 /** Käyttöliittymä.
@@ -81,6 +82,7 @@ public class UserInterface extends Application {
     private String chosenAbility;
     private String leftOverParameters;
     UiAbilityLogic uiAbilityLogic;
+    Test testScene1;
     
     @Override
     public void init() throws Exception {
@@ -109,6 +111,8 @@ public class UserInterface extends Application {
         password = "";
         chosenAbility = "";
         leftOverParameters = "";
+        
+        testScene1 = new Test();
 
     }
 
@@ -243,6 +247,7 @@ public class UserInterface extends Application {
 
         Label titleAdminMenu = new Label("What do you want to do?");
         Button inspectDatabasesAdminMenu = new Button("Inspect information in parameter and ability databases");
+        Button testScene = new Button("Test scene");
         Button returnAdminMenu = new Button("Return to the main menu");
         Label informationAdminMenu = new Label("");
 
@@ -250,6 +255,7 @@ public class UserInterface extends Application {
         adminMenu.add(inspectDatabasesAdminMenu, 0, 1);
         adminMenu.add(returnAdminMenu, 0, 2);
         adminMenu.add(informationAdminMenu, 0, 3);
+        adminMenu.add(testScene, 0, 4);
 
         adminMenu.setPrefSize(300, 300);
         adminMenu.setAlignment(Pos.CENTER);
@@ -589,12 +595,7 @@ public class UserInterface extends Application {
             primaryStage.setScene(screenLogin);
         });
         
-        //Admin menu transitions
-        inspectDatabasesAdminMenu.setOnAction((event) ->{
-            
-            
-        });
-
+        
         //Ability menu transitions
         //Transition from ability menu scene to main menu scene when return
         returnAbilityMenu.setOnAction((event) -> {
@@ -654,6 +655,21 @@ public class UserInterface extends Application {
         returnAdminMenu.setOnAction((event) ->{
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(screenMainMenu);
+        });
+        
+        //
+        inspectDatabasesAdminMenu.setOnAction((event) ->{
+            
+            
+        });
+        
+        testScene.setOnAction((event) ->{
+            testScene1.setStage(primaryStage);
+        });
+        
+        testScene1.returnButtonLink().setOnAction((event) ->{
+            primaryStage.setTitle("Main menu");
+            primaryStage.setScene(adminMenuScene);
         });
         
         //Add ability menu transition

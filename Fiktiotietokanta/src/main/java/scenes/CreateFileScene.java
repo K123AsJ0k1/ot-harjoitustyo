@@ -22,51 +22,53 @@ import javafx.stage.Stage;
  */
 public class CreateFileScene {
     
-    Scene saveProfileMenu;
+    Scene createFileScreen;
+    Text textPresentation;
+    Button saveButton;
+    Button returnButton;
     
-    /** Testi scene konstruktori.
-     * @param primaryStage testi.
-     * @param screenProfileMenu testi.
-     * @param profileEditorCreateProfileMenu testi.
-     * @param fileWriter testi.
-     */
-    public CreateFileScene(Stage primaryStage, Scene screenProfileMenu, TextArea profileEditorCreateProfileMenu, FileWriterInterface fileWriter) {
-        VBox saveProfileLayOut = new VBox();
+    public CreateFileScene() {
+        VBox layout = new VBox();
         
-        Text profileViewSaveProfile = new Text();
-        profileViewSaveProfile.setFont(new Font(14));
+        this.textPresentation = new Text();
+        this.textPresentation.setFont(new Font(14));
         
-        HBox saveProfileButtonLayOut = new HBox();
+        HBox buttonLayout = new HBox();
         
-        Button saveButtonSaveProfile = new Button("Save");
-        Button returnButtonSaveProfile = new Button("Return");
+        this.saveButton = new Button("Save");
+        this.returnButton = new Button("Return");
         
-        saveProfileButtonLayOut.setAlignment(Pos.CENTER);
+        buttonLayout.setAlignment(Pos.CENTER);
         
-        saveProfileButtonLayOut.getChildren().addAll(saveButtonSaveProfile, returnButtonSaveProfile);
+        buttonLayout.getChildren().addAll(this.saveButton, this.returnButton);
         
-        saveProfileLayOut.getChildren().addAll(profileViewSaveProfile, saveProfileButtonLayOut);
+        layout.getChildren().addAll(this.textPresentation,buttonLayout);
         
-        saveProfileLayOut.setAlignment(Pos.CENTER);
-        saveProfileLayOut.setPrefSize(700, 500);
+        layout.setAlignment(Pos.CENTER);
+        layout.setPrefSize(700, 500);
         
-        this.saveProfileMenu = new Scene(saveProfileLayOut); 
-        
-        returnButtonSaveProfile.setOnAction((event) -> {
-            primaryStage.setTitle("Profile menu");
-            primaryStage.setScene(screenProfileMenu);
-        });
-        
-        saveButtonSaveProfile.setOnAction((event) -> {
-            String text = profileEditorCreateProfileMenu.getText().trim();
-            profileViewSaveProfile.setText(text);
-            fileWriter.showSaveFileDialog(primaryStage, text);
-        });
-        
+        this.createFileScreen = new Scene(layout); 
+    }
+    
+    public void setCreateFileStage(Stage primaryStage) {
+        primaryStage.setTitle("Save file");
+        primaryStage.setScene(this.createFileScreen);
     }
     
     public Scene getCreateFileScene() {
-        return this.saveProfileMenu;
+        return this.createFileScreen;
+    }
+    
+    public Text getTextPresentation() {
+        return this.textPresentation;
+    }
+    
+    public Button getSaveButton() {
+        return this.saveButton;
+    }
+    
+    public Button getReturnButton() {
+        return this.returnButton;
     }
     
 }

@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -21,37 +22,76 @@ import javafx.stage.Stage;
  */
 public class LoginScene {
     
+    Scene loginScreen;
+    Button loginButton;
+    Button signInButton;
+    TextField usernameInput;
+    PasswordField passwordInput;
+    Label errorMessage;
     
-    /** Testi.
-    *
-    * 
-    */
     public LoginScene() {
        
-        GridPane layoutLogin = new GridPane();
+        GridPane layout = new GridPane();
 
         Label titleLogin = new Label("What is your username?");
-        Button loginLogin = new Button("Login");
-        Button signInLogin = new Button("Sign in");
-        Label loginerrorLogin = new Label("");
+        this.loginButton = new Button("Login");
+        this.signInButton = new Button("Sign in");
+        this.errorMessage = new Label("");
 
-        TextField usernameInputLogin = new TextField();
+        this.usernameInput = new TextField();
+        this.passwordInput = new PasswordField();
 
-        layoutLogin.add(titleLogin, 0, 0);
-        layoutLogin.add(usernameInputLogin, 0, 1);
-        layoutLogin.add(loginLogin, 0, 2);
-        layoutLogin.add(signInLogin, 0, 3);
-        layoutLogin.add(loginerrorLogin, 0, 4);
+        layout.add(titleLogin, 0, 0);
+        layout.add(this.usernameInput, 0, 1);
+        layout.add(this.passwordInput, 0, 2);
+        layout.add(this.loginButton, 0, 3);
+        layout.add(this.signInButton, 0, 4);
+        layout.add(this.errorMessage, 0, 5);
 
-        layoutLogin.setPrefSize(300, 300);
-        layoutLogin.setAlignment(Pos.CENTER);
-        layoutLogin.setVgap(10);
-        layoutLogin.setHgap(10);
-        layoutLogin.setPadding(new Insets(20, 20, 20, 20));
-
-        Scene screenLogin = new Scene(layoutLogin);
-            
+        layout.setPrefSize(300, 300);
+        layout.setAlignment(Pos.CENTER);
+        layout.setVgap(10);
+        layout.setHgap(10);
+        layout.setPadding(new Insets(20, 20, 20, 20));
+        
+        this.loginScreen = new Scene(layout);    
     }
+    
+    public void setLoginStage(Stage primaryStage) {
+        primaryStage.setTitle("Login screen");
+        primaryStage.setScene(this.loginScreen);
+    }
+    
+    public Scene getLoginScene() {
+        return this.loginScreen;
+    }
+    
+    public Button getLoginButton() {
+        return this.loginButton;
+    }
+    
+    public Button getSigninButton() {
+        return this.signInButton;
+    }
+    
+    public TextField getUsernameInput() {
+        return this.usernameInput;
+    }
+    
+    public PasswordField getPasswordInput() {
+        return this.passwordInput;
+    }
+    
+    public Label getErrorMessage() {
+        return this.errorMessage;
+    }
+    
+    public void setErrorMessage(String givenError) {
+        this.errorMessage.setText(givenError);
+    }
+    
+    
+    
     
     
     
