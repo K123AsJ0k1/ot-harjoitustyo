@@ -7,6 +7,7 @@ package Fiktiotietokanta;
 
 import dao.AbilityDatabase;
 import domain.DatabaseInterface;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -176,7 +177,7 @@ public class AbilityDatabaseTest {
     public void searchInformationCatchesErrors1() throws Exception {
         DatabaseInterface test = new AbilityDatabase("Test");
         test.createDatabase();
-        Boolean tooShort = test.addInformation("1/1/1/1/1");
+        Boolean tooShort = test.searchInformation("1/1/1/1/1");
         assertEquals(false, tooShort);
         test.removeDatabase();
     }
@@ -185,7 +186,7 @@ public class AbilityDatabaseTest {
     public void searchInformationCatchesErrors2() throws Exception {
         DatabaseInterface test = new AbilityDatabase("Test");
         test.createDatabase();
-        Boolean tooLong = test.addInformation("1/1/1/1/1/1/1");
+        Boolean tooLong = test.searchInformation("1/1/1/1/1/1/1");
         assertEquals(false, tooLong);
         test.removeDatabase();
     }
@@ -194,7 +195,7 @@ public class AbilityDatabaseTest {
     public void searchInformationCatchesErrors3() throws Exception {
         DatabaseInterface test = new AbilityDatabase("Test");
         test.createDatabase();
-        Boolean wrongString = test.addInformation("1/1/g/1/1/1");
+        Boolean wrongString = test.searchInformation("1/1/g/1/1/1");
         assertEquals(false, wrongString);
         test.removeDatabase();
     }
@@ -271,5 +272,236 @@ public class AbilityDatabaseTest {
         assertEquals(false, cantRemoveFromNonExistingDatabase);
     }
     
+    //SearchInformationid tests
+    
+    @Test
+    public void searchInformationIdWorks() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        Integer givenId = test.searchInfromationId("1/1/1/1/1/1");
+        assertEquals(1, givenId.intValue());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void searchInformationIdIsCorrect() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        test.addInformation("2/2/2/2/2/2");
+        test.addInformation("3/3/3/3/3/3");
+        Integer givenId1 = test.searchInfromationId("1/1/1/1/1/1");
+        Integer givenId2 = test.searchInfromationId("2/2/2/2/2/2");
+        Integer givenId3 = test.searchInfromationId("3/3/3/3/3/3");
+        assertEquals(1, givenId1.intValue());
+        assertEquals(2, givenId2.intValue());
+        assertEquals(3, givenId3.intValue());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void searchInformationInfoIsntFound() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        Integer givenIdIsZero = test.searchInfromationId("1/1/1/1/1/2");
+        assertEquals(0, givenIdIsZero.intValue());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void searchInformationIdCatchesErrors1() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        Integer givenStringIstooShort = test.searchInfromationId("1/1/1/1/1");
+        assertEquals(0, givenStringIstooShort.intValue());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void searchInformationIdCatchesErrors2() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        Integer givenStringIstooLong = test.searchInfromationId("1/1/1/1/1/1/1");
+        assertEquals(0, givenStringIstooLong.intValue());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void searchInformationIdCatchesErrors3() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        Integer givenStringIsWrong = test.searchInfromationId("1/1/g/1/1/1");
+        assertEquals(0, givenStringIsWrong.intValue());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void searchInformationIdCatchesErrors4() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        Integer idCantBeSearchedFromNonExistingDatabase = test.searchInfromationId("1/1/g/1/1/1");
+        assertEquals(0, idCantBeSearchedFromNonExistingDatabase.intValue());
+        test.removeDatabase();
+    }
+    
+    //SearchIdTextIdentity tests
+    
+    @Test
+    public void giveIdIdentityWorks() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        Integer givenId = test.searchInfromationId("1/1/1/1/1/1");
+        String givenIdentity = test.searchInformationTextIdentity(String.valueOf(givenId));
+        assertEquals("1/1/1/1/1/1", givenIdentity);
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void givenIdIdentityIsCorrect() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        test.addInformation("2/2/2/2/2/2");
+        test.addInformation("3/3/3/3/3/3");
+        Integer givenId1 = test.searchInfromationId("1/1/1/1/1/1");
+        Integer givenId2 = test.searchInfromationId("2/2/2/2/2/2");
+        Integer givenId3 = test.searchInfromationId("3/3/3/3/3/3");
+        String givenIdentity1 = test.searchInformationTextIdentity(String.valueOf(givenId1));
+        String givenIdentity2 = test.searchInformationTextIdentity(String.valueOf(givenId2));
+        String givenIdentity3 = test.searchInformationTextIdentity(String.valueOf(givenId3));
+        assertEquals("1/1/1/1/1/1", givenIdentity1);
+        assertEquals("2/2/2/2/2/2", givenIdentity2);
+        assertEquals("3/3/3/3/3/3", givenIdentity3);
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void givenIdIdentityCatchesErrors1() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        String givenIdIsntANumber = test.searchInformationTextIdentity("!");
+        assertEquals("null", givenIdIsntANumber);
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void givenIdIdentityCatchesErrors2() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        String givenIdDoesntExist = test.searchInformationTextIdentity("1");
+        assertEquals("null", givenIdDoesntExist);
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void givenIdIdentityCatchesErrors3() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        String searchDoesntWorkOnANonExistingDatabase = test.searchInformationTextIdentity("1");
+        assertEquals("null", searchDoesntWorkOnANonExistingDatabase);
+        test.removeDatabase();
+    }
+    
+    //ShowDatabaseAsAList tests
+    
+    @Test
+    public void databaseAsAListWorks() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        List<String> givenList = test.showDatabaseAsAList();
+        assertEquals("1/1/1/1/1/1", givenList.get(0));
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void databaseAsAListIsCorrect() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        test.addInformation("2/2/2/2/2/2");
+        test.addInformation("3/3/3/3/3/3");
+        List<String> givenList = test.showDatabaseAsAList();
+        assertEquals("1/1/1/1/1/1", givenList.get(0));
+        assertEquals("2/2/2/2/2/2", givenList.get(1));
+        assertEquals("3/3/3/3/3/3", givenList.get(2));
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void databaseAsAListCatchesErrors1() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        List<String> givenList = test.showDatabaseAsAList();
+        assertEquals("[]", givenList.toString());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void databaseAsAListCatchesErrors2() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        List<String> givenList = test.showDatabaseAsAList();
+        assertEquals("[]", givenList.toString());
+    }
+    
+    //ShowDatabaseAsARestrictedList tests
+    
+    @Test
+    public void databaseAsARestrictedListWorks() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        List<String> givenList = test.showDatabaseAsARestrictedList("1");
+        assertEquals("1/1/1/1/1", givenList.get(0));
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void databaseAsARestrictedListIsCorrect() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        test.addInformation("2/2/2/2/2/2");
+        test.addInformation("3/3/3/3/3/3");
+        List<String> givenList1 = test.showDatabaseAsARestrictedList("1");
+        List<String> givenList2 = test.showDatabaseAsARestrictedList("2");
+        List<String> givenList3 = test.showDatabaseAsARestrictedList("3");
+        assertEquals("1/1/1/1/1", givenList1.get(0));
+        assertEquals("2/2/2/2/2", givenList2.get(0));
+        assertEquals("3/3/3/3/3", givenList3.get(0));
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void databaseAsARestrictedListCatchesErrors1() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        List<String> givenIdIsWrong = test.showDatabaseAsARestrictedList("2");
+        assertEquals("[]", givenIdIsWrong.toString());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void databaseAsARestrictedListCatchesErrors2() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        test.createDatabase();
+        test.addInformation("1/1/1/1/1/1");
+        List<String> givenIdIsWrong = test.showDatabaseAsARestrictedList("!");
+        assertEquals("[]", givenIdIsWrong.toString());
+        test.removeDatabase();
+    }
+    
+    @Test
+    public void databaseAsARestrictedListCatchesErrors3() throws Exception {
+        DatabaseInterface test = new AbilityDatabase("Test");
+        List<String> databaseDoesntExist = test.showDatabaseAsARestrictedList("!");
+        assertEquals("[]", databaseDoesntExist.toString());
+    }
     
 }

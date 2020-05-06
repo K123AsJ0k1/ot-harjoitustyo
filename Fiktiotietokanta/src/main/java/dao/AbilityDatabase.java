@@ -293,7 +293,21 @@ public class AbilityDatabase implements DatabaseInterface {
 
     @Override
     public String searchInformationTextIdentity(String givenAbilityId) {
+        Boolean numberCheck = false;
+        try {
+            Integer first = Integer.parseInt(givenAbilityId);
+            numberCheck = true;
+        } catch (NumberFormatException nfe) {
+            
+        }
+        
+        if (!numberCheck) {
+            return "null";
+        }
+        
+        
         int checkId = Integer.valueOf(givenAbilityId);
+        
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities WHERE id=?");
             command.setInt(1, checkId);
@@ -339,11 +353,24 @@ public class AbilityDatabase implements DatabaseInterface {
         } catch (SQLException k) {
    
         } 
-        return null;
+        return databaseAsAList;
     }
     @Override
     public List<String> showDatabaseAsARestrictedList(String givenUsernameId) {
         List<String> databaseAsAList = new ArrayList<>();
+        
+        Boolean numberCheck = false;
+        try {
+            Integer first = Integer.parseInt(givenUsernameId);
+            numberCheck = true;
+        } catch (NumberFormatException nfe) {
+            
+        }
+        
+        if (!numberCheck) {
+            return databaseAsAList;
+        }
+        
         int checkId = Integer.valueOf(givenUsernameId);
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities WHERE Username_id=?;");
@@ -364,7 +391,7 @@ public class AbilityDatabase implements DatabaseInterface {
         } catch (SQLException k) {
             
         } 
-        return null;    
+        return databaseAsAList;    
     }
 
     @Override
