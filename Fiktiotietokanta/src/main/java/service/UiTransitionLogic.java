@@ -6,6 +6,7 @@
 package service;
 
 import java.util.List;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
 /**
@@ -82,6 +83,80 @@ public class UiTransitionLogic {
         primaryStage.setScene(scenePlayer.getMainMenu().getMainMenuScene());
     }
     
+    public void fromProfileMenuToCreateProfile(Stage primaryStage) {
+        primaryStage.setTitle("Profile creator");
+        primaryStage.setScene(scenePlayer.getCreateProfile().getCreateProfileScene());
+    }
+    
+    public void fromProfileMenuToMainMenu(Stage primaryStage) {
+        primaryStage.setTitle("Main menu");
+        primaryStage.setScene(scenePlayer.getMainMenu().getMainMenuScene());
+    }
+    
+    public void fromProfileMenuToCreateFile(Stage primaryStage) {
+        primaryStage.setTitle("Save profile as a file menu");
+        primaryStage.setScene(scenePlayer.getCreateFile().getCreateFileScene());
+    } 
+    
+    public void fromCreateFileToProfileMenu(Stage primaryStage) {
+        primaryStage.setTitle("Profile menu");
+        primaryStage.setScene(scenePlayer.getProfileMenu().getProfileMenuScene());
+    }
+    
+    public void fromAdminMenuToMainMenu(Stage primaryStage) {
+        primaryStage.setTitle("Main menu");
+        primaryStage.setScene(scenePlayer.getMainMenu().getMainMenuScene());
+    }
+    
+    public void fromAddAbilitiesToAbilityMenu(Stage primaryStage) {
+        scenePlayer.getAddAbilities().getErrorMessage().setText("");
+        primaryStage.setTitle("Ability menu");
+        primaryStage.setScene(scenePlayer.getAbilityMenu().getAbilityMenuScene());
+    }
+    
+    public void fromRemoveAbilityToAbilityMenu(Stage primaryStage) {
+        scenePlayer.getRemoveAbilities().getTableView().getItems().clear();
+        primaryStage.setTitle("Ability menu");
+        primaryStage.setScene(scenePlayer.getAbilityMenu().getAbilityMenuScene());
+    }
+    
+    public void fromCreateProfileToProfileMenuWithSave(Stage primaryStage) {
+        scenePlayer.getCreateFile().getTextPresentation().setText(scenePlayer.getCreateProfile().getProfileEditor().getText());
+        primaryStage.setTitle("Profile menu");
+        primaryStage.setScene(scenePlayer.getProfileMenu().getProfileMenuScene());
+    }
+    
+    public void fromCreateProfileToProfileMenuWithOutSave(Stage primaryStage) {
+        scenePlayer.getCreateProfile().getProfileEditor().clear();
+        primaryStage.setTitle("Profile menu");
+        primaryStage.setScene(scenePlayer.getProfileMenu().getProfileMenuScene());
+    }
+    
+    public void fromCreateProfileToChooseAbility(Stage primaryStage, List<String> abilityList, UiAbilityLogic uiAbilityLogic) {
+        //List<String> abilityList = uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(user.getId()));
+        scenePlayer.getChooseAbilities().getTableView().getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
+        primaryStage.setTitle("Choose Abilities table");
+        primaryStage.setScene(scenePlayer.getChooseAbilities().getChoosenAbilitiesScene());
+    }
+    
+    public void fromChoosenAbilityToCreateProfileReturn(Stage primaryStage) {
+        scenePlayer.getChooseAbilities().getTableView().getItems().clear();
+        primaryStage.setTitle("Profile creator");
+        primaryStage.setScene(scenePlayer.getCreateProfile().getCreateProfileScene());
+    }
+    
+    public void fromChoosenAbilityToCreateProfileChoosenAbility(Stage primaryStage, Parameters parameters, UiAbilityLogic uiAbilityLogic) {
+        if (scenePlayer.getChooseAbilities().getSelectionModel().getSelectedItems().size() > 0) {
+                ObservableList selectedItems = scenePlayer.getChooseAbilities().getSelectionModel().getSelectedItems();
+                String givenString = uiAbilityLogic.chooseAbility(selectedItems);
+                parameters.setChoosenAbility(givenString);
+                parameters.setLeftOverParameters(givenString);
+                scenePlayer.getCreateProfile().getLeftParameterItem().setText("Ability parameters left:" + givenString);
+                scenePlayer.getChooseAbilities().getTableView().getItems().clear();
+                primaryStage.setTitle("Profile creator");
+                primaryStage.setScene(scenePlayer.getCreateProfile().getCreateProfileScene());
+            }
+    }
     
 
 }
