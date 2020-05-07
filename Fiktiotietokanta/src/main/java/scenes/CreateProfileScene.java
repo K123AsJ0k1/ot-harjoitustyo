@@ -116,7 +116,7 @@ public class CreateProfileScene {
         return this.createProfileScreen;
     }
     
-    public TextArea getProfilEditor() {
+    public TextArea getProfileEditor() {
         return this.profileEditor;
     }
     
@@ -132,7 +132,7 @@ public class CreateProfileScene {
         return this.resetAbilityItem;
     }
     
-    public MenuItem getCheckAreItem() {
+    public MenuItem getCheckAreaItem() {
         return this.checkAreaItem;
     }
     

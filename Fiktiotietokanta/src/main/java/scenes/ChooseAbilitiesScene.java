@@ -86,6 +86,10 @@ public class ChooseAbilitiesScene {
         return this.returnButton;
     }
     
+    public TableView getTableView() {
+        return this.tableView;
+    }
+    
     public TableView.TableViewSelectionModel<Ability> getSelectionModel() {
         return this.selectionModel;
     }

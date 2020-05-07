@@ -17,14 +17,14 @@ import javafx.stage.Stage;
  *
  * @author niila
  */
-public class AdminMenu {
+public class AdminMenuScene {
     
     Scene adminMenuScreen;
     Button inspectMenuButton;
     Button returnButton;
     Label errorMessage;
     
-    public AdminMenu() {
+    public AdminMenuScene() {
         GridPane layout = new GridPane();
 
         Label titleAdminMenu = new Label("What do you want to do?");
