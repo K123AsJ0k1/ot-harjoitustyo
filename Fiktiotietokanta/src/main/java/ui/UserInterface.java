@@ -7,7 +7,6 @@ package ui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import java.util.List;
 import javafx.collections.ObservableList;
 import service.UiLogicCore;
 
