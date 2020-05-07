@@ -5,13 +5,11 @@
  */
 package ui;
 
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import java.util.List;
 import javafx.collections.ObservableList;
 import service.UiLogicCore;
-
 
 /** Käyttöliittymä.
  *
@@ -20,8 +18,7 @@ import service.UiLogicCore;
 public class UserInterface extends Application {
     
     UiLogicCore uiLogicCore;
-    
-    
+      
     @Override
     public void init() throws Exception {
         uiLogicCore = new UiLogicCore();
@@ -31,88 +28,51 @@ public class UserInterface extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        //Login screen transitions
-        //Transition from login scene to mainmenu scene when login
         uiLogicCore.getScenePlayer().getLogin().getLoginButton().setOnAction((event) -> {
             uiLogicCore.getUiUserLogic().login(primaryStage);
         });
-
-        //Transition from login scene to signin scene when signin
+ 
         uiLogicCore.getScenePlayer().getLogin().getSigninButton().setOnAction((event) -> {
-            uiLogicCore.getScenePlayer().getLogin().getErrorMessage().setText("");
-            uiLogicCore.getScenePlayer().getLogin().getUsernameInput().clear();
-            uiLogicCore.getScenePlayer().getLogin().getPasswordInput().clear();
-            primaryStage.setTitle("Sign in screen");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getSignIn().getSignInScene());
+            uiLogicCore.getUiTransitionLogic().fromLoginToSignIn(primaryStage);
         });
 
-        //Sign in screen transitions
-        //Transition from signin scene to login scene when create a new account
         uiLogicCore.getScenePlayer().getSignIn().getCreateButton().setOnAction((event) -> {
             uiLogicCore.getUiUserLogic().createAccount(primaryStage);
         });
           
-        //Transition from signin scene to login scene when return
         uiLogicCore.getScenePlayer().getSignIn().getReturnButton().setOnAction((event) -> {
-            uiLogicCore.getScenePlayer().getSignIn().getErrorMessage().setText("");
-            uiLogicCore.getScenePlayer().getSignIn().getUsernameInput().clear();
-            uiLogicCore.getScenePlayer().getSignIn().getPasswordInput().clear();
-            primaryStage.setTitle("Login screen");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
+            uiLogicCore.getUiTransitionLogic().fromSignInToLogin(primaryStage);
         });
         
-        //Main menu transitions
-        //Transition from main menu scene to ability menu scene when ability menu
         uiLogicCore.getScenePlayer().getMainMenu().getAbilitiesButton().setOnAction((event) -> {
-            uiLogicCore.getScenePlayer().getMainMenu().getErrorMessage().setText("");
-            primaryStage.setTitle("Ability menu");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getAbilityMenu().getAbilityMenuScene());
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToAbilityMenu(primaryStage);
         });
         
-        //Transition from main menu scene to profile menu scene when profile menu
         uiLogicCore.getScenePlayer().getMainMenu().getProfilesButton().setOnAction((event) -> {
-            uiLogicCore.getScenePlayer().getMainMenu().getErrorMessage().setText("");
-            primaryStage.setTitle("Profile menu");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getProfileMenu().getProfileMenuScene());
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToProfileMenu(primaryStage);
         });
         
-        //Transition from main menu scene to profile menu scene when admin menu
         uiLogicCore.getScenePlayer().getMainMenu().getAdminButton().setOnAction((event) ->{
-            if (!(uiLogicCore.getUser().getUsername().equals("Tester")) && !(uiLogicCore.getUser().getPassword().equals("Tester"))) {
-                uiLogicCore.getScenePlayer().getMainMenu().getErrorMessage().setText("Your user doesn't have admin privileges");
-                return;
-            }
-            
-            primaryStage.setTitle("Admin menu");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getAdminMenu().getAdminMenuScene());
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, uiLogicCore.getUser().getUsername(), uiLogicCore.getUser().getPassword());
         });
         
-        
-        //Transition from main menu scene to login scene when sign out
         uiLogicCore.getScenePlayer().getMainMenu().getSignOutButton().setOnAction((event) -> {
-            uiLogicCore.getUser().setId(0);
-            uiLogicCore.getUser().setUsername("");
-            uiLogicCore.getUser().setPassword("");
-            uiLogicCore.getScenePlayer().getMainMenu().getErrorMessage().setText("");
-            primaryStage.setTitle("Login screen");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToLogin(primaryStage, uiLogicCore.getUser());
         });
         
-        
-        //Ability menu transitions
-        //Transition from ability menu scene to main menu scene when return
-        uiLogicCore.getScenePlayer().getAbilityMenu().getReturnButton().setOnAction((event) -> {
-            primaryStage.setTitle("Main menu");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getMainMenu().getMainMenuScene());
-        });
-        
-        //Transition from ability menu scene to add ability scene when add ability
         uiLogicCore.getScenePlayer().getAbilityMenu().getAddAbilityButton().setOnAction((event) -> {
-            primaryStage.setTitle("Add ability");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getAddAbilities().getAddAbilitiesScene());
+            uiLogicCore.getUiTransitionLogic().fromAbilityMenuToAddAbility(primaryStage);
         });
         
-        //Profile menu transitions;
+        uiLogicCore.getScenePlayer().getAbilityMenu().getRemoveAbilityButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromAbilityMenuToRemoveAbility(primaryStage, uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(uiLogicCore.getUser().getId())), uiLogicCore.getUiAbilityLogic());   
+        });
+        
+        uiLogicCore.getScenePlayer().getAbilityMenu().getReturnButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromAbilityMenuToMainMenu(primaryStage);
+        });
+        
+         //Profile menu transitions;
         //Transition from profile menu scene to create profile scene when create profile
         uiLogicCore.getScenePlayer().getProfileMenu().getCreateProfileButton().setOnAction((event) -> {
             primaryStage.setTitle("Profile creator");
@@ -159,9 +119,6 @@ public class UserInterface extends Application {
             primaryStage.setScene(uiLogicCore.getScenePlayer().getMainMenu().getMainMenuScene());
         });
         
-        //
-        
-        
         
         //Add ability menu transition
         //Transition from add ability scene to ability main menu scene when return
@@ -190,14 +147,7 @@ public class UserInterface extends Application {
             uiLogicCore.getScenePlayer().getAddAbilities().getRealityInput().clear();
         });
         
-        //Transition from ability menu scene to remove ability scene when remove ability
-        uiLogicCore.getScenePlayer().getAbilityMenu().getRemoveAbilityButton().setOnAction((event) -> {
-            List<String> abilityList = uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(uiLogicCore.getUser().getId()));
-            uiLogicCore.getScenePlayer().getRemoveAbilities().getTableView().getItems().addAll(uiLogicCore.getUiAbilityLogic().addAbilitiesIntoList(abilityList));
-            primaryStage.setTitle("Remove Abilities table");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getRemoveAbilities().getRemoveAbilitiesScene());
-            
-        });
+        
         
         //Removal of ability
         uiLogicCore.getScenePlayer().getRemoveAbilities().getRemoveAbilityButton().setOnAction((event) -> {

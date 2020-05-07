@@ -44,6 +44,7 @@ public class UiLogicCore {
     Parameters parameters;
     UiUserLogic uiUserLogic;
     UiAbilityLogic uiAbilityLogic;
+    UiTransitionLogic uiTransitionLogic;
     
     public UiLogicCore() {
         
@@ -67,6 +68,7 @@ public class UiLogicCore {
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
+        uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         this.daoPlayer.usernameDatabase.addUserInformation("Tester","Tester");
         
         return true;
@@ -110,6 +112,10 @@ public class UiLogicCore {
     
     public UiAbilityLogic getUiAbilityLogic() {
         return this.uiAbilityLogic;
+    }
+    
+    public UiTransitionLogic getUiTransitionLogic() {
+        return this.uiTransitionLogic;
     }
     
     
