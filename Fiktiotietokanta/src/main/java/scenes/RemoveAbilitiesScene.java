@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import service.Ability;
 
 /**
@@ -22,39 +23,75 @@ import service.Ability;
  */
 public class RemoveAbilitiesScene {
     
+    Scene removeAbilitiesScreen;
+    Button removeAbilityButton;
+    Button returnButton;
+    TableView tableview;
+    TableView.TableViewSelectionModel<Ability> selectionModel;
+    
     public RemoveAbilitiesScene() {
-        VBox removeAbilityLayout = new VBox();
+        VBox layout = new VBox();
 
-        Label removeAbilityTableViewLable = new Label("List of abilities you have created");
+        Label lable = new Label("List of abilities you have created");
 
-        HBox removeAbilityButtonLayout = new HBox();
+        HBox buttonLayout = new HBox();
 
-        Button removeSelectedAbilityTableView = new Button("Remove selected ability");
-        Button returnAbilityMenuTableView = new Button("Return");
+        this.removeAbilityButton = new Button("Remove selected ability");
+        this.returnButton = new Button("Return");
         
-        removeAbilityButtonLayout.getChildren().addAll(returnAbilityMenuTableView, removeSelectedAbilityTableView);
-        TableView removeAbilityTableView = new TableView();
+        buttonLayout.getChildren().addAll(this.returnButton, this.removeAbilityButton);
+        this.tableview = new TableView();
 
-        TableColumn<String, Ability> classTableViewColumn = new TableColumn<>("Class");
-        classTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("classIdentity"));
-        TableColumn<String, Ability> nameTableViewColumn = new TableColumn<>("Name");
-        nameTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("nameIdentity"));
-        TableColumn<String, Ability> descriptionTableViewColumn = new TableColumn<>("Description");
-        descriptionTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionIdentity"));
-        TableColumn<String, Ability> requrimentTableViewColumn = new TableColumn<>("Requriment");
-        requrimentTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentIdentity"));
-        TableColumn<String, Ability> realityTableViewColumn = new TableColumn<>("Reality");
-        realityTableViewColumn.setCellValueFactory(new PropertyValueFactory<>("realityIdentity"));
+        TableColumn<String, Ability> classColumn = new TableColumn<>("Class");
+        classColumn.setCellValueFactory(new PropertyValueFactory<>("classIdentity"));
+       
+        TableColumn<String, Ability> nameColumn = new TableColumn<>("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("nameIdentity"));
+        
+        TableColumn<String, Ability> descriptionColumn = new TableColumn<>("Description");
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionIdentity"));
+        
+        TableColumn<String, Ability> requrimentColumn = new TableColumn<>("Requriment");
+        requrimentColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentIdentity"));
+        
+        TableColumn<String, Ability> realityColumn = new TableColumn<>("Reality");
+        realityColumn.setCellValueFactory(new PropertyValueFactory<>("realityIdentity"));
 
-        removeAbilityTableView.getColumns().addAll(classTableViewColumn, nameTableViewColumn, descriptionTableViewColumn, requrimentTableViewColumn, realityTableViewColumn);
-        removeAbilityLayout.getChildren().addAll(removeAbilityTableViewLable, removeAbilityTableView, removeAbilityButtonLayout);
+        this.tableview.getColumns().addAll(classColumn, nameColumn, descriptionColumn, requrimentColumn, realityColumn);
+        layout.getChildren().addAll(lable, this.tableview, buttonLayout);
 
-        removeAbilityLayout.setPrefSize(320, 400);
+        layout.setPrefSize(320, 400);
 
-        TableView.TableViewSelectionModel<Ability> selectionModelTableView = removeAbilityTableView.getSelectionModel();
-        selectionModelTableView.setSelectionMode(SelectionMode.SINGLE);
+        this.selectionModel = this.tableview.getSelectionModel();
+        this.selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
-        Scene removeAbilityTable = new Scene(removeAbilityLayout);
+        this.removeAbilitiesScreen = new Scene(layout);
     }
+    
+    public void setRemoveAbilitiesStage(Stage primaryStage) {
+        primaryStage.setTitle("Remove abilities");
+        primaryStage.setScene(this.removeAbilitiesScreen);
+    }
+    
+    public Scene getRemoveAbilitiesScene() {
+        return this.removeAbilitiesScreen;
+    }
+    
+    public Button getRemoveAbilityButton() {
+        return this.removeAbilityButton;
+    }
+    
+    public Button getReturnButton() {
+        return this.returnButton;
+    }
+    
+    public TableView getTableView() {
+        return this.tableview;
+    }
+    
+    public TableView.TableViewSelectionModel<Ability> getSelectionModel() {
+        return this.selectionModel;
+    }
+    
     
 }

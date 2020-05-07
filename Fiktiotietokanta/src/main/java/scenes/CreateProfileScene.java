@@ -14,6 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -21,33 +22,49 @@ import javafx.scene.layout.VBox;
  */
 public class CreateProfileScene {
     
+    Scene createProfileScreen;
+    TextArea profileEditor;
+    MenuItem chooseAbilityItem;
+    MenuItem leftParameterItem;
+    MenuItem resetAbilityItem;
+    MenuItem checkAreaItem;
+    MenuItem wordCountItem;
+    MenuItem characterCountItem;
+    MenuItem lineCheckItem;
+    MenuItem spaceCheckItem;
+    MenuItem abilityCheckItem;
+    Menu exitProfile;
+    MenuItem exitWithSave;
+    MenuItem exitWithoutSave;
+    
+    
     public CreateProfileScene() {
-        VBox createProfileLayout = new VBox();
+        VBox layout = new VBox();
 
-        GridPane createProfileMenu = new GridPane();
+        GridPane menu = new GridPane();
 
         BorderPane menuRoot = new BorderPane();
 
-        MenuBar createProfileMenuBar = new MenuBar();
+        MenuBar menuBar = new MenuBar();
         
-        ContextMenu contextMenuCreateProfile = new ContextMenu();
-        MenuItem chooseAnAbilityContextMenu = new MenuItem("Choose an Ability");
-        MenuItem currenAbilityProgressContextMenu = new MenuItem("Ability parameters left:");
-        MenuItem resetAnAbilityContextMenu = new MenuItem("Resets current ability");
-        MenuItem checkTextAreaContextMenu = new MenuItem("Check the textarea for ability parameters");
-        MenuItem wordCountContextMenu = new MenuItem("Current wordcount:0");
-        MenuItem characterCountContextMenu = new MenuItem("Current character count:0");
-        MenuItem textHasLinesContextMenu = new MenuItem("Text has different lines:");
-        MenuItem textHasSpacesContextMenu = new MenuItem("Words have spaces between them:");
-        MenuItem textHasFullAbilitesContextMenu = new MenuItem("The amount of abilities found in text:0");
+        ContextMenu contextMenu = new ContextMenu();
+        this.chooseAbilityItem = new MenuItem("Choose an Ability");
+        this.leftParameterItem = new MenuItem("Ability parameters left:");
+        this.resetAbilityItem = new MenuItem("Resets current ability");
+        this.checkAreaItem = new MenuItem("Check the textarea for ability parameters");
+        this.wordCountItem = new MenuItem("Current wordcount:0");
+        this.characterCountItem = new MenuItem("Current character count:0");
+        this.lineCheckItem = new MenuItem("Text has different lines:");
+        this.spaceCheckItem = new MenuItem("Words have spaces between them:");
+        this.abilityCheckItem = new MenuItem("The amount of abilities found in text:0");
         
-        contextMenuCreateProfile.getItems().addAll(chooseAnAbilityContextMenu, currenAbilityProgressContextMenu, resetAnAbilityContextMenu,checkTextAreaContextMenu,wordCountContextMenu,characterCountContextMenu,textHasLinesContextMenu,textHasSpacesContextMenu,textHasFullAbilitesContextMenu);   
-        Menu exitProfileMenu = new Menu("Exit profile creator");
+        contextMenu.getItems().addAll(this.chooseAbilityItem, this.leftParameterItem, this.resetAbilityItem, this.checkAreaItem, this.wordCountItem, this.characterCountItem, this.lineCheckItem, this.spaceCheckItem, this.abilityCheckItem);   
+        this.exitProfile= new Menu("Exit profile creator");
 
-        MenuItem exitProfileMenu1 = new MenuItem("Save and return");
-        MenuItem exitProfileMenu2 = new MenuItem("Return without saving");
+        this.exitWithSave = new MenuItem("Save and return");
+        this.exitWithoutSave = new MenuItem("Return without saving");
 
-        exitProfileMenu.getItems().addAll(exitProfileMenu1, exitProfileMenu2);
+        this.exitProfile.getItems().addAll(this.exitWithSave, this.exitWithoutSave);
         
         Menu textTemplatesAreaProfileMenu = new Menu("Templates");
         
@@ -69,25 +86,87 @@ public class CreateProfileScene {
         
         helpProfileMenu.getItems().addAll(helpProfileMenu1, helpProfileMenu2, helpProfileMenu3);
           
-        createProfileMenuBar.getMenus().addAll(exitProfileMenu, textTemplatesAreaProfileMenu, helpProfileMenu);
+        menuBar.getMenus().addAll(this.exitProfile, textTemplatesAreaProfileMenu, helpProfileMenu);
 
-        menuRoot.setTop(createProfileMenuBar);
+        menuRoot.setTop(menuBar);
 
-        TextArea profileEditorCreateProfileMenu = new TextArea();
-        profileEditorCreateProfileMenu.setContextMenu(contextMenuCreateProfile);
+        profileEditor = new TextArea();
+        profileEditor.setContextMenu(contextMenu);
 
-        profileEditorCreateProfileMenu.setMinSize(500, 425);
-        profileEditorCreateProfileMenu.setMaxSize(500, 425);
-        profileEditorCreateProfileMenu.setWrapText(true);
+        profileEditor.setMinSize(500, 425);
+        profileEditor.setMaxSize(500, 425);
+        profileEditor.setWrapText(true);
 
-        createProfileMenu.getChildren().addAll(menuRoot);
-        createProfileMenu.add(profileEditorCreateProfileMenu, 0, 0);
+        menu.getChildren().addAll(menuRoot);
+        menu.add(profileEditor, 0, 0);
 
-        createProfileLayout.getChildren().addAll(menuRoot, createProfileMenu);
+        layout.getChildren().addAll(menuRoot, menu);
 
-        createProfileLayout.setPrefSize(501, 500);
+        layout.setPrefSize(501, 500);
 
-        Scene createProfileScene = new Scene(createProfileLayout);
+        this.createProfileScreen = new Scene(layout);
     }
+    
+    public void setCreateProfileStage(Stage primaryStage) {
+        primaryStage.setTitle("Create profile");
+        primaryStage.setScene(this.createProfileScreen);
+    }
+    
+    public Scene getCreateProfileScene() {
+        return this.createProfileScreen;
+    }
+    
+    public TextArea getProfilEditor() {
+        return this.profileEditor;
+    }
+    
+    public MenuItem getChoosenAbilityItem() {
+        return this.chooseAbilityItem;
+    }
+    
+    public MenuItem getLeftParameterItem() {
+        return this.leftParameterItem;
+    }
+    
+    public MenuItem getResetAbilityItem() {
+        return this.resetAbilityItem;
+    }
+    
+    public MenuItem getCheckAreItem() {
+        return this.checkAreaItem;
+    }
+    
+    public MenuItem getWordCountItem() {
+        return this.wordCountItem;
+    }
+    
+    public MenuItem getCharacterCountItem() {
+        return this.characterCountItem;
+    }
+    
+    public MenuItem getLineCheckItem() {
+        return this.lineCheckItem;
+    }
+    
+    public MenuItem getSpaceCheckItem() {
+        return this.spaceCheckItem;
+    }
+    
+    public MenuItem getAbilityCheckItem() {
+        return this.abilityCheckItem;
+    }
+    
+    public Menu getExitProfile() {
+        return this.exitProfile;
+    }
+    
+    public MenuItem getExitWithSave() {
+        return this.exitWithSave;
+    }
+    
+    public MenuItem getExitWithoutSave() {
+        return this.exitWithoutSave;
+    }
+    
     
 }

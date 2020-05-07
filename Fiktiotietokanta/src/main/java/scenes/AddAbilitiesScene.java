@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  *
@@ -19,47 +20,102 @@ import javafx.scene.layout.GridPane;
  */
 public class AddAbilitiesScene {
     
+    Scene addAbilitiesScreen;
+    Button createAbilityButton;
+    Button returnButton;
+    Label errorMessage;
+    TextField classInput;
+    TextField nameInput;
+    TextField descriptionInput;
+    TextField requrimentInput;
+    TextField realityInput;
+    
     public AddAbilitiesScene() {
-        GridPane addAbilityMenu = new GridPane();
+        GridPane layout = new GridPane();
 
-        Label addAbilityMenuInsturctions = new Label("Fill all the blanks");
-        Label addAbilityMenuClass = new Label("What class does the ability belong to?");
-        Label addAbilityMenuName = new Label("What name does the ability have?");
-        Label addAbilityMenuDescription = new Label("What description does the ability have?");
-        Label addAbilityMenuRequriment = new Label("What requriment does the ability have?");
-        Label addAbilityMenuReality = new Label("In what reality is the ability?");
-        Button addAbilityMenuInsertNewAbility = new Button("Create ability");
-        Button addAbilityMenuReturn = new Button("Return");
-        Label addAbilityMenuError = new Label("");
+        Label instructions = new Label("Fill all the blanks");
+        Label classQuestion = new Label("What class does the ability belong to?");
+        Label nameQuestion = new Label("What name does the ability have?");
+        Label descriptionQuestion = new Label("What description does the ability have?");
+        Label requrimentQuestion = new Label("What requriment does the ability have?");
+        Label realityQuestion = new Label("In what reality is the ability?");
+        this.createAbilityButton = new Button("Create ability");
+        this.returnButton = new Button("Return");
+        this.errorMessage = new Label("");
 
-        TextField writenGlass = new TextField();
-        TextField writenName = new TextField();
-        TextField writenDescription = new TextField();
-        TextField writenRequriment = new TextField();
-        TextField writenReality = new TextField();
+        this.classInput = new TextField();
+        this.nameInput = new TextField();
+        this.descriptionInput = new TextField();
+        this.requrimentInput = new TextField();
+        this.realityInput = new TextField();
 
-        addAbilityMenu.add(addAbilityMenuInsturctions, 0, 0);
-        addAbilityMenu.add(addAbilityMenuClass, 0, 1);
-        addAbilityMenu.add(writenGlass, 0, 2);
-        addAbilityMenu.add(addAbilityMenuName, 0, 3);
-        addAbilityMenu.add(writenName, 0, 4);
-        addAbilityMenu.add(addAbilityMenuDescription, 0, 5);
-        addAbilityMenu.add(writenDescription, 0, 6);
-        addAbilityMenu.add(addAbilityMenuRequriment, 0, 7);
-        addAbilityMenu.add(writenRequriment, 0, 8);
-        addAbilityMenu.add(addAbilityMenuReality, 0, 9);
-        addAbilityMenu.add(writenReality, 0, 10);
-        addAbilityMenu.add(addAbilityMenuInsertNewAbility, 0, 11);
-        addAbilityMenu.add(addAbilityMenuReturn, 0, 12);
-        addAbilityMenu.add(addAbilityMenuError, 0, 13);
+        layout.add(instructions, 0, 0);
+        layout.add(classQuestion, 0, 1);
+        layout.add(this.classInput, 0, 2);
+        layout.add(nameQuestion, 0, 3);
+        layout.add(this.nameInput, 0, 4);
+        layout.add(descriptionQuestion, 0, 5);
+        layout.add(this.descriptionInput, 0, 6);
+        layout.add(requrimentQuestion, 0, 7);
+        layout.add(this.requrimentInput, 0, 8);
+        layout.add(realityQuestion, 0, 9);
+        layout.add(this.realityInput, 0, 10);
+        layout.add(this.createAbilityButton, 0, 11);
+        layout.add(this.returnButton, 0, 12);
+        layout.add(this.errorMessage, 0, 13);
 
-        addAbilityMenu.setPrefSize(500, 500);
-        addAbilityMenu.setAlignment(Pos.CENTER);
-        addAbilityMenu.setVgap(10);
-        addAbilityMenu.setHgap(10);
-        addAbilityMenu.setPadding(new Insets(20, 20, 20, 20));
+        layout.setPrefSize(500, 500);
+        layout.setAlignment(Pos.CENTER);
+        layout.setVgap(10);
+        layout.setHgap(10);
+        layout.setPadding(new Insets(20, 20, 20, 20));
 
-        Scene screenAddAbilityMenu = new Scene(addAbilityMenu);
+        this.addAbilitiesScreen = new Scene(layout);
+    }
+    
+    public void setAddAbilitiesStage(Stage primaryStage) {
+        primaryStage.setTitle("Add abilities");
+        primaryStage.setScene(this.addAbilitiesScreen);
+    }
+    
+    public Scene getAddAbilitiesScene() {
+        return this.addAbilitiesScreen;
+    }
+    
+    public Button getCreateAbilityButton() {
+        return this.createAbilityButton;
+    }
+    
+    public Button getReturnButton() {
+        return this.returnButton;
+    }
+    
+    public Label getErrorMessage() {
+        return this.errorMessage;
+    } 
+    
+    public void setErrorMessage(String givenError) {
+        this.errorMessage.setText(givenError);
+    }
+    
+    public TextField getClassInput() {
+        return this.classInput;
+    }
+    
+    public TextField getNameInput() {
+        return this.nameInput;
+    }
+    
+    public TextField getDescriptionInput() {
+        return this.descriptionInput;
+    }
+    
+    public TextField getRequrimentInput() {
+        return this.requrimentInput;
+    }
+    
+    public TextField getRealityInput() {
+        return this.realityInput;
     }
     
 }
