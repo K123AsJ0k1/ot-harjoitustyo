@@ -49,6 +49,9 @@
 |28.4|  | Pääkäyttäjän luominen |
 |28.4|  | Pääkäyttäjä valikon luominen |
 |28.4|  | Projektin dokumentointi |
+|4.5 |6 | Testien parantaminen | 
+|6.5 |8 | Projektin muokkaus |
+|7.5 |10 | Projektin muokkaus |
 
 - Tuntien yhteinen summa on 97.
 
