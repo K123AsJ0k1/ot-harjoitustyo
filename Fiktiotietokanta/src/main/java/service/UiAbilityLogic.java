@@ -41,20 +41,15 @@ public class UiAbilityLogic {
     /**
      * Konstruktori.
      *
-     * @param classDatabase luokkatietokanta.
-     * @param nameDatabase nimitietokanta.
-     * @param descriptionDatabase selitystietokanta.
-     * @param requrimentDatabase vaatimusietokanta.
-     * @param realityDatabase todellisuustietokanta.
-     * @param abilityDatabase ominaisuustietokanta.
+     * @param daoPlayer
      */
-    public UiAbilityLogic(DatabaseInterface classDatabase, DatabaseInterface nameDatabase, DatabaseInterface descriptionDatabase, DatabaseInterface requrimentDatabase, DatabaseInterface realityDatabase, DatabaseInterface abilityDatabase) {
-        this.classDatabase = classDatabase;
-        this.nameDatabase = nameDatabase;
-        this.descriptionDatabase = descriptionDatabase;
-        this.requrimentDatabase = requrimentDatabase;
-        this.realityDatabase = realityDatabase;
-        this.abilityDatabase = abilityDatabase;
+    public UiAbilityLogic(DaoPlayer daoPlayer) {
+        this.classDatabase = daoPlayer.getClassDatabase();
+        this.nameDatabase = daoPlayer.getNameDatabase();
+        this.descriptionDatabase = daoPlayer.getDescriptionDatabase();
+        this.requrimentDatabase = daoPlayer.getRequrimetnDatabase();
+        this.realityDatabase = daoPlayer.getRealityDatabase();
+        this.abilityDatabase = daoPlayer.getAbilityDatabase();
     }
 
     /**
@@ -145,7 +140,7 @@ public class UiAbilityLogic {
         if (abilityDatabase.searchInformation(information)) {
             return "Ability already exists";
         }
-
+        
         Boolean abilityHasBeenAdded = abilityDatabase.addInformation(information);
 
         if (!abilityHasBeenAdded) {
@@ -205,5 +200,7 @@ public class UiAbilityLogic {
         String selectedParameters = givenAbilitySplit[0] + "," + givenAbilitySplit[1] + "," + givenAbilitySplit[2] + "," + givenAbilitySplit[3] + "," + givenAbilitySplit[4];
         return selectedParameters;
     }
+    
+    
 
 }

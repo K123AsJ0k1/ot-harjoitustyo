@@ -15,38 +15,43 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Luokka tietokanta.
+/**
+ * Luokka tietokanta.
  *
- * 
+ *
  */
 public class ClassDatabase implements DatabaseInterface {
-    
+
     private Connection connection;
     private Boolean databaseExists;
     private String connectionRepresentation;
-    
-    /** Luokka tietokannan konstruktori.
-    *
-    * 
+
+    /**
+     * Luokka tietokannan konstruktori.
+     *
+     *
      * @param useCondition annettu tila.
-     * @throws java.lang.Exception virhe.
-    */
-    public ClassDatabase(String useCondition) throws Exception {
-        if (useCondition.equals("Normal")) {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:classdatabase:connection");
-            this.connectionRepresentation = "jdbc:sqlite:classdatabase:connection";
+     * 
+     */
+    public ClassDatabase(String useCondition) {
+        try {
+            if (useCondition.equals("Normal")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:classdatabase:connection");
+                this.connectionRepresentation = "jdbc:sqlite:classdatabase:connection";
+            }
+            if (useCondition.equals("Test")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:classdatabasetest:connection");
+                this.connectionRepresentation = "jdbc:sqlite:classdatabasetest:connection";
+            }
+            this.databaseExists = false;
+        } catch (SQLException k) {
+            this.databaseExists = null;
         }
-        if (useCondition.equals("Test")) {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:classdatabasetest:connection");
-            this.connectionRepresentation = "jdbc:sqlite:classdatabasetest:connection";
-        }
-        
-        this.databaseExists = false;
-        
-    } 
+
+    }
 
     @Override
-    public boolean createDatabase() throws Exception {
+    public boolean createDatabase() {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
@@ -56,7 +61,7 @@ public class ClassDatabase implements DatabaseInterface {
             databaseExists = true;
             return true;
         } catch (SQLException k) {
-        }    
+        }
         return false;
     }
 
@@ -64,7 +69,7 @@ public class ClassDatabase implements DatabaseInterface {
     public boolean databaseExists() {
         return databaseExists;
     }
-    
+
     @Override
     public boolean addInformation(String givenClass) {
         try {
@@ -74,8 +79,8 @@ public class ClassDatabase implements DatabaseInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-                   
-        } 
+
+        }
         return false;
     }
 
@@ -99,7 +104,7 @@ public class ClassDatabase implements DatabaseInterface {
             }
             return false;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -116,9 +121,9 @@ public class ClassDatabase implements DatabaseInterface {
             }
             querrySet.close();
             command.close();
-            return classId;   
+            return classId;
         } catch (SQLException k) {
-            
+
         }
         return 0;
     }
@@ -130,23 +135,23 @@ public class ClassDatabase implements DatabaseInterface {
             command.setString(1, givenClass);
             command.executeUpdate();
             command.close();
-            return true;   
+            return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
 
     @Override
-    public boolean removeDatabase() throws Exception {
+    public boolean removeDatabase() {
         try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Classes;");
             command.close();
             databaseExists = false;
-            return true;   
+            return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -154,20 +159,20 @@ public class ClassDatabase implements DatabaseInterface {
     @Override
     public String searchInformationTextIdentity(String givenClassId) {
         int checkId = Integer.valueOf(givenClassId);
-        try {  
+        try {
             PreparedStatement command = connection.prepareStatement("SELECT Class FROM Classes WHERE id=?");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
             String givenTextIdentity = "null";
             if (querySet.next()) {
                 givenTextIdentity = querySet.getString("Class");
-            } 
+            }
             querySet.close();
-            command.close();        
+            command.close();
             return givenTextIdentity;
         } catch (SQLException k) {
-            
-        } 
+
+        }
         return "null";
     }
 
@@ -185,8 +190,8 @@ public class ClassDatabase implements DatabaseInterface {
             command.close();
             return databaseAsAList;
         } catch (SQLException k) {
-            
-        } 
+
+        }
         return databaseAsAList;
     }
 
@@ -199,5 +204,5 @@ public class ClassDatabase implements DatabaseInterface {
     public String getConnectionString() {
         return this.connectionRepresentation;
     }
-    
+
 }

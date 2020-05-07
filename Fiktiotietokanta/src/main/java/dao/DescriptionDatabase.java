@@ -15,37 +15,45 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Selitys tietokanta.
+/**
+ * Selitys tietokanta.
  *
- * 
+ *
  */
 public class DescriptionDatabase implements DatabaseInterface {
-    
+
     private Connection connection;
     private Boolean databaseExists;
     private String connectionRepresentation;
-    
-    /** Selitys tietokannan konstruktori.
-    *
-    * 
+
+    /**
+     * Selitys tietokannan konstruktori.
+     *
+     *
      * @param useCondition annettu tila.
-     * @throws java.lang.Exception virhe.
-    */
-    public DescriptionDatabase(String useCondition) throws Exception {
-        if (useCondition.equals("Normal")) {
-           this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabase:connection");
-           this.connectionRepresentation = "jdbc:sqlite:descriptiondatabase:connection";
-        }
-        if (useCondition.equals("Test")) {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabasetest:connection"); 
-            this.connectionRepresentation = "jdbc:sqlite:descriptiondatabasetest:connection";
+     * 
+     */
+    public DescriptionDatabase(String useCondition) {
+        try {
+
+            if (useCondition.equals("Normal")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabase:connection");
+                this.connectionRepresentation = "jdbc:sqlite:descriptiondatabase:connection";
+            }
+            if (useCondition.equals("Test")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:descriptiondatabasetest:connection");
+                this.connectionRepresentation = "jdbc:sqlite:descriptiondatabasetest:connection";
+            }
+            this.databaseExists = false;
+        } catch (SQLException k) {
+            this.databaseExists = null;
         }
         
-        this.databaseExists = false;
+
     }
 
     @Override
-    public boolean createDatabase() throws Exception {
+    public boolean createDatabase() {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
@@ -55,7 +63,7 @@ public class DescriptionDatabase implements DatabaseInterface {
             databaseExists = true;
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -74,7 +82,7 @@ public class DescriptionDatabase implements DatabaseInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -99,7 +107,7 @@ public class DescriptionDatabase implements DatabaseInterface {
             }
             return false;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -113,43 +121,43 @@ public class DescriptionDatabase implements DatabaseInterface {
             int classId = 0;
             if (querrySet.next()) {
                 classId = querrySet.getInt("id");
-            }  
+            }
             querrySet.close();
             command.close();
             return classId;
         } catch (SQLException k) {
-            
+
         }
         return 0;
     }
 
     @Override
     public boolean removeInformation(String givenDescription) {
-        try { 
+        try {
             PreparedStatement command = connection.prepareStatement("DELETE FROM Descriptions WHERE Description=?");
             command.setString(1, givenDescription);
             command.executeUpdate();
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
 
     @Override
-    public boolean removeDatabase() throws Exception {
-        try {   
+    public boolean removeDatabase() {
+        try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Descriptions;");
             command.close();
             databaseExists = false;
-            return true;    
+            return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
-        
+
     }
 
     @Override
@@ -164,11 +172,11 @@ public class DescriptionDatabase implements DatabaseInterface {
                 givenTextIdentity = querySet.getString("Description");
             }
             querySet.close();
-            command.close();        
-            return givenTextIdentity;  
+            command.close();
+            return givenTextIdentity;
         } catch (SQLException k) {
-            
-        } 
+
+        }
         return "null";
     }
 
@@ -186,8 +194,8 @@ public class DescriptionDatabase implements DatabaseInterface {
             command.close();
             return databaseAsAList;
         } catch (SQLException k) {
-            
-        } 
+
+        }
         return databaseAsAList;
     }
 
@@ -200,5 +208,5 @@ public class DescriptionDatabase implements DatabaseInterface {
     public String getConnectionString() {
         return this.connectionRepresentation;
     }
-    
+
 }

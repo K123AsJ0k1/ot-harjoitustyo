@@ -5,147 +5,27 @@
  */
 package ui;
 
-import service.Ability;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import dao.UsernameDatabase;
-import dao.AbilityDatabase;
-import dao.ClassDatabase;
-import dao.DescriptionDatabase;
-import dao.NameDatabase;
-import dao.RealityDatabase;
-import dao.RequrimentDatabase;
 import java.util.List;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ContextMenu;
+import service.UiLogicCore;
 
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableView.TableViewSelectionModel;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import domain.DatabaseInterface;
-import domain.FileWriterInterface;
-import domain.UsernameInterface;
-import service.FileWriter;
-import textlogic.TemplateMaker;
-import textlogic.TextRefinery;
-import domain.TextRefineryInterface;
-import domain.TextTemplateInterface;
-import java.io.File;
-import java.util.Arrays;
-import javafx.scene.control.PasswordField;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.FileChooser;
-import scenes.AbilityMenuScene;
-import scenes.AddAbilitiesScene;
-import scenes.AdminMenuScene;
-import scenes.ChooseAbilitiesScene;
-import scenes.CreateFileScene;
-import scenes.CreateProfileScene;
-import scenes.LoginScene;
-import scenes.MainMenuScene;
-import scenes.ProfileMenuScene;
-import scenes.RemoveAbilitiesScene;
-import scenes.SignInScene;
-import scenes.Test;
-import service.UiAbilityLogic;
 
 /** Käyttöliittymä.
  *
  * @author niila
  */
 public class UserInterface extends Application {
-
-    private UsernameInterface usernameDatabase;
-    private DatabaseInterface classDatabase;
-    private DatabaseInterface nameDatabase;
-    private DatabaseInterface descriptionDatabase;
-    private DatabaseInterface requrimentDatabase;
-    private DatabaseInterface realityDatabase;
-    private DatabaseInterface abilityDatabase;
-    private FileWriterInterface fileWriter;
-    private TextTemplateInterface templateFactory;
-    private TextRefineryInterface textRefinery;
-    private Integer usernameId;
-    private String username;
-    private String password;
-    private String chosenAbility;
-    private String leftOverParameters;
-    UiAbilityLogic uiAbilityLogic;
-    Test testScene1;
-    LoginScene loginScene;
-    SignInScene signInScene;
-    MainMenuScene mainMenuScene;
-    AbilityMenuScene abilityMenuScene;
-    ProfileMenuScene profileMenuScene;
-    AdminMenuScene adminMenuScene;
-    CreateFileScene createFileScene;
-    AddAbilitiesScene addAbilitiesScene;
-    RemoveAbilitiesScene removeAbilitiesScene;
-    CreateProfileScene createProfileScene;
-    ChooseAbilitiesScene chooseAbilitiesScene;
+    
+    UiLogicCore uiLogicCore;
+    
     
     @Override
     public void init() throws Exception {
-        usernameDatabase = new UsernameDatabase("Normal");
-        classDatabase = new ClassDatabase("Normal");
-        nameDatabase = new NameDatabase("Normal");
-        descriptionDatabase = new DescriptionDatabase("Normal");
-        requrimentDatabase = new RequrimentDatabase("Normal");
-        realityDatabase = new RealityDatabase("Normal");
-        abilityDatabase = new AbilityDatabase("Normal");
-        fileWriter = new FileWriter();
-        templateFactory = new TemplateMaker();
-        textRefinery = new TextRefinery();
-        uiAbilityLogic = new UiAbilityLogic(classDatabase, nameDatabase, descriptionDatabase, requrimentDatabase, realityDatabase, abilityDatabase);
-        usernameDatabase.createUsernameDatabase();
-        classDatabase.createDatabase();
-        nameDatabase.createDatabase();
-        descriptionDatabase.createDatabase();
-        requrimentDatabase.createDatabase();
-        realityDatabase.createDatabase();
-        abilityDatabase.createDatabase();
-
-        usernameDatabase.addUserInformation("Tester","Tester");
-        usernameId = 0;
-        username = "";
-        password = "";
-        chosenAbility = "";
-        leftOverParameters = "";
-        
-        testScene1 = new Test();
-        
-        loginScene = new LoginScene();
-        signInScene = new SignInScene();
-        mainMenuScene = new MainMenuScene();
-        abilityMenuScene = new AbilityMenuScene();
-        profileMenuScene = new ProfileMenuScene();
-        adminMenuScene = new AdminMenuScene();
-        createFileScene = new CreateFileScene();
-        addAbilitiesScene = new AddAbilitiesScene();
-        removeAbilitiesScene = new RemoveAbilitiesScene();
-        createProfileScene = new CreateProfileScene();
-        chooseAbilitiesScene = new ChooseAbilitiesScene();
+        uiLogicCore = new UiLogicCore();
+        uiLogicCore.coreSetup();
     }
 
     @Override
@@ -153,337 +33,274 @@ public class UserInterface extends Application {
 
         //Login screen transitions
         //Transition from login scene to mainmenu scene when login
-        loginScene.getLoginButton().setOnAction((event) -> {
-            loginScene.getErrorMessage().setText("");
-            String givenUsernameLogin = loginScene.getUsernameInput().getText().trim();
-            String givenPasswordLogin = loginScene.getPasswordInput().getText().trim();
-            
-            if (!(usernameDatabase.searchUserInformation(givenUsernameLogin))) {
-                loginScene.getErrorMessage().setText("Username doesn't exist");
-                return;
-            }
-            
-            if (!(usernameDatabase.userPasswordCheck(givenUsernameLogin, givenPasswordLogin))) {
-                loginScene.getErrorMessage().setText("Password doesn't exist");
-                return;
-            }
-            username = givenUsernameLogin;
-            password = givenPasswordLogin;
-            usernameId = usernameDatabase.searchUsernameId(givenUsernameLogin);
-            loginScene.getUsernameInput().clear();
-            loginScene.getPasswordInput().clear();
-            loginScene.getErrorMessage().setText("");
-            primaryStage.setTitle("Main menu");
-            primaryStage.setScene(mainMenuScene.getMainMenuScene());
-
+        uiLogicCore.getScenePlayer().getLogin().getLoginButton().setOnAction((event) -> {
+            uiLogicCore.getUiUserLogic().login(primaryStage);
         });
 
         //Transition from login scene to signin scene when signin
-        loginScene.getSigninButton().setOnAction((event) -> {
-            loginScene.getErrorMessage().setText("");
-            loginScene.getUsernameInput().clear();
-            loginScene.getPasswordInput().clear();
+        uiLogicCore.getScenePlayer().getLogin().getSigninButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getLogin().getErrorMessage().setText("");
+            uiLogicCore.getScenePlayer().getLogin().getUsernameInput().clear();
+            uiLogicCore.getScenePlayer().getLogin().getPasswordInput().clear();
             primaryStage.setTitle("Sign in screen");
-            primaryStage.setScene(signInScene.getSignInScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getSignIn().getSignInScene());
         });
 
         //Sign in screen transitions
         //Transition from signin scene to login scene when create a new account
-        signInScene.getCreateButton().setOnAction((event) -> {
-            signInScene.getErrorMessage().setText("");
-            String givenUsernameSignIn = signInScene.getUsernameInput().getText().trim();
-            String givenPasswordSignIn = signInScene.getPasswordInput().getText().trim();
-            if (givenUsernameSignIn.length() < 5) {
-                signInScene.getErrorMessage().setText("Given username is too short");
-                return;
-            }
-            
-            if (givenPasswordSignIn.length() < 5) {
-                signInScene.getErrorMessage().setText("Given password is too short");
-                return;
-            }
-
-            if (usernameDatabase.searchUserInformation(givenUsernameSignIn)) {
-                signInScene.getErrorMessage().setText("Given username already exists");
-                return;
-            }
-            
-            if (usernameDatabase.userPasswordCheck(givenUsernameSignIn, givenPasswordSignIn)) {
-                signInScene.getErrorMessage().setText("Given password already exists");
-                return;
-            }
-            
-            Boolean isAdded = usernameDatabase.addUserInformation(givenUsernameSignIn,givenPasswordSignIn);
-
-            if (!isAdded) {
-                signInScene.getErrorMessage().setText("Error has occured");
-                return;
-            }
-
-            signInScene.getErrorMessage().setText("");
-            signInScene.getUsernameInput().clear();
-            signInScene.getPasswordInput().clear();
-            primaryStage.setTitle("Login screen");
-            primaryStage.setScene(loginScene.getLoginScene());
+        uiLogicCore.getScenePlayer().getSignIn().getCreateButton().setOnAction((event) -> {
+            uiLogicCore.getUiUserLogic().createAccount(primaryStage);
         });
-
+          
         //Transition from signin scene to login scene when return
-        signInScene.getReturnButton().setOnAction((event) -> {
-            signInScene.getErrorMessage().setText("");
-            signInScene.getUsernameInput().clear();
-            signInScene.getPasswordInput().clear();
+        uiLogicCore.getScenePlayer().getSignIn().getReturnButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getSignIn().getErrorMessage().setText("");
+            uiLogicCore.getScenePlayer().getSignIn().getUsernameInput().clear();
+            uiLogicCore.getScenePlayer().getSignIn().getPasswordInput().clear();
             primaryStage.setTitle("Login screen");
-            primaryStage.setScene(loginScene.getLoginScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
         });
-
+        
         //Main menu transitions
         //Transition from main menu scene to ability menu scene when ability menu
-        mainMenuScene.getAbilitiesButton().setOnAction((event) -> {
-            mainMenuScene.getErrorMessage().setText("");
+        uiLogicCore.getScenePlayer().getMainMenu().getAbilitiesButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getMainMenu().getErrorMessage().setText("");
             primaryStage.setTitle("Ability menu");
-            primaryStage.setScene(abilityMenuScene.getAbilityMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getAbilityMenu().getAbilityMenuScene());
         });
+        
         //Transition from main menu scene to profile menu scene when profile menu
-        mainMenuScene.getProfilesButton().setOnAction((event) -> {
-            mainMenuScene.getErrorMessage().setText("");
+        uiLogicCore.getScenePlayer().getMainMenu().getProfilesButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getMainMenu().getErrorMessage().setText("");
             primaryStage.setTitle("Profile menu");
-            primaryStage.setScene(profileMenuScene.getProfileMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getProfileMenu().getProfileMenuScene());
         });
         
         //Transition from main menu scene to profile menu scene when admin menu
-        mainMenuScene.getAdminButton().setOnAction((event) ->{
-            if (!(username.equals("Tester")) && !(password.equals("Tester"))) {
-                mainMenuScene.getErrorMessage().setText("Your user doesn't have admin privileges");
+        uiLogicCore.getScenePlayer().getMainMenu().getAdminButton().setOnAction((event) ->{
+            if (!(uiLogicCore.getUser().getUsername().equals("Tester")) && !(uiLogicCore.getUser().getPassword().equals("Tester"))) {
+                uiLogicCore.getScenePlayer().getMainMenu().getErrorMessage().setText("Your user doesn't have admin privileges");
                 return;
             }
             
             primaryStage.setTitle("Admin menu");
-            primaryStage.setScene(adminMenuScene.getAdminMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getAdminMenu().getAdminMenuScene());
         });
         
-
+        
         //Transition from main menu scene to login scene when sign out
-        mainMenuScene.getSignOutButton().setOnAction((event) -> {
-            usernameId = 0;
-            username = "";
-            password = "";
-            mainMenuScene.getErrorMessage().setText("");
+        uiLogicCore.getScenePlayer().getMainMenu().getSignOutButton().setOnAction((event) -> {
+            uiLogicCore.getUser().setId(0);
+            uiLogicCore.getUser().setUsername("");
+            uiLogicCore.getUser().setPassword("");
+            uiLogicCore.getScenePlayer().getMainMenu().getErrorMessage().setText("");
             primaryStage.setTitle("Login screen");
-            primaryStage.setScene(loginScene.getLoginScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
         });
         
         
         //Ability menu transitions
         //Transition from ability menu scene to main menu scene when return
-        abilityMenuScene.getReturnButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getAbilityMenu().getReturnButton().setOnAction((event) -> {
             primaryStage.setTitle("Main menu");
-            primaryStage.setScene(mainMenuScene.getMainMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getMainMenu().getMainMenuScene());
         });
-
+        
         //Transition from ability menu scene to add ability scene when add ability
-        abilityMenuScene.getAddAbilityButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getAbilityMenu().getAddAbilityButton().setOnAction((event) -> {
             primaryStage.setTitle("Add ability");
-            primaryStage.setScene(addAbilitiesScene.getAddAbilitiesScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getAddAbilities().getAddAbilitiesScene());
         });
-
+        
         //Profile menu transitions;
         //Transition from profile menu scene to create profile scene when create profile
-        profileMenuScene.getCreateProfileButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getProfileMenu().getCreateProfileButton().setOnAction((event) -> {
             primaryStage.setTitle("Profile creator");
-            primaryStage.setScene(createProfileScene.getCreateProfileScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getCreateProfile().getCreateProfileScene());
 
         });
-
+        
         //Transition from profile menu scene to main menu scene when return
-        profileMenuScene.getReturnButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getProfileMenu().getReturnButton().setOnAction((event) -> {
             primaryStage.setTitle("Main menu");
-            primaryStage.setScene(mainMenuScene.getMainMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getMainMenu().getMainMenuScene());
         });
         
         //Transitions from profile menu scene to create file from profile scene
-        profileMenuScene.getCreateFileButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getProfileMenu().getCreateFileButton().setOnAction((event) -> {
             primaryStage.setTitle("Save profile as a file menu");
-            primaryStage.setScene(createFileScene.getCreateFileScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getCreateFile().getCreateFileScene());
         });
         
         //Resets profile
-        profileMenuScene.getResetProfileButton().setOnAction((event) -> {
-            createProfileScene.getProfileEditor().clear();
-            createFileScene.getTextPresentation().setText("");
+        uiLogicCore.getScenePlayer().getProfileMenu().getResetProfileButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().clear();
+            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText("");
         });
         
         //Save profile as a file scene
         
         //Transition from create file from profile scene to profile menu scene 
-        createFileScene.getReturnButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getCreateFile().getReturnButton().setOnAction((event) -> {
             primaryStage.setTitle("Profile menu");
-            primaryStage.setScene(profileMenuScene.getProfileMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getProfileMenu().getProfileMenuScene());
         });
         
         //Saving current profile as a file
-        createFileScene.getSaveButton().setOnAction((event) -> {
-            String text = createProfileScene.getProfileEditor().getText().trim();
-            createFileScene.getTextPresentation().setText(text);
-            fileWriter.showSaveFileDialog(primaryStage, text);
+        uiLogicCore.getScenePlayer().getCreateFile().getSaveButton().setOnAction((event) -> {
+            String text = uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim();
+            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText(text);
+            uiLogicCore.getTextPlayer().getFileWriterInterface().showSaveFileDialog(primaryStage, text);
         });
         
         //Admin menu transitions
-        adminMenuScene.getReturnButton().setOnAction((event) ->{
+        uiLogicCore.getScenePlayer().getAdminMenu().getReturnButton().setOnAction((event) ->{
             primaryStage.setTitle("Main menu");
-            primaryStage.setScene(mainMenuScene.getMainMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getMainMenu().getMainMenuScene());
         });
         
         //
-        adminMenuScene.getInspectMenuButton().setOnAction((event) ->{
-            
-            
-        });
+        
         
         
         //Add ability menu transition
         //Transition from add ability scene to ability main menu scene when return
-        addAbilitiesScene.getReturnButton().setOnAction((event) -> {
-            addAbilitiesScene.getErrorMessage().setText("");
+        uiLogicCore.getScenePlayer().getAddAbilities().getReturnButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getAddAbilities().getErrorMessage().setText("");
             primaryStage.setTitle("Ability menu");
-            primaryStage.setScene(abilityMenuScene.getAbilityMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getAbilityMenu().getAbilityMenuScene());
         });
         
         //Adding of new ability
-        addAbilitiesScene.getCreateAbilityButton().setOnAction((event) -> {
-            addAbilitiesScene.getErrorMessage().setText("");
-            String textFieldClass = addAbilitiesScene.getClassInput().getText().trim();
-            String textFieldName = addAbilitiesScene.getNameInput().getText().trim();
-            String textFieldDescription = addAbilitiesScene.getDescriptionInput().getText().trim();
-            String textFieldRequriment = addAbilitiesScene.getRequrimentInput().getText().trim();
-            String textFieldReality = addAbilitiesScene.getRealityInput().getText().trim();
+        uiLogicCore.getScenePlayer().getAddAbilities().getCreateAbilityButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getAddAbilities().getErrorMessage().setText("");
+            String textFieldClass = uiLogicCore.getScenePlayer().getAddAbilities().getClassInput().getText().trim();
+            String textFieldName = uiLogicCore.getScenePlayer().getAddAbilities().getNameInput().getText().trim();
+            String textFieldDescription = uiLogicCore.getScenePlayer().getAddAbilities().getDescriptionInput().getText().trim();
+            String textFieldRequriment = uiLogicCore.getScenePlayer().getAddAbilities().getRequrimentInput().getText().trim();
+            String textFieldReality = uiLogicCore.getScenePlayer().getAddAbilities().getRealityInput().getText().trim();
             
-            String addAbility = uiAbilityLogic.addAbility(usernameId, textFieldClass, textFieldName, textFieldDescription, textFieldRequriment, textFieldReality);
-            addAbilitiesScene.getErrorMessage().setText(addAbility);
+            String addAbility = uiLogicCore.getUiAbilityLogic().addAbility(uiLogicCore.getUser().getId(), textFieldClass, textFieldName, textFieldDescription, textFieldRequriment, textFieldReality);
+            uiLogicCore.getScenePlayer().getAddAbilities().getErrorMessage().setText(addAbility);
             
-            addAbilitiesScene.getClassInput().clear();
-            addAbilitiesScene.getNameInput().clear();
-            addAbilitiesScene.getDescriptionInput().clear();
-            addAbilitiesScene.getRequrimentInput().clear();
-            addAbilitiesScene.getRealityInput().clear();
+            uiLogicCore.getScenePlayer().getAddAbilities().getClassInput().clear();
+            uiLogicCore.getScenePlayer().getAddAbilities().getNameInput().clear();
+            uiLogicCore.getScenePlayer().getAddAbilities().getDescriptionInput().clear();
+            uiLogicCore.getScenePlayer().getAddAbilities().getRequrimentInput().clear();
+            uiLogicCore.getScenePlayer().getAddAbilities().getRealityInput().clear();
         });
-
+        
         //Transition from ability menu scene to remove ability scene when remove ability
-        abilityMenuScene.getRemoveAbilityButton().setOnAction((event) -> {
-            List<String> abilityList = abilityDatabase.showDatabaseAsARestrictedList(String.valueOf(usernameId));
-            removeAbilitiesScene.getTableView().getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
+        uiLogicCore.getScenePlayer().getAbilityMenu().getRemoveAbilityButton().setOnAction((event) -> {
+            List<String> abilityList = uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(uiLogicCore.getUser().getId()));
+            uiLogicCore.getScenePlayer().getRemoveAbilities().getTableView().getItems().addAll(uiLogicCore.getUiAbilityLogic().addAbilitiesIntoList(abilityList));
             primaryStage.setTitle("Remove Abilities table");
-            primaryStage.setScene(removeAbilitiesScene.getRemoveAbilitiesScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getRemoveAbilities().getRemoveAbilitiesScene());
             
         });
         
         //Removal of ability
-        removeAbilitiesScene.getRemoveAbilityButton().setOnAction((event) -> {
-            if (removeAbilitiesScene.getSelectionModel().getSelectedItems().size() > 0) {
-                ObservableList selectedItems = removeAbilitiesScene.getSelectionModel().getSelectedItems();
-                int removedIndex = removeAbilitiesScene.getSelectionModel().getFocusedIndex();
-                uiAbilityLogic.removeAbility(usernameId, selectedItems);
-                removeAbilitiesScene.getTableView().getItems().remove(removedIndex);
-                removeAbilitiesScene.getTableView().refresh();
+        uiLogicCore.getScenePlayer().getRemoveAbilities().getRemoveAbilityButton().setOnAction((event) -> {
+            if (uiLogicCore.getScenePlayer().getRemoveAbilities().getSelectionModel().getSelectedItems().size() > 0) {
+                ObservableList selectedItems = uiLogicCore.getScenePlayer().getRemoveAbilities().getSelectionModel().getSelectedItems();
+                int removedIndex = uiLogicCore.getScenePlayer().getRemoveAbilities().getSelectionModel().getFocusedIndex();
+                uiLogicCore.getUiAbilityLogic().removeAbility(uiLogicCore.getUser().getId(), selectedItems);
+                uiLogicCore.getScenePlayer().getRemoveAbilities().getTableView().getItems().remove(removedIndex);
+                uiLogicCore.getScenePlayer().getRemoveAbilities().getTableView().refresh();
             }
         });
         
         //Transition from remove ability scene to ability menu
-        removeAbilitiesScene.getReturnButton().setOnAction((event) -> {
-            removeAbilitiesScene.getTableView().getItems().clear();
+        uiLogicCore.getScenePlayer().getRemoveAbilities().getReturnButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getRemoveAbilities().getTableView().getItems().clear();
             primaryStage.setTitle("Ability menu");
-            primaryStage.setScene(abilityMenuScene.getAbilityMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getAbilityMenu().getAbilityMenuScene());
 
         });
 
-
+        
         //Create profile transitions
         //Transition from create profile scene to profile menu when save and return
-        createProfileScene.getExitWithSave().setOnAction((event) -> {
-            String unRefinedText = createProfileScene.getProfileEditor().getText();
-            createFileScene.getTextPresentation().setText(unRefinedText);
+        uiLogicCore.getScenePlayer().getCreateProfile().getExitWithSave().setOnAction((event) -> {
+            String unRefinedText = uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText();
+            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText(unRefinedText);
             primaryStage.setTitle("Profile menu");
-            primaryStage.setScene(profileMenuScene.getProfileMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getProfileMenu().getProfileMenuScene());
         });
 
         //Transition from create profile scene to profile menu when return without saving
-        createProfileScene.getExitWithoutSave().setOnAction((event) -> {
-            createProfileScene.getProfileEditor().clear();
+        uiLogicCore.getScenePlayer().getCreateProfile().getExitWithoutSave().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().clear();
             primaryStage.setTitle("Profile menu");
-            primaryStage.setScene(profileMenuScene.getProfileMenuScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getProfileMenu().getProfileMenuScene());
         });
         
         
         
         //Transition from create profile scene to choose ability scene when choose ability
-        createProfileScene.getChoosenAbilityItem().setOnAction((event) -> {
-            List<String> abilityList = abilityDatabase.showDatabaseAsARestrictedList(String.valueOf(usernameId));
-            chooseAbilitiesScene.getTableView().getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
+        uiLogicCore.getScenePlayer().getCreateProfile().getChoosenAbilityItem().setOnAction((event) -> {
+            List<String> abilityList = uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(uiLogicCore.getUser().getId()));
+            uiLogicCore.getScenePlayer().getChooseAbilities().getTableView().getItems().addAll(uiLogicCore.getUiAbilityLogic().addAbilitiesIntoList(abilityList));
             primaryStage.setTitle("Choose Abilities table");
-            primaryStage.setScene(chooseAbilitiesScene.getChoosenAbilitiesScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getChooseAbilities().getChoosenAbilitiesScene());
         });
         
         //Resets choosen ability
-        createProfileScene.getResetAbilityItem().setOnAction((event) -> {
-            chosenAbility = "";
-            leftOverParameters = "";
-            createProfileScene.getLeftParameterItem().setText("Ability parameters left:" + "");
+        uiLogicCore.getScenePlayer().getCreateProfile().getResetAbilityItem().setOnAction((event) -> {
+            uiLogicCore.getParameters().setChoosenAbility("");
+            uiLogicCore.getParameters().setLeftOverParameters("");
+            uiLogicCore.getScenePlayer().getCreateProfile().getLeftParameterItem().setText("Ability parameters left:" + "");
         });
         
         //Checks textarea string for ability parameters
-        createProfileScene.getCheckAreaItem().setOnAction((event) -> {
-            leftOverParameters = textRefinery.choosenAbilityIsFoundFromText(createProfileScene.getProfileEditor().getText(), chosenAbility);
-            createProfileScene.getLeftParameterItem().setText("Ability parameters left:" + leftOverParameters);
+        uiLogicCore.getScenePlayer().getCreateProfile().getCheckAreaItem().setOnAction((event) -> {
+            uiLogicCore.getParameters().setLeftOverParameters(uiLogicCore.getTextPlayer().getTextRefineryInterface().choosenAbilityIsFoundFromText(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText(),uiLogicCore.getParameters().getChosenAbility()));
+            uiLogicCore.getScenePlayer().getCreateProfile().getLeftParameterItem().setText("Ability parameters left:" + uiLogicCore.getParameters().getLeftOverParameters());
         });
         
         //Checks textarea 
-        createProfileScene.getProfileEditor().setOnKeyTyped((event) -> {
-           createProfileScene.getLineCheckItem().setText("Text has different lines:"+textRefinery.givenTextLineChecker(createProfileScene.getProfileEditor().getText().trim()));
-           createProfileScene.getSpaceCheckItem().setText("Words have spaces between them:"+textRefinery.givenTextLineHasSpaces(createProfileScene.getProfileEditor().getText().trim()));
-           createProfileScene.getWordCountItem().setText("Current wordcount:"+textRefinery.giveTextWordCount(createProfileScene.getProfileEditor().getText().trim()));
-           createProfileScene.getCharacterCountItem().setText("Current charactercount:"+textRefinery.giveCharacterCount(createProfileScene.getProfileEditor().getText().trim()));
+        uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().setOnKeyTyped((event) -> {
+           uiLogicCore.getScenePlayer().getCreateProfile().getLineCheckItem().setText("Text has different lines:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().givenTextLineChecker(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
+           uiLogicCore.getScenePlayer().getCreateProfile().getSpaceCheckItem().setText("Words have spaces between them:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().givenTextLineHasSpaces(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
+           uiLogicCore.getScenePlayer().getCreateProfile().getWordCountItem().setText("Current wordcount:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().giveTextWordCount(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
+           uiLogicCore.getScenePlayer().getCreateProfile().getCharacterCountItem().setText("Current charactercount:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().giveCharacterCount(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
         });
         
         
         //Choose ability transitions
         
         //Transition from choose ability scene to create profile scene when return
-        chooseAbilitiesScene.getReturnButton().setOnAction((event) -> {
-            chooseAbilitiesScene.getTableView().getItems().clear();
+        uiLogicCore.getScenePlayer().getChooseAbilities().getReturnButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getChooseAbilities().getTableView().getItems().clear();
             primaryStage.setTitle("Profile creator");
-            primaryStage.setScene(createProfileScene.getCreateProfileScene());
+            primaryStage.setScene(uiLogicCore.getScenePlayer().getCreateProfile().getCreateProfileScene());
         });
         
         //Transition from choose ability scene to create profile scene when choose ability
-        chooseAbilitiesScene.getChoosenAbilityButton().setOnAction((event) -> {
-            if (chooseAbilitiesScene.getSelectionModel().getSelectedItems().size() > 0) {
-                ObservableList selectedItems = chooseAbilitiesScene.getSelectionModel().getSelectedItems();
-                String givenString = uiAbilityLogic.chooseAbility(selectedItems);
-                chosenAbility = givenString;
-                leftOverParameters = givenString;
-                createProfileScene.getLeftParameterItem().setText("Ability parameters left:" + givenString);
-                chooseAbilitiesScene.getTableView().getItems().clear();
+        uiLogicCore.getScenePlayer().getChooseAbilities().getChoosenAbilityButton().setOnAction((event) -> {
+            if (uiLogicCore.getScenePlayer().getChooseAbilities().getSelectionModel().getSelectedItems().size() > 0) {
+                ObservableList selectedItems = uiLogicCore.getScenePlayer().getChooseAbilities().getSelectionModel().getSelectedItems();
+                String givenString = uiLogicCore.getUiAbilityLogic().chooseAbility(selectedItems);
+                uiLogicCore.getParameters().setChoosenAbility(givenString);
+                uiLogicCore.getParameters().setLeftOverParameters(givenString);
+                uiLogicCore.getScenePlayer().getCreateProfile().getLeftParameterItem().setText("Ability parameters left:" + givenString);
+                uiLogicCore.getScenePlayer().getChooseAbilities().getTableView().getItems().clear();
                 primaryStage.setTitle("Profile creator");
-                primaryStage.setScene(createProfileScene.getCreateProfileScene());
+                primaryStage.setScene(uiLogicCore.getScenePlayer().getCreateProfile().getCreateProfileScene());
             }
         });
         
         
         //UI start code
         primaryStage.setTitle("Login screen");
-        primaryStage.setScene(loginScene.getLoginScene());
+        primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
         primaryStage.show();
 
     }
 
     @Override
-    public void stop() throws Exception {
-        usernameDatabase.removeUsernameDatabase();
-        classDatabase.removeDatabase();
-        nameDatabase.removeDatabase();
-        descriptionDatabase.removeDatabase();
-        requrimentDatabase.removeDatabase();
-        realityDatabase.removeDatabase();
-        abilityDatabase.removeDatabase();
+    public void stop() {
+        uiLogicCore.coreShutDown();
     }
     
     /** Käyttöliittymä.

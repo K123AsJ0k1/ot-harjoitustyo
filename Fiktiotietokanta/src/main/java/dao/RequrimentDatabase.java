@@ -15,32 +15,43 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Vaatimus tietokanta.
+/**
+ * Vaatimus tietokanta.
  */
 public class RequrimentDatabase implements DatabaseInterface {
-    
+
     private Connection connection;
     private Boolean databaseExists;
     private String connectionRepresentation;
-    /** Vaatimus tietokannan konstruktori.
+
+    /**
+     * Vaatimus tietokannan konstruktori.
+     *
      * @param useCondition annettu tila.
-     * @throws java.lang.Exception virhe.
-    */
-    public RequrimentDatabase(String useCondition) throws Exception {
-        if (useCondition.equals("Normal")) {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabase:connection");
-            this.connectionRepresentation = "jdbc:sqlite:requrimentdatabase:connection";
-        }
-        if (useCondition.equals("Test")) {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabasetest:connection");
-            this.connectionRepresentation = "jdbc:sqlite:requrimentdatabasetest:connection";
+     */
+    public RequrimentDatabase(String useCondition) {
+        try {
+
+            if (useCondition.equals("Normal")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabase:connection");
+                this.connectionRepresentation = "jdbc:sqlite:requrimentdatabase:connection";
+            }
+            if (useCondition.equals("Test")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabasetest:connection");
+                this.connectionRepresentation = "jdbc:sqlite:requrimentdatabasetest:connection";
+            }
+
+            this.databaseExists = false;
+        
+        } catch (SQLException k) {
+          this.databaseExists = null;
         }
         
-        this.databaseExists = false;
-    } 
+
+    }
 
     @Override
-    public boolean createDatabase() throws Exception {
+    public boolean createDatabase() {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
@@ -50,7 +61,7 @@ public class RequrimentDatabase implements DatabaseInterface {
             databaseExists = true;
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -69,9 +80,9 @@ public class RequrimentDatabase implements DatabaseInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
-        
+
         return false;
     }
 
@@ -97,7 +108,7 @@ public class RequrimentDatabase implements DatabaseInterface {
             return false;
 
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -112,14 +123,14 @@ public class RequrimentDatabase implements DatabaseInterface {
             if (querrySet.next()) {
                 classId = querrySet.getInt("id");
             }
-            
+
             querrySet.close();
             command.close();
-            
+
             return classId;
-            
+
         } catch (SQLException k) {
-            
+
         }
         return 0;
     }
@@ -133,15 +144,15 @@ public class RequrimentDatabase implements DatabaseInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
-        
+
         return false;
     }
 
     @Override
-    public boolean removeDatabase() throws Exception {
-         
+    public boolean removeDatabase() {
+
         try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Requriments");
@@ -149,17 +160,17 @@ public class RequrimentDatabase implements DatabaseInterface {
             databaseExists = false;
             return true;
         } catch (SQLException k) {
-            
+
         }
-         
+
         return false;
     }
 
     @Override
     public String searchInformationTextIdentity(String givenRequrimentId) {
-        
+
         int checkId = Integer.valueOf(givenRequrimentId);
-        
+
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Requriment FROM Requriments WHERE id=?");
             command.setInt(1, checkId);
@@ -169,19 +180,19 @@ public class RequrimentDatabase implements DatabaseInterface {
                 givenTextIdentity = querySet.getString("Requriment");
             }
             querySet.close();
-            command.close();        
-            return givenTextIdentity;              
+            command.close();
+            return givenTextIdentity;
         } catch (SQLException k) {
-            
-        } 
-        
+
+        }
+
         return "null";
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
         List<String> databaseAsAList = new ArrayList<>();
-        
+
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Requriment FROM Requriments;");
             ResultSet querySet = command.executeQuery();
@@ -191,13 +202,13 @@ public class RequrimentDatabase implements DatabaseInterface {
             }
             querySet.close();
             command.close();
-            
+
             return databaseAsAList;
-            
+
         } catch (SQLException k) {
-            
-        } 
-        
+
+        }
+
         return databaseAsAList;
     }
 
@@ -210,5 +221,5 @@ public class RequrimentDatabase implements DatabaseInterface {
     public String getConnectionString() {
         return this.connectionRepresentation;
     }
-    
+
 }

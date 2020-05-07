@@ -29,7 +29,10 @@ public class AbilityDatabase implements DatabaseInterface {
      * @param useCondition annettu tila.
      * @throws SQLException virhe.
      */
-    public AbilityDatabase(String useCondition) throws SQLException {
+    public AbilityDatabase(String useCondition) {
+        try {
+            
+        
         if (useCondition.equals("Normal")) {
             this.connection = DriverManager.getConnection("jdbc:sqlite:abilitydatabase:connection");
             this.connectionRepresentation = "jdbc:sqlite:abilitydatabase:connection";
@@ -40,10 +43,15 @@ public class AbilityDatabase implements DatabaseInterface {
         }
         
         this.databaseExists = false;
+        } catch (SQLException k) {
+            this.databaseExists = null;
+        }
+        
+        
     }
 
     @Override
-    public boolean createDatabase() throws Exception {
+    public boolean createDatabase() {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
@@ -278,7 +286,7 @@ public class AbilityDatabase implements DatabaseInterface {
     }
 
     @Override
-    public boolean removeDatabase() throws Exception {
+    public boolean removeDatabase() {
         try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Abilities;");

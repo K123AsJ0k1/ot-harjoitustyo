@@ -15,9 +15,8 @@ public interface UsernameInterface {
     *
     * 
      * @return palauttaa true jos tietokanta on luotu ja false jos ei.
-     * @throws java.lang.Exception virhe.
     */
-    public boolean createUsernameDatabase() throws Exception;
+    public boolean createUsernameDatabase();
     
     /** Tarkastaa tietokannan olemassaolon.
     *
@@ -81,8 +80,7 @@ public interface UsernameInterface {
     *
     * 
      * @return palauttaa true, jos poisto onnistui ja false jos ei.
-     * @throws java.lang.Exception virhe.
     */
-    public boolean removeUsernameDatabase() throws Exception;
+    public boolean removeUsernameDatabase();
     
 }

@@ -15,31 +15,41 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Todellisuus tietokanta.
+/**
+ * Todellisuus tietokanta.
  */
 public class RealityDatabase implements DatabaseInterface {
-    
+
     private Connection connection;
     private Boolean databaseExists;
     private String connectionRepresentation;
-    /** Todellisuus tietokanta konstruktori.
-     * @throws java.lang.Exception virhe.
+
+    /**
+     * Todellisuus tietokanta konstruktori.
+     *
+     * @param useCondition
      */
-    public RealityDatabase(String useCondition) throws Exception {
-        if (useCondition.equals("Normal")) {
-           this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabase:connection");
-           this.connectionRepresentation = "jdbc:sqlite:realitydatabase:connection";
-        }
-        if (useCondition.equals("Test")) {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabasetest:connection");
-            this.connectionRepresentation = "jdbc:sqlite:realitydatabasetest:connection";
+    public RealityDatabase(String useCondition) {
+        try {
+
+            if (useCondition.equals("Normal")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabase:connection");
+                this.connectionRepresentation = "jdbc:sqlite:realitydatabase:connection";
+            }
+            if (useCondition.equals("Test")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabasetest:connection");
+                this.connectionRepresentation = "jdbc:sqlite:realitydatabasetest:connection";
+            }
+
+            this.databaseExists = false;
+        } catch (SQLException k) {
+          this.databaseExists = null;
         }
         
-        this.databaseExists = false;
     }
 
     @Override
-    public boolean createDatabase() throws Exception {
+    public boolean createDatabase() {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
@@ -49,7 +59,7 @@ public class RealityDatabase implements DatabaseInterface {
             databaseExists = true;
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -68,7 +78,7 @@ public class RealityDatabase implements DatabaseInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -94,9 +104,9 @@ public class RealityDatabase implements DatabaseInterface {
 
             return false;
         } catch (SQLException k) {
-            
+
         }
-        
+
         return false;
     }
 
@@ -110,55 +120,55 @@ public class RealityDatabase implements DatabaseInterface {
             if (querrySet.next()) {
                 classId = querrySet.getInt("id");
             }
-            
+
             querrySet.close();
             command.close();
-            
+
             return classId;
-            
+
         } catch (SQLException k) {
-            
+
         }
-        
+
         return 0;
-        
+
     }
 
     @Override
-    public boolean removeInformation(String givenReality) { 
+    public boolean removeInformation(String givenReality) {
         try {
             PreparedStatement command = connection.prepareStatement("DELETE FROM Realities WHERE Reality=?");
             command.setString(1, givenReality);
             command.executeUpdate();
             command.close();
-            return true;     
+            return true;
         } catch (SQLException k) {
-            
+
         }
-        
-        return false;     
+
+        return false;
     }
 
     @Override
-    public boolean removeDatabase() throws Exception {     
-        try {        
+    public boolean removeDatabase() {
+        try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Realities");
             command.close();
-            databaseExists = false;      
+            databaseExists = false;
             return true;
         } catch (SQLException k) {
-            
+
         }
-        
-        return false;   
+
+        return false;
     }
 
     @Override
     public String searchInformationTextIdentity(String givenRealityId) {
-        
+
         int checkId = Integer.valueOf(givenRealityId);
-  
+
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities WHERE id=?");
             command.setInt(1, checkId);
@@ -168,20 +178,20 @@ public class RealityDatabase implements DatabaseInterface {
                 givenTextIdentity = querySet.getString("Reality");
             }
             querySet.close();
-            command.close();        
-            return givenTextIdentity;            
+            command.close();
+            return givenTextIdentity;
         } catch (SQLException k) {
-            
-        } 
-        
-        return "null"; 
+
+        }
+
+        return "null";
     }
 
     @Override
     public List<String> showDatabaseAsAList() {
-        
+
         List<String> databaseAsAList = new ArrayList<>();
-        
+
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities;");
             ResultSet querySet = command.executeQuery();
@@ -190,12 +200,12 @@ public class RealityDatabase implements DatabaseInterface {
                 databaseAsAList.add(givenClass);
             }
             querySet.close();
-            command.close();  
-            return databaseAsAList;    
+            command.close();
+            return databaseAsAList;
         } catch (SQLException k) {
-            
-        } 
-       
+
+        }
+
         return databaseAsAList;
     }
 
@@ -208,5 +218,5 @@ public class RealityDatabase implements DatabaseInterface {
     public String getConnectionString() {
         return this.connectionRepresentation;
     }
-    
+
 }

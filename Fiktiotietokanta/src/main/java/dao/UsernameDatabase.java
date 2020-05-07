@@ -13,7 +13,6 @@ import java.sql.Statement;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * Käyttäjä tietokanta.
  *
@@ -25,26 +24,30 @@ public class UsernameDatabase implements UsernameInterface {
     private String connectionRepresentation;
 
     /**
-    * Käyttäjä tietokannan konstruktori.
+     * Käyttäjä tietokannan konstruktori.
+     *
      * @param useCondition annettu tila vaatimus.
-    * @throws java.lang.Exception virhe.
-    */
-    
-    public UsernameDatabase(String useCondition) throws Exception {
-        if (useCondition.equals("Normal")) {
-           this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection"); 
-           connectionRepresentation = "jdbc:sqlite:usernamedatabase:connection";
+     */
+    public UsernameDatabase(String useCondition) {
+        try {
+            if (useCondition.equals("Normal")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
+                connectionRepresentation = "jdbc:sqlite:usernamedatabase:connection";
+            }
+            if (useCondition.equals("Test")) {
+                this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabasetest:connection");
+                connectionRepresentation = "jdbc:sqlite:usernamedatabasetest:connection";
+            }
+            this.databaseExists = false;
+        } catch (SQLException k) {
+          this.databaseExists = null;
         }
-        if (useCondition.equals("Test")) {
-           this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabasetest:connection"); 
-           connectionRepresentation = "jdbc:sqlite:usernamedatabasetest:connection";
-        }
+
         
-        this.databaseExists = false;
     }
-    
+
     @Override
-    public boolean createUsernameDatabase() throws Exception  {
+    public boolean createUsernameDatabase() {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
@@ -54,16 +57,16 @@ public class UsernameDatabase implements UsernameInterface {
             databaseExists = true;
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
-    
+
     @Override
-    public boolean usernameDatabaseExists()  {
+    public boolean usernameDatabaseExists() {
         return databaseExists;
     }
-     
+
     @Override
     public boolean addUserInformation(String username, String password) {
         try {
@@ -74,12 +77,11 @@ public class UsernameDatabase implements UsernameInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
-    
-    
+
     @Override
     public boolean searchUserInformation(String username) {
         try {
@@ -103,13 +105,13 @@ public class UsernameDatabase implements UsernameInterface {
             return false;
 
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
-    
+
     @Override
-    public boolean removeUserInformation(String username)  {
+    public boolean removeUserInformation(String username) {
         try {
             PreparedStatement command = connection.prepareStatement("DELETE FROM Usernames WHERE Username=?;");
             command.setString(1, username);
@@ -117,14 +119,13 @@ public class UsernameDatabase implements UsernameInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
-    
-    
+
     @Override
-    public boolean removeUsernameDatabase() throws Exception {
+    public boolean removeUsernameDatabase(){
         try {
             Statement command = connection.createStatement();
             command.execute("DROP TABLE Usernames");
@@ -132,14 +133,14 @@ public class UsernameDatabase implements UsernameInterface {
             databaseExists = false;
             return true;
         } catch (SQLException k) {
-           
+
         }
         return false;
     }
 
     @Override
     public Integer searchUsernameId(String username) {
-       
+
         try {
             PreparedStatement command = connection.prepareStatement("SELECT id FROM Usernames WHERE Username=?;");
             command.setString(1, username);
@@ -150,11 +151,11 @@ public class UsernameDatabase implements UsernameInterface {
             }
             querySet.close();
             command.close();
-            
+
             return userId;
-                    
+
         } catch (SQLException k) {
-            
+
         }
         return 0;
     }
@@ -183,7 +184,7 @@ public class UsernameDatabase implements UsernameInterface {
             return false;
 
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -192,6 +193,5 @@ public class UsernameDatabase implements UsernameInterface {
     public String getConnectionString() {
         return this.connectionRepresentation;
     }
-    
-   
+
 }

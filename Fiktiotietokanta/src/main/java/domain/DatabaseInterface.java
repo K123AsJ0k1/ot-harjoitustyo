@@ -17,10 +17,9 @@ public interface DatabaseInterface {
     * 
     * 
      * @return palauttaa true, jos tietokanta on luotu ja false jos ei.
-     * @throws java.lang.Exception ottaa vastaan virheet, jotka tapahtuvat.
      * 
     */
-    public boolean createDatabase() throws Exception;
+    public boolean createDatabase();
     
     
     /** Tarkastaa tietokannan olemassaolon.
@@ -119,8 +118,7 @@ public interface DatabaseInterface {
     * 
     * 
      * @return palauttaa true, jos poisto onnistui ja false jos ei.
-     * @throws java.lang.Exception virhe.
     */ 
-    public boolean removeDatabase() throws Exception;
+    public boolean removeDatabase();
     
 }
