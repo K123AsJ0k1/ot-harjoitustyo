@@ -7,7 +7,6 @@ package ui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.collections.ObservableList;
 import service.UiLogicCore;
 
 /** Käyttöliittymä.
@@ -119,74 +118,34 @@ public class UserInterface extends Application {
             uiLogicCore.getUiTransitionLogic().fromCreateProfileToChooseAbility(primaryStage, uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(uiLogicCore.getUser().getId())), uiLogicCore.getUiAbilityLogic());
         });
         
-        //Resets profile
         uiLogicCore.getScenePlayer().getProfileMenu().getResetProfileButton().setOnAction((event) -> {
-            uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().clear();
-            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText("");
+            uiLogicCore.getUiSupportLogic().resetProfile(primaryStage);
         });
         
-        
-        //Saving current profile as a file
         uiLogicCore.getScenePlayer().getCreateFile().getSaveButton().setOnAction((event) -> {
-            String text = uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim();
-            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText(text);
-            uiLogicCore.getTextPlayer().getFileWriterInterface().showSaveFileDialog(primaryStage, text);
+            uiLogicCore.getUiSupportLogic().saveProfileAsAFile(primaryStage, uiLogicCore.getTextPlayer());
         });
          
-        //Adding of new ability
         uiLogicCore.getScenePlayer().getAddAbilities().getCreateAbilityButton().setOnAction((event) -> {
-            uiLogicCore.getScenePlayer().getAddAbilities().getErrorMessage().setText("");
-            String textFieldClass = uiLogicCore.getScenePlayer().getAddAbilities().getClassInput().getText().trim();
-            String textFieldName = uiLogicCore.getScenePlayer().getAddAbilities().getNameInput().getText().trim();
-            String textFieldDescription = uiLogicCore.getScenePlayer().getAddAbilities().getDescriptionInput().getText().trim();
-            String textFieldRequriment = uiLogicCore.getScenePlayer().getAddAbilities().getRequrimentInput().getText().trim();
-            String textFieldReality = uiLogicCore.getScenePlayer().getAddAbilities().getRealityInput().getText().trim();
-            
-            String addAbility = uiLogicCore.getUiAbilityLogic().addAbility(uiLogicCore.getUser().getId(), textFieldClass, textFieldName, textFieldDescription, textFieldRequriment, textFieldReality);
-            uiLogicCore.getScenePlayer().getAddAbilities().getErrorMessage().setText(addAbility);
-            
-            uiLogicCore.getScenePlayer().getAddAbilities().getClassInput().clear();
-            uiLogicCore.getScenePlayer().getAddAbilities().getNameInput().clear();
-            uiLogicCore.getScenePlayer().getAddAbilities().getDescriptionInput().clear();
-            uiLogicCore.getScenePlayer().getAddAbilities().getRequrimentInput().clear();
-            uiLogicCore.getScenePlayer().getAddAbilities().getRealityInput().clear();
+            uiLogicCore.getUiSupportLogic().addAbility(uiLogicCore.getUser(), uiLogicCore.getUiAbilityLogic());
         });
         
-        //Removal of ability
         uiLogicCore.getScenePlayer().getRemoveAbilities().getRemoveAbilityButton().setOnAction((event) -> {
-            if (uiLogicCore.getScenePlayer().getRemoveAbilities().getSelectionModel().getSelectedItems().size() > 0) {
-                ObservableList selectedItems = uiLogicCore.getScenePlayer().getRemoveAbilities().getSelectionModel().getSelectedItems();
-                int removedIndex = uiLogicCore.getScenePlayer().getRemoveAbilities().getSelectionModel().getFocusedIndex();
-                uiLogicCore.getUiAbilityLogic().removeAbility(uiLogicCore.getUser().getId(), selectedItems);
-                uiLogicCore.getScenePlayer().getRemoveAbilities().getTableView().getItems().remove(removedIndex);
-                uiLogicCore.getScenePlayer().getRemoveAbilities().getTableView().refresh();
-            }
+            uiLogicCore.getUiSupportLogic().removeAbility(uiLogicCore.getUser(), uiLogicCore.getUiAbilityLogic());
         });
         
-        //Resets choosen ability
         uiLogicCore.getScenePlayer().getCreateProfile().getResetAbilityItem().setOnAction((event) -> {
-            uiLogicCore.getParameters().setChoosenAbility("");
-            uiLogicCore.getParameters().setLeftOverParameters("");
-            uiLogicCore.getScenePlayer().getCreateProfile().getLeftParameterItem().setText("Ability parameters left:" + "");
+            uiLogicCore.getUiSupportLogic().resetAbility(uiLogicCore.getParameters());
         });
         
-        //Checks textarea string for ability parameters
         uiLogicCore.getScenePlayer().getCreateProfile().getCheckAreaItem().setOnAction((event) -> {
-            uiLogicCore.getParameters().setLeftOverParameters(uiLogicCore.getTextPlayer().getTextRefineryInterface().choosenAbilityIsFoundFromText(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText(),uiLogicCore.getParameters().getChosenAbility()));
-            uiLogicCore.getScenePlayer().getCreateProfile().getLeftParameterItem().setText("Ability parameters left:" + uiLogicCore.getParameters().getLeftOverParameters());
+            uiLogicCore.getUiSupportLogic().checkTextAreaForAbilities(uiLogicCore.getParameters(), uiLogicCore.getTextPlayer());
         });
         
-        //Checks textarea 
         uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().setOnKeyTyped((event) -> {
-           uiLogicCore.getScenePlayer().getCreateProfile().getLineCheckItem().setText("Text has different lines:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().givenTextLineChecker(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
-           uiLogicCore.getScenePlayer().getCreateProfile().getSpaceCheckItem().setText("Words have spaces between them:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().givenTextLineHasSpaces(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
-           uiLogicCore.getScenePlayer().getCreateProfile().getWordCountItem().setText("Current wordcount:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().giveTextWordCount(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
-           uiLogicCore.getScenePlayer().getCreateProfile().getCharacterCountItem().setText("Current charactercount:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().giveCharacterCount(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
+           uiLogicCore.getUiSupportLogic().checkTextArea(uiLogicCore.getTextPlayer());
         });
         
-        
-        
-        //UI start code
         primaryStage.setTitle("Login screen");
         primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
         primaryStage.show();

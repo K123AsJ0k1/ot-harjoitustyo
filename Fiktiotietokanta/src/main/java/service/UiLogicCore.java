@@ -34,6 +34,7 @@ import scenes.RemoveAbilitiesScene;
 import scenes.SignInScene;
 import scenes.Test;
 import textlogic.TextRefinery;
+import uilogic.UiSupportLogic;
 
 /**
  *
@@ -50,6 +51,7 @@ public class UiLogicCore {
     UiUserLogic uiUserLogic;
     UiAbilityLogic uiAbilityLogic;
     UiTransitionLogic uiTransitionLogic;
+    UiSupportLogic uiSupportLogic;
     
     public UiLogicCore() {
         
@@ -74,6 +76,7 @@ public class UiLogicCore {
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
+        uiSupportLogic = new UiSupportLogic(this.scenePlayer);
         this.daoPlayer.usernameDatabase.addUserInformation("Tester","Tester");
         
         return true;
@@ -121,6 +124,10 @@ public class UiLogicCore {
     
     public UiTransitionLogic getUiTransitionLogic() {
         return this.uiTransitionLogic;
+    }
+    
+    public UiSupportLogic getUiSupportLogic() {
+        return this.uiSupportLogic;
     }
     
     
