@@ -27,7 +27,6 @@ public class AbilityDatabase implements DatabaseInterface {
     /**
      * Tietokannan konstruktori.
      * @param useCondition annettu tila.
-     * @throws SQLException virhe.
      */
     public AbilityDatabase(String useCondition) {
         try {

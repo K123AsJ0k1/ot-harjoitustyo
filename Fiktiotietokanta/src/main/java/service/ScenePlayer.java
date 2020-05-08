@@ -6,17 +6,17 @@
 package service;
 
 import javafx.scene.Scene;
-import scenes.AbilityMenuScene;
-import scenes.AddAbilitiesScene;
-import scenes.AdminMenuScene;
-import scenes.ChooseAbilitiesScene;
-import scenes.CreateFileScene;
-import scenes.CreateProfileScene;
-import scenes.LoginScene;
-import scenes.MainMenuScene;
-import scenes.ProfileMenuScene;
-import scenes.RemoveAbilitiesScene;
-import scenes.SignInScene;
+import programscenes.AbilityMenuScene;
+import programscenes.AddAbilitiesScene;
+import programscenes.AdminMenuScene;
+import programscenes.ChooseAbilitiesScene;
+import programscenes.CreateFileScene;
+import programscenes.CreateProfileScene;
+import programscenes.LoginScene;
+import programscenes.MainMenuScene;
+import programscenes.ProfileMenuScene;
+import programscenes.RemoveAbilitiesScene;
+import programscenes.SignInScene;
 
 /**
  *

@@ -10,9 +10,9 @@ import dao.UsernameDatabase;
 import domain.UsernameInterface;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import scenes.LoginScene;
-import scenes.MainMenuScene;
-import scenes.SignInScene;
+import programscenes.LoginScene;
+import programscenes.MainMenuScene;
+import programscenes.SignInScene;
 import service.ScenePlayer;
 
 /**
