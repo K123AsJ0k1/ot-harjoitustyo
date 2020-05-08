@@ -60,7 +60,7 @@ public class RemoveAbilitiesScene {
         this.tableview.getColumns().addAll(classColumn, nameColumn, descriptionColumn, requrimentColumn, realityColumn);
         layout.getChildren().addAll(lable, this.tableview, buttonLayout);
 
-        layout.setPrefSize(320, 400);
+        layout.setPrefSize(400, 400);
 
         this.selectionModel = this.tableview.getSelectionModel();
         this.selectionModel.setSelectionMode(SelectionMode.SINGLE);

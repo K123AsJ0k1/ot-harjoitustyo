@@ -5,7 +5,9 @@
  */
 package uilogic;
 
+import javafx.scene.Node;
 import javafx.stage.Stage;
+import service.LayoutPlayer;
 import service.ScenePlayer;
 import service.UiLogicCore;
 
@@ -21,6 +23,13 @@ public class UiInstallSupportLogic {
         this.scenePlayer = scenePlayer;
     }
     
+    public void changeToFolder(Stage primaryStage) {
+        
+    }
+    
+    public void changeToUD(Stage primaryStage) {      
+        
+    }
     
     
 }

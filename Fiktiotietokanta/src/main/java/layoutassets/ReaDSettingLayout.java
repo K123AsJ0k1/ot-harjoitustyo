@@ -30,6 +30,10 @@ public class ReaDSettingLayout {
         Label reaD = new Label("These settings control reality database");
         nameReaD = new TextArea();
         pathReaD = new TextArea();
+        
+        nameReaD.setMaxSize(250, 5);
+        pathReaD.setMaxSize(250, 5);
+        
         checkNameReaD = new Button("Check name");
         checkPathReaD = new Button("Check path");
         choosePathReaD = new Button("Choose path");

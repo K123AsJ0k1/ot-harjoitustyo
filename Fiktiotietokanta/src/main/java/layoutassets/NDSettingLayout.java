@@ -30,6 +30,10 @@ public class NDSettingLayout {
         Label nD = new Label("These settings control name database");
         nameND = new TextArea();
         pathND = new TextArea();
+        
+        nameND.setMaxSize(250, 5);
+        pathND.setMaxSize(250, 5);
+        
         checkNameND = new Button("Check name");
         checkPathND = new Button("Check path");
         choosePathND = new Button("Choose path");

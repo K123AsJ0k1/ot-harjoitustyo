@@ -30,11 +30,17 @@ public class CDSettingLayout {
         Label cD = new Label("These settings control class database");
         nameCD = new TextArea();
         pathCD = new TextArea();
+        
+        nameCD.setMaxSize(250, 5);
+        pathCD.setMaxSize(250, 5);
+        
         checkNameCD = new Button("Check name");
         checkPathCD = new Button("Check path");
         choosePathCD = new Button("Choose path");
         cDButtonLayout.getChildren().addAll(checkNameCD, checkPathCD, choosePathCD);
         layout.getChildren().addAll(cD, nameCD, pathCD, checkNameCD, checkPathCD, choosePathCD,cDButtonLayout);
+        
+        layout.setPrefSize(100, 100);
     }
     
     public VBox getLayout() {

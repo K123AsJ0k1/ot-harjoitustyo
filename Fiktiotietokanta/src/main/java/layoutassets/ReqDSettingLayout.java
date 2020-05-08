@@ -30,6 +30,10 @@ public class ReqDSettingLayout {
         Label reqD = new Label("These settings control requriment database");
         nameReqD = new TextArea();
         pathReqD = new TextArea();
+        
+        nameReqD.setMaxSize(250, 5);
+        pathReqD.setMaxSize(250, 5);
+        
         checkNameReqD = new Button("Check name");
         checkPathReqD = new Button("Check path");
         choosePathReqD = new Button("Choose path");

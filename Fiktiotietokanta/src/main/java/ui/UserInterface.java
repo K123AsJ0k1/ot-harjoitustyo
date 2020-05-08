@@ -42,6 +42,14 @@ public class UserInterface extends Application {
             uiLogicCore.getUiInstallTransitionsLogic().fromDaoSettingsToUpKeepSettings(primaryStage);
         });
         
+        uiLogicCore.getScenePlayer().getDaoSettings().getFolder().setOnAction((event) ->{
+            uiLogicCore.getUiInstallSupportLogic().changeToFolder(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getDaoSettings().getUD().setOnAction((event) ->{
+            uiLogicCore.getUiInstallSupportLogic().changeToUD(primaryStage);
+        });
+        
         uiLogicCore.getScenePlayer().getUpKeepSettings().getPreviousButton().setOnAction((event) ->{
             uiLogicCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToDaoSettings(primaryStage);
         });

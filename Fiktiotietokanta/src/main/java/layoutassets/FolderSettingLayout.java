@@ -33,11 +33,17 @@ public class FolderSettingLayout {
         Label folder = new Label("These setting controls the folder containing needed databases");
         nameFolder = new TextArea();
         pathFolder = new TextArea();
+        
+        nameFolder.setMaxSize(250, 5);
+        pathFolder.setMaxSize(250, 5);
+       
         checkNameFolder = new Button("Check name");
         checkPathFolder = new Button("Check path");
         choosePathFolder = new Button("Choose path");
         folderButtonLayout.getChildren().addAll(checkNameFolder, checkPathFolder, choosePathFolder);
         layout.getChildren().addAll(folder, nameFolder, pathFolder, checkNameFolder, checkPathFolder, choosePathFolder, folderButtonLayout);
+        
+        layout.setPrefSize(100, 100);
     } 
     
     public VBox getLayout() {

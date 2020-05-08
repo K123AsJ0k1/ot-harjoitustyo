@@ -30,6 +30,10 @@ public class DDSettingLayout {
         Label dD = new Label("These settings control description database");
         nameDD = new TextArea();
         pathDD = new TextArea();
+        
+        nameDD.setMaxSize(250, 5);
+        pathDD.setMaxSize(250, 5);
+        
         checkNameDD = new Button("Check name");
         checkPathDD = new Button("Check path");
         choosePathDD = new Button("Choose path");

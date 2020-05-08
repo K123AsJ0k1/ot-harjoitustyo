@@ -30,6 +30,10 @@ public class UDSettingLayout {
         Label uD = new Label("These settings control username database");
         nameUD = new TextArea(); 
         pathUD = new TextArea();
+        
+        nameUD.setMaxSize(250, 5);
+        pathUD.setMaxSize(250, 5);
+        
         checkNameUD = new Button("Check name");
         checkPathUD = new Button("Check path");
         choosePathUD = new Button("Choose path");
