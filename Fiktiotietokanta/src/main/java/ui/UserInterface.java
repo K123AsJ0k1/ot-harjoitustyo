@@ -83,23 +83,18 @@ public class UserInterface extends Application {
             uiLogicCore.getUiTransitionLogic().fromProfileMenuToCreateFile(primaryStage);
         });
         
-        //Resets profile
-        uiLogicCore.getScenePlayer().getProfileMenu().getResetProfileButton().setOnAction((event) -> {
-            uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().clear();
-            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText("");
+        uiLogicCore.getScenePlayer().getChooseAbilities().getReturnButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromChoosenAbilityToCreateProfileReturn(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getChooseAbilities().getChoosenAbilityButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromChoosenAbilityToCreateProfileChoosenAbility(primaryStage, uiLogicCore.getParameters(), uiLogicCore.getUiAbilityLogic());
         });
         
         uiLogicCore.getScenePlayer().getCreateFile().getReturnButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromCreateFileToProfileMenu(primaryStage);
         });
         
-        //Saving current profile as a file
-        uiLogicCore.getScenePlayer().getCreateFile().getSaveButton().setOnAction((event) -> {
-            String text = uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim();
-            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText(text);
-            uiLogicCore.getTextPlayer().getFileWriterInterface().showSaveFileDialog(primaryStage, text);
-        });
-         
         uiLogicCore.getScenePlayer().getAdminMenu().getReturnButton().setOnAction((event) ->{
             uiLogicCore.getUiTransitionLogic().fromAdminMenuToMainMenu(primaryStage);
         });
@@ -108,6 +103,36 @@ public class UserInterface extends Application {
             uiLogicCore.getUiTransitionLogic().fromAddAbilitiesToAbilityMenu(primaryStage);
         });
         
+        uiLogicCore.getScenePlayer().getRemoveAbilities().getReturnButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromRemoveAbilityToAbilityMenu(primaryStage);
+        });
+
+        uiLogicCore.getScenePlayer().getCreateProfile().getExitWithSave().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromCreateProfileToProfileMenuWithSave(primaryStage);
+        });
+
+        uiLogicCore.getScenePlayer().getCreateProfile().getExitWithoutSave().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromCreateProfileToProfileMenuWithOutSave(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getCreateProfile().getChoosenAbilityItem().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromCreateProfileToChooseAbility(primaryStage, uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(uiLogicCore.getUser().getId())), uiLogicCore.getUiAbilityLogic());
+        });
+        
+        //Resets profile
+        uiLogicCore.getScenePlayer().getProfileMenu().getResetProfileButton().setOnAction((event) -> {
+            uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().clear();
+            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText("");
+        });
+        
+        
+        //Saving current profile as a file
+        uiLogicCore.getScenePlayer().getCreateFile().getSaveButton().setOnAction((event) -> {
+            String text = uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim();
+            uiLogicCore.getScenePlayer().getCreateFile().getTextPresentation().setText(text);
+            uiLogicCore.getTextPlayer().getFileWriterInterface().showSaveFileDialog(primaryStage, text);
+        });
+         
         //Adding of new ability
         uiLogicCore.getScenePlayer().getAddAbilities().getCreateAbilityButton().setOnAction((event) -> {
             uiLogicCore.getScenePlayer().getAddAbilities().getErrorMessage().setText("");
@@ -138,22 +163,6 @@ public class UserInterface extends Application {
             }
         });
         
-        uiLogicCore.getScenePlayer().getRemoveAbilities().getReturnButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromRemoveAbilityToAbilityMenu(primaryStage);
-        });
-
-        uiLogicCore.getScenePlayer().getCreateProfile().getExitWithSave().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromCreateProfileToProfileMenuWithSave(primaryStage);
-        });
-
-        uiLogicCore.getScenePlayer().getCreateProfile().getExitWithoutSave().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromCreateProfileToProfileMenuWithOutSave(primaryStage);
-        });
-        
-        uiLogicCore.getScenePlayer().getCreateProfile().getChoosenAbilityItem().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromCreateProfileToChooseAbility(primaryStage, uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(uiLogicCore.getUser().getId())), uiLogicCore.getUiAbilityLogic());
-        });
-        
         //Resets choosen ability
         uiLogicCore.getScenePlayer().getCreateProfile().getResetAbilityItem().setOnAction((event) -> {
             uiLogicCore.getParameters().setChoosenAbility("");
@@ -175,13 +184,7 @@ public class UserInterface extends Application {
            uiLogicCore.getScenePlayer().getCreateProfile().getCharacterCountItem().setText("Current charactercount:"+uiLogicCore.getTextPlayer().getTextRefineryInterface().giveCharacterCount(uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().getText().trim()));
         });
         
-        uiLogicCore.getScenePlayer().getChooseAbilities().getReturnButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromChoosenAbilityToCreateProfileReturn(primaryStage);
-        });
         
-        uiLogicCore.getScenePlayer().getChooseAbilities().getChoosenAbilityButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromChoosenAbilityToCreateProfileChoosenAbility(primaryStage, uiLogicCore.getParameters(), uiLogicCore.getUiAbilityLogic());
-        });
         
         //UI start code
         primaryStage.setTitle("Login screen");

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package uilogic;
 
+import assets.Ability;
 import dao.AbilityDatabase;
 import dao.ClassDatabase;
 import dao.DescriptionDatabase;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import service.DaoPlayer;
 import textlogic.TemplateMaker;
 import textlogic.TextRefinery;
 

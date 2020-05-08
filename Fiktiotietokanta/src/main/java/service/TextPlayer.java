@@ -5,6 +5,7 @@
  */
 package service;
 
+import filelogic.FileWriter;
 import domain.FileWriterInterface;
 import domain.TextRefineryInterface;
 import textlogic.TextRefinery;

@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package uilogic;
 
+import assets.User;
+import assets.Parameters;
 import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import service.ScenePlayer;
 
 /**
  *

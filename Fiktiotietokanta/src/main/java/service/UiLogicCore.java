@@ -5,6 +5,11 @@
  */
 package service;
 
+import uilogic.UiAbilityLogic;
+import uilogic.UiUserLogic;
+import uilogic.UiTransitionLogic;
+import assets.User;
+import assets.Parameters;
 import dao.AbilityDatabase;
 import dao.ClassDatabase;
 import dao.DescriptionDatabase;
