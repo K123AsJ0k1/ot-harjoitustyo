@@ -95,7 +95,7 @@ public class UpKeepSettingsScene {
     }
     
     public Button getPreviousButton() {
-        return this.finish;
+        return this.previous;
     }
     
 }

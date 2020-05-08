@@ -25,6 +25,30 @@ public class UserInterface extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        
+        uiLogicCore.getScenePlayer().getWelcome().getNextButton().setOnAction((event) ->{
+            uiLogicCore.getUiInstallTransitionsLogic().fromWelcomeToDaoSettings(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getWelcome().getShutDownButton().setOnAction((event) ->{
+            stop();
+        });
+        
+        uiLogicCore.getScenePlayer().getDaoSettings().getPrevious().setOnAction((event) ->{
+            uiLogicCore.getUiInstallTransitionsLogic().fromDaoSettingsToWelcome(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getDaoSettings().getNext().setOnAction((event) ->{
+            uiLogicCore.getUiInstallTransitionsLogic().fromDaoSettingsToUpKeepSettings(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getUpKeepSettings().getPreviousButton().setOnAction((event) ->{
+            uiLogicCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToDaoSettings(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getUpKeepSettings().getFinishButton().setOnAction((event) ->{
+            uiLogicCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToLogin(primaryStage);
+        });
 
         uiLogicCore.getScenePlayer().getLogin().getLoginButton().setOnAction((event) -> {
             uiLogicCore.getUiUserLogic().login(primaryStage);
@@ -145,16 +169,22 @@ public class UserInterface extends Application {
         uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().setOnKeyTyped((event) -> {
            uiLogicCore.getUiSupportLogic().checkTextArea(uiLogicCore.getTextPlayer());
         });
-        
+        /*
         primaryStage.setTitle("Login screen");
         primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
         primaryStage.show();
-
+        */
+        
+        primaryStage.setTitle("Welcome to Fiktiotietokanta installation");
+        primaryStage.setScene(uiLogicCore.getScenePlayer().getWelcome().getWelcomeScene());
+        primaryStage.show();
+        
     }
 
     @Override
     public void stop() {
         uiLogicCore.coreShutDown();
+        System.exit(0);
     }
     
     /** Käyttöliittymä.

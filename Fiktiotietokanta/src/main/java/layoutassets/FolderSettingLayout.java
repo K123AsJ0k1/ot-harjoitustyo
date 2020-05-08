@@ -18,11 +18,13 @@ import javafx.scene.layout.VBox;
 public class FolderSettingLayout {
     
     VBox layout;
+    
     TextArea nameFolder;
     TextArea pathFolder;
     Button checkNameFolder;
     Button checkPathFolder;
     Button choosePathFolder;
+    
     
     public FolderSettingLayout() {
         layout = new VBox();
@@ -35,8 +37,7 @@ public class FolderSettingLayout {
         checkPathFolder = new Button("Check path");
         choosePathFolder = new Button("Choose path");
         folderButtonLayout.getChildren().addAll(checkNameFolder, checkPathFolder, choosePathFolder);
-        
-        layout.getChildren().addAll(folder,nameFolder,pathFolder,checkNameFolder,checkPathFolder,choosePathFolder,folderButtonLayout);
+        layout.getChildren().addAll(folder, nameFolder, pathFolder, checkNameFolder, checkPathFolder, choosePathFolder, folderButtonLayout);
     } 
     
     public VBox getLayout() {

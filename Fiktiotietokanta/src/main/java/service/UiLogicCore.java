@@ -10,29 +10,8 @@ import uilogic.UiUserLogic;
 import uilogic.UiTransitionLogic;
 import assets.User;
 import assets.Parameters;
-import dao.AbilityDatabase;
-import dao.ClassDatabase;
-import dao.DescriptionDatabase;
-import dao.NameDatabase;
-import dao.RealityDatabase;
-import dao.RequrimentDatabase;
-import dao.UsernameDatabase;
-import domain.DatabaseInterface;
-import domain.FileWriterInterface;
-import domain.TextRefineryInterface;
-import domain.UsernameInterface;
-import programscenes.AbilityMenuScene;
-import programscenes.AddAbilitiesScene;
-import programscenes.AdminMenuScene;
-import programscenes.ChooseAbilitiesScene;
-import programscenes.CreateFileScene;
-import programscenes.CreateProfileScene;
-import programscenes.LoginScene;
-import programscenes.MainMenuScene;
-import programscenes.ProfileMenuScene;
-import programscenes.RemoveAbilitiesScene;
-import programscenes.SignInScene;
-import textlogic.TextRefinery;
+import uilogic.UiInstallSupportLogic;
+import uilogic.UiInstallTransitionsLogic;
 import uilogic.UiSupportLogic;
 
 /**
@@ -47,6 +26,8 @@ public class UiLogicCore {
       
     User user;
     Parameters parameters;
+    UiInstallSupportLogic uiInstallSupportLogic;
+    UiInstallTransitionsLogic uiInstallTransitionsLogic;
     UiUserLogic uiUserLogic;
     UiAbilityLogic uiAbilityLogic;
     UiTransitionLogic uiTransitionLogic;
@@ -71,7 +52,8 @@ public class UiLogicCore {
         
         user = new User("","",0);
         parameters = new Parameters("","");
-        
+        uiInstallSupportLogic = new UiInstallSupportLogic(this.scenePlayer);
+        uiInstallTransitionsLogic = new UiInstallTransitionsLogic(this.scenePlayer);
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
@@ -113,6 +95,14 @@ public class UiLogicCore {
         return this.parameters;
     }
     
+    public UiInstallSupportLogic getUiInstallSupportLogic() {
+        return this.uiInstallSupportLogic;
+    }
+    
+    public UiInstallTransitionsLogic getUiInstallTransitionsLogic() {
+        return this.uiInstallTransitionsLogic;
+    }
+    
     public UiUserLogic getUiUserLogic() {
         return this.uiUserLogic;
     }
@@ -128,6 +118,8 @@ public class UiLogicCore {
     public UiSupportLogic getUiSupportLogic() {
         return this.uiSupportLogic;
     }
+    
+
     
     
 }

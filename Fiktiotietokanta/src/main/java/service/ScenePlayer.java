@@ -5,6 +5,9 @@
  */
 package service;
 
+import installationscenes.DaoSettingsScene;
+import installationscenes.UpKeepSettingsScene;
+import installationscenes.WelcomeScene;
 import javafx.scene.Scene;
 import programscenes.AbilityMenuScene;
 import programscenes.AddAbilitiesScene;
@@ -35,6 +38,9 @@ public class ScenePlayer {
     RemoveAbilitiesScene removeAbilitiesScene;
     CreateProfileScene createProfileScene;
     ChooseAbilitiesScene chooseAbilitiesScene;
+    WelcomeScene welcomeScene;
+    DaoSettingsScene daoSettingsScene;
+    UpKeepSettingsScene upKeepSettingsScene;
     
     public ScenePlayer() {
         loginScene = new LoginScene();
@@ -48,6 +54,9 @@ public class ScenePlayer {
         removeAbilitiesScene = new RemoveAbilitiesScene();
         createProfileScene = new CreateProfileScene();
         chooseAbilitiesScene = new ChooseAbilitiesScene();
+        welcomeScene = new WelcomeScene();
+        daoSettingsScene = new DaoSettingsScene();
+        upKeepSettingsScene = new UpKeepSettingsScene();
     }
     
     
@@ -93,6 +102,18 @@ public class ScenePlayer {
     
     public ChooseAbilitiesScene getChooseAbilities() {
         return this.chooseAbilitiesScene;
+    }
+    
+    public WelcomeScene getWelcome() {
+        return this.welcomeScene;
+    }
+    
+    public DaoSettingsScene getDaoSettings() {
+        return this.daoSettingsScene;
+    }
+    
+    public UpKeepSettingsScene getUpKeepSettings() {
+        return this.upKeepSettingsScene;
     }
     
      

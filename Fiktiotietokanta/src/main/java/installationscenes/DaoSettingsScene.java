@@ -10,7 +10,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -37,8 +36,19 @@ public class DaoSettingsScene {
     DDSettingLayout dDSettingLayout;
     ReqDSettingLayout reqDSettingLayout;
     ReaDSettingLayout reaDSettingLayout;
+    Button previous;
+    Button next;
     
     public DaoSettingsScene() {
+        
+        folderSettingLayout = new FolderSettingLayout();
+        uDSettingLayout = new UDSettingLayout();
+        cDSettingLayout = new CDSettingLayout();
+        nDSettingLayout = new NDSettingLayout();
+        dDSettingLayout = new DDSettingLayout();
+        reqDSettingLayout = new ReqDSettingLayout();
+        reaDSettingLayout = new ReaDSettingLayout();
+               
         GridPane layout = new GridPane();
         
         Label title = new Label("Data access object settings");
@@ -46,8 +56,8 @@ public class DaoSettingsScene {
         Text description = new Text("You can configure these given options, or continue to the next step");
         
         HBox buttonLayout = new HBox();
-        Button previous = new Button("Previous");
-        Button next = new Button("Next");
+        previous = new Button("Previous");
+        next = new Button("Next");
         buttonLayout.getChildren().addAll(previous, next);
         
         layout.add(title, 0, 0);
@@ -55,17 +65,17 @@ public class DaoSettingsScene {
         layout.add(description, 0, 2);
         layout.add(folderSettingLayout.getLayout(), 0, 3);
         layout.add(uDSettingLayout.getLayout(), 0, 4);
-        layout.add(cDSettingLayout.getLayout(), 0, 5);
-        layout.add(nDSettingLayout.getLayout(), 0, 6);
-        layout.add(dDSettingLayout.getLayout(), 0, 7);
-        layout.add(reqDSettingLayout.getLayout(), 0, 8);
-        layout.add(reaDSettingLayout.getLayout(), 0, 9);
+        //layout.add(cDSettingLayout.getLayout(), 0, 5);
+        //layout.add(nDSettingLayout.getLayout(), 0, 6);
+        //layout.add(dDSettingLayout.getLayout(), 0, 7);
+        //layout.add(reqDSettingLayout.getLayout(), 0, 8);
+        //layout.add(reaDSettingLayout.getLayout(), 0, 9);
         layout.add(buttonLayout, 0, 10);
-               
-        layout.setPrefSize(300, 300);
+        
+        layout.setPrefSize(600, 600);
         layout.setAlignment(Pos.CENTER);
-        layout.setVgap(10);
-        layout.setHgap(10);
+        layout.setVgap(20);
+        layout.setHgap(20);
         layout.setPadding(new Insets(20, 20, 20, 20));
         
         this.daoSettingScene = new Scene(layout); 
@@ -105,6 +115,14 @@ public class DaoSettingsScene {
     
     public ReaDSettingLayout getReaDSettingLayout() {
         return this.reaDSettingLayout;
+    }
+    
+    public Button getPrevious() {
+        return this.previous;
+    }
+    
+    public Button getNext() {
+        return this.next;
     }
     
     
