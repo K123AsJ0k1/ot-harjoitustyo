@@ -28,11 +28,13 @@ public class UiInstallSupportLogic {
     public void checkFolderName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("Folder");
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             scenePlayer.getPublicDaoSettings().getNameInput().setText(configuration.getFolderName());
         }
 
         if (configuration.getMode().equals("Private")) {
             textMode.setMode("Folder");
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             scenePlayer.getPrivateDaoSettings().getNameInput().setText(configuration.getFolderName());
         }
 
@@ -41,11 +43,13 @@ public class UiInstallSupportLogic {
     public void checkUserDName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("UsernameDatabase");
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             scenePlayer.getPublicDaoSettings().getNameInput().setText(configuration.getUsernameDName());
         }
 
         if (configuration.getMode().equals("Private")) {
             textMode.setMode("UsernameDatabase");
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             scenePlayer.getPrivateDaoSettings().getNameInput().setText(configuration.getUsernameDName());
         }
     }
@@ -53,11 +57,13 @@ public class UiInstallSupportLogic {
     public void checkClassDName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("ClassDatabase");
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             scenePlayer.getPublicDaoSettings().getNameInput().setText(configuration.getClassDName());
         }
 
         if (configuration.getMode().equals("Private")) {
             textMode.setMode("ClassDatabase");
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             scenePlayer.getPrivateDaoSettings().getNameInput().setText(configuration.getClassDName());
         }
     }
@@ -65,11 +71,13 @@ public class UiInstallSupportLogic {
     public void checkNameDName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("NameDatabase");
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             scenePlayer.getPublicDaoSettings().getNameInput().setText(configuration.getNameDName());
         }
 
         if (configuration.getMode().equals("Private")) {
             textMode.setMode("NameDatabase");
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             scenePlayer.getPrivateDaoSettings().getNameInput().setText(configuration.getNameDName());
         }
     }
@@ -77,11 +85,13 @@ public class UiInstallSupportLogic {
     public void checkDescriptionDName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("DescriptionDatabase");
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             scenePlayer.getPublicDaoSettings().getNameInput().setText(configuration.getDescriptionDName());
         }
 
         if (configuration.getMode().equals("Private")) {
             textMode.setMode("DescriptionDatabase");
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             scenePlayer.getPrivateDaoSettings().getNameInput().setText(configuration.getDescriptionDName());
         }
     }
@@ -89,11 +99,13 @@ public class UiInstallSupportLogic {
     public void checkRequrimentDName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("RequrimentDatabase");
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             scenePlayer.getPublicDaoSettings().getNameInput().setText(configuration.getRequrimentDName());
         }
 
         if (configuration.getMode().equals("Private")) {
             textMode.setMode("RequrimentDatabase");
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             scenePlayer.getPrivateDaoSettings().getNameInput().setText(configuration.getRequrimentDName());
         }
     }
@@ -101,11 +113,13 @@ public class UiInstallSupportLogic {
     public void checkRealityDName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("RealityDatabase");
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             scenePlayer.getPublicDaoSettings().getNameInput().setText(configuration.getRealityDName());
         }
 
         if (configuration.getMode().equals("Private")) {
             textMode.setMode("RealityDatabase");
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             scenePlayer.getPrivateDaoSettings().getNameInput().setText(configuration.getRealityDName());
         }
     }
@@ -113,11 +127,13 @@ public class UiInstallSupportLogic {
     public void checkAbilityDName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("AbilityDatabase");
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             scenePlayer.getPublicDaoSettings().getNameInput().setText(configuration.getAbilityDName());
         }
 
         if (configuration.getMode().equals("Private")) {
             textMode.setMode("AbilityDatabase");
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             scenePlayer.getPrivateDaoSettings().getNameInput().setText(configuration.getAbilityDName());
         }
     }
@@ -126,15 +142,18 @@ public class UiInstallSupportLogic {
         if (configuration.getMode().equals("Public")) {
             String givenName = scenePlayer.getPublicDaoSettings().getNameInput().getText();
             
-            if (givenName.length()==0) {
+            if (givenName.length()<5) {
+                scenePlayer.getPublicDaoSettings().getMessage().setText("Name is too short");
                 return;
             }
             
             if (givenName.equals("projectdatabases")) {
+                scenePlayer.getPublicDaoSettings().getMessage().setText("Name is forbbidden");
                 return;
             }
             
             if (textMode.getMode().equals("")) {
+                scenePlayer.getPublicDaoSettings().getMessage().setText("Select examined name");
                 return;
             }
             
@@ -144,6 +163,10 @@ public class UiInstallSupportLogic {
             
             if (textMode.getMode().equals("UsernameDatabase")) {
                 configuration.setUsernameDName(givenName);
+            }
+            
+            if (textMode.getMode().equals("ClassDatabase")) {
+                configuration.setClassDName(givenName);
             }
             
             if (textMode.getMode().equals("NameDatabase")) {
@@ -161,21 +184,29 @@ public class UiInstallSupportLogic {
             if (textMode.getMode().equals("RealityDatabase")) {
                configuration.setRealityDName(givenName);
             }
-
+            
+            if (textMode.getMode().equals("AbilityDatabase")) {
+                configuration.setAbilityDName(givenName);
+            }
+            
+            scenePlayer.getPublicDaoSettings().getMessage().setText("Name has been changed");
         }
 
         if (configuration.getMode().equals("Private")) {
             String givenName = scenePlayer.getPrivateDaoSettings().getNameInput().getText();
             
-            if (givenName.length()==0) {
+            if (givenName.length()<5) {
+                scenePlayer.getPrivateDaoSettings().getMessage().setText("Name is too short");
                 return;
             }
             
             if (givenName.equals("projectdatabases")) {
+                scenePlayer.getPrivateDaoSettings().getMessage().setText("Name is forbbidden");
                 return;
             }
             
             if (textMode.getMode().equals("")) {
+                scenePlayer.getPrivateDaoSettings().getMessage().setText("Select examined name");
                 return;
             }
             
@@ -185,6 +216,10 @@ public class UiInstallSupportLogic {
             
             if (textMode.getMode().equals("UsernameDatabase")) {
                 configuration.setUsernameDName(givenName);
+            }
+            
+            if (textMode.getMode().equals("ClassDatabase")) {
+                configuration.setClassDName(givenName);
             }
             
             if (textMode.getMode().equals("NameDatabase")) {
@@ -202,6 +237,12 @@ public class UiInstallSupportLogic {
             if (textMode.getMode().equals("RealityDatabase")) {
                configuration.setRealityDName(givenName);
             }
+            
+            if (textMode.getMode().equals("AbilityDatabase")) {
+                configuration.setAbilityDName(givenName);
+            }
+            
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("Name has been changed");
         }
     }
     

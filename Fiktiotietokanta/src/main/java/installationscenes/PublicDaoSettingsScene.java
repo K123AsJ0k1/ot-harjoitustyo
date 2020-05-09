@@ -49,9 +49,10 @@ public class PublicDaoSettingsScene {
     MenuItem reliDaba;
     MenuItem abtyDaba;
     TextArea nameInput;
+    Label message;
     Button previous;
     Button next;
-    Button checkName;
+    Button selectName;
     
     
     public PublicDaoSettingsScene() {
@@ -79,13 +80,15 @@ public class PublicDaoSettingsScene {
         
         nameInput = new TextArea();
         
+        message = new Label("");
+        
         nameInput.setMaxSize(250, 1);
         
-        checkName = new Button("Select name");
+        selectName = new Button("Select name");
 
         HBox textAreaButtonLayout = new HBox();
         
-        textAreaButtonLayout.getChildren().addAll(checkName);
+        textAreaButtonLayout.getChildren().addAll(selectName);
         
         textAreaLayout.getChildren().addAll(nameInput,textAreaButtonLayout);
         
@@ -97,7 +100,8 @@ public class PublicDaoSettingsScene {
         layout.add(description, 0, 1);
         layout.add(menuBar, 0,2);
         layout.add(textAreaLayout, 0, 3);
-        layout.add(buttonLayout, 0, 4);
+        layout.add(message, 0, 4);
+        layout.add(buttonLayout, 0, 5);
         
         layout.setPrefSize(300, 300);
         layout.setAlignment(Pos.CENTER);
@@ -159,9 +163,13 @@ public class PublicDaoSettingsScene {
     public TextArea getNameInput() {
         return this.nameInput;
     }
+    
+    public Label getMessage() {
+        return this.message;
+    }
        
-    public Button getCheckName() {
-        return this.checkName;
+    public Button getSelectName() {
+        return this.selectName;
     }
 
      

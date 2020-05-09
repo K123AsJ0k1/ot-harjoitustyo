@@ -13,6 +13,7 @@ import uilogic.UiTransitionLogic;
 import assets.User;
 import assets.Parameters;
 import domain.FileManagerInterface;
+import filelogic.FileManager;
 import java.util.List;
 import uilogic.UiInstallSupportLogic;
 import uilogic.UiInstallTransitionsLogic;
@@ -37,9 +38,10 @@ public class UiLogicCore {
     UiTransitionLogic uiTransitionLogic;
     UiSupportLogic uiSupportLogic;
     
-    public UiLogicCore() {   
-        this.scenePlayer = new ScenePlayer();
+    public UiLogicCore(ScenePlayer scenePlayer) {   
+        this.scenePlayer = scenePlayer;
         this.textPlayer = new TextPlayer();
+        fileManager = new FileManager();
         configuration = new Configuration();
     }
     
@@ -50,8 +52,11 @@ public class UiLogicCore {
         if (!configRead) {
             return false;
         }
-        
+           
         this.daoPlayer = new DaoPlayer(fileManager, configuration);
+        
+        user = new User("","",0);
+        parameters = new Parameters("","");
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
@@ -63,6 +68,14 @@ public class UiLogicCore {
     
     
     public boolean privateCoreSetup() {
+        Boolean configRead = configuration.readConfigFile(fileManager);
+        
+        if (!configRead) {
+            return false;
+        }
+        
+        this.daoPlayer = new DaoPlayer(fileManager, configuration);
+           
         Boolean daoSetup = daoPlayer.daoSetup();
         
         this.daoPlayer.usernameDatabase.addUserInformation("Private","Private");
@@ -70,6 +83,9 @@ public class UiLogicCore {
         if (!daoSetup) {
             return false;
         }
+        
+        user = new User("","",0);
+        parameters = new Parameters("","");
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
@@ -80,6 +96,14 @@ public class UiLogicCore {
     }
     
     public boolean publicCoreSetup(List<Admin> adminList) {
+        Boolean configRead = configuration.readConfigFile(fileManager);
+        
+        if (!configRead) {
+            return false;
+        }
+        
+        this.daoPlayer = new DaoPlayer(fileManager, configuration);
+        
         
         Boolean daoSetup = daoPlayer.daoSetup();
         

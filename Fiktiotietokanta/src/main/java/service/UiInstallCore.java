@@ -8,7 +8,9 @@ package service;
 import assets.Configuration;
 import assets.TextAreaMode;
 import domain.FileManagerInterface;
+import domain.FileWriterInterface;
 import filelogic.FileManager;
+import filelogic.FileWriter;
 import uilogic.UiInstallSupportLogic;
 import uilogic.UiInstallTransitionsLogic;
 
@@ -21,6 +23,7 @@ public class UiInstallCore {
     ScenePlayer scenePlayer;
     Configuration configuration;
     TextAreaMode textAreaMode;
+    FileWriterInterface fileWriter;
     FileManagerInterface fileManager;
     UiInstallSupportLogic uiInstallSupportLogic;
     UiInstallTransitionsLogic uiInstallTransitionsLogic;
@@ -29,6 +32,7 @@ public class UiInstallCore {
         scenePlayer = new ScenePlayer();
         configuration = new Configuration();
         textAreaMode = new TextAreaMode();
+        fileWriter = new FileWriter();
         fileManager = new FileManager();
         uiInstallSupportLogic = new UiInstallSupportLogic(this.scenePlayer);
         uiInstallTransitionsLogic = new UiInstallTransitionsLogic(this.scenePlayer);
@@ -40,6 +44,10 @@ public class UiInstallCore {
     
     public TextAreaMode getTextAreaMode() {
         return this.textAreaMode;
+    }
+    
+    public FileWriterInterface getFileWriter() {
+        return this.fileWriter;
     }
     
     public FileManagerInterface getFileManager() {

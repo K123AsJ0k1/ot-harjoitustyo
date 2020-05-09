@@ -44,6 +44,7 @@ public class UiInstallTransitionsLogic {
             configuration.setMode("");
             textAreaMode.setMode("");
             scenePlayer.getPublicDaoSettings().getNameInput().clear();
+            scenePlayer.getPublicDaoSettings().getMessage().setText("");
             primaryStage.setTitle("Fiktiotietokanta installation");
             primaryStage.setScene(scenePlayer.getWelcome().getWelcomeScene());
         }
@@ -52,6 +53,7 @@ public class UiInstallTransitionsLogic {
             configuration.setMode("");
             textAreaMode.setMode("");
             scenePlayer.getPrivateDaoSettings().getNameInput().clear();
+            scenePlayer.getPrivateDaoSettings().getMessage().setText("");
             primaryStage.setTitle("Fiktiotietokanta installation");
             primaryStage.setScene(scenePlayer.getWelcome().getWelcomeScene());
         }
@@ -74,10 +76,12 @@ public class UiInstallTransitionsLogic {
     }
     
     public void fromAdministratorToLogin(Stage primaryStage, UiLogicCore uiLogicCore, Configuration configuration, FileManagerInterface fileManager,  FileWriterInterface fileWriter) {
+        if (configuration.getAdminList().size()>0) {
         fileWriter.saveTextAsAConfig(configuration.createConfigString(), fileManager);
         uiLogicCore.publicCoreSetup(configuration.getAdminList());
         primaryStage.setTitle("Login screen");
         primaryStage.setScene(scenePlayer.getLogin().getLoginScene());
+        }
     }
     
     public void fromDaoSettingsToLogin(Stage primaryStage, UiLogicCore uiLogicCore, Configuration configuration, FileManagerInterface fileManager,  FileWriterInterface fileWriter) {

@@ -32,6 +32,7 @@ public class DaoPlayer {
     DatabaseInterface abilityDatabase;
     
     public DaoPlayer(FileManagerInterface fileManager, Configuration configuratio) {
+        fileManager.createModifiedDirectory(configuratio.getFolderName());
         usernameDatabase = new UsernameDatabase(fileManager,"Normal",configuratio.getUsernameDName());
         classDatabase = new ClassDatabase(fileManager,"Normal", configuratio.getClassDName());
         nameDatabase = new NameDatabase(fileManager, "Normal", configuratio.getNameDName());
