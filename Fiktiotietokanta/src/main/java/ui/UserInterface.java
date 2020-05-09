@@ -266,7 +266,6 @@ public class UserInterface extends Application {
             uiLogicCore.getUiSupportLogic().checkTextArea(uiLogicCore.getTextPlayer());
         });
         if (uiInstallCore.getFileManager().configFileExists()) {
-            System.out.println(uiLogicCore.getConfiguration());
             if (uiLogicCore.getConfiguration().getMode().equals("Public")) {
                 primaryStage.setTitle("Login screen");
                 primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
