@@ -25,7 +25,7 @@ public class UserInterface extends Application {
         uiLogicCore = new UiLogicCore();
         
         if (uiInstallCore.getFileManager().configFileExists()) {
-            
+            //uiLogicCore.coreStart();
         }
         
         
@@ -34,34 +34,68 @@ public class UserInterface extends Application {
     @Override
     public void start(Stage primaryStage) {
         //InstallCore setOnAction
-        uiInstallCore.getScenePlayer().getWelcome().getNextButton().setOnAction((event) ->{
-            uiInstallCore.getUiInstallTransitionsLogic().fromWelcomeToDaoSettings(primaryStage, uiInstallCore.getConfiguration());
-        });
-        
         uiInstallCore.getScenePlayer().getWelcome().getShutDownButton().setOnAction((event) ->{
             stop();
         });
         
-        uiInstallCore.getScenePlayer().getDaoSettings().getPrevious().setOnAction((event) ->{
-            //uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToWelcome(primaryStage);
+        uiInstallCore.getScenePlayer().getWelcome().getNextButton().setOnAction((event) ->{
+            uiInstallCore.getUiInstallTransitionsLogic().fromWelcomeToDaoSettings(primaryStage, uiInstallCore.getConfiguration());
         });
         
-        uiInstallCore.getScenePlayer().getDaoSettings().getNext().setOnAction((event) ->{
-            uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToUpKeepSettings(primaryStage);
+        //Public daoSetting
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getPrevious().setOnAction((event) ->{
+            uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToWelcome(primaryStage, uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
         });
         
-        uiInstallCore.getScenePlayer().getDaoSettingsPrivateScene().getPrevious().setOnAction((event) ->{
-            //uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToWelcome(primaryStage);
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getFolder().setOnAction((event) ->{
+            uiInstallCore.getUiInstallSupportLogic().checkFolderName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getUsernameDatabaseItem().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkUserDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getClassDatabaseItem().setOnAction((event) ->{
+            uiInstallCore.getUiInstallSupportLogic().checkClassDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getNameDatabaseItem().setOnAction((event) ->{
+            uiInstallCore.getUiInstallSupportLogic().checkNameDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getDescriptionDatabaseItem().setOnAction((event) ->{
+            uiInstallCore.getUiInstallSupportLogic().checkDescriptionDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getRequrimentDatabaseItem().setOnAction((event) ->{
+            uiInstallCore.getUiInstallSupportLogic().checkRequrimentDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getRealityDatabaseItem().setOnAction((event) ->{
+            uiInstallCore.getUiInstallSupportLogic().checkRealityDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getAbilityDatabaseItem().setOnAction((event) ->{
+            uiInstallCore.getUiInstallSupportLogic().checkAbilityDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+        
+        uiInstallCore.getScenePlayer().getPublicDaoSettings().getNext().setOnAction((event) ->{
+            uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToUpKeepSettings(primaryStage, uiInstallCore.getTextAreaMode());
+        });
+        
+        //Public admin settings
+        
+        uiInstallCore.getScenePlayer().getAdministratorSettings().getPreviousButton().setOnAction((event) ->{
+            uiInstallCore.getUiInstallTransitionsLogic().fromAdministratorSettingsToDaoSettings(primaryStage);
+        });
+        
+        uiInstallCore.getScenePlayer().getAdministratorSettings().getCreateAdminButton().setOnAction((event) ->{
+            uiInstallCore.getUiInstallSupportLogic().AddAdmin(uiInstallCore.getConfiguration());
         });
         
         
-        uiInstallCore.getScenePlayer().getUpKeepSettings().getPreviousButton().setOnAction((event) ->{
-            uiInstallCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToDaoSettings(primaryStage);
-        });
         
-        uiInstallCore.getScenePlayer().getUpKeepSettings().getFinishButton().setOnAction((event) ->{
-            //uiInstallCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToLogin(primaryStage);
-        });
         //UiLogicCore setOnAction
         uiLogicCore.getScenePlayer().getLogin().getLoginButton().setOnAction((event) -> {
             uiLogicCore.getUiUserLogic().login(primaryStage);
@@ -79,19 +113,19 @@ public class UserInterface extends Application {
             uiLogicCore.getUiTransitionLogic().fromSignInToLogin(primaryStage);
         });
         
-        uiLogicCore.getScenePlayer().getMainMenu().getAbilitiesButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getPublicMainMenu().getAbilitiesButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromMainMenuToAbilityMenu(primaryStage);
         });
         
-        uiLogicCore.getScenePlayer().getMainMenu().getProfilesButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getPublicMainMenu().getProfilesButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromMainMenuToProfileMenu(primaryStage);
         });
         
-        uiLogicCore.getScenePlayer().getMainMenu().getAdminButton().setOnAction((event) ->{
+        uiLogicCore.getScenePlayer().getPublicMainMenu().getAdminButton().setOnAction((event) ->{
             uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, uiLogicCore.getUser().getUsername(), uiLogicCore.getUser().getPassword());
         });
         
-        uiLogicCore.getScenePlayer().getMainMenu().getSignOutButton().setOnAction((event) -> {
+        uiLogicCore.getScenePlayer().getPublicMainMenu().getSignOutButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromMainMenuToLogin(primaryStage, uiLogicCore.getUser());
         });
         
@@ -196,7 +230,6 @@ public class UserInterface extends Application {
 
     @Override
     public void stop() {
-        //uiLogicCore.coreShutDown();
         System.exit(0);
     }
     

@@ -27,5 +27,10 @@ public class Admin {
         return this.password;
     }
     
+    @Override
+    public String toString() {
+        return this.username+"/"+this.password;
+    }
+    
     
 }

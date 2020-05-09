@@ -5,9 +5,9 @@
  */
 package service;
 
-import installationscenes.DaoSettingsPrivateScene;
-import installationscenes.DaoSettingsScene;
-import installationscenes.UpKeepSettingsScene;
+import installationscenes.PrivateDaoSettingsScene;
+import installationscenes.PublicDaoSettingsScene;
+import installationscenes.AdministratorSettingsScene;
 import installationscenes.WelcomeScene;
 import javafx.scene.Scene;
 import programscenes.AbilityMenuScene;
@@ -42,9 +42,9 @@ public class ScenePlayer {
     CreateProfileScene createProfileScene;
     ChooseAbilitiesScene chooseAbilitiesScene;
     WelcomeScene welcomeScene;
-    DaoSettingsScene daoSettingsScene;
-    DaoSettingsPrivateScene daoSettingsPrivateScene;
-    UpKeepSettingsScene upKeepSettingsScene;
+    PublicDaoSettingsScene publicDaoSettingsScene;
+    PrivateDaoSettingsScene privateDaoSettingsScene;
+    AdministratorSettingsScene administratorSettingsScene;
     
     public ScenePlayer() {
         loginScene = new LoginScene();
@@ -60,9 +60,9 @@ public class ScenePlayer {
         createProfileScene = new CreateProfileScene();
         chooseAbilitiesScene = new ChooseAbilitiesScene();
         welcomeScene = new WelcomeScene();
-        daoSettingsScene = new DaoSettingsScene();
-        daoSettingsPrivateScene = new DaoSettingsPrivateScene();
-        upKeepSettingsScene = new UpKeepSettingsScene();
+        publicDaoSettingsScene = new PublicDaoSettingsScene();
+        privateDaoSettingsScene = new PrivateDaoSettingsScene();
+        administratorSettingsScene = new AdministratorSettingsScene();
     }
     
     
@@ -118,16 +118,16 @@ public class ScenePlayer {
         return this.welcomeScene;
     }
     
-    public DaoSettingsScene getDaoSettings() {
-        return this.daoSettingsScene;
+    public PublicDaoSettingsScene getPublicDaoSettings() {
+        return this.publicDaoSettingsScene;
     }
     
-    public DaoSettingsPrivateScene getDaoSettingsPrivateScene() {
-        return this.daoSettingsPrivateScene;
+    public PrivateDaoSettingsScene getPrivateDaoSettings() {
+        return this.privateDaoSettingsScene;
     }
     
-    public UpKeepSettingsScene getUpKeepSettings() {
-        return this.upKeepSettingsScene;
+    public AdministratorSettingsScene getAdministratorSettings() {
+        return this.administratorSettingsScene;
     }
     
      

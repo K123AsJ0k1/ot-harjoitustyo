@@ -32,7 +32,7 @@ public class UiUserLogic {
         this.user = user;
         this.loginScene = scenePlayer.getLogin();
         this.signInScene = scenePlayer.getSignIn();
-        this.mainMenuScene = scenePlayer.getMainMenu(); 
+        this.mainMenuScene = scenePlayer.getPublicMainMenu(); 
         
     }
     

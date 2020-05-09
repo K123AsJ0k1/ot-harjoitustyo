@@ -129,6 +129,20 @@ public class Configuration {
     public void addAdmin(String givenUsername, String givenPassword) {
         this.adminList.add(new Admin(givenUsername, givenPassword));
     }
+    
+    public Boolean checkListForAdmin(String givenUsername, String givenPassword) {
+        if (this.adminList.isEmpty()) {
+            return false;
+        }
+        Boolean adminIsFound = false;
+        for(Admin admin: this.adminList) {
+            if (admin.getUsername().equals(givenUsername) && admin.getPassword().equals(givenPassword)) {
+                adminIsFound = true;
+            }
+        }
+        
+        return adminIsFound;
+    }
 
     public List<Admin> getAdminList() {
         return this.adminList;

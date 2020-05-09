@@ -19,21 +19,22 @@ import javafx.scene.text.Text;
  *
  * @author niila
  */
-public class UpKeepSettingsScene {
+public class AdministratorSettingsScene {
     
-    Scene upKeepSettingsScene;
+    Scene administratorSettingsScene;
     TextArea usernameArea;
     TextArea passwordArea;
+    Label message;
     Button createAdmin;
     Button finish;
     Button previous;
     
     
-    public UpKeepSettingsScene() {
+    public AdministratorSettingsScene() {
        GridPane layout = new GridPane();
        
        Label title = new Label("Add atleast one admin account");
-       
+       message = new Label("");
        usernameArea = new TextArea();
        passwordArea = new TextArea();
        createAdmin = new Button("Create admin");
@@ -50,7 +51,8 @@ public class UpKeepSettingsScene {
        layout.add(usernameArea, 0, 2);
        layout.add(passwordArea, 0, 3);
        layout.add(createAdmin, 0, 4);
-       layout.add(buttonLayout, 0, 5);
+       layout.add(message, 0, 5);
+       layout.add(buttonLayout, 0, 6);
        
        layout.setPrefSize(300, 300);
        layout.setAlignment(Pos.CENTER);
@@ -58,12 +60,12 @@ public class UpKeepSettingsScene {
        layout.setHgap(10);
        layout.setPadding(new Insets(20, 20, 20, 20));
        
-       this.upKeepSettingsScene = new Scene(layout);
+       this.administratorSettingsScene = new Scene(layout);
        
     }
     
-    public Scene getUpKeepSettingsScene() {
-        return this.upKeepSettingsScene;
+    public Scene getAdministratorSettingsScene() {
+        return this.administratorSettingsScene;
     }
     
     public TextArea getUsernameArea() {
@@ -72,6 +74,14 @@ public class UpKeepSettingsScene {
     
     public TextArea getPasswordArea() {
         return this.passwordArea;
+    }
+    
+    public Label getMessage() {
+        return this.message;
+    }
+    
+    public Button getCreateAdminButton() {
+        return this.createAdmin;
     }
     
     public Button getFinishButton() {

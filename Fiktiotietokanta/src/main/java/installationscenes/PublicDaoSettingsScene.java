@@ -36,7 +36,7 @@ import service.LayoutPlayer;
  *
  * @author niila
  */
-public class DaoSettingsScene {
+public class PublicDaoSettingsScene {
     
     Scene daoSettingScene;
     GridPane layout;
@@ -47,13 +47,14 @@ public class DaoSettingsScene {
     MenuItem deipDaba;
     MenuItem reriDaba;
     MenuItem reliDaba;
+    MenuItem abtyDaba;
     TextArea nameInput;
     Button previous;
     Button next;
     Button checkName;
     
     
-    public DaoSettingsScene() {
+    public PublicDaoSettingsScene() {
              
         layout = new GridPane();
         
@@ -69,8 +70,9 @@ public class DaoSettingsScene {
         deipDaba= new MenuItem("Description database");
         reriDaba = new MenuItem("Requriment database");
         reliDaba = new MenuItem("Reality database");
+        abtyDaba = new MenuItem("Ability database");
         
-        menu.getItems().addAll(folder,usnaDaba,casDaba,nameDaba,deipDaba,reriDaba,reliDaba);
+        menu.getItems().addAll(folder,usnaDaba,casDaba,nameDaba,deipDaba,reriDaba,reliDaba,abtyDaba);
         menuBar.getMenus().addAll(menu);
         
         VBox textAreaLayout = new VBox();
@@ -148,6 +150,10 @@ public class DaoSettingsScene {
     
     public MenuItem getRealityDatabaseItem() {
         return this.reliDaba;
+    }
+    
+    public MenuItem getAbilityDatabaseItem() {
+        return this.abtyDaba;
     }
     
     public TextArea getNameInput() {

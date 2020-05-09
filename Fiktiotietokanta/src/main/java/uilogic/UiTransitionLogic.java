@@ -41,20 +41,20 @@ public class UiTransitionLogic {
     }
 
     public void fromMainMenuToAbilityMenu(Stage primaryStage) {
-        scenePlayer.getMainMenu().getErrorMessage().setText("");
+        scenePlayer.getPublicMainMenu().getErrorMessage().setText("");
         primaryStage.setTitle("Ability menu");
         primaryStage.setScene(scenePlayer.getAbilityMenu().getAbilityMenuScene());
     }
 
     public void fromMainMenuToProfileMenu(Stage primaryStage) {
-        scenePlayer.getMainMenu().getErrorMessage().setText("");
+        scenePlayer.getPublicMainMenu().getErrorMessage().setText("");
         primaryStage.setTitle("Profile menu");
         primaryStage.setScene(scenePlayer.getProfileMenu().getProfileMenuScene());
     }
 
     public void fromMainMenuToAdminMenu(Stage primaryStage, String givenUsername, String givenPassword) {
         if (!(givenUsername.equals("Tester")) && !(givenPassword.equals("Tester"))) {
-            scenePlayer.getMainMenu().getErrorMessage().setText("Your user doesn't have admin privileges");
+            scenePlayer.getPublicMainMenu().getErrorMessage().setText("Your user doesn't have admin privileges");
             return;
         }
         primaryStage.setTitle("Admin menu");
@@ -65,7 +65,7 @@ public class UiTransitionLogic {
         user.setId(0);
         user.setUsername("");
         user.setPassword("");
-        scenePlayer.getMainMenu().getErrorMessage().setText("");
+        scenePlayer.getPublicMainMenu().getErrorMessage().setText("");
         primaryStage.setTitle("Login screen");
         primaryStage.setScene(scenePlayer.getLogin().getLoginScene());
     }
@@ -83,7 +83,7 @@ public class UiTransitionLogic {
     
     public void fromAbilityMenuToMainMenu(Stage primaryStage) {
         primaryStage.setTitle("Main menu");
-        primaryStage.setScene(scenePlayer.getMainMenu().getMainMenuScene());
+        primaryStage.setScene(scenePlayer.getPublicMainMenu().getMainMenuScene());
     }
     
     public void fromProfileMenuToCreateProfile(Stage primaryStage) {
@@ -93,7 +93,7 @@ public class UiTransitionLogic {
     
     public void fromProfileMenuToMainMenu(Stage primaryStage) {
         primaryStage.setTitle("Main menu");
-        primaryStage.setScene(scenePlayer.getMainMenu().getMainMenuScene());
+        primaryStage.setScene(scenePlayer.getPublicMainMenu().getMainMenuScene());
     }
     
     public void fromProfileMenuToCreateFile(Stage primaryStage) {
@@ -108,7 +108,7 @@ public class UiTransitionLogic {
     
     public void fromAdminMenuToMainMenu(Stage primaryStage) {
         primaryStage.setTitle("Main menu");
-        primaryStage.setScene(scenePlayer.getMainMenu().getMainMenuScene());
+        primaryStage.setScene(scenePlayer.getPublicMainMenu().getMainMenuScene());
     }
     
     public void fromAddAbilitiesToAbilityMenu(Stage primaryStage) {

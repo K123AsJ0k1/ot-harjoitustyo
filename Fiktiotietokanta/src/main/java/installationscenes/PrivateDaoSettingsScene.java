@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
  *
  * @author niila
  */
-public class DaoSettingsPrivateScene {
+public class PrivateDaoSettingsScene {
     
     Scene daoSettingPrivateScene;
     GridPane layout;
@@ -34,12 +34,13 @@ public class DaoSettingsPrivateScene {
     MenuItem reriDaba;
     MenuItem reliDaba;
     TextArea nameInput;
+    Label message;
     Button previous;
     Button finish;
-    Button checkName;
+    Button selectName;
     
     
-    public DaoSettingsPrivateScene() {
+    public PrivateDaoSettingsScene() {
              
         layout = new GridPane();
         
@@ -63,13 +64,15 @@ public class DaoSettingsPrivateScene {
         
         nameInput = new TextArea();
         
+        message = new Label("");
+        
         nameInput.setMaxSize(250, 1);
         
-        checkName = new Button("Select name");
+        selectName= new Button("Select name");
 
         HBox textAreaButtonLayout = new HBox();
         
-        textAreaButtonLayout.getChildren().addAll(checkName);
+        textAreaButtonLayout.getChildren().addAll(selectName);
         
         textAreaLayout.getChildren().addAll(nameInput,textAreaButtonLayout);
         
@@ -81,7 +84,8 @@ public class DaoSettingsPrivateScene {
         layout.add(description, 0, 1);
         layout.add(menuBar, 0,2);
         layout.add(textAreaLayout, 0, 3);
-        layout.add(buttonLayout, 0, 4);
+        layout.add(message, 0, 4);
+        layout.add(buttonLayout, 0, 5);
         
         layout.setPrefSize(300, 300);
         layout.setAlignment(Pos.CENTER);
@@ -139,9 +143,13 @@ public class DaoSettingsPrivateScene {
     public TextArea getNameInput() {
         return this.nameInput;
     }
+    
+    public Label getMessage() {
+        return this.message;
+    }
        
-    public Button getCheckName() {
-        return this.checkName;
+    public Button getSelectName() {
+        return this.selectName;
     }
     
 }

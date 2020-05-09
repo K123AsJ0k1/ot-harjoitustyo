@@ -101,8 +101,6 @@ public class UiLogicCore {
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         uiSupportLogic = new UiSupportLogic(this.scenePlayer);
         
-        //this.daoPlayer.usernameDatabase.addUserInformation("Tester","Tester");
-        
         return true;
     }
     
