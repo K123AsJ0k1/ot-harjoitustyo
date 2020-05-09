@@ -84,11 +84,11 @@ public class UiInstallTransitionsLogic {
         }
     }
     
-    public void fromDaoSettingsToLogin(Stage primaryStage, UiLogicCore uiLogicCore, Configuration configuration, FileManagerInterface fileManager,  FileWriterInterface fileWriter) {
+    public void fromDaoSettingsToMainMenu(Stage primaryStage, UiLogicCore uiLogicCore, Configuration configuration, FileManagerInterface fileManager,  FileWriterInterface fileWriter) {
         fileWriter.saveTextAsAConfig(configuration.createConfigString(), fileManager);
         uiLogicCore.privateCoreSetup();
-        primaryStage.setTitle("Login screen");
-        primaryStage.setScene(scenePlayer.getLogin().getLoginScene());
+        primaryStage.setTitle("Main menu");
+        primaryStage.setScene(scenePlayer.getPrivateMainMenu().getMainMenuScene());
     }
     
     

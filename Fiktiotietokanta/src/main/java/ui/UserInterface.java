@@ -87,6 +87,51 @@ public class UserInterface extends Application {
             uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToUpKeepSettings(primaryStage, uiInstallCore.getTextAreaMode());
         });
 
+        //Private dao settings
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getPrevious().setOnAction((event) -> {
+            uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToWelcome(primaryStage, uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getFolder().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkFolderName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getUsernameDatabaseItem().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkUserDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getClassDatabaseItem().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkClassDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getNameDatabaseItem().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkNameDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getDescriptionDatabaseItem().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkDescriptionDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getRequrimentDatabaseItem().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkRequrimentDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getRealityDatabaseItem().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkRealityDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getAbilityDatabaseItem().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().checkAbilityDName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getSelectName().setOnAction((event) -> {
+            uiInstallCore.getUiInstallSupportLogic().setSelectedName(uiInstallCore.getConfiguration(), uiInstallCore.getTextAreaMode());
+        });
+
+        uiInstallCore.getScenePlayer().getPrivateDaoSettings().getFinish().setOnAction((event) -> {
+            uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToMainMenu(primaryStage, uiLogicCore, uiInstallCore.getConfiguration(), uiInstallCore.getFileManager(), uiInstallCore.getFileWriter());
+        });
+
         //Public admin settings
         uiInstallCore.getScenePlayer().getAdministratorSettings().getPreviousButton().setOnAction((event) -> {
             uiInstallCore.getUiInstallTransitionsLogic().fromAdministratorSettingsToDaoSettings(primaryStage);
@@ -221,9 +266,18 @@ public class UserInterface extends Application {
             uiLogicCore.getUiSupportLogic().checkTextArea(uiLogicCore.getTextPlayer());
         });
         if (uiInstallCore.getFileManager().configFileExists()) {
-            primaryStage.setTitle("Login screen");
-            primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
-            primaryStage.show();
+            System.out.println(uiLogicCore.getConfiguration());
+            if (uiLogicCore.getConfiguration().getMode().equals("Public")) {
+                primaryStage.setTitle("Login screen");
+                primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
+                primaryStage.show();
+            }
+            
+            if (uiLogicCore.getConfiguration().getMode().equals("Private")) {
+                primaryStage.setTitle("Main menu");
+                primaryStage.setScene(uiLogicCore.getScenePlayer().getPrivateMainMenu().getMainMenuScene());
+                primaryStage.show();
+            }
         }
 
         if (!uiInstallCore.getFileManager().configFileExists()) {

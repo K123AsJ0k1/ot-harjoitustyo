@@ -54,9 +54,18 @@ public class UiLogicCore {
         }
            
         this.daoPlayer = new DaoPlayer(fileManager, configuration);
+        if (configuration.getMode().equals("Public")) {
+            user = new User("","",0);
+           parameters = new Parameters("","");
+        }
         
-        user = new User("","",0);
-        parameters = new Parameters("","");
+        if (configuration.getMode().equals("Private")) {
+           user = new User("","",0);
+           user.setUsername("Private");
+           user.setPassword("Private");
+           user.setId(this.daoPlayer.usernameDatabase.searchUsernameId("Private"));
+           parameters = new Parameters("","");
+        }
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
@@ -85,6 +94,10 @@ public class UiLogicCore {
         }
         
         user = new User("","",0);
+        user.setUsername("Private");
+        user.setPassword("Private");
+        user.setId(this.daoPlayer.usernameDatabase.searchUsernameId("Private"));
+        
         parameters = new Parameters("","");
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
@@ -176,6 +189,9 @@ public class UiLogicCore {
         return this.uiSupportLogic;
     }
     
+    public Configuration getConfiguration() {
+        return this.configuration;
+    }
 
     
     

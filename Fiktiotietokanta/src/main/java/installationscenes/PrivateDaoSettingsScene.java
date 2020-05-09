@@ -33,6 +33,7 @@ public class PrivateDaoSettingsScene {
     MenuItem deipDaba;
     MenuItem reriDaba;
     MenuItem reliDaba;
+    MenuItem ablyDaba;
     TextArea nameInput;
     Label message;
     Button previous;
@@ -56,8 +57,9 @@ public class PrivateDaoSettingsScene {
         deipDaba= new MenuItem("Description database");
         reriDaba = new MenuItem("Requriment database");
         reliDaba = new MenuItem("Reality database");
+        ablyDaba = new MenuItem("Ability database");
         
-        menu.getItems().addAll(folder,usnaDaba,casDaba,nameDaba,deipDaba,reriDaba,reliDaba);
+        menu.getItems().addAll(folder,usnaDaba,casDaba,nameDaba,deipDaba,reriDaba,reliDaba,ablyDaba);
         menuBar.getMenus().addAll(menu);
         
         VBox textAreaLayout = new VBox();
@@ -140,6 +142,9 @@ public class PrivateDaoSettingsScene {
         return this.reliDaba;
     }
     
+    public MenuItem getAbilityDatabaseItem() {
+        return this.ablyDaba;
+    }    
     public TextArea getNameInput() {
         return this.nameInput;
     }
