@@ -24,8 +24,7 @@ public class UpKeepSettingsScene {
     Scene upKeepSettingsScene;
     TextArea usernameArea;
     TextArea passwordArea;
-    TextArea adminCodeArea;
-    TextArea codeArea;
+    Button createAdmin;
     Button finish;
     Button previous;
     
@@ -33,32 +32,25 @@ public class UpKeepSettingsScene {
     public UpKeepSettingsScene() {
        GridPane layout = new GridPane();
        
-       Label title = new Label("Here you can set up admin accounts, create admin code and create access code");
+       Label title = new Label("Add atleast one admin account");
        
-       Text adminDescription = new Text("You can create limitless amounts of different admin accounts, atleast 1 is required");
        usernameArea = new TextArea();
        passwordArea = new TextArea();
+       createAdmin = new Button("Create admin");
        
-       Text adminCodeDescription = new Text("This code changes normal users to admins, it must be atleast 4 characters long");
-       adminCodeArea = new TextArea();
-       
-       Text codeDescription = new Text("This code gives ability to access admin tools, it must be atleast 4 characters long");
-       codeArea = new TextArea();
-       
+       usernameArea.setMaxSize(200, 1);
+       passwordArea.setMaxSize(200, 1);
+         
        HBox buttonLayout = new HBox();
        finish = new Button("Finish");
        previous = new Button("Previous");
        buttonLayout.getChildren().addAll(previous,finish);
        
-       layout.add(title, 0, 0);
-       layout.add(adminDescription, 0, 1);
+       layout.add(title, 0, 1);
        layout.add(usernameArea, 0, 2);
        layout.add(passwordArea, 0, 3);
-       layout.add(adminCodeDescription, 0, 4);
-       layout.add(adminCodeArea, 0, 5);
-       layout.add(codeDescription, 0, 6);
-       layout.add(codeArea, 0, 7);
-       layout.add(buttonLayout, 0, 8);
+       layout.add(createAdmin, 0, 4);
+       layout.add(buttonLayout, 0, 5);
        
        layout.setPrefSize(300, 300);
        layout.setAlignment(Pos.CENTER);
@@ -80,14 +72,6 @@ public class UpKeepSettingsScene {
     
     public TextArea getPasswordArea() {
         return this.passwordArea;
-    }
-    
-    public TextArea getAdminCodeArea() {
-        return this.adminCodeArea;
-    }
-    
-    public TextArea getCodeArea() {
-        return this.codeArea;
     }
     
     public Button getFinishButton() {

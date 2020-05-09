@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -22,9 +24,8 @@ import javafx.scene.text.Text;
 public class WelcomeScene {
     
     Scene welcomeScene;
-    CheckBox publicMode;
-    CheckBox privateMode;
-    CheckBox devMode;
+    RadioButton publicMode;
+    RadioButton privateMode;
     Button shutDown;
     Button next;
     
@@ -32,13 +33,17 @@ public class WelcomeScene {
     public WelcomeScene() {
         GridPane layout = new GridPane();
         
+        ToggleGroup toggleGroup = new ToggleGroup();
+        
         Label title = new Label("Welcome, please choose one of these options");
-        this.publicMode = new CheckBox("Use public server set up");
-        Text publicDesription = new Text();
-        this.privateMode = new CheckBox("Use private set up");
-        Text privateDesription = new Text();
-        this.devMode = new CheckBox("Use developer set up");
-        Text devDescription = new Text();
+        this.publicMode = new RadioButton("Use public server set up");
+        Text publicDesription = new Text("Sample text");
+        this.privateMode = new RadioButton("Use private set up");
+        Text privateDesription = new Text("Sample text");
+        this.publicMode.setToggleGroup(toggleGroup);
+        this.privateMode.setToggleGroup(toggleGroup);
+        
+        
         HBox buttonLayout = new HBox();
         this.shutDown = new Button("Shut down");
         this.next = new Button("Next");
@@ -49,9 +54,7 @@ public class WelcomeScene {
         layout.add(publicDesription, 0, 2);
         layout.add(this.privateMode, 0, 3);
         layout.add(privateDesription, 0, 4);
-        layout.add(this.devMode, 0, 5);
-        layout.add(devDescription, 0, 6);
-        layout.add(buttonLayout, 0, 7);
+        layout.add(buttonLayout, 0, 5);
         
         layout.setPrefSize(300, 300);
         layout.setAlignment(Pos.CENTER);
@@ -66,18 +69,14 @@ public class WelcomeScene {
         return this.welcomeScene;
     }
     
-    public CheckBox getPublicMode() {
+    public RadioButton getPublicMode() {
         return this.publicMode;
     }
     
-    public CheckBox getPrivateMode() {
+    public RadioButton getPrivateMode() {
         return this.privateMode;
     }
-    
-    public CheckBox getDevMode() {
-        return this.devMode;
-    } 
-    
+      
     public Button getShutDownButton() {
         return this.shutDown;
     }

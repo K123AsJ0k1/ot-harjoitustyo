@@ -17,30 +17,30 @@ import javafx.stage.Stage;
  *
  * @author niila
  */
-public class MainMenuScene {
+public class PrivateMainMenuScene {
     
     Scene mainMenuScreen;
     Button abilitiesButton;
     Button profilesButton;
     Button adminButton;
-    Button signOutButton;
+    Button shutDownButton;
     Label errorMessage;
     
-    public MainMenuScene() {
+    public PrivateMainMenuScene() {
         GridPane layout = new GridPane();
 
         Label titleMainMenu = new Label("What do you want to do?");
         this.abilitiesButton = new Button("Ability Menu");
         this.profilesButton = new Button("Profiles Menu");
         this.adminButton = new Button("Admin Menu");
-        this.signOutButton = new Button("Sign out");
+        this.shutDownButton = new Button("Shut down");
         this.errorMessage = new Label("");
 
         layout.add(titleMainMenu, 0, 0);
         layout.add(this.abilitiesButton, 0, 1);
         layout.add(this.profilesButton, 0, 2);
         layout.add(this.adminButton, 0, 3);
-        layout.add(this.signOutButton, 0, 4);
+        layout.add(this.shutDownButton, 0, 4);
         layout.add(this.errorMessage, 0, 5);
 
         layout.setPrefSize(300, 300);
@@ -73,8 +73,8 @@ public class MainMenuScene {
         return this.adminButton;
     }
     
-    public Button getSignOutButton() {
-        return this.signOutButton;
+    public Button getShutDownButton() {
+        return this.shutDownButton;
     }
     
     public Label getErrorMessage() {
@@ -84,6 +84,4 @@ public class MainMenuScene {
     public void setErrorMessage(String givenError) {
         this.errorMessage.setText(givenError);
     }
-    
-    
 }

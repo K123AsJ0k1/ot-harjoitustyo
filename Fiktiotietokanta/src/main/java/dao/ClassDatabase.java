@@ -6,6 +6,8 @@
 package dao;
 
 import domain.DatabaseInterface;
+import domain.FileManagerInterface;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,18 +32,24 @@ public class ClassDatabase implements DatabaseInterface {
      * Luokka tietokannan konstruktori.
      *
      *
+     * @param fileManager
      * @param useCondition annettu tila.
+     * @param givenDatabaseName
      * 
      */
-    public ClassDatabase(String useCondition) {
+    public ClassDatabase(FileManagerInterface fileManager, String useCondition, String givenDatabaseName) {
         try {
             if (useCondition.equals("Normal")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:classdatabase:connection");
-                this.connectionRepresentation = "jdbc:sqlite:classdatabase:connection";
+                String name = givenDatabaseName+":connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
             if (useCondition.equals("Test")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:classdatabasetest:connection");
-                this.connectionRepresentation = "jdbc:sqlite:classdatabasetest:connection";
+                String name = givenDatabaseName+"Test:connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
             this.databaseExists = false;
         } catch (SQLException k) {

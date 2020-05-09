@@ -5,6 +5,7 @@
  */
 package service;
 
+import installationscenes.DaoSettingsPrivateScene;
 import installationscenes.DaoSettingsScene;
 import installationscenes.UpKeepSettingsScene;
 import installationscenes.WelcomeScene;
@@ -16,7 +17,8 @@ import programscenes.ChooseAbilitiesScene;
 import programscenes.CreateFileScene;
 import programscenes.CreateProfileScene;
 import programscenes.LoginScene;
-import programscenes.MainMenuScene;
+import programscenes.PrivateMainMenuScene;
+import programscenes.PublicMainMenuScene;
 import programscenes.ProfileMenuScene;
 import programscenes.RemoveAbilitiesScene;
 import programscenes.SignInScene;
@@ -29,7 +31,8 @@ public class ScenePlayer {
     
     LoginScene loginScene;
     SignInScene signInScene;
-    MainMenuScene mainMenuScene;
+    PublicMainMenuScene publicMainMenuScene;
+    PrivateMainMenuScene privateMainMenuScene;
     AbilityMenuScene abilityMenuScene;
     ProfileMenuScene profileMenuScene;
     AdminMenuScene adminMenuScene;
@@ -40,12 +43,14 @@ public class ScenePlayer {
     ChooseAbilitiesScene chooseAbilitiesScene;
     WelcomeScene welcomeScene;
     DaoSettingsScene daoSettingsScene;
+    DaoSettingsPrivateScene daoSettingsPrivateScene;
     UpKeepSettingsScene upKeepSettingsScene;
     
     public ScenePlayer() {
         loginScene = new LoginScene();
         signInScene = new SignInScene();
-        mainMenuScene = new MainMenuScene();
+        publicMainMenuScene = new PublicMainMenuScene();
+        privateMainMenuScene = new PrivateMainMenuScene();
         abilityMenuScene = new AbilityMenuScene();
         profileMenuScene = new ProfileMenuScene();
         adminMenuScene = new AdminMenuScene();
@@ -56,6 +61,7 @@ public class ScenePlayer {
         chooseAbilitiesScene = new ChooseAbilitiesScene();
         welcomeScene = new WelcomeScene();
         daoSettingsScene = new DaoSettingsScene();
+        daoSettingsPrivateScene = new DaoSettingsPrivateScene();
         upKeepSettingsScene = new UpKeepSettingsScene();
     }
     
@@ -68,8 +74,12 @@ public class ScenePlayer {
         return this.signInScene;
     }
     
-    public MainMenuScene getMainMenu() {
-        return this.mainMenuScene;
+    public PublicMainMenuScene getPublicMainMenu() {
+        return this.publicMainMenuScene;
+    }
+    
+    public PrivateMainMenuScene getPrivateMainMenu() {
+        return this.privateMainMenuScene;
     }
     
     public AbilityMenuScene getAbilityMenu() {
@@ -110,6 +120,10 @@ public class ScenePlayer {
     
     public DaoSettingsScene getDaoSettings() {
         return this.daoSettingsScene;
+    }
+    
+    public DaoSettingsPrivateScene getDaoSettingsPrivateScene() {
+        return this.daoSettingsPrivateScene;
     }
     
     public UpKeepSettingsScene getUpKeepSettings() {

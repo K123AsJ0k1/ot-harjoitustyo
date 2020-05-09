@@ -5,12 +5,11 @@
  */
 package filelogic;
 
+import domain.FileManagerInterface;
 import domain.FileWriterInterface;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -58,5 +57,26 @@ public class FileWriter implements FileWriterInterface {
 
         return false;
     }
+
+    @Override
+    public boolean saveTextAsAConfig(String information, FileManagerInterface fileManager) {
+        String path = fileManager.getUserPath()+File.separator+"config";
+        File configFile = new File(path);
+        
+        try {
+            PrintWriter writer;
+            writer = new PrintWriter(configFile);
+            writer.println(information);
+            writer.close();
+            return true;
+        } catch (IOException ex) {
+
+        }
+
+        return false;
+         
+    }
+    
+    
 
 }

@@ -5,40 +5,26 @@
  */
 package installationscenes;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import layoutassets.CDSettingLayout;
-import layoutassets.DDSettingLayout;
-import layoutassets.FolderSettingLayout;
-import layoutassets.NDSettingLayout;
-import layoutassets.ReaDSettingLayout;
-import layoutassets.ReqDSettingLayout;
-import layoutassets.UDSettingLayout;
-import service.LayoutPlayer;
 
 /**
  *
  * @author niila
  */
-public class DaoSettingsScene {
+public class DaoSettingsPrivateScene {
     
-    Scene daoSettingScene;
+    Scene daoSettingPrivateScene;
     GridPane layout;
     MenuItem folder;
     MenuItem usnaDaba;
@@ -49,11 +35,11 @@ public class DaoSettingsScene {
     MenuItem reliDaba;
     TextArea nameInput;
     Button previous;
-    Button next;
+    Button finish;
     Button checkName;
     
     
-    public DaoSettingsScene() {
+    public DaoSettingsPrivateScene() {
              
         layout = new GridPane();
         
@@ -89,8 +75,8 @@ public class DaoSettingsScene {
         
         HBox buttonLayout = new HBox();
         previous = new Button("Previous");
-        next = new Button("Next");
-        buttonLayout.getChildren().addAll(previous, next);
+        finish = new Button("Finish");
+        buttonLayout.getChildren().addAll(previous, finish);
         
         layout.add(description, 0, 1);
         layout.add(menuBar, 0,2);
@@ -103,11 +89,11 @@ public class DaoSettingsScene {
         layout.setHgap(10);
         layout.setPadding(new Insets(20, 20, 20, 20));
         
-        this.daoSettingScene = new Scene(layout); 
+        this.daoSettingPrivateScene = new Scene(layout); 
     }
      
-    public Scene getDaoSettingScene() {
-        return this.daoSettingScene;
+    public Scene getDaoSettingPrivateScene() {
+        return this.daoSettingPrivateScene;
     }
     
     public GridPane getLayout() {
@@ -118,8 +104,8 @@ public class DaoSettingsScene {
         return this.previous;
     }
     
-    public Button getNext() {
-        return this.next;
+    public Button getFinish() {
+        return this.finish;
     }
     
     public MenuItem getFolder() {
@@ -157,8 +143,5 @@ public class DaoSettingsScene {
     public Button getCheckName() {
         return this.checkName;
     }
-
-     
-    
     
 }

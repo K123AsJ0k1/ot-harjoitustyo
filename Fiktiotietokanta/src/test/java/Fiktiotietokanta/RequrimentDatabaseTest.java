@@ -5,8 +5,12 @@
  */
 package Fiktiotietokanta;
 
+import dao.NameDatabase;
 import dao.RequrimentDatabase;
 import domain.DatabaseInterface;
+import domain.FileManagerInterface;
+import filelogic.FileManager;
+import java.io.File;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -25,28 +29,38 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void normalModeWorks() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Normal");
-        String givenNormalConnection = test.getConnectionString();
-        assertEquals("jdbc:sqlite:requrimentdatabase:connection", givenNormalConnection);
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Normal","RequrimentDatabase");
+        String name = "RequrimentDatabase:connection";
+        String path = "jdbc:sqlite:"+dirCreator.getDirectoryPath() + File.separator + name;
+        assertEquals(path, test.getConnectionString());
     }
     
     @Test
     public void testModeWorks() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
-        String givenTestConnection = test.getConnectionString();
-        assertEquals("jdbc:sqlite:requrimentdatabasetest:connection", givenTestConnection);
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
+        String name = "RequrimentDatabaseTest:connection";
+        String path = "jdbc:sqlite:"+dirCreator.getDirectoryPath() + File.separator + name;
+        assertEquals(path, test.getConnectionString());
     }
     
     @Test
     public void getDatabaseWorks() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         assertEquals(false, test.databaseExists());
     }
     
     //Create database tests
     @Test
     public void createDatabaseWorks() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         Boolean isCreated = test.createDatabase();
         assertEquals(true, isCreated);
         test.removeDatabase();
@@ -54,7 +68,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void createDatabaseCatchesErrors() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         Boolean isCreated = test.createDatabase();
         assertEquals(true, isCreated);
         Boolean databaseCantBeCreatedTwice = test.createDatabase();
@@ -66,7 +82,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void removeDatabaseWorks() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         Boolean isCreated = test.createDatabase();
         assertEquals(true, isCreated);
         Boolean databaseIsRemoved = test.removeDatabase();
@@ -75,7 +93,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void removeDatabaseCatchesErrors1() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         Boolean databaseIsRemoved = test.removeDatabase();
         assertEquals(true, databaseIsRemoved);
@@ -85,7 +105,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void removeDatabaseCatchesErrors2() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         Boolean nonExistingDatabaseIsntRemoved = test.removeDatabase();
         assertEquals(false,nonExistingDatabaseIsntRemoved);
     }
@@ -94,7 +116,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void addInformationWorks() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         Boolean isAdded = test.addInformation("Test");
         assertEquals(true, isAdded);
@@ -103,7 +127,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void addInformationCatchesErrors1() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         Boolean isAdded = test.addInformation("Test");
         assertEquals(true, isAdded);
@@ -114,7 +140,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void addInformationCatchesErrors2() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         Boolean infoCantBeAddedIntoNonExistingDatabase = test.addInformation("Test");
         assertEquals(false, infoCantBeAddedIntoNonExistingDatabase);
     }
@@ -123,7 +151,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void searchInformationWorks() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test");
         Boolean isFound = test.searchInformation("Test");
@@ -133,7 +163,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void informationIsntFound() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         Boolean isntFound = test.searchInformation("Test");
         assertEquals(false, isntFound);
@@ -143,7 +175,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void searchInformationIsCorrect() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test1");
         test.addInformation("Test2");
@@ -159,7 +193,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void searchInformationCatchesErrors1() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.addInformation("Test1");
         test.addInformation("Test2");
         test.addInformation("Test3");
@@ -170,7 +206,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void searchInformationCatchesErrors2() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         Boolean infoCantBeSearchedFromNonExistingDatabase = test.searchInformation("Test");
         assertEquals(false, infoCantBeSearchedFromNonExistingDatabase);
     }
@@ -179,7 +217,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void removeInformationWorks() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test");
         Boolean isRemoved = test.removeInformation("Test");
@@ -189,7 +229,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void removeInformationIsCorrect() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test1");
         test.addInformation("Test2");
@@ -205,7 +247,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void removeInformationCatchesErrors1() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         Boolean infoIsntRemovedFromNonExistingDatabase = test.removeInformation("Test");
         assertEquals(false, infoIsntRemovedFromNonExistingDatabase);
     }
@@ -214,7 +258,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void searchInfoIdWorks() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test");
         Integer givenId = test.searchInfromationId("Test");
@@ -224,7 +270,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void searchInfoIdIsCorrect() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test1");
         test.addInformation("Test2");
@@ -240,7 +288,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void searchInfoIdCatchesErrors1() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test1");
         test.addInformation("Test2");
@@ -252,7 +302,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void searchInfoIdCatchesErrors2() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         Integer givenIdIsZero = test.searchInfromationId("Test");
         assertEquals(0, givenIdIsZero.intValue());
     }
@@ -261,7 +313,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void giveIdIdentityWorks() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test");
         Integer givenId = test.searchInfromationId("Test");
@@ -272,7 +326,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void givenIdIdentityIsCorrect() throws Exception {
-        DatabaseInterface test =  new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test1");
         test.addInformation("Test2");
@@ -291,7 +347,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void givenIdIdentityCatchesErrors1() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test1");
         test.addInformation("Test2");
@@ -303,7 +361,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void givenIdIdentityCatchesErrors2() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         String noExistingIdentity = test.searchInformationTextIdentity("1");
         assertEquals("null", noExistingIdentity);
     }
@@ -312,7 +372,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void databaseAsAListWorks() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test");
         List<String> givenList = test.showDatabaseAsAList();
@@ -322,7 +384,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void databaseAsAListIsCorrect() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         test.addInformation("Test1");
         test.addInformation("Test2");
@@ -336,7 +400,9 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void databaseAsAListCatchesErrors1() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         test.createDatabase();
         List<String> givenList = test.showDatabaseAsAList();
         assertEquals("[]", givenList.toString());
@@ -345,8 +411,11 @@ public class RequrimentDatabaseTest {
     
     @Test
     public void databaseAsAListCatchesErrors2() throws Exception {
-        DatabaseInterface test = new RequrimentDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new RequrimentDatabase(dirCreator,"Test","RequrimentDatabase");
         List<String> givenList = test.showDatabaseAsAList();
         assertEquals("[]", givenList.toString());
     }
+    
 }

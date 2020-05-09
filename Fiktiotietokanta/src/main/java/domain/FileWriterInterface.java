@@ -26,4 +26,6 @@ public interface FileWriterInterface {
      */
     public void showSaveFileDialog(Stage primaryStage, String text);
     
+    public boolean saveTextAsAConfig(String information, FileManagerInterface fileManager);
+    
 }

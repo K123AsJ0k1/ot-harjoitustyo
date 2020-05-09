@@ -7,6 +7,7 @@ package ui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import service.UiInstallCore;
 import service.UiLogicCore;
 
 /** Käyttöliittymä.
@@ -15,42 +16,53 @@ import service.UiLogicCore;
  */
 public class UserInterface extends Application {
     
+    UiInstallCore uiInstallCore;
     UiLogicCore uiLogicCore;
       
     @Override
     public void init() throws Exception {
+        uiInstallCore = new UiInstallCore();
         uiLogicCore = new UiLogicCore();
-        uiLogicCore.coreSetup();
+        
+        if (uiInstallCore.getFileManager().configFileExists()) {
+            
+        }
+        
+        
     }
 
     @Override
     public void start(Stage primaryStage) {
-        
-        uiLogicCore.getScenePlayer().getWelcome().getNextButton().setOnAction((event) ->{
-            uiLogicCore.getUiInstallTransitionsLogic().fromWelcomeToDaoSettings(primaryStage);
+        //InstallCore setOnAction
+        uiInstallCore.getScenePlayer().getWelcome().getNextButton().setOnAction((event) ->{
+            uiInstallCore.getUiInstallTransitionsLogic().fromWelcomeToDaoSettings(primaryStage, uiInstallCore.getConfiguration());
         });
         
-        uiLogicCore.getScenePlayer().getWelcome().getShutDownButton().setOnAction((event) ->{
+        uiInstallCore.getScenePlayer().getWelcome().getShutDownButton().setOnAction((event) ->{
             stop();
         });
         
-        uiLogicCore.getScenePlayer().getDaoSettings().getPrevious().setOnAction((event) ->{
-            uiLogicCore.getUiInstallTransitionsLogic().fromDaoSettingsToWelcome(primaryStage);
+        uiInstallCore.getScenePlayer().getDaoSettings().getPrevious().setOnAction((event) ->{
+            //uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToWelcome(primaryStage);
         });
         
-        uiLogicCore.getScenePlayer().getDaoSettings().getNext().setOnAction((event) ->{
-            uiLogicCore.getUiInstallTransitionsLogic().fromDaoSettingsToUpKeepSettings(primaryStage);
+        uiInstallCore.getScenePlayer().getDaoSettings().getNext().setOnAction((event) ->{
+            uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToUpKeepSettings(primaryStage);
+        });
+        
+        uiInstallCore.getScenePlayer().getDaoSettingsPrivateScene().getPrevious().setOnAction((event) ->{
+            //uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToWelcome(primaryStage);
         });
         
         
-        uiLogicCore.getScenePlayer().getUpKeepSettings().getPreviousButton().setOnAction((event) ->{
-            uiLogicCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToDaoSettings(primaryStage);
+        uiInstallCore.getScenePlayer().getUpKeepSettings().getPreviousButton().setOnAction((event) ->{
+            uiInstallCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToDaoSettings(primaryStage);
         });
         
-        uiLogicCore.getScenePlayer().getUpKeepSettings().getFinishButton().setOnAction((event) ->{
-            uiLogicCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToLogin(primaryStage);
+        uiInstallCore.getScenePlayer().getUpKeepSettings().getFinishButton().setOnAction((event) ->{
+            //uiInstallCore.getUiInstallTransitionsLogic().fromUpKeepSettingsToLogin(primaryStage);
         });
-
+        //UiLogicCore setOnAction
         uiLogicCore.getScenePlayer().getLogin().getLoginButton().setOnAction((event) -> {
             uiLogicCore.getUiUserLogic().login(primaryStage);
         });
@@ -177,14 +189,14 @@ public class UserInterface extends Application {
         */
         
         primaryStage.setTitle("Welcome to Fiktiotietokanta installation");
-        primaryStage.setScene(uiLogicCore.getScenePlayer().getWelcome().getWelcomeScene());
+        primaryStage.setScene(uiInstallCore.getScenePlayer().getWelcome().getWelcomeScene());
         primaryStage.show();
         
     }
 
     @Override
     public void stop() {
-        uiLogicCore.coreShutDown();
+        //uiLogicCore.coreShutDown();
         System.exit(0);
     }
     

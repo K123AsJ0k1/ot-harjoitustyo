@@ -6,6 +6,8 @@
 package dao;
 
 import domain.DatabaseInterface;
+import domain.FileManagerInterface;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,17 +32,23 @@ public class NameDatabase implements DatabaseInterface {
      * Nimi tietokanta konstruktori.
      *
      *
+     * @param fileManager
      * @param useCondition
+     * @param givenDatabaseName
      */
-    public NameDatabase(String useCondition) {
+    public NameDatabase(FileManagerInterface fileManager, String useCondition, String givenDatabaseName) {
         try {
             if (useCondition.equals("Normal")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:namedatabase:connection");
-                this.connectionRepresentation = "jdbc:sqlite:namedatabase:connection";
+                String name = givenDatabaseName+":connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
             if (useCondition.equals("Test")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:namedatabasetest:connection");
-                this.connectionRepresentation = "jdbc:sqlite:namedatabasetest:connection";
+                String name = givenDatabaseName+"Test:connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
             this.databaseExists = false;
         } catch (SQLException k) {

@@ -5,11 +5,15 @@
  */
 package service;
 
+import assets.Admin;
+import assets.Configuration;
 import uilogic.UiAbilityLogic;
 import uilogic.UiUserLogic;
 import uilogic.UiTransitionLogic;
 import assets.User;
 import assets.Parameters;
+import domain.FileManagerInterface;
+import java.util.List;
 import uilogic.UiInstallSupportLogic;
 import uilogic.UiInstallTransitionsLogic;
 import uilogic.UiSupportLogic;
@@ -23,27 +27,66 @@ public class UiLogicCore {
     ScenePlayer scenePlayer;
     DaoPlayer daoPlayer;
     TextPlayer textPlayer;
+    Configuration configuration;
       
     User user;
     Parameters parameters;
-    UiInstallSupportLogic uiInstallSupportLogic;
-    UiInstallTransitionsLogic uiInstallTransitionsLogic;
+    FileManagerInterface fileManager;
     UiUserLogic uiUserLogic;
     UiAbilityLogic uiAbilityLogic;
     UiTransitionLogic uiTransitionLogic;
     UiSupportLogic uiSupportLogic;
     
-    public UiLogicCore() {
-        
+    public UiLogicCore() {   
         this.scenePlayer = new ScenePlayer();
-        this.daoPlayer = new DaoPlayer();
         this.textPlayer = new TextPlayer();
-           
+        configuration = new Configuration();
     }
     
-    public boolean coreSetup() {
+    public boolean coreStart() {
+        
+        Boolean configRead = configuration.readConfigFile(fileManager);
+        
+        if (!configRead) {
+            return false;
+        }
+        
+        this.daoPlayer = new DaoPlayer(fileManager, configuration);
+        
+        uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
+        uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
+        uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
+        uiSupportLogic = new UiSupportLogic(this.scenePlayer);
+        
+        return true;
+    }
+    
+    
+    public boolean privateCoreSetup() {
+        Boolean daoSetup = daoPlayer.daoSetup();
+        
+        this.daoPlayer.usernameDatabase.addUserInformation("Private","Private");
+        
+        if (!daoSetup) {
+            return false;
+        }
+        
+        uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
+        uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
+        uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
+        uiSupportLogic = new UiSupportLogic(this.scenePlayer);
+        
+        return true;
+    }
+    
+    public boolean publicCoreSetup(List<Admin> adminList) {
         
         Boolean daoSetup = daoPlayer.daoSetup();
+        
+        for (Admin admin: adminList) {
+            daoPlayer.getUsernameDatabase().addUserInformation(admin.getUsername(), admin.getPassword());
+        }
+        
         
         if (!daoSetup) {
             return false;
@@ -52,13 +95,13 @@ public class UiLogicCore {
         
         user = new User("","",0);
         parameters = new Parameters("","");
-        uiInstallSupportLogic = new UiInstallSupportLogic(this.scenePlayer);
-        uiInstallTransitionsLogic = new UiInstallTransitionsLogic(this.scenePlayer);
+
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         uiSupportLogic = new UiSupportLogic(this.scenePlayer);
-        this.daoPlayer.usernameDatabase.addUserInformation("Tester","Tester");
+        
+        //this.daoPlayer.usernameDatabase.addUserInformation("Tester","Tester");
         
         return true;
     }
@@ -94,15 +137,7 @@ public class UiLogicCore {
     public Parameters getParameters() {
         return this.parameters;
     }
-    
-    public UiInstallSupportLogic getUiInstallSupportLogic() {
-        return this.uiInstallSupportLogic;
-    }
-    
-    public UiInstallTransitionsLogic getUiInstallTransitionsLogic() {
-        return this.uiInstallTransitionsLogic;
-    }
-    
+     
     public UiUserLogic getUiUserLogic() {
         return this.uiUserLogic;
     }

@@ -6,6 +6,8 @@
 package dao;
 
 import domain.DatabaseInterface;
+import domain.FileManagerInterface;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,27 +28,32 @@ public class AbilityDatabase implements DatabaseInterface {
 
     /**
      * Tietokannan konstruktori.
+     *
+     * @param fileManager
      * @param useCondition annettu tila.
+     * @param givenDatabaseName
      */
-    public AbilityDatabase(String useCondition) {
+    public AbilityDatabase(FileManagerInterface fileManager, String useCondition, String givenDatabaseName) {
         try {
-            
-        
-        if (useCondition.equals("Normal")) {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:abilitydatabase:connection");
-            this.connectionRepresentation = "jdbc:sqlite:abilitydatabase:connection";
-        }
-        if (useCondition.equals("Test")) {
-            this.connection = DriverManager.getConnection("jdbc:sqlite:abilitydatabasetest:connection");
-            this.connectionRepresentation = "jdbc:sqlite:abilitydatabasetest:connection";
-        }
-        
-        this.databaseExists = false;
+
+            if (useCondition.equals("Normal")) {
+                String name = givenDatabaseName+":connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
+            }
+            if (useCondition.equals("Test")) {
+                String name = givenDatabaseName+"Test:connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
+            }
+
+            this.databaseExists = false;
         } catch (SQLException k) {
             this.databaseExists = null;
         }
-        
-        
+
     }
 
     @Override
@@ -60,7 +67,7 @@ public class AbilityDatabase implements DatabaseInterface {
             databaseExists = true;
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -73,11 +80,11 @@ public class AbilityDatabase implements DatabaseInterface {
     @Override
     public boolean addInformation(String information) {
         String[] split = information.split("/");
-        
+
         if (!(split.length == 6)) {
             return false;
         }
-        
+
         Boolean check = false;
         try {
             Integer first = Integer.parseInt(split[0]);
@@ -88,22 +95,20 @@ public class AbilityDatabase implements DatabaseInterface {
             Integer sixth = Integer.parseInt(split[5]);
             check = true;
         } catch (NumberFormatException nfe) {
-            
+
         }
-        
+
         if (!check) {
             return false;
         }
-        
-        
+
         int usernameId = Integer.valueOf(split[0]);
         int classId = Integer.valueOf(split[1]);
         int nameId = Integer.valueOf(split[2]);
         int descriptionId = Integer.valueOf(split[3]);
         int requrimentId = Integer.valueOf(split[4]);
         int realityId = Integer.valueOf(split[5]);
-        
-        
+
         try {
             PreparedStatement command = connection.prepareStatement("INSERT INTO Abilities(Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id) VALUES (?,?,?,?,?,?);");
             command.setInt(1, usernameId);
@@ -116,7 +121,7 @@ public class AbilityDatabase implements DatabaseInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -124,11 +129,11 @@ public class AbilityDatabase implements DatabaseInterface {
     @Override
     public boolean searchInformation(String information) {
         String[] split = information.split("/");
-        
+
         if (!(split.length == 6)) {
             return false;
         }
-        
+
         Boolean check = false;
         try {
             Integer first = Integer.parseInt(split[0]);
@@ -139,20 +144,20 @@ public class AbilityDatabase implements DatabaseInterface {
             Integer sixth = Integer.parseInt(split[5]);
             check = true;
         } catch (NumberFormatException nfe) {
-            
+
         }
-        
+
         if (!check) {
             return false;
         }
-        
+
         int usernameId = Integer.valueOf(split[0]);
         int classId = Integer.valueOf(split[1]);
         int nameId = Integer.valueOf(split[2]);
         int descriptionId = Integer.valueOf(split[3]);
         int requrimentId = Integer.valueOf(split[4]);
         int realityId = Integer.valueOf(split[5]);
-        
+
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities;");
             ResultSet querrySet = command.executeQuery();
@@ -177,7 +182,7 @@ public class AbilityDatabase implements DatabaseInterface {
 
             return false;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -185,11 +190,11 @@ public class AbilityDatabase implements DatabaseInterface {
     @Override
     public Integer searchInfromationId(String information) {
         String[] split = information.split("/");
-        
+
         if (!(split.length == 6)) {
             return 0;
         }
-        
+
         Boolean check = false;
         try {
             Integer first = Integer.parseInt(split[0]);
@@ -200,13 +205,13 @@ public class AbilityDatabase implements DatabaseInterface {
             Integer sixth = Integer.parseInt(split[5]);
             check = true;
         } catch (NumberFormatException nfe) {
-            
+
         }
-        
+
         if (!check) {
             return 0;
         }
-        
+
         int usernameId = Integer.valueOf(split[0]);
         int classId = Integer.valueOf(split[1]);
         int nameId = Integer.valueOf(split[2]);
@@ -230,7 +235,7 @@ public class AbilityDatabase implements DatabaseInterface {
             command.close();
             return abilityId;
         } catch (SQLException k) {
-            
+
         }
         return 0;
     }
@@ -238,11 +243,11 @@ public class AbilityDatabase implements DatabaseInterface {
     @Override
     public boolean removeInformation(String information) {
         String[] split = information.split("/");
-        
+
         if (!(split.length == 6)) {
             return false;
         }
-        
+
         Boolean check = false;
         try {
             Integer first = Integer.parseInt(split[0]);
@@ -253,20 +258,20 @@ public class AbilityDatabase implements DatabaseInterface {
             Integer sixth = Integer.parseInt(split[5]);
             check = true;
         } catch (NumberFormatException nfe) {
-            
+
         }
-        
+
         if (!check) {
             return false;
         }
-        
+
         int usernameId = Integer.valueOf(split[0]);
         int classId = Integer.valueOf(split[1]);
         int nameId = Integer.valueOf(split[2]);
         int descriptionId = Integer.valueOf(split[3]);
         int requrimentId = Integer.valueOf(split[4]);
         int realityId = Integer.valueOf(split[5]);
-        
+
         try {
             PreparedStatement command = connection.prepareStatement("DELETE FROM Abilities WHERE Username_id=? AND Class_id=? AND Name_id=? AND Description_id=? AND Requriment_id=? AND Reality_id=?;");
             command.setInt(1, usernameId);
@@ -279,7 +284,7 @@ public class AbilityDatabase implements DatabaseInterface {
             command.close();
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -293,7 +298,7 @@ public class AbilityDatabase implements DatabaseInterface {
             databaseExists = false;
             return true;
         } catch (SQLException k) {
-            
+
         }
         return false;
     }
@@ -305,16 +310,15 @@ public class AbilityDatabase implements DatabaseInterface {
             Integer first = Integer.parseInt(givenAbilityId);
             numberCheck = true;
         } catch (NumberFormatException nfe) {
-            
+
         }
-        
+
         if (!numberCheck) {
             return "null";
         }
-        
-        
+
         int checkId = Integer.valueOf(givenAbilityId);
-        
+
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Username_id,Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities WHERE id=?");
             command.setInt(1, checkId);
@@ -330,11 +334,11 @@ public class AbilityDatabase implements DatabaseInterface {
                 givenTextIdentity = String.valueOf(givenUsernameId) + "/" + String.valueOf(givenClassId) + "/" + String.valueOf(givenNameId) + "/" + String.valueOf(givenDescriptionId) + "/" + String.valueOf(givenRequrimentId) + "/" + String.valueOf(givenRealityId);
             }
             querySet.close();
-            command.close();        
-            return givenTextIdentity;              
+            command.close();
+            return givenTextIdentity;
         } catch (SQLException k) {
-            
-        } 
+
+        }
         return "null";
     }
 
@@ -353,37 +357,38 @@ public class AbilityDatabase implements DatabaseInterface {
                 int givenRealityId = querySet.getInt("Reality_id");
                 String givenTextIdentity = String.valueOf(givenUsernameId) + "/" + String.valueOf(givenClassId) + "/" + String.valueOf(givenNameId) + "/" + String.valueOf(givenDescriptionId) + "/" + String.valueOf(givenRequrimentId) + "/" + String.valueOf(givenRealityId);
                 databaseAsAList.add(givenTextIdentity);
-            }  
+            }
             querySet.close();
             command.close();
-            return databaseAsAList;           
+            return databaseAsAList;
         } catch (SQLException k) {
-   
-        } 
+
+        }
         return databaseAsAList;
     }
+
     @Override
     public List<String> showDatabaseAsARestrictedList(String givenUsernameId) {
         List<String> databaseAsAList = new ArrayList<>();
-        
+
         Boolean numberCheck = false;
         try {
             Integer first = Integer.parseInt(givenUsernameId);
             numberCheck = true;
         } catch (NumberFormatException nfe) {
-            
+
         }
-        
+
         if (!numberCheck) {
             return databaseAsAList;
         }
-        
+
         int checkId = Integer.valueOf(givenUsernameId);
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Class_id,Name_id,Description_id,Requriment_id,Reality_id FROM Abilities WHERE Username_id=?;");
             command.setInt(1, checkId);
             ResultSet querySet = command.executeQuery();
-            while (querySet.next()) {   
+            while (querySet.next()) {
                 int givenClassId = querySet.getInt("Class_id");
                 int givenNameId = querySet.getInt("Name_id");
                 int givenDescriptionId = querySet.getInt("Description_id");
@@ -396,9 +401,9 @@ public class AbilityDatabase implements DatabaseInterface {
             command.close();
             return databaseAsAList;
         } catch (SQLException k) {
-            
-        } 
-        return databaseAsAList;    
+
+        }
+        return databaseAsAList;
     }
 
     @Override

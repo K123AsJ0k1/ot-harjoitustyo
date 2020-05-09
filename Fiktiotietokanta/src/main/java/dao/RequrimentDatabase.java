@@ -6,6 +6,8 @@
 package dao;
 
 import domain.DatabaseInterface;
+import domain.FileManagerInterface;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,18 +29,23 @@ public class RequrimentDatabase implements DatabaseInterface {
     /**
      * Vaatimus tietokannan konstruktori.
      *
+     * @param fileManager
      * @param useCondition annettu tila.
+     * @param givenDatabaseName
      */
-    public RequrimentDatabase(String useCondition) {
+    public RequrimentDatabase(FileManagerInterface fileManager, String useCondition, String givenDatabaseName) {
         try {
-
             if (useCondition.equals("Normal")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabase:connection");
-                this.connectionRepresentation = "jdbc:sqlite:requrimentdatabase:connection";
+                String name = givenDatabaseName+":connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
             if (useCondition.equals("Test")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:requrimentdatabasetest:connection");
-                this.connectionRepresentation = "jdbc:sqlite:requrimentdatabasetest:connection";
+                String name = givenDatabaseName+"Test:connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
 
             this.databaseExists = false;

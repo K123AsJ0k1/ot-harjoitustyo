@@ -11,7 +11,7 @@ import domain.UsernameInterface;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import programscenes.LoginScene;
-import programscenes.MainMenuScene;
+import programscenes.PublicMainMenuScene;
 import programscenes.SignInScene;
 import service.ScenePlayer;
 
@@ -25,7 +25,7 @@ public class UiUserLogic {
     User user;
     LoginScene loginScene;
     SignInScene signInScene;
-    MainMenuScene mainMenuScene;
+    PublicMainMenuScene mainMenuScene;
 
     public UiUserLogic(UsernameInterface usernameDatabase, User user,ScenePlayer scenePlayer) {  
         this.usernameDatabase = usernameDatabase;

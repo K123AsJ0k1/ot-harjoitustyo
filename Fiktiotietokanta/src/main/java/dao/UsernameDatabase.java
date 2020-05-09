@@ -1,6 +1,9 @@
 package dao;
 
+import domain.FileManagerInterface;
 import domain.UsernameInterface;
+import filelogic.FileManager;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,17 +30,25 @@ public class UsernameDatabase implements UsernameInterface {
      * Käyttäjä tietokannan konstruktori.
      *
      * @param useCondition annettu tila vaatimus.
+     * @param fileManager
+     * @param givenDatabaseName
      */
-    public UsernameDatabase(String useCondition) {
+    public UsernameDatabase(FileManagerInterface fileManager, String useCondition,String givenDatabaseName) {
         try {
             if (useCondition.equals("Normal")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabase:connection");
-                connectionRepresentation = "jdbc:sqlite:usernamedatabase:connection";
+                String name = givenDatabaseName+":connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
+            
             if (useCondition.equals("Test")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:usernamedatabasetest:connection");
-                connectionRepresentation = "jdbc:sqlite:usernamedatabasetest:connection";
+                String name = givenDatabaseName+"Test:connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
+            
             this.databaseExists = false;
         } catch (SQLException k) {
           this.databaseExists = null;

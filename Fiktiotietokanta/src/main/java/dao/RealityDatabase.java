@@ -6,6 +6,8 @@
 package dao;
 
 import domain.DatabaseInterface;
+import domain.FileManagerInterface;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,18 +29,23 @@ public class RealityDatabase implements DatabaseInterface {
     /**
      * Todellisuus tietokanta konstruktori.
      *
+     * @param fileManager
      * @param useCondition
+     * @param givenDatabaseName
      */
-    public RealityDatabase(String useCondition) {
+    public RealityDatabase(FileManagerInterface fileManager, String useCondition, String givenDatabaseName) {
         try {
-
             if (useCondition.equals("Normal")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabase:connection");
-                this.connectionRepresentation = "jdbc:sqlite:realitydatabase:connection";
+                String name = givenDatabaseName+":connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
             if (useCondition.equals("Test")) {
-                this.connection = DriverManager.getConnection("jdbc:sqlite:realitydatabasetest:connection");
-                this.connectionRepresentation = "jdbc:sqlite:realitydatabasetest:connection";
+                String name = givenDatabaseName+"Test:connection";
+                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                this.connection = DriverManager.getConnection(path);
+                connectionRepresentation = path;
             }
 
             this.databaseExists = false;

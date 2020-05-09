@@ -7,6 +7,9 @@ package Fiktiotietokanta;
 
 import dao.AbilityDatabase;
 import domain.DatabaseInterface;
+import domain.FileManagerInterface;
+import filelogic.FileManager;
+import java.io.File;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -25,28 +28,38 @@ public class AbilityDatabaseTest {
     
     @Test
     public void normalModeWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Normal");
-        String givenNormalConnection = test.getConnectionString();
-        assertEquals("jdbc:sqlite:abilitydatabase:connection", givenNormalConnection);
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Normal","AbilityDatabase");
+        String name = "AbilityDatabase:connection";
+        String path = "jdbc:sqlite:"+dirCreator.getDirectoryPath() + File.separator + name;
+        assertEquals(path, test.getConnectionString());
     }
     
     @Test
     public void testModeWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
-        String givenTestConnection = test.getConnectionString();
-        assertEquals("jdbc:sqlite:abilitydatabasetest:connection", givenTestConnection);
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
+        String name = "AbilityDatabaseTest:connection";
+        String path = "jdbc:sqlite:"+dirCreator.getDirectoryPath() + File.separator + name;
+        assertEquals(path, test.getConnectionString());
     }
     
     @Test
     public void getDatabaseWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         assertEquals(false, test.databaseExists());
     }
     
     //Create database tests
     @Test
     public void createDatabaseWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         Boolean isCreated = test.createDatabase();
         assertEquals(true, isCreated);
         test.removeDatabase();
@@ -54,7 +67,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void createDatabaseCatchesErrors() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         Boolean isCreated = test.createDatabase();
         assertEquals(true, isCreated);
         Boolean databaseCantBeCreatedTwice = test.createDatabase();
@@ -66,7 +81,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeDatabaseWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         Boolean isCreated = test.createDatabase();
         assertEquals(true, isCreated);
         Boolean databaseIsRemoved = test.removeDatabase();
@@ -75,7 +92,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeDatabaseCatchesErrors1() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean databaseIsRemoved = test.removeDatabase();
         assertEquals(true, databaseIsRemoved);
@@ -85,7 +104,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeDatabaseCatchesErrors2() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         Boolean nonExistingDatabaseIsntRemoved = test.removeDatabase();
         assertEquals(false,nonExistingDatabaseIsntRemoved);
     }
@@ -94,7 +115,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void addInformationWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean isAdded = test.addInformation("1/1/1/1/1/1");
         assertEquals(true, isAdded);
@@ -103,7 +126,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void addInformationCatchesErrors1() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean tooShort = test.addInformation("1/1/1/1/1");
         assertEquals(false, tooShort);
@@ -113,7 +138,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void addInformationCatchesErrors2() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean tooLong = test.addInformation("1/1/1/1/1/1/1");
         assertEquals(false, tooLong);
@@ -122,7 +149,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void addInformationCatchesErrors3() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean inCorrectString = test.addInformation("1/1/g/1/1/1");
         assertEquals(false, inCorrectString);
@@ -131,7 +160,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void addInformationCatchesErrors4() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         Boolean cantAddIntoNonExistingDatabase = test.addInformation("1/1/1/1/1/1");
         assertEquals(false, cantAddIntoNonExistingDatabase);
     }
@@ -140,7 +171,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Boolean isFound = test.searchInformation("1/1/1/1/1/1");
@@ -150,7 +183,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationIsCorrect() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         test.addInformation("2/2/2/2/2/2");
@@ -166,7 +201,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationNoInfoFound() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean isntFound = test.searchInformation("1/1/1/1/1/1");
         assertEquals(false, isntFound);
@@ -175,7 +212,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationCatchesErrors1() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean tooShort = test.searchInformation("1/1/1/1/1");
         assertEquals(false, tooShort);
@@ -184,7 +223,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationCatchesErrors2() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean tooLong = test.searchInformation("1/1/1/1/1/1/1");
         assertEquals(false, tooLong);
@@ -193,7 +234,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationCatchesErrors3() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         Boolean wrongString = test.searchInformation("1/1/g/1/1/1");
         assertEquals(false, wrongString);
@@ -202,7 +245,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationCatchesErrors4() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         Boolean cantSearchNonExisintDatabase = test.searchInformation("1/1/1/1/1/1");
         assertEquals(false, cantSearchNonExisintDatabase);
     }
@@ -211,7 +256,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeInformationWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Boolean isRemoved = test.removeInformation("1/1/1/1/1/1");
@@ -221,7 +268,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeInformationIsCorrect() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         test.addInformation("2/2/2/2/2/2");
@@ -237,7 +286,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeInformationCatchesErrors1() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Boolean tooShort = test.removeInformation("1/1/1/1/1");
@@ -247,7 +298,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeInformationCatchesErrors2() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Boolean tooLong = test.removeInformation("1/1/1/1/1/1/1");
@@ -257,7 +310,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeInformationCatchesErrors3() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Boolean wrongString = test.removeInformation("1/1/g/1/1/1");
@@ -267,7 +322,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void removeInformationCatchesErrors4() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         Boolean cantRemoveFromNonExistingDatabase = test.removeInformation("1/1/1/1/1/1");
         assertEquals(false, cantRemoveFromNonExistingDatabase);
     }
@@ -276,7 +333,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationIdWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Integer givenId = test.searchInfromationId("1/1/1/1/1/1");
@@ -286,7 +345,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationIdIsCorrect() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         test.addInformation("2/2/2/2/2/2");
@@ -302,7 +363,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationInfoIsntFound() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Integer givenIdIsZero = test.searchInfromationId("1/1/1/1/1/2");
@@ -312,7 +375,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationIdCatchesErrors1() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Integer givenStringIstooShort = test.searchInfromationId("1/1/1/1/1");
@@ -322,7 +387,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationIdCatchesErrors2() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Integer givenStringIstooLong = test.searchInfromationId("1/1/1/1/1/1/1");
@@ -332,7 +399,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationIdCatchesErrors3() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Integer givenStringIsWrong = test.searchInfromationId("1/1/g/1/1/1");
@@ -342,7 +411,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void searchInformationIdCatchesErrors4() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         Integer idCantBeSearchedFromNonExistingDatabase = test.searchInfromationId("1/1/g/1/1/1");
         assertEquals(0, idCantBeSearchedFromNonExistingDatabase.intValue());
         test.removeDatabase();
@@ -352,7 +423,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void giveIdIdentityWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         Integer givenId = test.searchInfromationId("1/1/1/1/1/1");
@@ -363,7 +436,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void givenIdIdentityIsCorrect() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         test.addInformation("2/2/2/2/2/2");
@@ -382,7 +457,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void givenIdIdentityCatchesErrors1() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         String givenIdIsntANumber = test.searchInformationTextIdentity("!");
@@ -392,7 +469,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void givenIdIdentityCatchesErrors2() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         String givenIdDoesntExist = test.searchInformationTextIdentity("1");
         assertEquals("null", givenIdDoesntExist);
@@ -401,7 +480,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void givenIdIdentityCatchesErrors3() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         String searchDoesntWorkOnANonExistingDatabase = test.searchInformationTextIdentity("1");
         assertEquals("null", searchDoesntWorkOnANonExistingDatabase);
         test.removeDatabase();
@@ -411,7 +492,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsAListWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         List<String> givenList = test.showDatabaseAsAList();
@@ -421,7 +504,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsAListIsCorrect() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         test.addInformation("2/2/2/2/2/2");
@@ -435,7 +520,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsAListCatchesErrors1() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         List<String> givenList = test.showDatabaseAsAList();
         assertEquals("[]", givenList.toString());
@@ -444,7 +531,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsAListCatchesErrors2() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         List<String> givenList = test.showDatabaseAsAList();
         assertEquals("[]", givenList.toString());
     }
@@ -453,7 +542,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsARestrictedListWorks() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         List<String> givenList = test.showDatabaseAsARestrictedList("1");
@@ -463,7 +554,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsARestrictedListIsCorrect() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         test.addInformation("2/2/2/2/2/2");
@@ -479,7 +572,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsARestrictedListCatchesErrors1() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         List<String> givenIdIsWrong = test.showDatabaseAsARestrictedList("2");
@@ -489,7 +584,9 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsARestrictedListCatchesErrors2() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         test.createDatabase();
         test.addInformation("1/1/1/1/1/1");
         List<String> givenIdIsWrong = test.showDatabaseAsARestrictedList("!");
@@ -499,9 +596,11 @@ public class AbilityDatabaseTest {
     
     @Test
     public void databaseAsARestrictedListCatchesErrors3() throws Exception {
-        DatabaseInterface test = new AbilityDatabase("Test");
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        DatabaseInterface test = new AbilityDatabase(dirCreator,"Test","AbilityDatabase");
         List<String> databaseDoesntExist = test.showDatabaseAsARestrictedList("!");
         assertEquals("[]", databaseDoesntExist.toString());
     }
-    
+ 
 }

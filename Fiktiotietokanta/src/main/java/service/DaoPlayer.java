@@ -5,6 +5,7 @@
  */
 package service;
 
+import assets.Configuration;
 import dao.AbilityDatabase;
 import dao.ClassDatabase;
 import dao.DescriptionDatabase;
@@ -13,6 +14,7 @@ import dao.RealityDatabase;
 import dao.RequrimentDatabase;
 import dao.UsernameDatabase;
 import domain.DatabaseInterface;
+import domain.FileManagerInterface;
 import domain.UsernameInterface;
 
 /**
@@ -29,14 +31,14 @@ public class DaoPlayer {
     DatabaseInterface realityDatabase;
     DatabaseInterface abilityDatabase;
     
-    public DaoPlayer() {
-        usernameDatabase = new UsernameDatabase("Normal");
-        classDatabase = new ClassDatabase("Normal");
-        nameDatabase = new NameDatabase("Normal");
-        descriptionDatabase = new DescriptionDatabase("Normal");
-        requrimentDatabase = new RequrimentDatabase("Normal");
-        realityDatabase = new RealityDatabase("Normal");
-        abilityDatabase = new AbilityDatabase("Normal");
+    public DaoPlayer(FileManagerInterface fileManager, Configuration configuratio) {
+        usernameDatabase = new UsernameDatabase(fileManager,"Normal",configuratio.getUsernameDName());
+        classDatabase = new ClassDatabase(fileManager,"Normal", configuratio.getClassDName());
+        nameDatabase = new NameDatabase(fileManager, "Normal", configuratio.getNameDName());
+        descriptionDatabase = new DescriptionDatabase(fileManager,"Normal", configuratio.getDescriptionDName());
+        requrimentDatabase = new RequrimentDatabase(fileManager,"Normal", configuratio.getRequrimentDName());
+        realityDatabase = new RealityDatabase(fileManager,"Normal", configuratio.getRealityDName());
+        abilityDatabase = new AbilityDatabase(fileManager,"Normal", configuratio.getAbilityDName());
     }
     
     public Boolean daoSetup() {
