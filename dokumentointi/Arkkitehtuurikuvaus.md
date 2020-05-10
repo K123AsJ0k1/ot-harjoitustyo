@@ -2,19 +2,27 @@
 
 # Rakenne 
 
-Ohjelma on rakenteeltaan nelitasoinen, ja koodin pakkausrakenne on seuraava:
+Ohjelma on rakenteeltaan viisitasoinen, ja koodin pakkausrakenne on seuraava:
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkausrakenne.png)
 
-Pakkaus main sisältää sovelluksen käynnistykseen tarvitun mainin, pakkaus ui sisältää tarvitun käyttöliittymä koodin, pakkaus domain sisältää tarvittavat rajapinnat ja pakkaus dao sisältää käyttöliittymän tarvitsemat tietokannat. Lisäksi on huomioitava se, että pakkaus ui siirtää sovellusloogikan pakkauksille scene, service ja textlogic, missä scene pakkaus sisältää osan käyttöliittmän scene olioista, service sisältää osan sovelluslogiikasta ja textlogic sisältää käyttöliittymän tekstieditori sovelluslogiikan.
+Pakkaus main sisältää sovelluksen käynnistykseen tarvitun mainin, pakkaus ui sisältää käyttöliittymän tarvitsemat setOnAction tapahtumat ja käynnistämis ja sulkemistapahtumat, pakkaus service sisältää tarvittavat käyttöliittymä scenet, logiikan ja muun toiminallisuuden, pakkaus domain sisältää servicen tarvitsemat rajapinnat ja pakkaus dao sisältää sovelluksen tarvitsemat tietokannat. Lisäksi on huomattavaa se, että service hyödyntää olioita sisältävää assets pakkausta, asennus näkymä pakkausta installscenes pakkausta, perusnäkymä pakkausta mainscenes, lista pakkausta tables, käyttöliittymä logiikkaa sisältävää uilogic pakkausta, tiedosto logiikkaa sisältävää filelogic pakkausta ja teksti logiikkaa sisältävää textlogic pakkausta.
 
 # Käyttöliittymä
 
-Käyttöliittymä sisältää yksitoista erillistä näkymää 
+Käyttöliittymä jakautuu kahteen osaan, jotka ovat asennus näkymät
+
+- tervetuloa näkymä
+- julkinen dao asetus näkymä
+- yksityinen dao asetus näkymä
+- pääkäyttäjä asetus näkymä
+
+ja perusnäkymät 
 
 - kirjautuminen
 - uuden käyttäjän luominen
-- päävalikko
+- julkinen päävalikko
+- yksityinen päävalikko
 - ominaisuusvalikko
 - ominaisuuksien lisäys
 - ominaisuuksien poistaminen
@@ -22,13 +30,13 @@ Käyttöliittymä sisältää yksitoista erillistä näkymää
 - profiilin luonti 
 - ominaisuuden valitseminen
 - tiedoston luonti
-- pääkäyttäjä näkymä
+- pääkäyttäjä valikko
+- parametri lista 
+- käyttäjä lista
 
-jokainen näistä on toteutettu omana Scene-oliona. Näkymistä yksi kerrallaan on näkyvänä eli sijoitettuna sovelluksena stageen. Käyttöliittymä on rakennettu ohjelmallisesti luokassa ui.UserInterface.
+jokainen näistä on toteutettu omana Scene-oliona, jotka tuodaan hyödyntämällä scenePlayeriä. Näkymistä yksi kerrallaan on näkyvänä eli sijoitettuna sovelluksena stageen. Käyttöliittymä on toiminallisesti luokassa ui.UserInterface ja taas jokainen toiminta suoritetaan uiLogic pakkauksen sisältämissä luokissa.
 
-Käyttöliittymä tullaan eristämään kokonaan sovelluslogiikasta, eli käyttöliittymä kutsuu tilanteeseen sopivia metodeja ja asettaa tarvitut parametrit niihin.
-
-
+Käyttöliittymä itsessään vastaa setOnAction toiminnasta, kun taas näiden aiheuttamasta toiminnan viestimisestä huolehtivat UiInstallCore ja UiLogicCore, jossa varsinaiset toimet aiheuttavat uilogic pakkauksen luokat ja niiden viestiminen ScenePlayer,DaoPlayer ja TextPlayerin kanssa.
 
 # Sovelluslogiikka
 
@@ -46,8 +54,9 @@ Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterfa
 
 **DatabaseInterface**
 
-- public boolean createDatabase() throws Exception
+- public boolean createDatabase()
 - public boolean databaseExists()
+- public String getConnectionString()
 - public boolean addInformation(String information)
 - public boolean searchInformation(String infromation)
 - public Integer searchInformationId(String infromation)
@@ -55,27 +64,39 @@ Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterfa
 - public List<String> showDatabaseAsAList()
 - public List<String> showDatabaseAsARestrictedList(String infromation)
 - public boolean removeInformation(String information)
-- public boolean removeDatabase() throws Exception
+- public boolean removeDatabase()
   
 **UsernameInterface**
 
 - public boolean createUsernameDatabase() throws Exception
 - public boolean usernameDatabaseExists()
+- public String getConnectionString()
 - public boolean addUserInformation(String information, String secondInformation)
 - public boolean searchUserInformation(String information)
 - public boolean userPasswordCheck(String username, String password)
 - public Integer searchUsernameId(String information)
+- public String searchUsernamePrivilage(String information)
+- public List<String> showDatabaseAsAList()
 - public boolean removeUserInformation(String information)
 - public boolean removeDatabase() throws Exception
 
 Kummankin rajapinnan metodit mahdollistavat perustoiminnot, kuten tiedot lisäyksen, haun, tarkastuksen ja poistamisen, mutta DatabaseInterface mahdollistaa myös tietokannan listaamisen, joko kokonaisena tai rajoitettuna.  
 
-Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja TextTemplateInterface ja lisäksi Ability-olio, joiden metodit ovat
+Muita tärkeitä rajapintoja ovat FileManagerInterface, FileWriterInterface, TextRefineryInterface ja TextTemplateInterface, joiden metodit ovat
+
+**FileManagerInterface**
+
+- public String getUserPath()
+- public String getDirectoryPath()
+- public Boolean configFileExists()
+- public Boolean createStandardDirectory()
+- public Boolean createModifiedDirectory(String givenName)
 
 **FileWriterInterface**
 
 - public boolean saveTextAsAFile(String information, File file)
 - public void showSaveFileDialog(Stage primaryStage, String text)
+- public boolean saveTextAsAConfig(String information, FileManagerInterface fileManager);
 
 **TextRefineryInterface**
 
@@ -89,8 +110,81 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
  **TextTemplateInterface**
  
  - public String simpleMaker()
+ 
+ FileWriterInterface mahdollistaa tiedostojen tallentamisen ja siihen tarvittu käyttöliittymä dialogin, TextRefineryInterface mahdollistaa käyttöliittymän antaman profiili tekstin muokkauksen ja TextTempalteInterface mahdollistaa erilaisten profiili mallien tuomisen käyttöliittymään.
+ 
+ 
+ Sovelluksen perustoiminnalle tärkeitä olioita ovat Admin,Parameters, TextMode ja User, joiden metodit ovat:
+ 
+ **Admin**
+
+- public String getUsername()
+- public String getPassword()
+- public String toString()
+
+**Parameters**
+
+- public String getChosenAbility()
+- public String getLeftOverParameters()
+- public void setChoosenAbility(STring givenString)
+- public void setLeftOVerParameters(String givenString)
+
+**TextMode**
+
+- public void setMode(String givenText)
+- public String getMode()
+
+**User**
+
+- public String getUsername()
+- public String getPassword()
+- public String getPrivilage()
+- public Integer getId()
+- public void setUsername()
+- public void setPassword()
+- public void setPrivilage()
+- public void setId()
+
+Käyttöliittymän listojen toiminnalle tärkeitä olioita ovat UserTable, ClassTable, NameTable, DescriptionTable, RequrimentTable, RealityTable ja AbilityTable, joiden tarjoamat metodit ovat
+
+**UserTable**
+
+- String getNumberIdentity()
+- String getUsernameIdentity()
+- String getPrivilageIdentity()
+- public String toString()
+
+**ClassTable**
+
+- public String getClassNumberIdentity()
+- public String getClassNameIdentity()
+- public String toString()
+
+**NameTable**
+
+- public String getNameNumberIdentity()
+- public String getNameNameIdentity()
+- public String toString()
+
+**DescriptionTable**
+
+- public String getDescriptionNumberIdentity()
+- public String getDescriptionNameIdentity()
+- public String toString()
+
+**RequrimentTable**
+
+- public String getRequrimentNumberIdentity()
+- public String getRequrimentNameIdentity()
+- public String toString()
+
+**RealityTable**
+
+- public String getRealityNumberIdentity()
+- public String getRealityNameIdentity()
+- public String toString()
   
-**Ability**
+**AbilityTable**
 
 - public String getClassIdentity()
 - public String getNameIdentity()
@@ -99,7 +193,8 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
 - public String getRealityIdentity()
 - public String toString()
 
-FileWriterInterface mahdollistaa tiedostojen tallentamisen ja siihen tarvittu käyttöliittymä dialogin, TextRefineryInterface mahdollistaa käyttöliittymän antaman profiili tekstin muokkauksen, TextTempalteInterface mahdollistaa erilaisten profiili mallien tuomisen käyttöliittymään ja ability olio mahdollistaa käyttöliittymässä käytety listat.
+Lista oliot mahdollistavat tiedonkulun tietokantojen ja käyttöliittymän eri metodien väleillä, jotka tässä tapauksessa ovat TableView ja sen mahdollistama selection model.
+
 
 Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (28.4.2020) sovelluslogiikan suhdetta eri rajapintojen välillä
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
