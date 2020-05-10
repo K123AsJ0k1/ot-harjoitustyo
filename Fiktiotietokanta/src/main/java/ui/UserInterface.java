@@ -144,6 +144,25 @@ public class UserInterface extends Application {
         uiInstallCore.getScenePlayer().getAdministratorSettings().getFinishButton().setOnAction((event) -> {
             uiInstallCore.getUiInstallTransitionsLogic().fromAdministratorToLogin(primaryStage, uiLogicCore, uiInstallCore.getConfiguration(), uiInstallCore.getFileManager(), uiInstallCore.getFileWriter());
         });
+        
+        //Private main menu
+        
+        uiLogicCore.getScenePlayer().getPrivateMainMenu().getAbilitiesButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToAbilityMenu(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getPrivateMainMenu().getProfilesButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToProfileMenu(primaryStage);
+        });
+        
+        uiLogicCore.getScenePlayer().getPrivateMainMenu().getAdminButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, "Tester", "Tester");
+        });
+        
+        uiLogicCore.getScenePlayer().getPrivateMainMenu().getShutDownButton().setOnAction((event) ->{
+           stop(); 
+        });
+        
 
         //UiLogicCore setOnAction
         uiLogicCore.getScenePlayer().getLogin().getLoginButton().setOnAction((event) -> {
@@ -171,7 +190,7 @@ public class UserInterface extends Application {
         });
 
         uiLogicCore.getScenePlayer().getPublicMainMenu().getAdminButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, uiLogicCore.getUser().getUsername(), uiLogicCore.getUser().getPassword());
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, "Tester", "Tester");
         });
 
         uiLogicCore.getScenePlayer().getPublicMainMenu().getSignOutButton().setOnAction((event) -> {
@@ -187,7 +206,7 @@ public class UserInterface extends Application {
         });
 
         uiLogicCore.getScenePlayer().getAbilityMenu().getReturnButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromAbilityMenuToMainMenu(primaryStage);
+            uiLogicCore.getUiTransitionLogic().fromAbilityMenuToMainMenu(primaryStage, uiLogicCore.getConfiguration());
         });
 
         uiLogicCore.getScenePlayer().getProfileMenu().getCreateProfileButton().setOnAction((event) -> {
@@ -195,7 +214,7 @@ public class UserInterface extends Application {
         });
 
         uiLogicCore.getScenePlayer().getProfileMenu().getReturnButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromProfileMenuToMainMenu(primaryStage);
+            uiLogicCore.getUiTransitionLogic().fromProfileMenuToMainMenu(primaryStage, uiLogicCore.getConfiguration());
         });
 
         uiLogicCore.getScenePlayer().getProfileMenu().getCreateFileButton().setOnAction((event) -> {
@@ -215,7 +234,7 @@ public class UserInterface extends Application {
         });
 
         uiLogicCore.getScenePlayer().getAdminMenu().getReturnButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromAdminMenuToMainMenu(primaryStage);
+            uiLogicCore.getUiTransitionLogic().fromAdminMenuToMainMenu(primaryStage, uiLogicCore.getConfiguration());
         });
 
         uiLogicCore.getScenePlayer().getAddAbilities().getReturnButton().setOnAction((event) -> {
