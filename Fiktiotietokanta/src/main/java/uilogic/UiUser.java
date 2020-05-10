@@ -42,7 +42,17 @@ public class UiUser {
     public void login(Stage primaryStage) {
         String givenUsername = loginScene.getUsernameInput().getText().trim();
         String givenPassword = loginScene.getPasswordInput().getText().trim();
-
+        
+        if (!givenUsername.matches("^[a-zA-Z]*$")) {
+            loginScene.getErrorMessage().setText("Use only a-z or A-Z characters");
+            return;
+        }
+        
+        if (!givenPassword.matches("^[a-zA-Z]*$")) {
+            loginScene.getErrorMessage().setText("Use only a-z or A-Z characters");
+            return;
+        }
+        
         if (!(usernameDatabase.searchUserInformation(givenUsername))) {
             loginScene.getErrorMessage().setText("Username doesn't exist");
             return;

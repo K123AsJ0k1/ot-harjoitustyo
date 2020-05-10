@@ -45,7 +45,7 @@ public class UiUserTable {
     */
     public void removeUser(ObservableList selectedItems) {
         String[] givenUserTableSplit = selectedItems.get(0).toString().split("/");
-        usernameDatabase.removeUserInformation(givenUserTableSplit [1]);
+        usernameDatabase.removeUserInformation(givenUserTableSplit[1]);
     }
     
 }

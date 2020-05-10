@@ -34,6 +34,7 @@ public class CreateProfile {
     Menu exitProfile;
     MenuItem exitWithSave;
     MenuItem exitWithoutSave;
+    MenuItem unSpecifiedTemplate;
 
     /**
      * Luo profiili konstruktori.
@@ -67,11 +68,9 @@ public class CreateProfile {
 
         Menu textTemplatesAreaProfileMenu = new Menu("Templates");
 
-        MenuItem editTextAreaProfileMenu1 = new MenuItem("Create unspefied template");
-        MenuItem editTextAreaProfileMenu2 = new MenuItem("Person profile template");
-        MenuItem editTextAreaProfileMenu3 = new MenuItem("Culture profile template");
+        unSpecifiedTemplate = new MenuItem("Create unspefied template");
 
-        textTemplatesAreaProfileMenu.getItems().addAll(editTextAreaProfileMenu1, editTextAreaProfileMenu2, editTextAreaProfileMenu3);
+        textTemplatesAreaProfileMenu.getItems().addAll(unSpecifiedTemplate);
 
         menuBar.getMenus().addAll(this.exitProfile, textTemplatesAreaProfileMenu);
         menuRoot.setTop(menuBar);
@@ -143,6 +142,10 @@ public class CreateProfile {
 
     public MenuItem getExitWithoutSave() {
         return this.exitWithoutSave;
+    }
+    
+    public MenuItem getUnspeficiedTemplate() {
+        return this.unSpecifiedTemplate;
     }
 
 }

@@ -300,6 +300,10 @@ public class UserInterface extends Application {
         uiLogicCore.getScenePlayer().getUserDatabaseTable().getRemoveButton().setOnAction((event) -> {
             uiLogicCore.getUiSupportLogic().removeUserFromTable(uiLogicCore.getUiUserTableLogic());
         });
+        
+        uiLogicCore.getScenePlayer().getCreateProfile().getUnspeficiedTemplate().setOnAction((event) ->{
+            uiLogicCore.getUiSupportLogic().useTemplate(uiLogicCore.getTextPlayer());
+        });
 
         if (uiInstallCore.getFileManager().configFileExists()) {
             if (uiLogicCore.getConfiguration().getMode().equals("Public")) {

@@ -9,18 +9,20 @@ import domain.FileManagerInterface;
 import filelogic.FileWriter;
 import domain.FileWriterInterface;
 import domain.TextRefineryInterface;
+import domain.TextTemplateInterface;
 import filelogic.FileManager;
+import textlogic.TemplateMaker;
 import textlogic.TextRefinery;
 
 /**
  * Sovelluksen tekstin toiminnan hallitsija.
  */
 public class TextPlayer {
-
+    
     FileWriterInterface fileWriter;
     FileManagerInterface fileManager;
     TextRefineryInterface textRefinery;
-
+    TextTemplateInterface textTemplate;
     /**
      * Konstruktori.
      */
@@ -28,6 +30,7 @@ public class TextPlayer {
         fileWriter = new FileWriter();
         fileManager = new FileManager();
         textRefinery = new TextRefinery();
+        textTemplate = new TemplateMaker();
     }
 
     public FileWriterInterface getFileWriterInterface() {
@@ -40,6 +43,10 @@ public class TextPlayer {
 
     public TextRefineryInterface getTextRefineryInterface() {
         return this.textRefinery;
+    }
+    
+    public TextTemplateInterface getTextTemplateInterface() {
+        return this.textTemplate;
     }
 
 }

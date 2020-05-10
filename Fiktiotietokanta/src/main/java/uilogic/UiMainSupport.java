@@ -166,5 +166,15 @@ public class UiMainSupport {
         scenePlayer.getCreateProfile().getWordCountItem().setText("Current wordcount:" + textPlayer.getTextRefineryInterface().giveTextWordCount(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
         scenePlayer.getCreateProfile().getCharacterCountItem().setText("Current charactercount:" + textPlayer.getTextRefineryInterface().giveCharacterCount(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
     }
+    /** Luo templaten.
+     * @param textPlayer huolehtii tarkastuksesta.
+    */ 
+    public void useTemplate(TextPlayer textPlayer) {
+        if (scenePlayer.getCreateProfile().getProfileEditor().getText().length()>0) {
+            scenePlayer.getCreateProfile().getProfileEditor().setText(textPlayer.getTextTemplateInterface().simpleMaker());
+            return;
+        }
+        scenePlayer.getCreateProfile().getProfileEditor().setText(textPlayer.getTextTemplateInterface().simpleMaker());
+    }
 
 }
