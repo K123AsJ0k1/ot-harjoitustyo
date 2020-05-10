@@ -268,18 +268,15 @@ kun pääkäyttäjä on valinnut käyttäjä listasta jonkun käyttäjän ja pai
 
 **Ominaisuuden luominen**
 
-kun käyttäjä on lisännyt kaikkiin lisää ominaisuuden tekstikenttiin tekstiä ja painanut lisää ominaisuus, siirtyy hallinta UiLogicCoren kautta uilogic pakkauseen ja siellä olevaan luokkaan UiAbility, jossa sovelluksen kontrolli etenee seuraavasti
+kun käyttäjä on lisännyt kaikkiin lisää ominaisuuden tekstikenttiin tekstiä ja painanut lisää ominaisuus, siirtyy hallinta UiLogicCoren kautta uilogic pakkaukseen ja siellä olevaan luokkaan UiAbility, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20lis%C3%A4%C3%A4misen%20sekvenssikaavio.png)
 
-
 **Ominaisuuden poistaminen**
 
-Käyttäjän valittua poistettava ominaisuus ja painettua remove ability painiketta, etenee sovelluksen kontrolli seuraavasti:
+kun käyttäjä on ominaisuuden poisto valikkossa valinnut ominaisuuden ja painanut poista ominaisuus, siirtyy hallinta UiLogicCoren kautta uilogic pakkaukseen ja siellä olevaan luokkaan UiMainSupport, jossa sovelluksen kontrolli etenee seuraavasti  
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20poistamisen%20sekvenssikaavio.png)
-
-Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan listassa valitun rivin ja sen sisältämät tiedot, jonka antamat tiedot käyttöliittymä lähettää UIAbilityLogiksille, joka ensin luo String taulun saadusta merkkijonosta ja sen jälkeen UiABilityLogic lähettää id pyynnön rajapinnan kautta parametrien tietokannoille. Saatuaan tarvitut id, se luo niistä Abilitydatabase mukaisen merkkijonon, jonka se lähettää rajapinnan kautta tietokannalle. Abilitydatabasen lähetettyä truen, sen tarkastetaan, jonka jälkeen siirrytään takaisin käyttöliittymään. Käyttöliittmän listasta poistetaan valittu ominaisuus ja tämä saa käyttöliittän pudottamaan sen listasta, jolloin käyttäjä ei näe kyseistä ominaisuutta enää listassa.
 
 **Ominaisuuden valitseminen**
 
