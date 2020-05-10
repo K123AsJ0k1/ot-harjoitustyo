@@ -69,6 +69,17 @@ public class UiUserLogic {
         signInScene.getErrorMessage().setText("");
         String givenUsername = signInScene.getUsernameInput().getText().trim();
         String givenPassword = signInScene.getPasswordInput().getText().trim();
+        
+        if (!givenUsername .matches("^[a-zA-Z]*$")) {
+            signInScene.getErrorMessage().setText("Use only a-z or A-Z characters");
+            return;
+        }
+        
+        if (!givenPassword .matches("^[a-zA-Z]*$")) {
+            signInScene.getErrorMessage().setText("Use only a-z or A-Z characters");
+            return;
+        }
+        
         if (givenUsername.length() < 5) {
             signInScene.getErrorMessage().setText("Given username is too short");
             return;
@@ -76,6 +87,16 @@ public class UiUserLogic {
 
         if (givenPassword.length() < 5) {
             signInScene.getErrorMessage().setText("Given password is too short");
+            return;
+        }
+        
+        if (givenUsername.length() > 15) {
+            signInScene.getErrorMessage().setText("Given username is too long");
+            return;
+        }
+
+        if (givenPassword.length() > 15) {
+            signInScene.getErrorMessage().setText("Given password is too long");
             return;
         }
 

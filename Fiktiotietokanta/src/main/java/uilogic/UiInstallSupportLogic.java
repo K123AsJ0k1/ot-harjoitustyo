@@ -195,9 +195,19 @@ public class UiInstallSupportLogic {
     public void setSelectedName(Configuration configuration, TextAreaMode textMode) {
         if (configuration.getMode().equals("Public")) {
             String givenName = scenePlayer.getPublicDaoSettings().getNameInput().getText();
-
+            
+            if (!givenName.matches("^[a-zA-Z]*$")) {
+                scenePlayer.getPublicDaoSettings().getMessage().setText("Use only a-z or A-Z characters");
+                return;
+            }
+            
             if (givenName.length() < 5) {
                 scenePlayer.getPublicDaoSettings().getMessage().setText("Name is too short");
+                return;
+            }
+            
+            if (givenName.length() > 20) {
+                scenePlayer.getPublicDaoSettings().getMessage().setText("Name is too long");
                 return;
             }
 
@@ -209,7 +219,7 @@ public class UiInstallSupportLogic {
             if (textMode.getMode().equals("")) {
                 scenePlayer.getPublicDaoSettings().getMessage().setText("Select examined name");
                 return;
-            }
+            }    
 
             if (textMode.getMode().equals("Folder")) {
                 configuration.setFolderName(givenName);
@@ -248,9 +258,19 @@ public class UiInstallSupportLogic {
 
         if (configuration.getMode().equals("Private")) {
             String givenName = scenePlayer.getPrivateDaoSettings().getNameInput().getText();
+            
+            if (!givenName.matches("^[a-zA-Z]*$")) {
+                scenePlayer.getPrivateDaoSettings().getMessage().setText("Use only a-z or A-Z characters");
+                return;
+            }
 
             if (givenName.length() < 5) {
                 scenePlayer.getPrivateDaoSettings().getMessage().setText("Name is too short");
+                return;
+            }
+            
+            if (givenName.length() > 20) {
+                scenePlayer.getPrivateDaoSettings().getMessage().setText("Name is too long");
                 return;
             }
 
@@ -309,6 +329,16 @@ public class UiInstallSupportLogic {
         if (configuration.getMode().equals("Public")) {
             String givenUsername = scenePlayer.getAdministratorSettings().getUsernameArea().getText();
             String givenPassword = scenePlayer.getAdministratorSettings().getPasswordArea().getText();
+            
+            if (!givenUsername.matches("^[a-zA-Z]*$")) {
+                scenePlayer.getAdministratorSettings().getMessage().setText("Use only a-z or A-Z characters");
+                return;
+            }
+            
+            if (!givenPassword.matches("^[a-zA-Z]*$")) {
+                scenePlayer.getAdministratorSettings().getMessage().setText("Use only a-z or A-Z characters");
+                return;
+            }
 
             if (givenUsername.length() < 5) {
                 scenePlayer.getAdministratorSettings().getMessage().setText("Given username is too short");
@@ -317,6 +347,16 @@ public class UiInstallSupportLogic {
 
             if (givenPassword.length() < 5) {
                 scenePlayer.getAdministratorSettings().getMessage().setText("Given password is too short");
+                return;
+            }
+            
+            if (givenUsername.length() > 15) {
+                scenePlayer.getAdministratorSettings().getMessage().setText("Given username is too long");
+                return;
+            }
+
+            if (givenPassword.length() > 15) {
+                scenePlayer.getAdministratorSettings().getMessage().setText("Given password is too long");
                 return;
             }
 

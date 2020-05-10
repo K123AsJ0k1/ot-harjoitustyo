@@ -142,25 +142,23 @@ public class UserInterface extends Application {
         uiInstallCore.getScenePlayer().getAdministratorSettings().getFinishButton().setOnAction((event) -> {
             uiInstallCore.getUiInstallTransitionsLogic().fromAdministratorToLogin(primaryStage, uiLogicCore, uiInstallCore.getConfiguration(), uiInstallCore.getFileManager(), uiInstallCore.getFileWriter());
         });
-        
+
         //Private main menu
-        
         uiLogicCore.getScenePlayer().getPrivateMainMenu().getAbilitiesButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromMainMenuToAbilityMenu(primaryStage);
         });
-        
+
         uiLogicCore.getScenePlayer().getPrivateMainMenu().getProfilesButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromMainMenuToProfileMenu(primaryStage);
         });
-        
+
         uiLogicCore.getScenePlayer().getPrivateMainMenu().getAdminButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, uiLogicCore.getUser());
         });
-        
-        uiLogicCore.getScenePlayer().getPrivateMainMenu().getShutDownButton().setOnAction((event) ->{
-           stop(); 
+
+        uiLogicCore.getScenePlayer().getPrivateMainMenu().getShutDownButton().setOnAction((event) -> {
+            stop();
         });
-        
 
         //UiLogicCore setOnAction
         uiLogicCore.getScenePlayer().getLogin().getLoginButton().setOnAction((event) -> {
@@ -282,34 +280,34 @@ public class UserInterface extends Application {
         uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().setOnKeyTyped((event) -> {
             uiLogicCore.getUiSupportLogic().checkTextArea(uiLogicCore.getTextPlayer());
         });
-        
-        uiLogicCore.getScenePlayer().getAdminMenu().getUserParamsAsAListMenuButton().setOnAction((event) ->{
+
+        uiLogicCore.getScenePlayer().getAdminMenu().getUserParamsAsAListMenuButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromAdminMenuToUserTable(primaryStage, uiLogicCore.getDaoPlayer().getUsernameDatabase().showDatabaseAsAList(), uiLogicCore.getUiUserTableLogic());
         });
-        
-        uiLogicCore.getScenePlayer().getUserDatabaseTable().getReturnButton().setOnAction((event) ->{
+
+        uiLogicCore.getScenePlayer().getUserDatabaseTable().getReturnButton().setOnAction((event) -> {
             uiLogicCore.getUiTransitionLogic().fromUserTableToAdminMenu(primaryStage);
         });
-        
-        uiLogicCore.getScenePlayer().getAdminMenu().getAbilityParamsAsAListMenuButton().setOnAction((event) ->{
-           uiLogicCore.getUiTransitionLogic().fromAdminMenuToParameterTable(primaryStage, uiLogicCore.getDaoPlayer().getClassDatabase().showDatabaseAsAList(), uiLogicCore.getDaoPlayer().getNameDatabase().showDatabaseAsAList(),uiLogicCore.getDaoPlayer().getDescriptionDatabase().showDatabaseAsAList(),uiLogicCore.getDaoPlayer().getRequrimetnDatabase().showDatabaseAsAList(),uiLogicCore.getDaoPlayer().getRealityDatabase().showDatabaseAsAList(), uiLogicCore.getUiParametersTableLogic());
+
+        uiLogicCore.getScenePlayer().getAdminMenu().getAbilityParamsAsAListMenuButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromAdminMenuToParameterTable(primaryStage, uiLogicCore.getDaoPlayer().getClassDatabase().showDatabaseAsAList(), uiLogicCore.getDaoPlayer().getNameDatabase().showDatabaseAsAList(), uiLogicCore.getDaoPlayer().getDescriptionDatabase().showDatabaseAsAList(), uiLogicCore.getDaoPlayer().getRequrimetnDatabase().showDatabaseAsAList(), uiLogicCore.getDaoPlayer().getRealityDatabase().showDatabaseAsAList(), uiLogicCore.getUiParametersTableLogic());
         });
-        
-        uiLogicCore.getScenePlayer().getAbilityParamtersTable().getReturnButton().setOnAction((event) ->{
-           uiLogicCore.getUiTransitionLogic().fromParametersTableToAdminMenu(primaryStage);
+
+        uiLogicCore.getScenePlayer().getAbilityParamtersTable().getReturnButton().setOnAction((event) -> {
+            uiLogicCore.getUiTransitionLogic().fromParametersTableToAdminMenu(primaryStage);
         });
-        
-        uiLogicCore.getScenePlayer().getUserDatabaseTable().getRemoveButton().setOnAction((event) ->{
-           uiLogicCore.getUiSupportLogic().removeUserFromTable(uiLogicCore.getUiUserTableLogic());
+
+        uiLogicCore.getScenePlayer().getUserDatabaseTable().getRemoveButton().setOnAction((event) -> {
+            uiLogicCore.getUiSupportLogic().removeUserFromTable(uiLogicCore.getUiUserTableLogic());
         });
-        
+
         if (uiInstallCore.getFileManager().configFileExists()) {
             if (uiLogicCore.getConfiguration().getMode().equals("Public")) {
                 primaryStage.setTitle("Login screen");
                 primaryStage.setScene(uiLogicCore.getScenePlayer().getLogin().getLoginScene());
                 primaryStage.show();
             }
-            
+
             if (uiLogicCore.getConfiguration().getMode().equals("Private")) {
                 primaryStage.setTitle("Main menu");
                 primaryStage.setScene(uiLogicCore.getScenePlayer().getPrivateMainMenu().getMainMenuScene());
@@ -330,7 +328,7 @@ public class UserInterface extends Application {
     }
 
     /**
-     * Käyttöliittymä.
+     * Käyttöliittymän käynnistin.
      *
      *
      * @param args parametri.
