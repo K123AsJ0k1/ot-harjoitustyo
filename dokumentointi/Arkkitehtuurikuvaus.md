@@ -261,18 +261,17 @@ kun uuden käyttäjän näkymässä on kirjoitettu nimi ja salasana ja painettu 
 
 **Käyttäjän poistaminen**
 
-kun pääkäyttäjä on valinnut käyttäjä listasta jonkun käyttäjän ja painanut remove painiketta, siirtyy hallinta UiLogicCoren kautta uilogic pakettiin ja siellä olevaan UiMainSupport luokkaan, jossa sovelluken kontrolli etenee seuraavasti
+kun pääkäyttäjä on valinnut käyttäjä listasta jonkun käyttäjän ja painanut remove painiketta, siirtyy hallinta UiLogicCoren kautta uilogic pakettiin ja siellä olevaan UiMainSupport luokkaan, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4n%20poistamisen%20sekvenssikaavio.png)
 
 
 **Ominaisuuden luominen**
 
-Käyttäjän täyttäessä jokaisen tekstikentän ja painettuaan add ability painiketta, etenee sovelluksen kontrolli seuraavasti:
+kun käyttäjä on lisännyt kaikkiin lisää ominaisuuden tekstikenttiin tekstiä ja painanut lisää ominaisuus, siirtyy hallinta UiLogicCoren kautta uilogic pakkauseen ja siellä olevaan luokkaan UiAbility, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20lis%C3%A4%C3%A4misen%20sekvenssikaavio.png)
 
-Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja lähettää asettaa ne lisättäksi parametreiksi, mikä saa UiAblity Logikin tarkastamaan saatujen parametrien pituudet ja jos ne ovat nolla suuremmat, niin UiAbility lähettää jokaisen parametrin tarkastettavaksi tietokantoihin. Jos kaikki ovat False, niin kaikki parametrit lisätään tietokantoihin ja lisäämisen jälkeen jokaisen parametrin id haetaan, ja jos kaikki ovat 0 suurempia niin ne läpäisevät ja niistä luodaan ominaisuus tietokantaan lisättä merkkijono. Luotu merkkijonon olemassa olo tarkastetaan ominaisuus tietokannasta ja jos sitä ei ole, niin se lisätään ja jos lisääminen onnistuu, niin käyttöliittymään lähetetään viesti. Viesti asetettaan käyttöliittymän käyttämään Label olioon, jonka jälkeen käytetyt tekstikentät tyhjennettään ja käyttöliittymä palautuu normaalin tilaansa. 
 
 **Ominaisuuden poistaminen**
 
