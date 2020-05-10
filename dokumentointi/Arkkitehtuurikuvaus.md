@@ -196,7 +196,7 @@ Käyttöliittymän listojen toiminnalle tärkeitä olioita ovat UserTable, Class
 Lista oliot mahdollistavat tiedonkulun tietokantojen ja käyttöliittymän eri metodien väleillä, jotka tässä tapauksessa ovat TableView ja sen mahdollistama selection model.
 
 
-Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (28.4.2020) sovelluslogiikan suhdetta eri rajapintojen välillä
+Alla oleva luokka/pakkauskaavio näyttää eri pakkausten ja eri luokkien välisiä sovelluslogiikan suhteita
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
 
 # Tietojen pysyväistallennus
