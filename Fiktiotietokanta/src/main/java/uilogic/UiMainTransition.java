@@ -16,7 +16,7 @@ import service.ScenePlayer;
 /**
  * Sovelluksen käyttöliittymän siirtymisen toimien hallitsija.
  */
-public class UiTransitionLogic {
+public class UiMainTransition {
 
     ScenePlayer scenePlayer;
 
@@ -24,7 +24,7 @@ public class UiTransitionLogic {
      * Konstruktori.
      * @param scenePlayer antaa tarvitun viiteen.
      */
-    public UiTransitionLogic(ScenePlayer scenePlayer) {
+    public UiMainTransition(ScenePlayer scenePlayer) {
         this.scenePlayer = scenePlayer;
     }
     /**
@@ -110,7 +110,7 @@ public class UiTransitionLogic {
      * @param abilityList antaa ominaisuus listan.
      * @param uiAbilityLogic antaa tarvitun viiteen.
      */
-    public void fromAbilityMenuToRemoveAbility(Stage primaryStage, List<String> abilityList, UiAbilityLogic uiAbilityLogic) {
+    public void fromAbilityMenuToRemoveAbility(Stage primaryStage, List<String> abilityList, UiAbility uiAbilityLogic) {
         scenePlayer.getRemoveAbilities().getTableView().getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
         primaryStage.setTitle("Remove Abilities table");
         primaryStage.setScene(scenePlayer.getRemoveAbilities().getRemoveAbilitiesScene());
@@ -226,7 +226,7 @@ public class UiTransitionLogic {
      * @param abilityList hakee ja antaa tarvitun ominaisuus listan.
      * @param uiAbilityLogic antaa tarvitun viittauksen.
      */
-    public void fromCreateProfileToChooseAbility(Stage primaryStage, List<String> abilityList, UiAbilityLogic uiAbilityLogic) {
+    public void fromCreateProfileToChooseAbility(Stage primaryStage, List<String> abilityList, UiAbility uiAbilityLogic) {
         scenePlayer.getChooseAbilities().getTableView().getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
         primaryStage.setTitle("Choose Abilities table");
         primaryStage.setScene(scenePlayer.getChooseAbilities().getChoosenAbilitiesScene());
@@ -246,7 +246,7 @@ public class UiTransitionLogic {
      * @param parameters antaa parametrien tiedot.
      * @param uiAbilityLogic antaa tarvitun viiteen.
      */
-    public void fromChoosenAbilityToCreateProfileChoosenAbility(Stage primaryStage, Parameters parameters, UiAbilityLogic uiAbilityLogic) {
+    public void fromChoosenAbilityToCreateProfileChoosenAbility(Stage primaryStage, Parameters parameters, UiAbility uiAbilityLogic) {
         if (scenePlayer.getChooseAbilities().getSelectionModel().getSelectedItems().size() > 0) {
             ObservableList selectedItems = scenePlayer.getChooseAbilities().getSelectionModel().getSelectedItems();
             String givenString = uiAbilityLogic.chooseAbility(selectedItems);
@@ -264,7 +264,7 @@ public class UiTransitionLogic {
      * @param userList hakee ja antaa tarvitun käyttäjä listan.
      * @param uiUserTableLogic antaa tarvitun viiteen.
      */
-    public void fromAdminMenuToUserTable(Stage primaryStage, List<String> userList, UiUserTableLogic uiUserTableLogic) {
+    public void fromAdminMenuToUserTable(Stage primaryStage, List<String> userList, UiUserTable uiUserTableLogic) {
         scenePlayer.getUserDatabaseTable().getTableView().getItems().addAll(uiUserTableLogic.addUsersIntoAlist(userList));
         primaryStage.setTitle("Username parameters as a list");
         primaryStage.setScene(scenePlayer.getUserDatabaseTable().getUserDatabaseTableScene());
@@ -288,7 +288,7 @@ public class UiTransitionLogic {
      * @param requrimentList hakee ja antaa tarvitun vaatimus listan.
      * @param uiParametersTableLogic antaa tarvitun viiteen.
      */
-    public void fromAdminMenuToParameterTable(Stage primaryStage, List<String> classList, List<String> nameList, List<String> descriptionList, List<String> requrimentList, List<String> realityList, UiParametersTableLogic uiParametersTableLogic) {
+    public void fromAdminMenuToParameterTable(Stage primaryStage, List<String> classList, List<String> nameList, List<String> descriptionList, List<String> requrimentList, List<String> realityList, UiParametersTable uiParametersTableLogic) {
         scenePlayer.getAbilityParamtersTable().getClassTableView().getItems().addAll(uiParametersTableLogic.addClassesIntoAlist(classList));
         scenePlayer.getAbilityParamtersTable().getNameTableView().getItems().addAll(uiParametersTableLogic.addNamesIntoAlist(nameList));
         scenePlayer.getAbilityParamtersTable().getDescriptionTableView().getItems().addAll(uiParametersTableLogic.addDescriptionIntoAlist(descriptionList));

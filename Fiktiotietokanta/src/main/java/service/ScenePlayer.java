@@ -5,118 +5,118 @@
  */
 package service;
 
-import installationscenes.PrivateDaoSettingsScene;
-import installationscenes.PublicDaoSettingsScene;
-import installationscenes.AdministratorSettingsScene;
-import installationscenes.WelcomeScene;
-import programscenes.AbilityMenuScene;
-import programscenes.AbilityParametersTableScene;
-import programscenes.AddAbilitiesScene;
-import programscenes.AdminMenuScene;
-import programscenes.ChooseAbilitiesScene;
-import programscenes.CreateFileScene;
-import programscenes.CreateProfileScene;
-import programscenes.LoginScene;
-import programscenes.PrivateMainMenuScene;
-import programscenes.PublicMainMenuScene;
-import programscenes.ProfileMenuScene;
-import programscenes.RemoveAbilitiesScene;
-import programscenes.SignInScene;
-import programscenes.UserDatabaseTableScene;
+import installscenes.PrivateDaoSettings;
+import installscenes.PublicDaoSettings;
+import installscenes.AdminSettings;
+import installscenes.WelcomeScene;
+import mainscenes.AbilityMenu;
+import mainscenes.ParametersTable;
+import mainscenes.AddAbilities;
+import mainscenes.AdminMenu;
+import mainscenes.ChooseAbilities;
+import mainscenes.CreateFile;
+import mainscenes.CreateProfile;
+import mainscenes.Login;
+import mainscenes.PrivateMainMenu;
+import mainscenes.PublicMainMenu;
+import mainscenes.ProfileMenu;
+import mainscenes.RemoveAbilities;
+import mainscenes.SignIn;
+import mainscenes.UserDatabaseTable;
 
 /**
  * Sovelluksen käyttöliittymän scenejen toiminnan hallitsija.
  */
 public class ScenePlayer {
 
-    LoginScene loginScene;
-    SignInScene signInScene;
-    PublicMainMenuScene publicMainMenuScene;
-    PrivateMainMenuScene privateMainMenuScene;
-    AbilityMenuScene abilityMenuScene;
-    ProfileMenuScene profileMenuScene;
-    AdminMenuScene adminMenuScene;
-    CreateFileScene createFileScene;
-    AddAbilitiesScene addAbilitiesScene;
-    RemoveAbilitiesScene removeAbilitiesScene;
-    CreateProfileScene createProfileScene;
-    ChooseAbilitiesScene chooseAbilitiesScene;
+    Login loginScene;
+    SignIn signInScene;
+    PublicMainMenu publicMainMenuScene;
+    PrivateMainMenu privateMainMenuScene;
+    AbilityMenu abilityMenuScene;
+    ProfileMenu profileMenuScene;
+    AdminMenu adminMenuScene;
+    CreateFile createFileScene;
+    AddAbilities addAbilitiesScene;
+    RemoveAbilities removeAbilitiesScene;
+    CreateProfile createProfileScene;
+    ChooseAbilities chooseAbilitiesScene;
     WelcomeScene welcomeScene;
-    PublicDaoSettingsScene publicDaoSettingsScene;
-    PrivateDaoSettingsScene privateDaoSettingsScene;
-    AdministratorSettingsScene administratorSettingsScene;
-    UserDatabaseTableScene userDatabaseTableScene;
-    AbilityParametersTableScene abilityParametersTableScene;
+    PublicDaoSettings publicDaoSettingsScene;
+    PrivateDaoSettings privateDaoSettingsScene;
+    AdminSettings administratorSettingsScene;
+    UserDatabaseTable userDatabaseTableScene;
+    ParametersTable abilityParametersTableScene;
 
     /**
      * Konstruktori.
      */
     public ScenePlayer() {
-        loginScene = new LoginScene();
-        signInScene = new SignInScene();
-        publicMainMenuScene = new PublicMainMenuScene();
-        privateMainMenuScene = new PrivateMainMenuScene();
-        abilityMenuScene = new AbilityMenuScene();
-        profileMenuScene = new ProfileMenuScene();
-        adminMenuScene = new AdminMenuScene();
-        createFileScene = new CreateFileScene();
-        addAbilitiesScene = new AddAbilitiesScene();
-        removeAbilitiesScene = new RemoveAbilitiesScene();
-        createProfileScene = new CreateProfileScene();
-        chooseAbilitiesScene = new ChooseAbilitiesScene();
+        loginScene = new Login();
+        signInScene = new SignIn();
+        publicMainMenuScene = new PublicMainMenu();
+        privateMainMenuScene = new PrivateMainMenu();
+        abilityMenuScene = new AbilityMenu();
+        profileMenuScene = new ProfileMenu();
+        adminMenuScene = new AdminMenu();
+        createFileScene = new CreateFile();
+        addAbilitiesScene = new AddAbilities();
+        removeAbilitiesScene = new RemoveAbilities();
+        createProfileScene = new CreateProfile();
+        chooseAbilitiesScene = new ChooseAbilities();
         welcomeScene = new WelcomeScene();
-        publicDaoSettingsScene = new PublicDaoSettingsScene();
-        privateDaoSettingsScene = new PrivateDaoSettingsScene();
-        administratorSettingsScene = new AdministratorSettingsScene();
-        userDatabaseTableScene = new UserDatabaseTableScene();
-        abilityParametersTableScene = new AbilityParametersTableScene();
+        publicDaoSettingsScene = new PublicDaoSettings();
+        privateDaoSettingsScene = new PrivateDaoSettings();
+        administratorSettingsScene = new AdminSettings();
+        userDatabaseTableScene = new UserDatabaseTable();
+        abilityParametersTableScene = new ParametersTable();
     }
 
-    public LoginScene getLogin() {
+    public Login getLogin() {
         return this.loginScene;
     }
 
-    public SignInScene getSignIn() {
+    public SignIn getSignIn() {
         return this.signInScene;
     }
 
-    public PublicMainMenuScene getPublicMainMenu() {
+    public PublicMainMenu getPublicMainMenu() {
         return this.publicMainMenuScene;
     }
 
-    public PrivateMainMenuScene getPrivateMainMenu() {
+    public PrivateMainMenu getPrivateMainMenu() {
         return this.privateMainMenuScene;
     }
 
-    public AbilityMenuScene getAbilityMenu() {
+    public AbilityMenu getAbilityMenu() {
         return this.abilityMenuScene;
     }
 
-    public ProfileMenuScene getProfileMenu() {
+    public ProfileMenu getProfileMenu() {
         return this.profileMenuScene;
     }
 
-    public AdminMenuScene getAdminMenu() {
+    public AdminMenu getAdminMenu() {
         return this.adminMenuScene;
     }
 
-    public CreateFileScene getCreateFile() {
+    public CreateFile getCreateFile() {
         return this.createFileScene;
     }
 
-    public AddAbilitiesScene getAddAbilities() {
+    public AddAbilities getAddAbilities() {
         return this.addAbilitiesScene;
     }
 
-    public RemoveAbilitiesScene getRemoveAbilities() {
+    public RemoveAbilities getRemoveAbilities() {
         return this.removeAbilitiesScene;
     }
 
-    public CreateProfileScene getCreateProfile() {
+    public CreateProfile getCreateProfile() {
         return this.createProfileScene;
     }
 
-    public ChooseAbilitiesScene getChooseAbilities() {
+    public ChooseAbilities getChooseAbilities() {
         return this.chooseAbilitiesScene;
     }
 
@@ -124,23 +124,23 @@ public class ScenePlayer {
         return this.welcomeScene;
     }
 
-    public PublicDaoSettingsScene getPublicDaoSettings() {
+    public PublicDaoSettings getPublicDaoSettings() {
         return this.publicDaoSettingsScene;
     }
 
-    public PrivateDaoSettingsScene getPrivateDaoSettings() {
+    public PrivateDaoSettings getPrivateDaoSettings() {
         return this.privateDaoSettingsScene;
     }
 
-    public AdministratorSettingsScene getAdministratorSettings() {
+    public AdminSettings getAdministratorSettings() {
         return this.administratorSettingsScene;
     }
 
-    public UserDatabaseTableScene getUserDatabaseTable() {
+    public UserDatabaseTable getUserDatabaseTable() {
         return this.userDatabaseTableScene;
     }
 
-    public AbilityParametersTableScene getAbilityParamtersTable() {
+    public ParametersTable getAbilityParamtersTable() {
         return this.abilityParametersTableScene;
     }
 

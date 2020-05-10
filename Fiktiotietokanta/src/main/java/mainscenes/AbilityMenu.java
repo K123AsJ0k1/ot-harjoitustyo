@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
 /**
  * Sovelluksen käyttöliittymän ominaisuus päävalikon scene.
  */
-public class AbilityMenuScene {
+public class AbilityMenu {
 
     Scene abilityMenuScreen;
     Button addAbilityButton;
@@ -25,7 +25,7 @@ public class AbilityMenuScene {
     /**
      * Ominaisuus päävalikon konstruktori.
      */
-    public AbilityMenuScene() {
+    public AbilityMenu() {
         GridPane layout = new GridPane();
 
         Label titleAbilityMenu = new Label("What do you want to do?");

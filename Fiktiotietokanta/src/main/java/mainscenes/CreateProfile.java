@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 /**
  * Sovelluksen käyttöliittymä luo profiili scene.
  */
-public class CreateProfileScene {
+public class CreateProfile {
 
     Scene createProfileScreen;
     TextArea profileEditor;
@@ -38,7 +38,7 @@ public class CreateProfileScene {
     /**
      * Luo profiili konstruktori.
      */
-    public CreateProfileScene() {
+    public CreateProfile() {
         VBox layout = new VBox();
 
         GridPane menu = new GridPane();

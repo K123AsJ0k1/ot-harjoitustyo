@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
 
 /** Sovelluksen käyttöliittymän lisää ominaisuuksia scene.
  */
-public class AddAbilitiesScene {
+public class AddAbilities {
 
     Scene addAbilitiesScreen;
     Button createAbilityButton;
@@ -30,7 +30,7 @@ public class AddAbilitiesScene {
     
     /** Lisää ominaisuuksia scenen konstruktori.
     */
-    public AddAbilitiesScene() {
+    public AddAbilities() {
         GridPane layout = new GridPane();
 
         Label instructions = new Label("Fill all the blanks");

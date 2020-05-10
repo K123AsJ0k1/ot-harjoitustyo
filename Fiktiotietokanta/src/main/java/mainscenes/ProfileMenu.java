@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 
 /** Sovelluksen käyttöliittmän profiili valikko scene.
  */
-public class ProfileMenuScene {
+public class ProfileMenu {
 
     Scene profileMenuScreen;
     Button createProfileButton;
@@ -23,7 +23,7 @@ public class ProfileMenuScene {
     Button returnButton;
     /** Profiili valikko konstruktori.
      */
-    public ProfileMenuScene() {
+    public ProfileMenu() {
         GridPane layout = new GridPane();
 
         Label titleProfileMenu = new Label("What do you want to do?");

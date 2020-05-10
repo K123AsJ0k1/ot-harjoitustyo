@@ -18,7 +18,7 @@ import service.DaoPlayer;
 /**
  * Sovelluksen käyttöliittymän parametri taulukon toiminnan hallitsija.
  */
-public class UiParametersTableLogic {
+public class UiParametersTable {
 
     UsernameInterface usernameDatabase;
 
@@ -27,7 +27,7 @@ public class UiParametersTableLogic {
      *
      * @param daoPlayer antaa tarvitun viiteen.
      */
-    public UiParametersTableLogic(DaoPlayer daoPlayer) {
+    public UiParametersTable(DaoPlayer daoPlayer) {
         usernameDatabase = daoPlayer.getUsernameDatabase();
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,7 +17,7 @@ import javafx.scene.layout.GridPane;
 /**
  * Sovelluksen käyttöliittymän lisää käyttäjä scene.
  */
-public class SignInScene {
+public class SignIn {
 
     Scene signInScreen;
     Button createButton;
@@ -29,7 +29,7 @@ public class SignInScene {
     /**
      * Konstruktori lisää käyttäjän konstruktori.
      */
-    public SignInScene() {
+    public SignIn() {
         GridPane layout = new GridPane();
 
         Label titleSignIn = new Label("Write a username and password atleast 5 letters long");

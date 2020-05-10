@@ -6,17 +6,17 @@
 package service;
 import assets.Admin;
 import assets.Configuration;
-import uilogic.UiAbilityLogic;
-import uilogic.UiUserLogic;
-import uilogic.UiTransitionLogic;
+import uilogic.UiAbility;
+import uilogic.UiUser;
+import uilogic.UiMainTransition;
 import assets.User;
 import assets.Parameters;
 import domain.FileManagerInterface;
 import filelogic.FileManager;
 import java.util.List;
-import uilogic.UiParametersTableLogic;
-import uilogic.UiSupportLogic;
-import uilogic.UiUserTableLogic;
+import uilogic.UiParametersTable;
+import uilogic.UiMainSupport;
+import uilogic.UiUserTable;
 /**
  * Sovelluksen käyttöliittymän toiminnan ydin.
  */
@@ -28,12 +28,12 @@ public class UiLogicCore {
     User user;
     Parameters parameters;
     FileManagerInterface fileManager;
-    UiUserLogic uiUserLogic;
-    UiAbilityLogic uiAbilityLogic;
-    UiUserTableLogic uiUserTableLogic;
-    UiParametersTableLogic uiParamtersTableLogic;
-    UiTransitionLogic uiTransitionLogic;
-    UiSupportLogic uiSupportLogic;
+    UiUser uiUserLogic;
+    UiAbility uiAbilityLogic;
+    UiUserTable uiUserTableLogic;
+    UiParametersTable uiParamtersTableLogic;
+    UiMainTransition uiTransitionLogic;
+    UiMainSupport uiSupportLogic;
     /** Konstruktori.
      * @param scenePlayer peritty ScenePlayer.
      */
@@ -69,12 +69,12 @@ public class UiLogicCore {
             user.setPrivilage(this.daoPlayer.usernameDatabase.searchUsernamePrivilage("Private"));
             parameters = new Parameters("", "");
         }
-        uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
-        uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
-        uiParamtersTableLogic = new UiParametersTableLogic(this.daoPlayer);
-        uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
-        uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
-        uiSupportLogic = new UiSupportLogic(this.scenePlayer);
+        uiAbilityLogic = new UiAbility(this.daoPlayer);
+        uiUserTableLogic = new UiUserTable(this.daoPlayer);
+        uiParamtersTableLogic = new UiParametersTable(this.daoPlayer);
+        uiUserLogic = new UiUser(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
+        uiTransitionLogic = new UiMainTransition(this.scenePlayer);
+        uiSupportLogic = new UiMainSupport(this.scenePlayer);
         return true;
     }
     
@@ -105,12 +105,12 @@ public class UiLogicCore {
         user.setPrivilage(this.daoPlayer.usernameDatabase.searchUsernamePrivilage("Private"));
 
         parameters = new Parameters("", "");
-        uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
-        uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
-        uiParamtersTableLogic = new UiParametersTableLogic(this.daoPlayer);
-        uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
-        uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
-        uiSupportLogic = new UiSupportLogic(this.scenePlayer);
+        uiAbilityLogic = new UiAbility(this.daoPlayer);
+        uiUserTableLogic = new UiUserTable(this.daoPlayer);
+        uiParamtersTableLogic = new UiParametersTable(this.daoPlayer);
+        uiUserLogic = new UiUser(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
+        uiTransitionLogic = new UiMainTransition(this.scenePlayer);
+        uiSupportLogic = new UiMainSupport(this.scenePlayer);
 
         return true;
     }
@@ -139,12 +139,12 @@ public class UiLogicCore {
 
         user = new User("", "", "", 0);
         parameters = new Parameters("", "");
-        uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
-        uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
-        uiParamtersTableLogic = new UiParametersTableLogic(this.daoPlayer);
-        uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
-        uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
-        uiSupportLogic = new UiSupportLogic(this.scenePlayer);
+        uiAbilityLogic = new UiAbility(this.daoPlayer);
+        uiUserTableLogic = new UiUserTable(this.daoPlayer);
+        uiParamtersTableLogic = new UiParametersTable(this.daoPlayer);
+        uiUserLogic = new UiUser(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
+        uiTransitionLogic = new UiMainTransition(this.scenePlayer);
+        uiSupportLogic = new UiMainSupport(this.scenePlayer);
         
         return true;
     }
@@ -173,22 +173,22 @@ public class UiLogicCore {
     public Parameters getParameters() {
         return this.parameters;
     }
-    public UiUserLogic getUiUserLogic() {
+    public UiUser getUiUserLogic() {
         return this.uiUserLogic;
     }
-    public UiAbilityLogic getUiAbilityLogic() {
+    public UiAbility getUiAbilityLogic() {
         return this.uiAbilityLogic;
     }
-    public UiUserTableLogic getUiUserTableLogic() {
+    public UiUserTable getUiUserTableLogic() {
         return this.uiUserTableLogic;
     }
-    public UiParametersTableLogic getUiParametersTableLogic() {
+    public UiParametersTable getUiParametersTableLogic() {
         return this.uiParamtersTableLogic;
     }
-    public UiTransitionLogic getUiTransitionLogic() {
+    public UiMainTransition getUiTransitionLogic() {
         return this.uiTransitionLogic;
     }
-    public UiSupportLogic getUiSupportLogic() {
+    public UiMainSupport getUiSupportLogic() {
         return this.uiSupportLogic;
     }
     public Configuration getConfiguration() {

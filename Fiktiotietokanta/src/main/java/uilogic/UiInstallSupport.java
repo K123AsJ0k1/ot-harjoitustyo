@@ -12,7 +12,7 @@ import service.ScenePlayer;
 /**
  * Sovelluksen asennuksen toimintaa tukeva hallitsija.
  */
-public class UiInstallSupportLogic {
+public class UiInstallSupport {
 
     ScenePlayer scenePlayer;
 
@@ -21,7 +21,7 @@ public class UiInstallSupportLogic {
      *
      * @param scenePlayer antaa tarpeellisen viiteen.
      */
-    public UiInstallSupportLogic(ScenePlayer scenePlayer) {
+    public UiInstallSupport(ScenePlayer scenePlayer) {
         this.scenePlayer = scenePlayer;
     }
 

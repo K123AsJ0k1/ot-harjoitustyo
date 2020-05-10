@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 
 /** Sovelluksen käyttöliittymän ominaisuus päävalikko scene.
  */
-public class AdminMenuScene {
+public class AdminMenu {
 
     Scene adminMenuScreen;
     Button usernameListButton;
@@ -24,7 +24,7 @@ public class AdminMenuScene {
     
     /** Ominaisuus päävalikkon konstruktori.
     */
-    public AdminMenuScene() {
+    public AdminMenu() {
         GridPane layout = new GridPane();
 
         Label titleAdminMenu = new Label("What do you want to do?");

@@ -8,27 +8,27 @@ package uilogic;
 import assets.User;
 import domain.UsernameInterface;
 import javafx.stage.Stage;
-import programscenes.LoginScene;
-import programscenes.PublicMainMenuScene;
-import programscenes.SignInScene;
+import mainscenes.Login;
+import mainscenes.PublicMainMenu;
+import mainscenes.SignIn;
 import service.ScenePlayer;
 
 /** Sovelluksen käyttäjä toiminnallisuuden hallitsija.
  */
-public class UiUserLogic {
+public class UiUser {
 
     UsernameInterface usernameDatabase;
     User user;
-    LoginScene loginScene;
-    SignInScene signInScene;
-    PublicMainMenuScene mainMenuScene;
+    Login loginScene;
+    SignIn signInScene;
+    PublicMainMenu mainMenuScene;
     
     /** Konstruktori.
      * @param usernameDatabase antaa tarvitun viiteen.
      * @param user antaa tarvitun viiteen.
      * @param scenePlayer antaa tarvitun viiteen.
      */
-    public UiUserLogic(UsernameInterface usernameDatabase, User user, ScenePlayer scenePlayer) {
+    public UiUser(UsernameInterface usernameDatabase, User user, ScenePlayer scenePlayer) {
         this.usernameDatabase = usernameDatabase;
         this.user = user;
         this.loginScene = scenePlayer.getLogin();

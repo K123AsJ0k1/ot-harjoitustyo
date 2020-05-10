@@ -16,7 +16,7 @@ import service.UiLogicCore;
 /**
  * Sovelluksen asennus käyttöliittymän siirtymä toimien hallitsija.
  */
-public class UiInstallTransitionsLogic {
+public class UiInstallTransitions {
 
     ScenePlayer scenePlayer;
 
@@ -25,7 +25,7 @@ public class UiInstallTransitionsLogic {
      *
      * @param scenePlayer tarvittava viite.
      */
-    public UiInstallTransitionsLogic(ScenePlayer scenePlayer) {
+    public UiInstallTransitions(ScenePlayer scenePlayer) {
         this.scenePlayer = scenePlayer;
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 /**
  * Sovelluksen käyttöliittymän kirjautumis scene.
  */
-public class LoginScene {
+public class Login {
 
     Scene loginScreen;
     Button loginButton;
@@ -30,7 +30,7 @@ public class LoginScene {
     /**
      * Konstruktori.
      */
-    public LoginScene() {
+    public Login() {
 
         GridPane layout = new GridPane();
 

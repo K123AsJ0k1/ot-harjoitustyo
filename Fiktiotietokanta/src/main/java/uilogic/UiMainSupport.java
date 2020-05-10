@@ -14,13 +14,13 @@ import service.TextPlayer;
 
 /** Sovelluksen käyttöliittymän toimintaa tukeva hallitsija.
  */
-public class UiSupportLogic {
+public class UiMainSupport {
 
     ScenePlayer scenePlayer;
     /** Konstuktori.
      * @param scenePlayer antaa tarvitun viiteen.
     */
-    public UiSupportLogic(ScenePlayer scenePlayer) {
+    public UiMainSupport(ScenePlayer scenePlayer) {
         this.scenePlayer = scenePlayer;
     }
     /** Resetoi profiilin.
@@ -43,7 +43,7 @@ public class UiSupportLogic {
      * @param user antaa tarvittavat käyttäjä tiedot.
      * @param uiAbilityLogic antaa tarvitun viiteen.
     */
-    public void addAbility(User user, UiAbilityLogic uiAbilityLogic) {
+    public void addAbility(User user, UiAbility uiAbilityLogic) {
         scenePlayer.getAddAbilities().getErrorMessage().setText("");
         String textFieldClass = scenePlayer.getAddAbilities().getClassInput().getText().trim();
         String textFieldName = scenePlayer.getAddAbilities().getNameInput().getText().trim();
@@ -64,7 +64,7 @@ public class UiSupportLogic {
      * @param user antaa tarvittavat käyttäjä tiedot.
      * @param uiAbilityLogic antaa tarvitun viiteen.
     */
-    public void removeAbility(User user, UiAbilityLogic uiAbilityLogic) {
+    public void removeAbility(User user, UiAbility uiAbilityLogic) {
         if (scenePlayer.getRemoveAbilities().getSelectionModel().getSelectedItems().size() > 0) {
             ObservableList selectedItems = scenePlayer.getRemoveAbilities().getSelectionModel().getSelectedItems();
             int removedIndex = scenePlayer.getRemoveAbilities().getSelectionModel().getFocusedIndex();
@@ -83,7 +83,7 @@ public class UiSupportLogic {
     /** Poistaa luokka tietokannassa olevat tiedot.
      * @param uiAbilityLogic antaa tarvitun viiteen.
     */
-    public void cleanClassDatabase(UiAbilityLogic uiAbilityLogic) {
+    public void cleanClassDatabase(UiAbility uiAbilityLogic) {
         for (String param : uiAbilityLogic.classDatabase.showDatabaseAsAList()) {
             String[] table = param.split("/");
             uiAbilityLogic.classDatabase.removeInformation(table[1]);
@@ -92,7 +92,7 @@ public class UiSupportLogic {
     /** Poistaa nimi tietokannassa olevat tiedot.
      * @param uiAbilityLogic antaa tarvitun viiteen.
     */
-    public void cleanNameDatabase(UiAbilityLogic uiAbilityLogic) {
+    public void cleanNameDatabase(UiAbility uiAbilityLogic) {
         for (String param : uiAbilityLogic.nameDatabase.showDatabaseAsAList()) {
             String[] table = param.split("/");
             uiAbilityLogic.nameDatabase.removeInformation(table[1]);
@@ -101,7 +101,7 @@ public class UiSupportLogic {
     /** Poistaa selite tietokannassa olevat tiedot.
      * @param uiAbilityLogic antaa tarvitun viiteen.
     */
-    public void cleanDescriptionDatabase(UiAbilityLogic uiAbilityLogic) {
+    public void cleanDescriptionDatabase(UiAbility uiAbilityLogic) {
         for (String param : uiAbilityLogic.descriptionDatabase.showDatabaseAsAList()) {
             String[] table = param.split("/");
             uiAbilityLogic.descriptionDatabase.removeInformation(table[1]);
@@ -110,7 +110,7 @@ public class UiSupportLogic {
     /** Poistaa vaatimus tietokannassa olevat tiedot.
      * @param uiAbilityLogic antaa tarvitun viiteen.
     */
-    public void cleanRequrimentDatabase(UiAbilityLogic uiAbilityLogic) {
+    public void cleanRequrimentDatabase(UiAbility uiAbilityLogic) {
         for (String param : uiAbilityLogic.requrimentDatabase.showDatabaseAsAList()) {
             String[] table = param.split("/");
             uiAbilityLogic.requrimentDatabase.removeInformation(table[1]);
@@ -119,7 +119,7 @@ public class UiSupportLogic {
     /** Poistaa todellisuus tietokannassa olevat tiedot.
      * @param uiAbilityLogic antaa tarvitun viiteen.
     */
-    public void cleanRealityDatabase(UiAbilityLogic uiAbilityLogic) {
+    public void cleanRealityDatabase(UiAbility uiAbilityLogic) {
         for (String param : uiAbilityLogic.realityDatabase.showDatabaseAsAList()) {
             String[] table = param.split("/");
             uiAbilityLogic.realityDatabase.removeInformation(table[1]);
@@ -128,7 +128,7 @@ public class UiSupportLogic {
     /** Poistaa käyttäjän tietokannassa olevat tiedot.
      * @param uiUserTableLogic antaa tarvitun viiteen.
     */
-    public void removeUserFromTable(UiUserTableLogic uiUserTableLogic) {
+    public void removeUserFromTable(UiUserTable uiUserTableLogic) {
         if (scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems().size() > 0) {
             ObservableList selectedItems = scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems();
             String[] table = selectedItems.toString().split("/");

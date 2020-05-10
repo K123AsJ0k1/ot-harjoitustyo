@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,35 +14,35 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- * Sovelluksen käyttöliittymän yksityisen tilan päävalikko scene.
+ * Sovelluksen käyttöliittymän julkisen tilan päävalikko scene.
  */
-public class PrivateMainMenuScene {
+public class PublicMainMenu {
 
     Scene mainMenuScreen;
     Button abilitiesButton;
     Button profilesButton;
     Button adminButton;
-    Button shutDownButton;
+    Button signOutButton;
     Label errorMessage;
 
     /**
-     * Yksityisen tilan päävalikkon konstruktori.
+     * Julkisen tilan päävalikko konstruktori.
      */
-    public PrivateMainMenuScene() {
+    public PublicMainMenu() {
         GridPane layout = new GridPane();
 
         Label titleMainMenu = new Label("What do you want to do?");
         this.abilitiesButton = new Button("Ability Menu");
         this.profilesButton = new Button("Profiles Menu");
         this.adminButton = new Button("Admin Menu");
-        this.shutDownButton = new Button("Shut down");
+        this.signOutButton = new Button("Sign out");
         this.errorMessage = new Label("");
 
         layout.add(titleMainMenu, 0, 0);
         layout.add(this.abilitiesButton, 0, 1);
         layout.add(this.profilesButton, 0, 2);
         layout.add(this.adminButton, 0, 3);
-        layout.add(this.shutDownButton, 0, 4);
+        layout.add(this.signOutButton, 0, 4);
         layout.add(this.errorMessage, 0, 5);
 
         layout.setPrefSize(300, 300);
@@ -70,8 +70,8 @@ public class PrivateMainMenuScene {
         return this.adminButton;
     }
 
-    public Button getShutDownButton() {
-        return this.shutDownButton;
+    public Button getSignOutButton() {
+        return this.signOutButton;
     }
 
     public Label getErrorMessage() {

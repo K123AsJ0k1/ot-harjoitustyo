@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package installationscenes;
+package installscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 /**
  * Sovelluksen asennuksen yksityisen tilan dao asetus scene.
  */
-public class PrivateDaoSettingsScene {
+public class PrivateDaoSettings {
 
     Scene daoSettingPrivateScene;
     GridPane layout;
@@ -42,7 +42,7 @@ public class PrivateDaoSettingsScene {
     /**
      * Konstruktor.
      */
-    public PrivateDaoSettingsScene() {
+    public PrivateDaoSettings() {
 
         layout = new GridPane();
 

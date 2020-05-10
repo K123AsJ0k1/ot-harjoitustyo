@@ -10,10 +10,6 @@ import domain.FileManagerInterface;
 import domain.UsernameInterface;
 import filelogic.FileManager;
 import java.io.File;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,7 +22,7 @@ public class UsernameDatabaseTest {
     //Constructor tests
     
     @Test
-    public void normalModeWorks() throws Exception {
+    public void norModeWorks() throws Exception {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Normal","UsernameDatabase");
@@ -47,7 +43,7 @@ public class UsernameDatabaseTest {
     
     
     @Test
-    public void getDatabaseExistWorks() throws Exception {
+    public void dataBaseExists() throws Exception {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -55,7 +51,7 @@ public class UsernameDatabaseTest {
     }
     // Create database tests
     @Test
-    public void createDatabaseWorks() throws Exception {
+    public void createDatabase() throws Exception {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -376,5 +372,7 @@ public class UsernameDatabaseTest {
         assertEquals(false, wrongUsernameCheck);
         test.removeUsernameDatabase();
     }
+    
+    
      
 }

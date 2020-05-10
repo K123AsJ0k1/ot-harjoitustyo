@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package installationscenes;
+package installscenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,7 +17,7 @@ import javafx.scene.layout.HBox;
 /**
  * Sovelluksen asennuksen pääkäyttäjä asetusten scene.
  */
-public class AdministratorSettingsScene {
+public class AdminSettings {
 
     Scene administratorSettingsScene;
     TextArea usernameArea;
@@ -30,7 +30,7 @@ public class AdministratorSettingsScene {
     /**
      * Konstruktori.
      */
-    public AdministratorSettingsScene() {
+    public AdminSettings() {
         GridPane layout = new GridPane();
 
         Label title = new Label("Add atleast one admin account");

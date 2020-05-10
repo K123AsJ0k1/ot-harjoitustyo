@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import assets.UserTable;
 import javafx.scene.Scene;
@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 /**
  * Sovelluksen käyttöliittymän käyttäjä tietokanta taulu scene.
  */
-public class UserDatabaseTableScene {
+public class UserDatabaseTable {
 
     Scene useDatabaseTable;
     Button returnButton;
@@ -29,7 +29,7 @@ public class UserDatabaseTableScene {
     /**
      * Käyttäjä tietokanta taulun konstruktori.
      */
-    public UserDatabaseTableScene() {
+    public UserDatabaseTable() {
         VBox layout = new VBox();
 
         HBox buttonLayout = new HBox();

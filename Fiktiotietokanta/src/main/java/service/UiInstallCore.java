@@ -11,8 +11,8 @@ import domain.FileManagerInterface;
 import domain.FileWriterInterface;
 import filelogic.FileManager;
 import filelogic.FileWriter;
-import uilogic.UiInstallSupportLogic;
-import uilogic.UiInstallTransitionsLogic;
+import uilogic.UiInstallSupport;
+import uilogic.UiInstallTransitions;
 
 /** Sovelluksen asennuksen toiminan ydin.
  */
@@ -23,8 +23,8 @@ public class UiInstallCore {
     TextAreaMode textAreaMode;
     FileWriterInterface fileWriter;
     FileManagerInterface fileManager;
-    UiInstallSupportLogic uiInstallSupportLogic;
-    UiInstallTransitionsLogic uiInstallTransitionsLogic;
+    UiInstallSupport uiInstallSupportLogic;
+    UiInstallTransitions uiInstallTransitionsLogic;
     
     /** Konstruktori.
     */
@@ -34,8 +34,8 @@ public class UiInstallCore {
         textAreaMode = new TextAreaMode();
         fileWriter = new FileWriter();
         fileManager = new FileManager();
-        uiInstallSupportLogic = new UiInstallSupportLogic(this.scenePlayer);
-        uiInstallTransitionsLogic = new UiInstallTransitionsLogic(this.scenePlayer);
+        uiInstallSupportLogic = new UiInstallSupport(this.scenePlayer);
+        uiInstallTransitionsLogic = new UiInstallTransitions(this.scenePlayer);
     }
 
     public Configuration getConfiguration() {
@@ -58,11 +58,11 @@ public class UiInstallCore {
         return this.scenePlayer;
     }
 
-    public UiInstallSupportLogic getUiInstallSupportLogic() {
+    public UiInstallSupport getUiInstallSupportLogic() {
         return this.uiInstallSupportLogic;
     }
 
-    public UiInstallTransitionsLogic getUiInstallTransitionsLogic() {
+    public UiInstallTransitions getUiInstallTransitionsLogic() {
         return this.uiInstallTransitionsLogic;
     }
 

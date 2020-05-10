@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import assets.ClassTable;
 import assets.DescriptionTable;
@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 
 /** Sovelluksen käyttöliittymän ominaisuus parametri taulukko scene.
  */
-public class AbilityParametersTableScene {
+public class ParametersTable {
 
     Scene abilityParametersTable;
     Button returnButton;
@@ -31,7 +31,7 @@ public class AbilityParametersTableScene {
     
     /** Ominaisuus parametri taulukkon konstruktori.
     */
-    public AbilityParametersTableScene() {
+    public ParametersTable() {
         VBox layout = new VBox();
 
         HBox buttonLayout = new HBox();

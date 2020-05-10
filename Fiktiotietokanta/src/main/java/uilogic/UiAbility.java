@@ -15,7 +15,7 @@ import service.DaoPlayer;
 /**
  * Sovelluksen ominaisuuksien toiminnan hallitsija.
  */
-public class UiAbilityLogic {
+public class UiAbility {
 
     DatabaseInterface classDatabase;
     DatabaseInterface nameDatabase;
@@ -29,7 +29,7 @@ public class UiAbilityLogic {
      *
      * @param daoPlayer antaa tarvittavan viiteet.
      */
-    public UiAbilityLogic(DaoPlayer daoPlayer) {
+    public UiAbility(DaoPlayer daoPlayer) {
         this.classDatabase = daoPlayer.getClassDatabase();
         this.nameDatabase = daoPlayer.getNameDatabase();
         this.descriptionDatabase = daoPlayer.getDescriptionDatabase();

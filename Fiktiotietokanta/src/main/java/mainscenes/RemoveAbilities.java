@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,31 +17,31 @@ import javafx.scene.layout.VBox;
 import assets.Ability;
 
 /**
- * Sovelluksen käyttöliittymän valitse ominaisuudet listan scene.
+ * Sovelluksen käyttöliittymän poista ominaisuuksia lista scene.
  */
-public class ChooseAbilitiesScene {
+public class RemoveAbilities {
 
-    Scene chooseAbilitiesScreen;
-    Button chooseAbilityButton;
+    Scene removeAbilitiesScreen;
+    Button removeAbilityButton;
     Button returnButton;
-    TableView tableView;
+    TableView tableview;
     TableView.TableViewSelectionModel<Ability> selectionModel;
 
     /**
-     * Valitse ominaisuudet listan konstruktori.
+     * Poista ominaisuuksia listan konstruktori.
      */
-    public ChooseAbilitiesScene() {
+    public RemoveAbilities() {
         VBox layout = new VBox();
 
-        Label title = new Label("List of abilities you have created");
+        Label lable = new Label("List of abilities you have created");
 
         HBox buttonLayout = new HBox();
 
-        this.chooseAbilityButton = new Button("Choose selected ability");
+        this.removeAbilityButton = new Button("Remove selected ability");
         this.returnButton = new Button("Return");
 
-        layout.getChildren().addAll(this.returnButton, this.chooseAbilityButton);
-        this.tableView = new TableView();
+        buttonLayout.getChildren().addAll(this.returnButton, this.removeAbilityButton);
+        this.tableview = new TableView();
 
         TableColumn<String, Ability> classColumn = new TableColumn<>("Class");
         classColumn.setCellValueFactory(new PropertyValueFactory<>("classIdentity"));
@@ -58,23 +58,23 @@ public class ChooseAbilitiesScene {
         TableColumn<String, Ability> realityColumn = new TableColumn<>("Reality");
         realityColumn.setCellValueFactory(new PropertyValueFactory<>("realityIdentity"));
 
-        this.tableView.getColumns().addAll(classColumn, nameColumn, descriptionColumn, requrimentColumn, realityColumn);
-        layout.getChildren().addAll(title, this.tableView, buttonLayout);
+        this.tableview.getColumns().addAll(classColumn, nameColumn, descriptionColumn, requrimentColumn, realityColumn);
+        layout.getChildren().addAll(lable, this.tableview, buttonLayout);
 
         layout.setPrefSize(400, 400);
 
-        this.selectionModel = this.tableView.getSelectionModel();
+        this.selectionModel = this.tableview.getSelectionModel();
         this.selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
-        this.chooseAbilitiesScreen = new Scene(layout);
+        this.removeAbilitiesScreen = new Scene(layout);
     }
 
-    public Scene getChoosenAbilitiesScene() {
-        return this.chooseAbilitiesScreen;
+    public Scene getRemoveAbilitiesScene() {
+        return this.removeAbilitiesScreen;
     }
 
-    public Button getChoosenAbilityButton() {
-        return this.chooseAbilityButton;
+    public Button getRemoveAbilityButton() {
+        return this.removeAbilityButton;
     }
 
     public Button getReturnButton() {
@@ -82,7 +82,7 @@ public class ChooseAbilitiesScene {
     }
 
     public TableView getTableView() {
-        return this.tableView;
+        return this.tableview;
     }
 
     public TableView.TableViewSelectionModel<Ability> getSelectionModel() {

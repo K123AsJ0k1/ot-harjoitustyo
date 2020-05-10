@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programscenes;
+package mainscenes;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
 /**
  * Sovelluksen käyttöliittymän luo tiedosto scene.
  */
-public class CreateFileScene {
+public class CreateFile {
 
     Scene createFileScreen;
     Text textPresentation;
@@ -26,7 +26,7 @@ public class CreateFileScene {
     /**
      * Luo tiedoston konstruktori.
      */
-    public CreateFileScene() {
+    public CreateFile() {
         VBox layout = new VBox();
 
         this.textPresentation = new Text();

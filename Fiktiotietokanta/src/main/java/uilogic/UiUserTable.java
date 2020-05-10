@@ -14,13 +14,13 @@ import service.DaoPlayer;
 
 /** Sovelluksen käyttöliittymän käyttäjä taulun hallitsija.
  */
-public class UiUserTableLogic {
+public class UiUserTable {
     
     UsernameInterface usernameDatabase;
     /** Konstruktori.
      * @param daoPlayer antaa tarvitun viiteen.
     */
-    public UiUserTableLogic(DaoPlayer daoPlayer) {
+    public UiUserTable(DaoPlayer daoPlayer) {
         usernameDatabase = daoPlayer.getUsernameDatabase();
     }
     /** Lisää käyttäjät UserTable olio listaan.
