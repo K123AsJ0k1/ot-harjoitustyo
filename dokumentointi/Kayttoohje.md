@@ -39,7 +39,7 @@ Dao asetus näkymä toimii samanlaisesti kuin julkisen tilan asennuksessa, mutta
 
 # Kirjautuminen
 
-Sovellus käynnistyy kirjautumisnäkymään:
+Julkisessa tilassa oleva sovellus siirtyy aina joko asennuksen jälkeen tai uudellen käynnistyksen yhteydessä kirjautumisnäkymään:
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20kirjautumisn%C3%A4kym%C3%A4.PNG)
 
@@ -51,15 +51,21 @@ Kirjautumisnäkymästä on mahdollista siirtyä uuden käyttäjän luomisnäkym�
 
 Uusi käyttäjä luodaan syöttämällä käyttäjä nimi ja salasana syötekenttiin ja painamalla create
 
+Käyttäjän on oltava vähintään 5 merkkiä ja korkeintaan 15 merkkiä pitkä ja sen merkkijonojen on oltava joko a-z tai A-Z
+
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20uuden%20k%C3%A4ytt%C3%A4j%C3%A4n%20luomisn%C3%A4kym%C3%A4.PNG)
 
 Jos käyttäjän luominen onnistuu, palataan kirjautumis näkymään tai vaihtoehtoisesti painamalla return.
 
 # Päävalikko 
 
-Kirjautumisnäkymästä siirrytään päävalikkoon, jossa voidaan valita siirtyä joko ominaisuus valikkoon, profiili valikkoon, pääkäyttäjä valikkoon tai palata takaisin kirjautumisnäkymään kirjautumalla ulos.
+Julkisessa tilassa olevassa sovelluksessa kirjautumisnäkymästä siirrytään päävalikkoon, jossa voidaan valita siirtyä joko ominaisuus valikkoon, profiili valikkoon, pääkäyttäjä valikkoon tai palata takaisin kirjautumisnäkymään kirjautumalla ulos.
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4valikko%20n%C3%A4kym%C3%A4.PNG)
+
+Yksityisessä tilassa olevassa sovelluksessa päävalikko siirtyy aina asennuksen jälkeen tai uudelleen käynnistämisen yhteydessä yksityiseen päävalikkoon, jossa voidaan valita siirtyä joko ominaisuus valikkoon, profiili valikkoon, pääkäyttäjä valikkoon tai sulkea ohjelma.
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4valikko%20private.PNG)
 
 # Ominaisuus valikko 
 
@@ -111,6 +117,22 @@ Luo profiilista tiedosto näkymästä voidaan siirtyä painamalla save tallenna 
 
 # Pääkäyttäjän valikko
 
-Päävalikosta voidaan siirtyä pääkäyttäjä valikkoon, jos käyttäjä on oikea ja siellä tullaan tulevaisuudessa varastoimaan pääkäyttäjän työkaluja.Return palauttaa takaisin päävalikkoon ja taas inspect information in parameter and ability databases ei tee mitään.
+Päävalikosta ainoastaan admin oikeuden omistavat käyttäjät voivat siirtyä pääkäyttäjä valikkoon, jossa voidaan tarkastella parametri tietokantojen sisältämiä tietoja tai sitten tarkastella käyttäjä tietokannan sisältämiä tietoja.
 
-![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4k%C3%A4ytt%C3%A4j%C3%A4%20valikko%20n%C3%A4kym%C3%A4.PNG)
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4k%C3%A4ytt%C3%A4j%C3%A4%20valikko.PNG)
+
+# Parametri lista
+
+Pääkäyttäjä valikosta voidaan siirtyä parametri listaan, joka näyttää class,name,description,requriment ja reality tietokantojen tiedot, ja painamalla return palataan takaisin pääkäyttäjä valikkoon
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20parametri%20lista.PNG)
+
+# Käyttäjä lista 
+
+Pääkäyttäjä valikosta voidaan siirtyä käyttäjä listaan, joka näyttää käyttäjien id:et, nimet ja heidän oikeudet, listan avulla voi poistaa haluttu käyttäjä valitsemalla hänet listasta ja painamalla remove. Listassa olevia kaikkia pääkäyttäjiä ei voida poistaa, mutta kaikki user oikeuden omaavat voidaan poistaa. Listasta voidaan palata takaisin pääkäyttäjä valikkoon painamalla return.
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20k%C3%A4ytt%C3%A4j%C3%A4%20lista.PNG)
+
+
+
+
