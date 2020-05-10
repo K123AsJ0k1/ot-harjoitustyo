@@ -18,6 +18,7 @@ import java.util.List;
 import uilogic.UiInstallSupportLogic;
 import uilogic.UiInstallTransitionsLogic;
 import uilogic.UiSupportLogic;
+import uilogic.UiUserTableLogic;
 
 /**
  *
@@ -35,6 +36,7 @@ public class UiLogicCore {
     FileManagerInterface fileManager;
     UiUserLogic uiUserLogic;
     UiAbilityLogic uiAbilityLogic;
+    UiUserTableLogic uiUserTableLogic;
     UiTransitionLogic uiTransitionLogic;
     UiSupportLogic uiSupportLogic;
     
@@ -69,6 +71,7 @@ public class UiLogicCore {
         }
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
+        uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         uiSupportLogic = new UiSupportLogic(this.scenePlayer);
@@ -103,6 +106,7 @@ public class UiLogicCore {
         parameters = new Parameters("","");
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
+        uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         uiSupportLogic = new UiSupportLogic(this.scenePlayer);
@@ -136,6 +140,7 @@ public class UiLogicCore {
         parameters = new Parameters("","");
 
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
+        uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         uiSupportLogic = new UiSupportLogic(this.scenePlayer);
@@ -181,6 +186,10 @@ public class UiLogicCore {
     
     public UiAbilityLogic getUiAbilityLogic() {
         return this.uiAbilityLogic;
+    }
+    
+    public UiUserTableLogic getUiUserTableLogic() {
+        return this.uiUserTableLogic;
     }
     
     public UiTransitionLogic getUiTransitionLogic() {

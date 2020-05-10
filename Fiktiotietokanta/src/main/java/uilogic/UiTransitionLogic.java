@@ -158,7 +158,6 @@ public class UiTransitionLogic {
     }
 
     public void fromCreateProfileToChooseAbility(Stage primaryStage, List<String> abilityList, UiAbilityLogic uiAbilityLogic) {
-        
         scenePlayer.getChooseAbilities().getTableView().getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
         primaryStage.setTitle("Choose Abilities table");
         primaryStage.setScene(scenePlayer.getChooseAbilities().getChoosenAbilitiesScene());
@@ -181,6 +180,19 @@ public class UiTransitionLogic {
             primaryStage.setTitle("Profile creator");
             primaryStage.setScene(scenePlayer.getCreateProfile().getCreateProfileScene());
         }
+    }
+    
+    public void fromAdminMenuToUserTable(Stage primaryStage, List<String> userList, UiUserTableLogic uiUserTableLogic) {
+        System.out.println(userList.toString());
+        scenePlayer.getUserDatabaseTable().getTableView().getItems().addAll(uiUserTableLogic.addUsersIntoAlist(userList));
+        primaryStage.setTitle("Username parameters as a list");
+        primaryStage.setScene(scenePlayer.getUserDatabaseTable().getUserDatabaseTableScene());
+    }
+    
+    public void fromUserTableToAdminMenu(Stage primaryStage) {
+        scenePlayer.getUserDatabaseTable().getTableView().getItems().clear();
+        primaryStage.setTitle("Admin menu");
+        primaryStage.setScene(scenePlayer.getAdminMenu().getAdminMenuScene());
     }
 
 }

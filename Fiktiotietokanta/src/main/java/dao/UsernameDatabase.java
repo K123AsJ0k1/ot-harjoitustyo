@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -225,6 +227,28 @@ public class UsernameDatabase implements UsernameInterface {
         }
         
         return privilage;
+    }
+
+    @Override
+    public List<String> showDatabaseAsAList() {
+        List<String> databaseAsAList = new ArrayList<>();
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT id,Username,Privilage FROM Usernames;");
+            ResultSet querySet = command.executeQuery();
+            while (querySet.next()) {
+                Integer givenId = querySet.getInt("id");
+                String givenName = querySet.getString("Username");
+                String givenPrivilege = querySet.getString("Privilage");
+                String identity = String.valueOf(givenId)+"/"+givenName+"/"+givenPrivilege;
+                databaseAsAList.add(identity);
+            }
+            querySet.close();
+            command.close();
+            return databaseAsAList;
+        } catch (SQLException k) {
+          System.out.println(k);
+        }
+        return databaseAsAList;
     }
 
 }

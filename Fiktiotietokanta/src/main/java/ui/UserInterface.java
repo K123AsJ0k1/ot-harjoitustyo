@@ -284,6 +284,15 @@ public class UserInterface extends Application {
         uiLogicCore.getScenePlayer().getCreateProfile().getProfileEditor().setOnKeyTyped((event) -> {
             uiLogicCore.getUiSupportLogic().checkTextArea(uiLogicCore.getTextPlayer());
         });
+        
+        uiLogicCore.getScenePlayer().getAdminMenu().getUserParamsAsAListMenuButton().setOnAction((event) ->{
+            uiLogicCore.getUiTransitionLogic().fromAdminMenuToUserTable(primaryStage, uiLogicCore.getDaoPlayer().getUsernameDatabase().showDatabaseAsAList(), uiLogicCore.getUiUserTableLogic());
+        });
+        
+        uiLogicCore.getScenePlayer().getUserDatabaseTable().getReturnButton().setOnAction((event) ->{
+            uiLogicCore.getUiTransitionLogic().fromUserTableToAdminMenu(primaryStage);
+        });
+        
         if (uiInstallCore.getFileManager().configFileExists()) {
             if (uiLogicCore.getConfiguration().getMode().equals("Public")) {
                 primaryStage.setTitle("Login screen");

@@ -28,7 +28,7 @@ public class AdminMenuScene {
         GridPane layout = new GridPane();
 
         Label titleAdminMenu = new Label("What do you want to do?");
-        this.inspectMenuButton = new Button("Inspect information in parameter and ability databases");
+        this.inspectMenuButton = new Button("Username parameters as a list");
         this.returnButton = new Button("Return to the main menu");
         this.errorMessage = new Label("");
 
@@ -55,7 +55,7 @@ public class AdminMenuScene {
         return this.adminMenuScreen;
     }
     
-    public Button getInspectMenuButton() {
+    public Button getUserParamsAsAListMenuButton() {
         return this.inspectMenuButton;
     }
     

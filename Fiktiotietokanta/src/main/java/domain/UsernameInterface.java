@@ -5,6 +5,8 @@
  */
 package domain;
 
+import java.util.List;
+
 /** Käyttäjän ja käyttöliittymän rajapinta.
  *
  * 
@@ -78,6 +80,10 @@ public interface UsernameInterface {
      * @return palauttaa tietokannan antaman id:n, jos käyttäjä löytyy ja palauttaa 0, jos ei.
     */
     public String searrchUsernamePrivilage(String information);
+    
+    
+    
+    public List<String> showDatabaseAsAList();
     
     /** Poistaa halutun tiedon käyttäjä tietokannasta.
     *

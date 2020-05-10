@@ -22,6 +22,7 @@ import programscenes.PublicMainMenuScene;
 import programscenes.ProfileMenuScene;
 import programscenes.RemoveAbilitiesScene;
 import programscenes.SignInScene;
+import programscenes.UserDatabaseTableScene;
 
 /**
  *
@@ -45,6 +46,7 @@ public class ScenePlayer {
     PublicDaoSettingsScene publicDaoSettingsScene;
     PrivateDaoSettingsScene privateDaoSettingsScene;
     AdministratorSettingsScene administratorSettingsScene;
+    UserDatabaseTableScene userDatabaseTableScene;
     
     public ScenePlayer() {
         loginScene = new LoginScene();
@@ -63,6 +65,7 @@ public class ScenePlayer {
         publicDaoSettingsScene = new PublicDaoSettingsScene();
         privateDaoSettingsScene = new PrivateDaoSettingsScene();
         administratorSettingsScene = new AdministratorSettingsScene();
+        userDatabaseTableScene = new UserDatabaseTableScene();
     }
     
     
@@ -128,6 +131,10 @@ public class ScenePlayer {
     
     public AdministratorSettingsScene getAdministratorSettings() {
         return this.administratorSettingsScene;
+    }
+    
+    public UserDatabaseTableScene getUserDatabaseTable() {
+        return this.userDatabaseTableScene;
     }
     
      
