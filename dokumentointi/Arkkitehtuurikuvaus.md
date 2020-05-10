@@ -293,7 +293,9 @@ kun käyttäjä siirtyy pääkäyttäjä valikosta parametri listaan, siirtyy ha
 
 **Muut toiminallisuudet**
 
-Sovelluksen sovelluslogiikka toimii yleisesti yllä esitetyillä tavoilla, eli käyttöliittymä tapahtumakäsittelijä kutsuu sopivaa sovelluslogiikan metodia, käyttöliittmä joko kutsuu jotain erillään olevaa sovellusloogikkaa kansiota tai lähettää itse jonkin pyynnön rajapintojen kautta tietokannoille ja ne lähettävät pyynnön mukaisesti joko String, Integer tai Boolean arvon, jonka mukaisesti käyttöliittymä tai erillinen sovelluslogiikka pyytää käyttöliittymää mukautuu halutusti tilanteeseen.
+Muu sovelluslogiikka seuraa yllä olevien sekvenssikaavioiden toiminta periaatteita, eli kun ui.UserInterfacessa tapahtuu setOnAction tapahtuma, joko asennuksen aikana UiInstallCore tai yleisen käytön aikana UILogicCore kuljettaaa tiedon uilogic pakettiin, jossa se käsitellään käyttöliittymän tilanteen mukaisesti joko luokissa UiInstallTransitions, UiInstallSupport, UiTransitions tai UiSupport. Luokan pyytämät asiat viestitetään ScenePlayer,DaoPlayer,TextPlayer tai viite perinnän kautta halutuille olioille, jotka tekevät halutut toimet ja lähettävät todennäköisesti jonkinlaisen information takaisin. Luokkien sisäisten toimien suorittamisen jälkeen, käyttöliittymän stageen tehdään muutoksia perinnän kautta ja näin käyttöliittymä valmistautuu vastaan ottamaan uusia komentoja.  
 
 
 # Ohjelman rakenteeseen jääneet heikkoudet
+
+
