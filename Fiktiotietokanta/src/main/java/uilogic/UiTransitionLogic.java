@@ -22,7 +22,7 @@ public class UiTransitionLogic {
 
     /**
      * Konstruktori.
-     * @param scenePlayer
+     * @param scenePlayer antaa tarvitun viiteen.
      */
     public UiTransitionLogic(ScenePlayer scenePlayer) {
         this.scenePlayer = scenePlayer;

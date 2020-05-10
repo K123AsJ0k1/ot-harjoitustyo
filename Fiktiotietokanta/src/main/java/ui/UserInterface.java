@@ -84,7 +84,7 @@ public class UserInterface extends Application {
         });
 
         uiInstallCore.getScenePlayer().getPublicDaoSettings().getNext().setOnAction((event) -> {
-            uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToUpKeepSettings(primaryStage, uiInstallCore.getTextAreaMode());
+            uiInstallCore.getUiInstallTransitionsLogic().fromDaoSettingsToAdministratorSettings(primaryStage, uiInstallCore.getTextAreaMode());
         });
 
         //Private dao settings
@@ -138,7 +138,7 @@ public class UserInterface extends Application {
         });
 
         uiInstallCore.getScenePlayer().getAdministratorSettings().getCreateAdminButton().setOnAction((event) -> {
-            uiInstallCore.getUiInstallSupportLogic().AddAdmin(uiInstallCore.getConfiguration());
+            uiInstallCore.getUiInstallSupportLogic().addAdmin(uiInstallCore.getConfiguration());
         });
 
         uiInstallCore.getScenePlayer().getAdministratorSettings().getFinishButton().setOnAction((event) -> {
