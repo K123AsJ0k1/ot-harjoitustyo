@@ -12,18 +12,21 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import service.DaoPlayer;
 
-/**
- *
- * @author niila
+/** Sovelluksen käyttöliittymän käyttäjä taulun hallitsija.
  */
 public class UiUserTableLogic {
     
     UsernameInterface usernameDatabase;
-    
+    /** Konstruktori.
+     * @param daoPlayer antaa tarvitun viiteen.
+    */
     public UiUserTableLogic(DaoPlayer daoPlayer) {
         usernameDatabase = daoPlayer.getUsernameDatabase();
     }
-    
+    /** Lisää käyttäjät UserTable olio listaan.
+     * @param userList hakee ja antaa tarvitun käyttäjä listan
+     * @return palauttaa käyttäjä tietokannan mukaisen listan.
+    */
     public List<UserTable> addUsersIntoAlist(List<String> userList) {
         List<UserTable> returnedList = new ArrayList<>();
         
@@ -37,7 +40,9 @@ public class UiUserTableLogic {
         }
         return returnedList;
     }
-    
+    /** Poistaa käyttäjän.
+     * @param selectedItems antaa tarkasteltavan tiedot.
+    */
     public void removeUser(ObservableList selectedItems) {
         String[] givenUserTableSplit = selectedItems.get(0).toString().split("/");
         usernameDatabase.removeUserInformation(givenUserTableSplit [1]);

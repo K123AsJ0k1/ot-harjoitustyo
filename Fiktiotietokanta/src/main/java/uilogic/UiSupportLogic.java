@@ -126,7 +126,7 @@ public class UiSupportLogic {
         }
     }
     /** Poistaa käyttäjän tietokannassa olevat tiedot.
-     * @param uiUserTableLogic
+     * @param uiUserTableLogic antaa tarvitun viiteen.
     */
     public void removeUserFromTable(UiUserTableLogic uiUserTableLogic) {
         if (scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems().size() > 0) {
@@ -142,7 +142,7 @@ public class UiSupportLogic {
         }
     }
     /** Resetoi parametrin ominaisuuden.
-     * @param parameters
+     * @param parameters antaa tarvitun viiteen.
     */
     public void resetAbility(Parameters parameters) {
         parameters.setChoosenAbility("");
