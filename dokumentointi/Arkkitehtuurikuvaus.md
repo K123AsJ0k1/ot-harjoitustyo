@@ -280,9 +280,15 @@ kun käyttäjä on ominaisuuden poisto valikkossa valinnut ominaisuuden ja paina
 
 **Ominaisuuden valitseminen**
 
-kun käyttäjä on ominaisuuden valitsemis valikossa valinnut omianisuuden ja painanut valitse ominaisuus, siirty hallinta uiLogicCoren kautta uiLogic pakkaukseen ja siellä olevaan luokkaan UIMainTransition, jossa sovelluksen kontrolli etenee seuraavasti
+kun käyttäjä on ominaisuuden valitsemis valikossa valinnut omianisuuden ja painanut valitse ominaisuus, siirty hallinta uiLogicCoren kautta uilogic pakkaukseen ja siellä olevaan luokkaan UIMainTransition, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20valitsemisen%20sekvenssikaavio.png)
+
+**Parametri listan luonti**
+
+kun käyttäjä siirtyy pääkäyttäjä valikosta parametri listaan, siirtyy hallinta uiLogicCoren kautta uilogic pakkaukseen ja siellä olevaan luokkaan UIMainTransition, jossa sovelluksen kontrolli etenee seuraavasti
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Parametri%20listan%20luonti%20sekvenssikaavio.png)
 
 
 **Muut toiminallisuudet**
