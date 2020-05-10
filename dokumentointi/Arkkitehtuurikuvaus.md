@@ -201,6 +201,22 @@ Alla oleva luokka/pakkauskaavio näyttää eri pakkausten ja eri luokkien välis
 
 # Tietojen pysyväistallennus
 
+**Config tiedosto**
+
+Sovelluksen asennuksen aikana luodaan config niminen tiedosto, joka sisältää sovelluksen tilan, tietokannan tiedostojen nimen ja tietokantojen nimet, ja jotka ovat muodossa
+
+```ProgramMode: Public/Private```
+```FolderName: Annettu nimi```
+```UsernameDatabaseName: Annettu nimi```
+```ClassDatabaseName: Annettu nimi```
+```NameDatabaseName: Annettu nimi```
+```DescriptionDatabaseName: Annettu nimi```
+```RequrimentDatabaseName: Annettu nimi```
+```RealityDatabaseName: Annettu nimi```
+```AbilityDatabaseName: Annettu nimi```
+
+tiedosto luodaan ja luetaan FileConfig luokassa, joka sijaitsee filelogic pakkauksessa.
+
 Pakkauksen dao luokat ClassDatabase,NameDatabase,DescriptionDatabase,RequrimentDatabase,RealityDatabase ja UsernameDatabase hyödyntävät SQLlite:ä tietojen tallentamiseen tietokannan nimen mukaisiin tiedostoihin. 
 
 Luokat noudattavat Data Access Object-suunnitelumallia ja ne voidaan tarpeen mukaan korvata uusilla toteutuksilla, jos sovelluksen datan talletustapa halutaan vaihtaa, sillä ne ovat eristettyjä DatabaseInterface ja UsernameInterfacen taakse ja sovelluslogiikka ei hyödynnä näitä luokkia suoraan.
