@@ -12,12 +12,18 @@ Sovelluksessa on olemassa pääkäyttäjä admin ja tavallinen käyttäjä user,
 
 **Sovelluksen asentamiskäyttöliittymä**
 - käyttäjä pystyy valitsemaan julkisen ja yksityisen tilan sovellukselle
+- käyttäjä pystyy asennuksen aikana valitsemaan tietokanta kansion ja tietokantojen nimet
+- käyttäjä pystyy julkisessa tilassa luomaan pääkäyttäjiä
 - asennuksesta luodaan config tiedosto, joka mahdollistaa sovelluksen uudelleen käynnistämisen asennuksen aikana luotujen asetuksien kanssa
+
+**Sovelluksen uudelleenkäynnistäminen**
+- julkisessa tilassa käyttäjä saa kirjautumisnäkymän ja yksityisessä käyttäjä saa yksityisen päävalikon
+- yksityinen päävalikko mahdollistaa sovelluksen sulkemisen
 
 **Sovelluksen kirjautumiskäyttöliittymä**
 
 - käyttäjä pystyy luomaan uuden käyttäjä tunnuksen järjestelmään
- - tunnuksen täytyy olla uniikki ja pituudeltaan vähintään 5 merkkiä 
+ - tunnuksen täytyy olla uniikki ja pituudeltaan vähintään 5 ja korkeintaa 15 merkkiä 
 - käyttäjä voi kirjautua järjestelmään 
   - käyttäjän on kirjautuakseen syötettävä olemassa oleva käyttäjätunnus kirjautumislomakkeeseen 
   - jos käyttäjätunnusta ei ole olemassa, niin järjestelemä ilmoittaa tästä 
@@ -28,6 +34,7 @@ Sovelluksessa on olemassa pääkäyttäjä admin ja tavallinen käyttäjä user,
  - ominaisuushallinta siirtää käyttäjän uuteen valikkoon 
  - profiilihallinta siirtää käyttäjän uuteen valikkoon 
  - uloskirjautuminen palauttaa käyttäjän takaisin kirjautumiskäyttöliittymään 
+ - yksityisessä tilassa päävalikkossa on kirjautumisen sijaan sovelluksen sulkemisnäppäin
  
 **Sovelluksen ominaisuushallinta käyttöliittymä**
 
@@ -44,6 +51,11 @@ Sovelluksessa on olemassa pääkäyttäjä admin ja tavallinen käyttäjä user,
  - resetoi nykyinen profiili mahdollistaa luodun profiilin tyhjentämisen 
  - siirry takaisin siirtää käyttäjän takaisin pääkäyttöliittymään 
  
+ **Sovelluksen profiilin tallentamis käyttöliittymä**
+ - käyttäjä pystyy näkemään profiilista tuodun merkkijonot
+ - käyttäjä pystyy vapaasti tallentamaan omalla tavalla
+ - käyttäjä pystyy palamaan takaisin profiili valikkoon
+ 
 **Sovelluksen profiilieditointi käyttöliittymä työkalut**
 - käyttäjä pystyy valitsemaan haluamansa ominaisuuden
 - käyttäjä pystyy tarkastelemaan sanojen määrää
@@ -55,6 +67,8 @@ Sovelluksessa on olemassa pääkäyttäjä admin ja tavallinen käyttäjä user,
 **Sovelluksen pääkäyttäjä käyttöliittymä**
 - sovelluksessa on olemassa pääkäyttäjä admin ja tavallinen user, joissa pääkäyttäjä pääsee hyödyntämään pääkäyttäjä valikkoa
 - pääkäyttäjä valikko mahdollistaa tietokantojen parametrien tarkastelun ja olemassa olevien käyttäjien tarkastelun ja poistamisen
+- parametri tarkastelusta ja käyttäjä tarkastelusta voidaan päästä takaisin pääkäyttäjä valikkoon
+- pääkäyttäjä valikosta päästään takaisin tilan mukaiseen päävalikkoon
 
    
 
