@@ -13,7 +13,7 @@ Sovelluksessa on olemassa pääkäyttäjä admin ja tavallinen käyttäjä user,
 **Sovelluksen asentamiskäyttöliittymä**
 - käyttäjä pystyy valitsemaan julkisen ja yksityisen tilan sovellukselle
 - käyttäjä pystyy asennuksen aikana valitsemaan tietokanta kansion ja tietokantojen nimet
-- käyttäjä pystyy julkisessa tilassa luomaan pääkäyttäjiä
+- käyttäjä pystyy julkisessa tilassa luomaan pääkäyttäjiä, jotka ovat uniikkeja ja pituudeltaan vähintään 5 ja korkeintaa 15 merkkiä
 - asennuksesta luodaan config tiedosto, joka mahdollistaa sovelluksen uudelleen käynnistämisen asennuksen aikana luotujen asetuksien kanssa
 
 **Sovelluksen uudelleenkäynnistäminen**
