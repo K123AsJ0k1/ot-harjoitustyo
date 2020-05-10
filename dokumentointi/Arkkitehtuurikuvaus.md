@@ -225,6 +225,8 @@ Sovelluksen asennuksen aikana luodaan config niminen tiedosto, joka sisältää 
 
 tiedosto luodaan ja luetaan FileConfig luokassa, joka sijaitsee filelogic pakkauksessa.
 
+**Tietokannat**
+
 Pakkauksen dao luokat ClassDatabase,NameDatabase,DescriptionDatabase,RequrimentDatabase,RealityDatabase ja UsernameDatabase hyödyntävät SQLlite:ä tietojen tallentamiseen tietokannan nimen mukaisiin tiedostoihin. 
 
 Luokat noudattavat Data Access Object-suunnitelumallia ja ne voidaan tarpeen mukaan korvata uusilla toteutuksilla, jos sovelluksen datan talletustapa halutaan vaihtaa, sillä ne ovat eristettyjä DatabaseInterface ja UsernameInterfacen taakse ja sovelluslogiikka ei hyödynnä näitä luokkia suoraan.
@@ -232,6 +234,16 @@ Luokat noudattavat Data Access Object-suunnitelumallia ja ne voidaan tarpeen muk
 **Päätoiminnallisuudet**
 
 Alla olevat sekvenssikaaviot kuvaavat sovelluksen päätoiminallisuuden toimintalogiikkaa
+
+**Config tiedoston luominen**
+
+Kun käyttäjä on painanut joko yksityisen tilan tai julkisen tilan asennuksen finish painiketta, tullaan linja fileWriter.saveTextAsAConfig(configuration.createConfigString(), fileManager) suorittamaan ja sen jälkeen kun configuration on lähettänyt config merkkijonon, etenee sovelluksen kontrolli seuraavasti:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Config%20tiedoston%20luonti.png)
+
+
+
+**Sovelluksen uudelleen käynnistäminen**
 
 **Käyttäjän kirjaantuminen**
 Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus, salasana ja login painiketta painetaan, etenee sovelluksen kontrolli seuraavasti:
@@ -249,6 +261,10 @@ Käyttäjän luodessa uuden käyttäjän, eli hänen laitettuaan syötekentään
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4nluonnin%20sekvenssikaavio.png)
 
 Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja tarkastamaan käyttäjä nimen ja salasanan pituuden, joiden on oltava vähintään 5 merkkiä pitkiä. Tarkastuksen jälkeen käyttöliittymä tarkastaa rajapinnan kautta, onko käyttäjä nimeä olemassa ja hyväksymisen jälkeen käyttäjä nimen ja salasanan olemassa olon tietokannasta, joiden antaessa false voi käyttöliittymä jatkaa käyttäjänimen ja salasanan lisäämistä tietokantaan. Lisäämisen tuottaessa true arvon ja tultua rajapinnan kautta, käyttöliittymä kutsuu screenMainMenu Scene oliota ja muuttaa näkymän päävalikoksi.
+
+**Käyttäjän poistaminen**
+
+
 
 **Ominaisuuden luominen**
 
