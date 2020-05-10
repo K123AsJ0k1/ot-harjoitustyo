@@ -9,7 +9,7 @@ Sovelluksen avulla käyttäjien on mahdollista listätä tietokantaan erilaisia 
 
 [Arkkitehtuurikuvaus](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/Arkkitehtuurikuvaus.md)
 
-[Testausdokumentti]
+[Testausdokumentti](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/Testausdokumentti.md)
 
 [Työaikakirjanpito](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/tuntikirjanpito.md)
 
