@@ -8,7 +8,7 @@ Käynnistäessä ohjelman ilmestyy seuraava tervetuloa näkymä:
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20tervetuloa%20valikko.PNG)
 
-Voit valita joko julkisen sovelluksen julkisen tilan, joka mahdollistaa monet käyttäjät tai yksityisen tilan, joka mahdollistaa ainoastaan yhden käyttäjän tai keskeyttää asennuksen shut down buttonin avulla. 
+Voit valita joko julkisen sovelluksen julkisen tilan, joka mahdollistaa monet käyttäjät tai yksityisen tilan, joka mahdollistaa ainoastaan yhden käyttäjän, voit jopa keskyettää asennuksen painamalla shut down. 
 
 Valitsemalla public mode ja painamalla next, ilmestyy seuraava näkymä:
 
