@@ -245,6 +245,8 @@ Kun käyttäjä on painanut joko yksityisen tilan tai julkisen tilan asennuksen 
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Config%20tiedoston%20luonti.png)
 
+Tarkastellun linjan viesti käy ensiksi läpi FileWriterInterface rajapinnan, jonka jälkeen se menee FileWriteriin ja tiedon haun takia se menee FIleManagerInterface rajapintaa kautta hakemaan FileManager luokasta fiktiotietokannan nykyinen tiedosto polku, jonka se lähettää takaisin ja sen avulla FileWriter onnistuu config tiedoston luomisessa.
+
 
 **Sovelluksen uudelleen käynnistäminen**
 
@@ -252,11 +254,15 @@ kun käyttäjä avaa ohjelman uudelleen, suoritetaan ensin main.Main ja sen jäl
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20uudelleen%20k%C3%A4ynnist%C3%A4minen%20sekvennsikaavio.png)
 
+Käyttöliittymän käskettyä UiLogicCore käynnistymään, alkaa kyseinen luokka tarkastmanaan config tiedoston olemassa olon, ottamaan sen asetuksen ja viemään kyseisen asetuksen tiedot DaoPlayerin, luomaan tarvitut oliot ja asettamaan ne ja lopuksi viittamaan ScenePlayerin tiedot jokaiseen uilogic pakkauksen ja lopuksi lähettämään true arvon.
+
 **Käyttäjän kirjaantuminen**
 
 Kun kirjautumisnäkymässä on kirjoitettu nimi ja salasana ja painettu login painiketta, siirtyy hallinta UiLogicCoren kautta uilogic paketiin ja siellä UiUser luokkaan, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4n%20kirjautumisen%20sekvenssikaavio.png)
+
+UiUser tarkastaa ensiksi saadut tiedot, jonka jälkeen se lähettää tarkastus viestin UsernameInterface rajapintaa pitkin UsernameDatabaselle, joka lähettää falsen. Sama tehdään passwordCheckissä, jonka jälkeen saadut UiUser asettaa User olion hakemalla käyttäjän tiedot. User olion saatuaan kaikki tiedot, UiUser tekee viimeistelyt ja lopulta saa käyttöliittymän muuttumaan päävalikoksi.
 
 **Käyttäjän luominen**
 
@@ -264,12 +270,15 @@ kun uuden käyttäjän näkymässä on kirjoitettu nimi ja salasana ja painettu 
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4nluonnin%20sekvenssikaavio.png)
 
+UiUser tarkastaa ensiksi saadut tiedot, jonka jälkeen se lähettää tarkastus viestin rajapinnan kautta tietokantaan, ja tarvittavan viestitellyn jälkeen se lähettää saadut tiedot tietokantaan lisättäväksi. Lisäyksien jälkeen UiUser tekee viimeistelyt ja muuttaa käyttöliittymän kirjautumisvalikoksi.
+
 **Käyttäjän poistaminen**
 
 kun pääkäyttäjä on valinnut käyttäjä listasta jonkun käyttäjän ja painanut remove painiketta, siirtyy hallinta UiLogicCoren kautta uilogic pakettiin ja siellä olevaan UiMainSupport luokkaan, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4n%20poistamisen%20sekvenssikaavio.png)
 
+UiMainSupport tarkastaa ensiksi selection modelin antamien tietojen koon, jonka jälkeen se hakee kyseiset tiedot ja luo siitä String taulukon, jonka avulla se tarkistaa ettei poistettava käyttäjä ole admin. Tarkastuksen jälkeen listassa oleva rivi poistetaan ja tietokannassa oleva käyttäjä tiedot poistetaan, minkä jälkeen UiMainSupport tekee viimeistelyt ja käyttöliittymä päivittyy.
 
 **Ominaisuuden luominen**
 
@@ -277,11 +286,15 @@ kun käyttäjä on lisännyt kaikkiin lisää ominaisuuden tekstikenttiin teksti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20lis%C3%A4%C3%A4misen%20sekvenssikaavio.png)
 
+
+
 **Ominaisuuden poistaminen**
 
 kun käyttäjä on ominaisuuden poisto valikkossa valinnut ominaisuuden ja painanut poista ominaisuus, siirtyy hallinta UiLogicCoren kautta uilogic pakkaukseen ja siellä olevaan luokkaan UiMainSupport, jossa sovelluksen kontrolli etenee seuraavasti  
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20poistamisen%20sekvenssikaavio.png)
+
+UiAbility tarkastaa ensiksi tyhjien varalta, jonka jälkeen se luo jokaista parametria esittävän totuusarvon, joiden arvot muutetaan niiden jälkeen tulevissa if lauseissa tietokannoissa olevien parametrine mukaisesti. UiAbility tietäessä mitä parametreja lisätä, se lisää jokaisessa if lausessa parametrin tietokantaan, jonka jälkeen se tarkastaa ettei mitään virheitä tapahtunut. Virheiden tarkastamisen jälkeen UiAbility hakee jokaisen parametrin id tietokannasta, joiden avulla se luo tarvitun string muodon, jonka se lisää tarkastamisen jälkeen ominaisuus tietokantaan. Lisäyksen onnistuessa, UiAbility suorittaa viimeistelty ja päivittää käyttöliittymän.
 
 **Ominaisuuden valitseminen**
 
@@ -289,11 +302,15 @@ kun käyttäjä on ominaisuuden valitsemis valikossa valinnut omianisuuden ja pa
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Ominaisuuden%20valitsemisen%20sekvenssikaavio.png)
 
+UiMainSupport tarkastaa ScenePlayer kautta RemoveAbilities Scenesta tulevat tiedot ja kun ne ovat hyväksyttäviä, UiMainSupport tuo tiedot removeAbiliteista ja UiAbilityLogicsista ja tekee poistamisen tarvitsemat järjestelyt ja lopulta päivittää käyttöliittymän. 
+
 **Parametri listan luonti**
 
 kun käyttäjä siirtyy pääkäyttäjä valikosta parametri listaan, siirtyy hallinta uiLogicCoren kautta uilogic pakkaukseen ja siellä olevaan luokkaan UIMainTransition, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Parametri%20listan%20luonti%20sekvenssikaavio.png)
+
+UiMainTranstion hakee ScenePlayerin kautta ChooseAbilities tiedot, tarkastaa ne ja tarkastuksen jälkeen muokkaa Parameters olioon tietoja, viimeistelee ja lopulta saa käyttöliittymän tuomaan parametri listan.
 
 
 **Muut toiminallisuudet**
