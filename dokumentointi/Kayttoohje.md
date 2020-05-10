@@ -14,7 +14,7 @@ Valitsemalla public mode ja painamalla next, ilmestyy seuraava näkymä:
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20dao%20asetukset%20public.PNG)
 
-Dao asetus näkymässä pystyt antamaan sovelluksen tietokanta kansiolle ja sen tietokannoille eri nimet valitsemalla tarkastettava nimi ja muokkauksen jälkeen painamaan select name. Painamalla previous päädyt takaisin tervetuloa näkymään ja taas painamalla next, ilmestyy seuraava näkymä: 
+Dao asetus näkymässä pystyt antamaan sovelluksen tietokanta kansiolle ja sen tietokannoille eri nimet valitsemalla tarkastettava nimi ja kirjoittamalla haluttu nimi tekstikenttään, joka on sisältää ainoastaan a-z tai A-Z merkkejä ja on vähintään 5 merkkiä ja korkeintaan 20 merkkiä pitkä. Painamalla previous päädyt takaisin tervetuloa näkymään ja taas painamalla next, ilmestyy seuraava näkymä: 
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4k%C3%A4ytt%C3%A4j%C3%A4%20asetus%20public.PNG)
 
