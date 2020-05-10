@@ -5,15 +5,16 @@
  */
 package assets;
 
-/**
- *
- * @author niila
+/** RequrimentTableScenen käyttämä olio.
  */
 public class RequrimentTable {
     
     private String requrimentNumberIdentity = null;
     private String requrimentNameIdentity = null;
-    
+    /** RequrimentTableScenen käyttämä olio.
+     * @param requrimentNumberIdentity oliolle annettu id.
+     * @param requrimentNameIdentity oliolle annettu nimi.
+    */
     public RequrimentTable(String requrimentNumberIdentity, String requrimentNameIdentity) {
         this.requrimentNumberIdentity = requrimentNumberIdentity;
         this.requrimentNameIdentity = requrimentNameIdentity;
@@ -29,6 +30,6 @@ public class RequrimentTable {
     
     @Override
     public String toString() {
-        return this.requrimentNumberIdentity+"/"+this.requrimentNameIdentity;
+        return this.requrimentNumberIdentity + "/" + this.requrimentNameIdentity;
     }
 }

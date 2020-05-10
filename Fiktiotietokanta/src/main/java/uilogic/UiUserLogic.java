@@ -52,7 +52,7 @@ public class UiUserLogic {
             user.setUsername(givenUsername);
             user.setPassword(givenPassword);
             user.setId(usernameDatabase.searchUsernameId(givenUsername));
-            user.setPrivilage(usernameDatabase.searrchUsernamePrivilage(givenUsername));
+            user.setPrivilage(usernameDatabase.searchUsernamePrivilage(givenUsername));
             loginScene.getUsernameInput().clear();
             loginScene.getPasswordInput().clear();
             loginScene.getErrorMessage().setText("");

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package dao;
-
 import domain.DatabaseInterface;
 import domain.FileManagerInterface;
 import java.io.File;
@@ -16,45 +15,36 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Todellisuus tietokanta.
+/** Ominaisuus tietokannan todellisuus parametrin tietokanta.
  */
 public class RealityDatabase implements DatabaseInterface {
-
     private Connection connection;
     private Boolean databaseExists;
     private String connectionRepresentation;
-
-    /**
-     * Todellisuus tietokanta konstruktori.
-     *
-     * @param fileManager
-     * @param useCondition
-     * @param givenDatabaseName
+    /** Tietokannan konstruktori.
+     * @param fileManager antaa tarvitun tiedosto polun.
+     * @param useCondition tietokannan käyttämiseen tila.
+     * @param givenDatabaseName tietokannalle annettu nimi.
      */
     public RealityDatabase(FileManagerInterface fileManager, String useCondition, String givenDatabaseName) {
         try {
             if (useCondition.equals("Normal")) {
-                String name = givenDatabaseName+":connection";
-                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                String name = givenDatabaseName + ":connection";
+                String path = "jdbc:sqlite:" + fileManager.getDirectoryPath() + File.separator + name;
                 this.connection = DriverManager.getConnection(path);
                 connectionRepresentation = path;
             }
             if (useCondition.equals("Test")) {
-                String name = givenDatabaseName+"Test:connection";
-                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                String name = givenDatabaseName + "Test:connection";
+                String path = "jdbc:sqlite:" + fileManager.getDirectoryPath() + File.separator + name;
                 this.connection = DriverManager.getConnection(path);
                 connectionRepresentation = path;
             }
-
             this.databaseExists = false;
         } catch (SQLException k) {
-          this.databaseExists = null;
+            this.databaseExists = null;
         }
-        
     }
-
     @Override
     public boolean createDatabase() {
         try {
@@ -70,12 +60,10 @@ public class RealityDatabase implements DatabaseInterface {
         }
         return false;
     }
-
     @Override
     public boolean databaseExists() {
         return databaseExists;
     }
-
     @Override
     public boolean addInformation(String givenReality) {
         try {
@@ -89,7 +77,6 @@ public class RealityDatabase implements DatabaseInterface {
         }
         return false;
     }
-
     @Override
     public boolean searchInformation(String givenReality) {
         try {
@@ -108,15 +95,12 @@ public class RealityDatabase implements DatabaseInterface {
             if (realityExists) {
                 return true;
             }
-
             return false;
         } catch (SQLException k) {
 
         }
-
         return false;
     }
-
     @Override
     public Integer searchInfromationId(String givenReality) {
         try {
@@ -136,11 +120,8 @@ public class RealityDatabase implements DatabaseInterface {
         } catch (SQLException k) {
 
         }
-
         return 0;
-
     }
-
     @Override
     public boolean removeInformation(String givenReality) {
         try {
@@ -152,10 +133,8 @@ public class RealityDatabase implements DatabaseInterface {
         } catch (SQLException k) {
 
         }
-
         return false;
     }
-
     @Override
     public boolean removeDatabase() {
         try {
@@ -167,15 +146,11 @@ public class RealityDatabase implements DatabaseInterface {
         } catch (SQLException k) {
 
         }
-
         return false;
     }
-
     @Override
     public String searchInformationTextIdentity(String givenRealityId) {
-
         int checkId = Integer.valueOf(givenRealityId);
-
         try {
             PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities WHERE id=?");
             command.setInt(1, checkId);
@@ -190,22 +165,18 @@ public class RealityDatabase implements DatabaseInterface {
         } catch (SQLException k) {
 
         }
-
         return "null";
     }
-
     @Override
     public List<String> showDatabaseAsAList() {
-
         List<String> databaseAsAList = new ArrayList<>();
-
         try {
             PreparedStatement command = connection.prepareStatement("SELECT id,Reality FROM Realities;");
             ResultSet querySet = command.executeQuery();
             while (querySet.next()) {
                 Integer givenId = querySet.getInt("id");
                 String givenClass = querySet.getString("Reality");
-                String identity = String.valueOf(givenId)+"/"+givenClass;
+                String identity = String.valueOf(givenId) + "/" + givenClass;
                 databaseAsAList.add(identity);
             }
             querySet.close();
@@ -214,19 +185,15 @@ public class RealityDatabase implements DatabaseInterface {
         } catch (SQLException k) {
 
         }
-
         return databaseAsAList;
     }
-
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
         List<String> emptyList = new ArrayList<>();
         return emptyList;
     }
-
     @Override
     public String getConnectionString() {
         return this.connectionRepresentation;
     }
-
 }

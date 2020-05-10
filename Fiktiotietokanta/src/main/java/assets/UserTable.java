@@ -5,21 +5,17 @@
  */
 package assets;
 
-/**
- *
- * @author niila
+/** UserTableScenen käyttämä olio.
  */
 public class UserTable {
     
     private String numberIdentity = null;
     private String usernameIdentity = null;
     private String privilageIdentity = null;
-    /** UserTable konstruktori.
-     *
-    * 
-     * @param givenNumberId
-     * @param givenUsername
-     * @param givenPrivilage
+    /** Olion konstruktori.
+     * @param givenNumberId oliolle annettu käyttäjän tunnistenumero.
+     * @param givenUsername oliolle annettu käyttäjä nimi.
+     * @param givenPrivilage oliolle annettu käyttäjän oikeudet.
     */
     public UserTable(String givenNumberId, String givenUsername, String givenPrivilage) {
         this.numberIdentity = givenNumberId;
@@ -41,7 +37,7 @@ public class UserTable {
     
     @Override
     public String toString() {
-        return this.numberIdentity+"/"+this.usernameIdentity+"/"+this.privilageIdentity;
+        return this.numberIdentity + "/" + this.usernameIdentity + "/" + this.privilageIdentity;
     }
     
     

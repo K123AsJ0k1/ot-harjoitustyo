@@ -5,9 +5,7 @@
  */
 package assets;
 
-/**
- *
- * @author niila
+/** Sovelluksessa käyttäjän tietoja varastoiva olio. 
  */
 public class User {
     
@@ -15,8 +13,13 @@ public class User {
     private String password;
     private String privilage;
     private Integer id;
-    
-    public User(String username, String password,String privilage, Integer id) {
+    /** Sovelluksessa käyttäjän tietoja varastoiva olio.
+     * @param username käyttäjän nimi.
+     * @param password käyttäjän salasana.
+     * @param privilage käyttäjän oikeudet.
+     * @param id käyttjän tunnistenumero.
+    */
+    public User(String username, String password, String privilage, Integer id) {
         this.username = username;
         this.password = password;
         this.privilage = privilage;

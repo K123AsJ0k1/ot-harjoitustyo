@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package dao;
-
 import domain.DatabaseInterface;
 import domain.FileManagerInterface;
 import java.io.File;
@@ -16,50 +15,36 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Selitys tietokanta.
- *
- *
+/** Ominaisuus tietokannan selitys parametrin tietokanta.
  */
 public class DescriptionDatabase implements DatabaseInterface {
-
     private Connection connection;
     private Boolean databaseExists;
     private String connectionRepresentation;
-
-    /**
-     * Selitys tietokannan konstruktori.
-     *
-     *
-     * @param fileManager
-     * @param useCondition annettu tila.
-     * @param givenDatabaseName
-     * 
+    /** Tietokannan konstruktori.
+     * @param fileManager antaa tarvitun tiedosto polun.
+     * @param useCondition tietokannan käyttämiseen tila.
+     * @param givenDatabaseName tietokannalle annettu nimi.
      */
     public DescriptionDatabase(FileManagerInterface fileManager, String useCondition, String givenDatabaseName) {
         try {
             if (useCondition.equals("Normal")) {
-                String name = givenDatabaseName+":connection";
-                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                String name = givenDatabaseName + ":connection";
+                String path = "jdbc:sqlite:" + fileManager.getDirectoryPath() + File.separator + name;
                 this.connection = DriverManager.getConnection(path);
                 connectionRepresentation = path;
             }
             if (useCondition.equals("Test")) {
-                String name = givenDatabaseName+"Test:connection";
-                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                String name = givenDatabaseName + "Test:connection";
+                String path = "jdbc:sqlite:" + fileManager.getDirectoryPath() + File.separator + name;
                 this.connection = DriverManager.getConnection(path);
                 connectionRepresentation = path;
             }
-            
             this.databaseExists = false;
         } catch (SQLException k) {
             this.databaseExists = null;
         }
-        
-
     }
-
     @Override
     public boolean createDatabase() {
         try {
@@ -75,12 +60,10 @@ public class DescriptionDatabase implements DatabaseInterface {
         }
         return false;
     }
-
     @Override
     public boolean databaseExists() {
         return databaseExists;
     }
-
     @Override
     public boolean addInformation(String givenDescription) {
         try {
@@ -94,7 +77,6 @@ public class DescriptionDatabase implements DatabaseInterface {
         }
         return false;
     }
-
     @Override
     public boolean searchInformation(String givenDescription) {
         try {
@@ -119,7 +101,6 @@ public class DescriptionDatabase implements DatabaseInterface {
         }
         return false;
     }
-
     @Override
     public Integer searchInfromationId(String givenDescription) {
         try {
@@ -138,7 +119,6 @@ public class DescriptionDatabase implements DatabaseInterface {
         }
         return 0;
     }
-
     @Override
     public boolean removeInformation(String givenDescription) {
         try {
@@ -152,7 +132,6 @@ public class DescriptionDatabase implements DatabaseInterface {
         }
         return false;
     }
-
     @Override
     public boolean removeDatabase() {
         try {
@@ -165,9 +144,7 @@ public class DescriptionDatabase implements DatabaseInterface {
 
         }
         return false;
-
     }
-
     @Override
     public String searchInformationTextIdentity(String givenDescriptionId) {
         int checkId = Integer.valueOf(givenDescriptionId);
@@ -187,7 +164,6 @@ public class DescriptionDatabase implements DatabaseInterface {
         }
         return "null";
     }
-
     @Override
     public List<String> showDatabaseAsAList() {
         List<String> databaseAsAList = new ArrayList<>();
@@ -197,7 +173,7 @@ public class DescriptionDatabase implements DatabaseInterface {
             while (querySet.next()) {
                 Integer givenId = querySet.getInt("id");
                 String givenClass = querySet.getString("Description");
-                String identity = String.valueOf(givenId)+"/"+givenClass;
+                String identity = String.valueOf(givenId) + "/" + givenClass;
                 databaseAsAList.add(identity);
             }
             querySet.close();
@@ -208,15 +184,13 @@ public class DescriptionDatabase implements DatabaseInterface {
         }
         return databaseAsAList;
     }
-
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> emptyList = new ArrayList<>();
+        return emptyList;
     }
-
     @Override
     public String getConnectionString() {
         return this.connectionRepresentation;
     }
-
 }

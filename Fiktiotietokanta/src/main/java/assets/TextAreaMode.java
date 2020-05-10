@@ -5,14 +5,13 @@
  */
 package assets;
 
-/**
- *
- * @author niila
+/** DaoSettingsScenejen käyttämä olio.
  */
 public class TextAreaMode {
     
     String textMode;
-    
+    /** Olion konstruktori.
+    */
     public TextAreaMode() {
         textMode = "";
     }

@@ -5,15 +5,17 @@
  */
 package assets;
 
-/**
- *
- * @author niila
+/** NameTableScenen käyttäjä olio.
  */
 public class NameTable {
     
     private String nameNumberIdentity = null;
     private String nameNameIdentity = null;
     
+    /** Olion konstruktori.
+     * @param nameNumberIdentity oliolle annettu id.
+     * @param nameNameIdentity oliolle annettu nimi.
+    */
     public NameTable(String nameNumberIdentity, String nameNameIdentity) {
         this.nameNumberIdentity = nameNumberIdentity;
         this.nameNameIdentity  = nameNameIdentity;
@@ -29,7 +31,7 @@ public class NameTable {
     
     @Override
     public String toString() {
-        return this.nameNumberIdentity+"/"+this.nameNameIdentity ;
+        return this.nameNumberIdentity + "/" + this.nameNameIdentity;
     }
     
 }

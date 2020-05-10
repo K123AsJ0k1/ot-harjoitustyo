@@ -7,117 +7,71 @@ package domain;
 
 import java.util.List;
 
-/** Tietokannat ja käyttöliittymän yhdistävä rajapinta.
+/** Ominaisuus ja parametri tietokantojen ja sovelluksen välinen rajapinta.
  * 
  * 
  */
 public interface DatabaseInterface {
+    
     /** Luo tietokannan.
-    * 
-    * 
-     * @return palauttaa true, jos tietokanta on luotu ja false jos ei.
-     * 
+     * @return palauttaa true jos tietokanta on luotu ja false, jos ei.
     */
     public boolean createDatabase();
     
-    
-    /** Tarkastaa tietokannan olemassaolon.
-    * 
-    * 
-     * @return palauttaa true, jos tietokanta on olemassa ja false, jos ei.
-     * 
-    */  
+    /** Tarkastaa, onko tietokanta olemassa.
+     * @return palauttaa true jos tietokanta on olemassa ja false, jos ei.
+    */
     public boolean databaseExists();
     
-    /** Lisää tietoa käyttäjä tietokantaan.
-    *
-    * 
-     * @return palauttaa tietokannan käyttämän yhteys merkkijonon.
+    /** Hakee tietokannan yhteys merkkijonon.
+     * @return palauttaa yhteyden sitä edustavana merkkijonona.
     */
-    
     public String getConnectionString();
     
-    
-    /** Lisää tietoa tietokantaan.
-    * 
-    * 
-     * 
-     * 
-     * @param information haluttu tieto.
-     * @return palauttaa true, jos tiedon lisääminen onnistui ja false, jos ei. 
-     * 
-    */ 
+    /** Lisää halutut tiedot tietokantaan.
+     * @param information hyödynnettään tarvittavan tiedon tuomiseen.
+     * @return palauttaa true, jos löyty ja false, jos ei.
+    */
     public boolean addInformation(String information);
     
-    
-    /** Tarkistaa halutun tiedon tietokannasta.
-    * 
-    * 
-     * 
-     * 
-     * @param information haluttu tieto.
-     * @return palauttaa true, jos tietokannasta löytyy haettu tieto ja false jos ei.
-     * 
-    */ 
+    /** Tarkastaa halutun tiedon olemassa olon tietokannasta.
+     * @param information haettava merkkijono.
+     * @return palauttaa true, jos löyty ja false, jos ei.
+    */
     public boolean searchInformation(String information);
     
-    
-    /** Hakee tietokannan antamaan id haetulle tiedolle.
-    * 
-    * 
-     * 
-     * 
-     * @param information haluttu tieto.
-     * @return palauttaa tietokannan antaman id onnistuessa ja nollan, jos haettua tietoa ei löydy tietokannasta.
-     * 
-    */ 
+    /** Hakee tarkastettavan tiedon tunnistusnumeron tietokannasta.
+     * @param information haettava merkkijono.
+     * @return löydyttyä palauttaa saadun numeron ja jos se löydy, niin palauttaa numeron 0.
+    */
     public Integer searchInfromationId(String information);
     
-    /** Hakee tietokannassa olevat data identiteetit.
-    * 
-    * 
-     * 
-     * 
-     * @param information haluttu tieto.
-     * @return palauttaa tietokannasta saadun tekstin jos onnistuu ja tyhjän merkkijonon jos ei.
-     * 
-    */ 
+    /** Hakee halutun identiteetin tietokannasta.
+     * @param information haettava tunnistus numero.
+     * @return palauttaa halutun merkkijono sen löydyttyessä ja null, jos ei.
+    */
     public String searchInformationTextIdentity(String information);
-    /** Antaa tietokannan listana.
-    * 
-    * 
-     * 
-     * 
-     * @return palauttaa tietokantaa edustavan listan jos se onnistuu ja tyhjä null, jos ei.
-     * 
-    */ 
+    
+    /** Luo listan tietokannasta.
+     * @return palauttaa tietokannasta luodun lista.
+    */
     public List<String> showDatabaseAsAList();
     
-    /** Antaa tietokannan rajoitettuna listana.
-    * 
-    * 
-     * 
-     * 
-     * @param information haluttu tieto.
-     * @return palauttaa tietokantaa edustavan listan jos se onnistuu ja tyhjä null, jos ei.
-     * 
-    */ 
+    /** Luo rajoitetun listan tietokannasta.
+     * @param information annettu rajoitus.
+     * @return palauttaa tietokannasta luodun lista.
+    */
     public List<String> showDatabaseAsARestrictedList(String information);
-    /** Poistaa halutun asian tietokannasta.
-    * 
-    * 
-     * 
-     * 
-     * @param information haluttu tieto.
-     * @return palauttaa true, jos poisto onnistui ja false jos ei.
-     * 
-    */ 
+    
+    /** Poistaa haluttuja tietoja tietokannasta.
+     * @param information poistettava tieto.
+     * @return palauttaa true, jos poisto onnistui ja false, jos ei.
+    */
     public boolean removeInformation(String information);
-    /** Poistaa tietokannan kokonaan.
-    * 
-    * 
-     * @return palauttaa true, jos poisto onnistui ja false jos ei.
-    */ 
+    
+    /** Poistaa tietokannan.
+     * @return palauttaa true, jos poisto onnistui ja false, jos ei.
+    */
     public boolean removeDatabase();
     
 }

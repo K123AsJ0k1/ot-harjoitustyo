@@ -17,8 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Tietokanta annettuille fiktiivisille ominaisuuksille.
+/** Fiktiivisten ominaisuuksien tietokanta.
  */
 public class AbilityDatabase implements DatabaseInterface {
 
@@ -26,25 +25,22 @@ public class AbilityDatabase implements DatabaseInterface {
     private Boolean databaseExists;
     private String connectionRepresentation;
 
-    /**
-     * Tietokannan konstruktori.
-     *
-     * @param fileManager
-     * @param useCondition annettu tila.
-     * @param givenDatabaseName
+    /** Tietokannan konstuktori.
+     * @param fileManager antaa tarvitun tiedosto polun.
+     * @param useCondition tietokannan käyttämiseen tila.
+     * @param givenDatabaseName tietokannalle annettu nimi.
      */
     public AbilityDatabase(FileManagerInterface fileManager, String useCondition, String givenDatabaseName) {
         try {
-
             if (useCondition.equals("Normal")) {
-                String name = givenDatabaseName+":connection";
-                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                String name = givenDatabaseName + ":connection";
+                String path = "jdbc:sqlite:" + fileManager.getDirectoryPath() + File.separator + name;
                 this.connection = DriverManager.getConnection(path);
                 connectionRepresentation = path;
             }
             if (useCondition.equals("Test")) {
-                String name = givenDatabaseName+"Test:connection";
-                String path = "jdbc:sqlite:"+fileManager.getDirectoryPath() + File.separator + name;
+                String name = givenDatabaseName + "Test:connection";
+                String path = "jdbc:sqlite:" + fileManager.getDirectoryPath() + File.separator + name;
                 this.connection = DriverManager.getConnection(path);
                 connectionRepresentation = path;
             }

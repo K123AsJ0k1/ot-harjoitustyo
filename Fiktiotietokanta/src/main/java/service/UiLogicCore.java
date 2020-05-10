@@ -68,7 +68,7 @@ public class UiLogicCore {
            user.setUsername("Private");
            user.setPassword("Private");
            user.setId(this.daoPlayer.usernameDatabase.searchUsernameId("Private"));
-           user.setPrivilage(this.daoPlayer.usernameDatabase.searrchUsernamePrivilage("Private"));
+           user.setPrivilage(this.daoPlayer.usernameDatabase.searchUsernamePrivilage("Private"));
            parameters = new Parameters("","");
         }
         
@@ -104,7 +104,7 @@ public class UiLogicCore {
         user.setUsername("Private");
         user.setPassword("Private");
         user.setId(this.daoPlayer.usernameDatabase.searchUsernameId("Private"));
-        user.setPrivilage(this.daoPlayer.usernameDatabase.searrchUsernamePrivilage("Private"));
+        user.setPrivilage(this.daoPlayer.usernameDatabase.searchUsernamePrivilage("Private"));
         
         parameters = new Parameters("","");
         

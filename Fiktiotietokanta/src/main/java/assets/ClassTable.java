@@ -5,15 +5,17 @@
  */
 package assets;
 
-/**
- *
- * @author niila
+/** ClassTableScenen hyödyntämä olio.
  */
 public class ClassTable {
     
     private String classNumberIdentity = null;
     private String classNameIdentity = null;
     
+    /** ClassTableScenen hyödyntämä olio.
+     * @param classNumberIdentity oliolle annettu id.
+     * @param classNameIdentity oliolle annettu nimi.
+    */
     public ClassTable(String classNumberIdentity, String classNameIdentity) {
         this.classNumberIdentity = classNumberIdentity;
         this.classNameIdentity = classNameIdentity;
@@ -29,7 +31,7 @@ public class ClassTable {
     
     @Override
     public String toString() {
-        return this.classNumberIdentity+"/"+this.classNameIdentity;
+        return this.classNumberIdentity + "/" + this.classNameIdentity;
     }
     
 }

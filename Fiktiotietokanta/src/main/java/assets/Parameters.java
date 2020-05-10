@@ -5,15 +5,16 @@
  */
 package assets;
 
-/**
- *
- * @author niila
+/** Profiilin luonnissa käytetty parametri olio.
  */
 public class Parameters {
     
     String chosenAbility;
     String leftOverParameters;
-    
+    /** Profiilin luonnissa käytetty parametri olio.
+     * @param givenAbility oliolle annettu ominaisuus.
+     * @param givenString oliolle annettu jääneet ominaisuus parametrit.
+    */
     public Parameters(String givenAbility, String givenString) {
         this.chosenAbility = givenAbility;
         this.leftOverParameters = givenString;

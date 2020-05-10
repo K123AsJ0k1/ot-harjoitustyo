@@ -5,15 +5,17 @@
  */
 package assets;
 
-/**
- *
- * @author niila
+/** DescriptionTableScenen käyttäjä olio.
  */
 public class DescriptionTable {
     
     private String descriptionNumberIdentity = null;
     private String descriptionNameIdentity = null;
     
+    /** Olion konstruktori.
+     * @param descriptionNumberIdentity oliolle annettu id.
+     * @param descriptionNameIdentity oliolle annettu nimi.
+    */
     public DescriptionTable(String descriptionNumberIdentity, String descriptionNameIdentity) {
         this.descriptionNumberIdentity = descriptionNumberIdentity;
         this.descriptionNameIdentity = descriptionNameIdentity;
@@ -29,7 +31,7 @@ public class DescriptionTable {
     
     @Override
     public String toString() {
-        return this.descriptionNumberIdentity+"/"+this.descriptionNameIdentity;
+        return this.descriptionNumberIdentity + "/" + this.descriptionNameIdentity;
     }
     
 }
