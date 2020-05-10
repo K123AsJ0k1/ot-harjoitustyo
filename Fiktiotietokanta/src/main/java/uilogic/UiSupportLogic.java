@@ -108,6 +108,10 @@ public class UiSupportLogic {
     public void removeUserFromTable(UiUserTableLogic uiUserTableLogic) {
         if (scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems().size() > 0) {
             ObservableList selectedItems = scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems();
+            String[] table = selectedItems.toString().split("/");
+            if (table[2].contains("Admin")) {
+                return;
+            }
             int removedIndex = scenePlayer.getUserDatabaseTable().getSelectionModel().getFocusedIndex();
             uiUserTableLogic.removeUser(selectedItems);
             scenePlayer.getUserDatabaseTable().getTableView().getItems().remove(removedIndex);
