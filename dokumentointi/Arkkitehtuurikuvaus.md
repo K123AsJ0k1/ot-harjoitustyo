@@ -242,7 +242,6 @@ Kun käyttäjä on painanut joko yksityisen tilan tai julkisen tilan asennuksen 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Config%20tiedoston%20luonti.png)
 
 
-
 **Sovelluksen uudelleen käynnistäminen**
 
 kun käyttäjä avaa ohjelman uudelleen, suoritetaan ensin main.Main ja sen jälkeen ui.UserInterface, jonka jälkeen käyttöliittymän init() sisällä alustetaan UiInstallCore ja UiLogicCore. UiInstallCore tarkistaa config tiedoston olemassa olon ja sen ollessa olemassa, se myöntää UiLogicCoren tehdä UiLogicCore.coreStart(), minkä jälkeen sovelluksen kontrolli etenee seuraavasti
@@ -256,12 +255,15 @@ Kun kirjautumisnäkymässä on kirjoitettu nimi ja salasana ja painettu login pa
 
 **Käyttäjän luominen**
 
-kun uuden käyttäjän näkymässä on kirjoitettu nimi ja salasana ja painettu create painiketta,siirty hallinta UiLogicCoren kautta uilogic paketiin ja siellä UiUser luokkaan, jossa sovelluksen kontrolli etenee seuraavasti
+kun uuden käyttäjän näkymässä on kirjoitettu nimi ja salasana ja painettu create painiketta,siirty hallinta UiLogicCoren kautta uilogic pakettiin ja siellä UiUser luokkaan, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4nluonnin%20sekvenssikaavio.png)
 
 **Käyttäjän poistaminen**
 
+kun pääkäyttäjä on valinnut käyttäjä listasta jonkun käyttäjän ja painanut remove painiketta, siirtyy hallinta UiLogicCoren kautta uilogic pakettiin ja siellä olevaan UiMainSupport luokkaan, jossa sovelluken kontrolli etenee seuraavasti
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4n%20poistamisen%20sekvenssikaavio.png)
 
 
 **Ominaisuuden luominen**
