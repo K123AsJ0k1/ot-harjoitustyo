@@ -11,19 +11,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 /**
- *
- * @author niila
+ * Sovelluksen käyttöliittymän ominaisuus päävalikon scene.
  */
 public class AbilityMenuScene {
-    
+
     Scene abilityMenuScreen;
     Button addAbilityButton;
     Button removeAbilityButton;
     Button returnButton;
-    
+
+    /**
+     * Ominaisuus päävalikon konstruktori.
+     */
     public AbilityMenuScene() {
         GridPane layout = new GridPane();
 
@@ -45,27 +46,21 @@ public class AbilityMenuScene {
 
         this.abilityMenuScreen = new Scene(layout);
     }
-    
-    public void setAbilityMenuStage(Stage primaryStage) {
-        primaryStage.setTitle("Ability menu");
-        primaryStage.setScene(this.abilityMenuScreen);
-    }
-    
+
     public Scene getAbilityMenuScene() {
         return this.abilityMenuScreen;
     }
-    
+
     public Button getAddAbilityButton() {
         return this.addAbilityButton;
     }
-    
+
     public Button getRemoveAbilityButton() {
         return this.removeAbilityButton;
     }
-    
+
     public Button getReturnButton() {
         return this.returnButton;
     }
-    
-    
+
 }

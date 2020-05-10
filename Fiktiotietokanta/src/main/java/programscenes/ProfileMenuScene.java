@@ -11,20 +11,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
-/**
- *
- * @author niila
+/** Sovelluksen käyttöliittmän profiili valikko scene.
  */
 public class ProfileMenuScene {
-    
+
     Scene profileMenuScreen;
     Button createProfileButton;
     Button createFileButton;
     Button resetProfileButton;
     Button returnButton;
-    
+    /** Profiili valikko konstruktori.
+     */
     public ProfileMenuScene() {
         GridPane layout = new GridPane();
 
@@ -48,31 +46,25 @@ public class ProfileMenuScene {
 
         this.profileMenuScreen = new Scene(layout);
     }
-    
-    public void setProfileMenuStage(Stage primaryStage) {
-        primaryStage.setTitle("Profile menu");
-        primaryStage.setScene(this.profileMenuScreen);
-    }
-    
+
     public Scene getProfileMenuScene() {
         return this.profileMenuScreen;
     }
-    
+
     public Button getCreateProfileButton() {
         return this.createProfileButton;
     }
-    
+
     public Button getCreateFileButton() {
         return this.createFileButton;
     }
-    
+
     public Button getResetProfileButton() {
         return this.resetProfileButton;
     }
-   
+
     public Button getReturnButton() {
         return this.returnButton;
     }
-    
-    
+
 }

@@ -14,18 +14,20 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
- *
- * @author niila
+ * Sovelluksen käyttöliittymän julkisen tilan päävalikko scene.
  */
 public class PublicMainMenuScene {
-    
+
     Scene mainMenuScreen;
     Button abilitiesButton;
     Button profilesButton;
     Button adminButton;
     Button signOutButton;
     Label errorMessage;
-    
+
+    /**
+     * Julkisen tilan päävalikko konstruktori.
+     */
     public PublicMainMenuScene() {
         GridPane layout = new GridPane();
 
@@ -51,39 +53,33 @@ public class PublicMainMenuScene {
 
         this.mainMenuScreen = new Scene(layout);
     }
-    
-    public void setMainMenuStage(Stage primaryStage) {
-        primaryStage.setTitle("Main menu");
-        primaryStage.setScene(this.mainMenuScreen);
-    }
-    
+
     public Scene getMainMenuScene() {
         return this.mainMenuScreen;
     }
-    
+
     public Button getAbilitiesButton() {
         return this.abilitiesButton;
     }
-    
+
     public Button getProfilesButton() {
         return this.profilesButton;
     }
-    
+
     public Button getAdminButton() {
         return this.adminButton;
     }
-    
+
     public Button getSignOutButton() {
         return this.signOutButton;
     }
-    
+
     public Label getErrorMessage() {
         return this.errorMessage;
     }
-    
+
     public void setErrorMessage(String givenError) {
         this.errorMessage.setText(givenError);
     }
-    
-    
+
 }

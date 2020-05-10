@@ -14,21 +14,22 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import assets.Ability;
 
 /**
- *
- * @author niila
+ * Sovelluksen käyttöliittymän poista ominaisuuksia lista scene.
  */
 public class RemoveAbilitiesScene {
-    
+
     Scene removeAbilitiesScreen;
     Button removeAbilityButton;
     Button returnButton;
     TableView tableview;
     TableView.TableViewSelectionModel<Ability> selectionModel;
-    
+
+    /**
+     * Poista ominaisuuksia listan konstruktori.
+     */
     public RemoveAbilitiesScene() {
         VBox layout = new VBox();
 
@@ -38,22 +39,22 @@ public class RemoveAbilitiesScene {
 
         this.removeAbilityButton = new Button("Remove selected ability");
         this.returnButton = new Button("Return");
-        
+
         buttonLayout.getChildren().addAll(this.returnButton, this.removeAbilityButton);
         this.tableview = new TableView();
 
         TableColumn<String, Ability> classColumn = new TableColumn<>("Class");
         classColumn.setCellValueFactory(new PropertyValueFactory<>("classIdentity"));
-       
+
         TableColumn<String, Ability> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("nameIdentity"));
-        
+
         TableColumn<String, Ability> descriptionColumn = new TableColumn<>("Description");
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionIdentity"));
-        
+
         TableColumn<String, Ability> requrimentColumn = new TableColumn<>("Requriment");
         requrimentColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentIdentity"));
-        
+
         TableColumn<String, Ability> realityColumn = new TableColumn<>("Reality");
         realityColumn.setCellValueFactory(new PropertyValueFactory<>("realityIdentity"));
 
@@ -67,31 +68,25 @@ public class RemoveAbilitiesScene {
 
         this.removeAbilitiesScreen = new Scene(layout);
     }
-    
-    public void setRemoveAbilitiesStage(Stage primaryStage) {
-        primaryStage.setTitle("Remove abilities");
-        primaryStage.setScene(this.removeAbilitiesScreen);
-    }
-    
+
     public Scene getRemoveAbilitiesScene() {
         return this.removeAbilitiesScreen;
     }
-    
+
     public Button getRemoveAbilityButton() {
         return this.removeAbilityButton;
     }
-    
+
     public Button getReturnButton() {
         return this.returnButton;
     }
-    
+
     public TableView getTableView() {
         return this.tableview;
     }
-    
+
     public TableView.TableViewSelectionModel<Ability> getSelectionModel() {
         return this.selectionModel;
     }
-    
-    
+
 }

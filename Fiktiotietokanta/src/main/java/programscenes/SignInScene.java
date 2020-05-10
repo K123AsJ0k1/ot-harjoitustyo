@@ -13,21 +13,22 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 /**
- *
- * @author niila
+ * Sovelluksen käyttöliittymän lisää käyttäjä scene.
  */
 public class SignInScene {
-    
+
     Scene signInScreen;
     Button createButton;
     Button returnButton;
     Label errorMessage;
     TextField createdUsernameInput;
     PasswordField createdPasswordInput;
-    
+
+    /**
+     * Konstruktori lisää käyttäjän konstruktori.
+     */
     public SignInScene() {
         GridPane layout = new GridPane();
 
@@ -35,7 +36,7 @@ public class SignInScene {
         this.createButton = new Button("Create a new account");
         this.returnButton = new Button("Return");
         this.errorMessage = new Label("");
-        
+
         this.createdUsernameInput = new TextField();
         this.createdPasswordInput = new PasswordField();
 
@@ -54,39 +55,33 @@ public class SignInScene {
 
         this.signInScreen = new Scene(layout);
     }
-    
-    public void setSignInStage(Stage primaryStage) {
-        primaryStage.setTitle("Signin screen");
-        primaryStage.setScene(this.signInScreen);
-    }
-    
+
     public Scene getSignInScene() {
         return this.signInScreen;
     }
-    
+
     public Button getCreateButton() {
         return this.createButton;
     }
-    
+
     public Button getReturnButton() {
         return this.returnButton;
     }
-    
+
     public TextField getUsernameInput() {
         return this.createdUsernameInput;
     }
-    
+
     public PasswordField getPasswordInput() {
         return this.createdPasswordInput;
     }
-    
+
     public Label getErrorMessage() {
         return this.errorMessage;
     }
-    
+
     public void setErrorMessage(String givenError) {
         this.errorMessage.setText(givenError);
     }
-    
-    
+
 }

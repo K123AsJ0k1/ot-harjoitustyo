@@ -12,14 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
-/**
- *
- * @author niila
+
+/** Sovelluksen käyttöliittymän lisää ominaisuuksia scene.
  */
 public class AddAbilitiesScene {
-    
+
     Scene addAbilitiesScreen;
     Button createAbilityButton;
     Button returnButton;
@@ -30,6 +28,8 @@ public class AddAbilitiesScene {
     TextField requrimentInput;
     TextField realityInput;
     
+    /** Lisää ominaisuuksia scenen konstruktori.
+    */
     public AddAbilitiesScene() {
         GridPane layout = new GridPane();
 
@@ -72,50 +72,45 @@ public class AddAbilitiesScene {
 
         this.addAbilitiesScreen = new Scene(layout);
     }
-    
-    public void setAddAbilitiesStage(Stage primaryStage) {
-        primaryStage.setTitle("Add abilities");
-        primaryStage.setScene(this.addAbilitiesScreen);
-    }
-    
+
     public Scene getAddAbilitiesScene() {
         return this.addAbilitiesScreen;
     }
-    
+
     public Button getCreateAbilityButton() {
         return this.createAbilityButton;
     }
-    
+
     public Button getReturnButton() {
         return this.returnButton;
     }
-    
+
     public Label getErrorMessage() {
         return this.errorMessage;
-    } 
-    
+    }
+
     public void setErrorMessage(String givenError) {
         this.errorMessage.setText(givenError);
     }
-    
+
     public TextField getClassInput() {
         return this.classInput;
     }
-    
+
     public TextField getNameInput() {
         return this.nameInput;
     }
-    
+
     public TextField getDescriptionInput() {
         return this.descriptionInput;
     }
-    
+
     public TextField getRequrimentInput() {
         return this.requrimentInput;
     }
-    
+
     public TextField getRealityInput() {
         return this.realityInput;
     }
-    
+
 }

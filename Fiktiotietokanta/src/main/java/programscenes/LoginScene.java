@@ -5,7 +5,6 @@
  */
 package programscenes;
 
-import dao.UsernameDatabase;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,21 +15,23 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-/** Testi.
- *
- * 
+/**
+ * Sovelluksen käyttöliittymän kirjautumis scene.
  */
 public class LoginScene {
-    
+
     Scene loginScreen;
     Button loginButton;
     Button signInButton;
     TextField usernameInput;
     PasswordField passwordInput;
     Label errorMessage;
-    
+
+    /**
+     * Konstruktori.
+     */
     public LoginScene() {
-       
+
         GridPane layout = new GridPane();
 
         Label titleLogin = new Label("What is your username?");
@@ -53,47 +54,36 @@ public class LoginScene {
         layout.setVgap(10);
         layout.setHgap(10);
         layout.setPadding(new Insets(20, 20, 20, 20));
-        
-        this.loginScreen = new Scene(layout);    
+
+        this.loginScreen = new Scene(layout);
     }
-    
-    public void setLoginStage(Stage primaryStage) {
-        primaryStage.setTitle("Login screen");
-        primaryStage.setScene(this.loginScreen);
-    }
-    
+
     public Scene getLoginScene() {
         return this.loginScreen;
     }
-    
+
     public Button getLoginButton() {
         return this.loginButton;
     }
-    
+
     public Button getSigninButton() {
         return this.signInButton;
     }
-    
+
     public TextField getUsernameInput() {
         return this.usernameInput;
     }
-    
+
     public PasswordField getPasswordInput() {
         return this.passwordInput;
     }
-    
+
     public Label getErrorMessage() {
         return this.errorMessage;
     }
-    
+
     public void setErrorMessage(String givenError) {
         this.errorMessage.setText(givenError);
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

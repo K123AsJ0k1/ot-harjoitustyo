@@ -8,7 +8,6 @@ package programscenes;
 import assets.UserTable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,17 +16,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
- *
- * @author niila
+ * Sovelluksen käyttöliittymän käyttäjä tietokanta taulu scene.
  */
 public class UserDatabaseTableScene {
-    
+
     Scene useDatabaseTable;
     Button returnButton;
     Button removeButton;
     TableView tableview;
     TableView.TableViewSelectionModel<UserTable> selectionModel;
-    
+
+    /**
+     * Käyttäjä tietokanta taulun konstruktori.
+     */
     public UserDatabaseTableScene() {
         VBox layout = new VBox();
 
@@ -35,48 +36,48 @@ public class UserDatabaseTableScene {
 
         this.returnButton = new Button("Return");
         this.removeButton = new Button("Remove user");
-        
-        buttonLayout.getChildren().addAll(this.returnButton,this.removeButton);
+
+        buttonLayout.getChildren().addAll(this.returnButton, this.removeButton);
         this.tableview = new TableView();
 
         TableColumn<String, UserTable> numberColumn = new TableColumn<>("Id");
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("numberIdentity"));
-       
+
         TableColumn<String, UserTable> usernameColumn = new TableColumn<>("Username");
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("usernameIdentity"));
-        
+
         TableColumn<String, UserTable> privilageColumn = new TableColumn<>("Privilage");
         privilageColumn.setCellValueFactory(new PropertyValueFactory<>("privilageIdentity"));
-        
+
         this.tableview.getColumns().addAll(numberColumn, usernameColumn, privilageColumn);
         layout.getChildren().addAll(this.tableview, buttonLayout);
 
         layout.setPrefSize(200, 400);
-        
+
         this.selectionModel = this.tableview.getSelectionModel();
         this.selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
         this.useDatabaseTable = new Scene(layout);
     }
-    
+
     public Scene getUserDatabaseTableScene() {
         return this.useDatabaseTable;
     }
-     
+
     public Button getReturnButton() {
         return this.returnButton;
     }
-    
+
     public Button getRemoveButton() {
         return this.removeButton;
     }
-    
+
     public TableView getTableView() {
         return this.tableview;
     }
-    
+
     public TableView.TableViewSelectionModel<UserTable> getSelectionModel() {
         return this.selectionModel;
     }
-    
+
 }
