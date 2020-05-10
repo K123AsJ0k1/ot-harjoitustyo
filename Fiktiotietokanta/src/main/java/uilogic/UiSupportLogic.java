@@ -58,9 +58,51 @@ public class UiSupportLogic {
             ObservableList selectedItems = scenePlayer.getRemoveAbilities().getSelectionModel().getSelectedItems();
             int removedIndex = scenePlayer.getRemoveAbilities().getSelectionModel().getFocusedIndex();
             uiAbilityLogic.removeAbility(user.getId(), selectedItems);
+            if (uiAbilityLogic.abilityDatabase.showDatabaseAsAList().isEmpty()) {
+                cleanClassDatabase(uiAbilityLogic);
+                cleanNameDatabase(uiAbilityLogic);
+                cleanDescriptionDatabase(uiAbilityLogic);
+                cleanRequrimentDatabase(uiAbilityLogic);
+                cleanRealityDatabase(uiAbilityLogic);
+            }
             scenePlayer.getRemoveAbilities().getTableView().getItems().remove(removedIndex);
             scenePlayer.getRemoveAbilities().getTableView().refresh();
         }
+    }
+    
+    public void cleanClassDatabase(UiAbilityLogic uiAbilityLogic) {
+        for (String param:uiAbilityLogic.classDatabase.showDatabaseAsAList()) {
+             String[] table = param.split("/");
+             uiAbilityLogic.classDatabase.removeInformation(table[1]);
+        }      
+    }
+    
+    public void cleanNameDatabase(UiAbilityLogic uiAbilityLogic) {
+        for (String param:uiAbilityLogic.nameDatabase.showDatabaseAsAList()) {
+             String[] table = param.split("/");
+             uiAbilityLogic.nameDatabase.removeInformation(table[1]);
+        }  
+    }
+    
+    public void cleanDescriptionDatabase(UiAbilityLogic uiAbilityLogic) {
+        for (String param:uiAbilityLogic.descriptionDatabase.showDatabaseAsAList()) {
+             String[] table = param.split("/");
+             uiAbilityLogic.descriptionDatabase.removeInformation(table[1]);
+        }  
+    }
+    
+    public void cleanRequrimentDatabase(UiAbilityLogic uiAbilityLogic) {
+        for (String param:uiAbilityLogic.requrimentDatabase.showDatabaseAsAList()) {
+             String[] table = param.split("/");
+             uiAbilityLogic.requrimentDatabase.removeInformation(table[1]);
+        }  
+    }
+    
+    public void cleanRealityDatabase(UiAbilityLogic uiAbilityLogic) {
+        for (String param:uiAbilityLogic.realityDatabase.showDatabaseAsAList()) {
+             String[] table = param.split("/");
+             uiAbilityLogic.realityDatabase.removeInformation(table[1]);
+        }  
     }
     
     public void resetAbility(Parameters parameters) {
