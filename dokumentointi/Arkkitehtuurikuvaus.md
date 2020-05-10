@@ -245,14 +245,16 @@ Kun käyttäjä on painanut joko yksityisen tilan tai julkisen tilan asennuksen 
 
 **Sovelluksen uudelleen käynnistäminen**
 
+kun käyttäjä avaa ohjelman uudelleen, suoritetaan ensin main.Main ja sen jälkeen ui.UserInterface, jonka jälkeen käyttöliittymän init() sisällä alustetaan UiInstallCore ja UiLogicCore. UiInstallCore tarkistaa config tiedoston olemassa olon ja sen ollessa olemassa, se myöntää UiLogicCoren tehdä UiLogicCore.coreStart(), minkä jälkeen sovelluksen kontrolli etenee seuraavasti
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20uudelleen%20k%C3%A4ynnist%C3%A4minen%20sekvennsikaavio.png)
+
 **Käyttäjän kirjaantuminen**
 Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus, salasana ja login painiketta painetaan, etenee sovelluksen kontrolli seuraavasti:
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4n%20kirjautumisen%20sekvenssikaavio.png)
 
 Painikkeen painaimiseen reagoiva tapahtumakäsittelijä saa käyttöliittymän hakemaan tekstikenttien sisällä olevat merkkijonot ja tarkastamaan ensiksi käyttäjä nimen olemassa olon ja sitten käyttäjän ja siihen liitetyn salasanan olemassa olon tietokannasta, jotka hyväksymisen jälkeen saavat käyttöliittymän lisäämään käyttäjän ja salasanan username ja password string olioihin ja hakemaan tietokannan antama id numeron käyttäjälle, asettaen sen usernameid olioon ja lopuksi kutsumaan screenMainMenu olion ja näin vaihten näkymän päävalikkoon.
-
-
 
 **Käyttäjän luominen**
 
