@@ -4,6 +4,32 @@ Lataa joko koko repositori tai valitse uusin release
 
 # Konfigurointi
 
+Käynnistäessä ohjelman ilmestyy seuraava tervetuloa näkymä:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20tervetuloa%20valikko.PNG)
+
+Voit valita joko julkisen sovelluksen julkisen tilan, joka mahdollistaa monet käyttäjät tai yksityisen tilan, joka mahdollistaa ainoastaan yhden käyttäjän tai keskeyttää asennuksen shut down buttonin avulla. 
+
+Valitsemalla public mode ja painamalla next, ilmestyy seuraava näkymä:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20dao%20asetukset%20public.PNG)
+
+Dao asetus näkymässä pystyt antamaan sovelluksen tietokanta kansiolle ja sen tietokannoille eri nimet valitsemalla tarkastettava nimi ja muokkauksen jälkeen painamaan select name. Painamalla previous päädyt takaisin tervetuloa näkymään ja taas painamalla next, ilmestyy seuraava näkymä: 
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4k%C3%A4ytt%C3%A4j%C3%A4%20asetus%20public.PNG)
+
+Pääkäyttäjä asetus näkymässä pystyt menemään joko takaisin dao asetus näkymään painamalla previous tai sitten lopettamaan asennuksen finish buttonin avulla, taas asennus vaatii vähintään yhden pääkäyttäjän olemassa olon joten luo yli 5 merkkiä ja alle 15 pitkä käyttäjä nimi ja salasana, jotka koostuvat ainoaastaan merkeistä a-z tai A-Z ja paina createa painiketta.Asennuksen jälkeen, siirrytään pääkäyttäjä asetus näkymästä kirjautumisnäkymään
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20kirjautumisn%C3%A4kym%C3%A4.PNG)
+
+Valitsemalla private mode ja painamalla next, ilmestyy seuraava näkymä:
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovellukden%20dao%20asetus%20private.PNG)
+
+Dao asetus näkymä toimii samanlaisesti kuin julkisen tilan asennuksessa, mutta pääkäyttäjiä ei tarvitse luoda ja näin dao asetuksen näkymästä voi päästä previous painikkeen kautta takaisin tervetuloa näkymään tai yksityisen tilan päävalikkoon, jonkä näkymä on
+
+![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4valikko%20private.PNG)
+
 # Ohjelman käynnistäminen
 
 Ohjelma voidaan käynnistää joko luomalla jar mvn Packagen avulla,hakemalla otettu release tai komennolla
