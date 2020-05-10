@@ -303,4 +303,9 @@ Muu sovelluslogiikka seuraa yllä olevien sekvenssikaavioiden toiminta periaatte
 
 # Ohjelman rakenteeseen jääneet heikkoudet
 
+- Ohjelman hyödyntämä DAO malli pitäisi onnistua refaktoroinnin kautta muotoutumaan muuhun kuin SQLlite tietokantaan
+- DAO:n käyttämät rajapinnat pakottavat tietyt tietokannat luomaan turhia metodeja
+- Ohjelmasta löytyy toisteista koodia, mikä tekee joistain luokista turhan pitkiä
+
+
 
