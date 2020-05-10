@@ -225,6 +225,10 @@ Sovelluksen asennuksen aikana luodaan config niminen tiedosto, joka sisältää 
 
 tiedosto luodaan ja luetaan FileConfig luokassa, joka sijaitsee filelogic pakkauksessa.
 
+**Tietokantojen kansio tiedosto**
+
+Sovelluksen asennuksen yhteydessä tietokannoille luodaan niitä sisältävä kansio, joka on normaalisti nimetty databases ja testi tapauksessa projectdatabases, ja daoPlayer luo aina annettujen configuration mukaisesti tämän kansion ja sen sisällä olevat tietokannat.
+
 **Tietokannat**
 
 Pakkauksen dao luokat ClassDatabase,NameDatabase,DescriptionDatabase,RequrimentDatabase,RealityDatabase ja UsernameDatabase hyödyntävät SQLlite:ä tietojen tallentamiseen tietokannan nimen mukaisiin tiedostoihin. 
@@ -249,6 +253,7 @@ kun käyttäjä avaa ohjelman uudelleen, suoritetaan ensin main.Main ja sen jäl
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20uudelleen%20k%C3%A4ynnist%C3%A4minen%20sekvennsikaavio.png)
 
 **Käyttäjän kirjaantuminen**
+
 Kun kirjautumisnäkymässä on kirjoitettu nimi ja salasana ja painettu login painiketta, siirtyy hallinta UiLogicCoren kautta uilogic paketiin ja siellä UiUser luokkaan, jossa sovelluksen kontrolli etenee seuraavasti
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/K%C3%A4ytt%C3%A4j%C3%A4n%20kirjautumisen%20sekvenssikaavio.png)
