@@ -6,7 +6,11 @@ Ohjelmaa on testattu automatisoitujen yksikkö testien avulla JUnitilla ja sekä
 
 **DAO-Luokkat**
 
+Jokaista DAO luokkaa on testattu luomalla pysyvä kansio ja siihen liitetty tietokannat hyödyntämäll JUnitia
+
 **Testauskattavuus**
+
+Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus 
 
 # Järjestelmätestaus
 
