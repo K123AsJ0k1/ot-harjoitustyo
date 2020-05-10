@@ -156,7 +156,7 @@ public class UserInterface extends Application {
         });
         
         uiLogicCore.getScenePlayer().getPrivateMainMenu().getAdminButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, "Tester", "Tester");
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, uiLogicCore.getUser());
         });
         
         uiLogicCore.getScenePlayer().getPrivateMainMenu().getShutDownButton().setOnAction((event) ->{
@@ -190,7 +190,7 @@ public class UserInterface extends Application {
         });
 
         uiLogicCore.getScenePlayer().getPublicMainMenu().getAdminButton().setOnAction((event) -> {
-            uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, "Tester", "Tester");
+            uiLogicCore.getUiTransitionLogic().fromMainMenuToAdminMenu(primaryStage, uiLogicCore.getUser());
         });
 
         uiLogicCore.getScenePlayer().getPublicMainMenu().getSignOutButton().setOnAction((event) -> {

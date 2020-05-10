@@ -62,8 +62,8 @@ public class UsernameDatabase implements UsernameInterface {
         try {
             Statement command = connection.createStatement();
             command.execute("PRAGMA foreign_keys = ON;");
-            command.execute("CREATE TABLE Usernames (id INTEGER PRIMARY KEY, Username TEXT UNIQUE, Password TEXT UNIQUE);");
-            command.execute("CREATE INDEX idx_Username ON Usernames (Username,Password);");
+            command.execute("CREATE TABLE Usernames (id INTEGER PRIMARY KEY, Username TEXT UNIQUE, Password TEXT UNIQUE, Privilage TEXT);");
+            command.execute("CREATE INDEX idx_Username ON Usernames (Username,Password,Privilage);");
             command.close();
             databaseExists = true;
             return true;
@@ -79,11 +79,12 @@ public class UsernameDatabase implements UsernameInterface {
     }
 
     @Override
-    public boolean addUserInformation(String username, String password) {
+    public boolean addUserInformation(String username, String password, String privilage) {
         try {
-            PreparedStatement command = connection.prepareStatement("INSERT INTO Usernames(Username,Password) VALUES (?,?);");
+            PreparedStatement command = connection.prepareStatement("INSERT INTO Usernames(Username,Password,Privilage) VALUES (?,?,?);");
             command.setString(1, username);
             command.setString(2, password);
+            command.setString(3, privilage);
             command.executeUpdate();
             command.close();
             return true;
@@ -203,6 +204,27 @@ public class UsernameDatabase implements UsernameInterface {
     @Override
     public String getConnectionString() {
         return this.connectionRepresentation;
+    }
+
+    @Override
+    public String searrchUsernamePrivilage(String information) {
+        String privilage = "null";
+        try {
+            PreparedStatement command = connection.prepareStatement("SELECT Privilage FROM Usernames WHERE Username=?;");
+            command.setString(1, information);
+            ResultSet querySet = command.executeQuery();
+            if (querySet.next()) {
+                privilage = querySet.getString("Privilage");
+            }
+            querySet.close();
+            command.close();
+            
+            return privilage;
+        } catch (SQLException k) {
+
+        }
+        
+        return privilage;
     }
 
 }

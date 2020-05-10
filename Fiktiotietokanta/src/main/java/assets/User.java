@@ -13,11 +13,13 @@ public class User {
     
     private String username;
     private String password;
+    private String privilage;
     private Integer id;
     
-    public User(String username, String password, Integer id) {
+    public User(String username, String password,String privilage, Integer id) {
         this.username = username;
         this.password = password;
+        this.privilage = privilage;
         this.id = id;
     }
     
@@ -27,6 +29,10 @@ public class User {
     
     public String getPassword() {
         return this.password;
+    }
+    
+    public String getPrivilage() {
+        return this.privilage;
     }
     
     public Integer getId() {
@@ -39,6 +45,10 @@ public class User {
     
     public void setPassword(String givenString) {
         this.password = givenString;
+    }
+    
+    public void setPrivilage(String givenString) {
+        this.privilage = givenString;
     }
     
     public void setId(Integer givenInteger) {

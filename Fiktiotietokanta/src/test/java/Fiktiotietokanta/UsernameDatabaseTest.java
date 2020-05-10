@@ -115,7 +115,7 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        Boolean isAdded = test.addUserInformation("Test", "Test");
+        Boolean isAdded = test.addUserInformation("Test", "Test", "Test");
         assertEquals(true, isAdded);
         test.removeUsernameDatabase();
     }
@@ -126,13 +126,13 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        Boolean isAdded = test.addUserInformation("Test", "Test");
+        Boolean isAdded = test.addUserInformation("Test", "Test", "Test");
         assertEquals(true, isAdded);
-        Boolean sameNameIsntAdded = test.addUserInformation("Test", "Test1");
+        Boolean sameNameIsntAdded = test.addUserInformation("Test", "Test1", "Test");
         assertEquals(false, sameNameIsntAdded);
-        Boolean samePasswordIsntAdded = test.addUserInformation("Test1", "Test");
+        Boolean samePasswordIsntAdded = test.addUserInformation("Test1", "Test", "Test");
         assertEquals(false, samePasswordIsntAdded);
-        Boolean sameUsernameIsntAdded = test.addUserInformation("Test", "Test");
+        Boolean sameUsernameIsntAdded = test.addUserInformation("Test", "Test", "Test");
         assertEquals(false, sameUsernameIsntAdded);
         test.removeUsernameDatabase();
     }
@@ -142,7 +142,7 @@ public class UsernameDatabaseTest {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
-        Boolean usernameCantBeAddedIntoNoExistingDatabase = test.addUserInformation("Test", "Test");
+        Boolean usernameCantBeAddedIntoNoExistingDatabase = test.addUserInformation("Test", "Test", "Test");
         assertEquals(false, usernameCantBeAddedIntoNoExistingDatabase);
     }
     
@@ -153,7 +153,7 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test", "Test");
+        test.addUserInformation("Test", "Test", "Test");
         Boolean isFound = test.searchUserInformation("Test");
         assertEquals(true,isFound);
         test.removeUsernameDatabase();
@@ -165,9 +165,9 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test1", "Test1");
-        test.addUserInformation("Test2", "Test2");
-        test.addUserInformation("Test3", "Test3");
+        test.addUserInformation("Test1", "Test1", "Test");
+        test.addUserInformation("Test2", "Test2", "Test");
+        test.addUserInformation("Test3", "Test3", "Test");
         Boolean isFound = test.searchUserInformation("Test2");
         assertEquals(true,isFound);
         test.removeUsernameDatabase();
@@ -179,9 +179,9 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test1", "Test1");
-        test.addUserInformation("Test2", "Test2");
-        test.addUserInformation("Test3", "Test3");
+        test.addUserInformation("Test1", "Test1", "Test");
+        test.addUserInformation("Test2", "Test2", "Test");
+        test.addUserInformation("Test3", "Test3", "Test");
         Boolean nonExistingUsernameIsntFound = test.searchUserInformation("Test4");
         assertEquals(false,nonExistingUsernameIsntFound);
         test.removeUsernameDatabase();
@@ -204,7 +204,7 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test", "Test");
+        test.addUserInformation("Test", "Test", "Test");
         Boolean isRemoved = test.removeUserInformation("Test");
         assertEquals(true, isRemoved);
         test.removeUsernameDatabase();
@@ -216,9 +216,9 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test1", "Test1");
-        test.addUserInformation("Test2", "Test2");
-        test.addUserInformation("Test3", "Test3");
+        test.addUserInformation("Test1", "Test1", "Test");
+        test.addUserInformation("Test2", "Test2", "Test");
+        test.addUserInformation("Test3", "Test3", "Test");
         Boolean correctInformationIsRemoved = test.removeUserInformation("Test2");
         assertEquals(true, correctInformationIsRemoved);
         Boolean doesExist1 = test.searchUserInformation("Test1");
@@ -246,7 +246,7 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test", "Test");
+        test.addUserInformation("Test", "Test", "Test");
         Integer givenId = test.searchUsernameId("Test");
         assertEquals(1, givenId.intValue());
         test.removeUsernameDatabase();
@@ -258,9 +258,9 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test1", "Test1");
-        test.addUserInformation("Test2", "Test2");
-        test.addUserInformation("Test3", "Test3");
+        test.addUserInformation("Test1", "Test1", "Test");
+        test.addUserInformation("Test2", "Test2", "Test");
+        test.addUserInformation("Test3", "Test3", "Test");
         Integer givenId1 = test.searchUsernameId("Test1");
         Integer givenId2 = test.searchUsernameId("Test2");
         Integer givenId3 = test.searchUsernameId("Test3");
@@ -296,9 +296,9 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test1", "Test1");
-        test.addUserInformation("Test2", "Test2");
-        test.addUserInformation("Test3", "Test3");
+        test.addUserInformation("Test1", "Test1", "Test");
+        test.addUserInformation("Test2", "Test2", "Test");
+        test.addUserInformation("Test3", "Test3", "Test");
         Integer givenIdIsZero = test.searchUsernameId("Test4");
         assertEquals(0, givenIdIsZero.intValue());
         test.removeUsernameDatabase();
@@ -312,7 +312,7 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test", "Test");
+        test.addUserInformation("Test", "Test", "Test");
         Boolean checkWorks = test.userPasswordCheck("Test", "Test");
         assertEquals(true, checkWorks);
         test.removeUsernameDatabase();
@@ -324,9 +324,9 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test1", "Test1");
-        test.addUserInformation("Test2", "Test2");
-        test.addUserInformation("Test3", "Test3");
+        test.addUserInformation("Test1", "Test1", "Test");
+        test.addUserInformation("Test2", "Test2", "Test");
+        test.addUserInformation("Test3", "Test3", "Test");
         Boolean checkWorks1 = test.userPasswordCheck("Test1", "Test1");
         Boolean checkWorks2 = test.userPasswordCheck("Test2", "Test2");
         Boolean checkWorks3 = test.userPasswordCheck("Test3", "Test3");
@@ -342,9 +342,9 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test1", "Test1");
-        test.addUserInformation("Test2", "Test2");
-        test.addUserInformation("Test3", "Test3");
+        test.addUserInformation("Test1", "Test1", "Test");
+        test.addUserInformation("Test2", "Test2", "Test");
+        test.addUserInformation("Test3", "Test3", "Test");
         Boolean noExistingUsername = test.userPasswordCheck("Test4", "Test4");
         assertEquals(false, noExistingUsername);
         test.removeUsernameDatabase();
@@ -365,7 +365,7 @@ public class UsernameDatabaseTest {
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
         test.createUsernameDatabase();
-        test.addUserInformation("Test","Test");
+        test.addUserInformation("Test","Test", "Test");
         Boolean correctUsernameCheck = test.userPasswordCheck("Test","Test");
         Boolean wrongNameCheck = test.userPasswordCheck("Test1","Test");
         Boolean wrongPasswordCheck = test.userPasswordCheck("Test","Test1");

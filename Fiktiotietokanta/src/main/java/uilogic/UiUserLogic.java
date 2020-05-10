@@ -52,6 +52,7 @@ public class UiUserLogic {
             user.setUsername(givenUsername);
             user.setPassword(givenPassword);
             user.setId(usernameDatabase.searchUsernameId(givenUsername));
+            user.setPrivilage(usernameDatabase.searrchUsernamePrivilage(givenUsername));
             loginScene.getUsernameInput().clear();
             loginScene.getPasswordInput().clear();
             loginScene.getErrorMessage().setText("");
@@ -83,7 +84,7 @@ public class UiUserLogic {
                 return;
             }
             
-            Boolean isAdded = usernameDatabase.addUserInformation(givenUsername,givenPassword);
+            Boolean isAdded = usernameDatabase.addUserInformation(givenUsername,givenPassword, "User");
 
             if (!isAdded) {
                 signInScene.getErrorMessage().setText("Error has occured");

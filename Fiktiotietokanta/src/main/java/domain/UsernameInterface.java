@@ -38,10 +38,11 @@ public interface UsernameInterface {
     * 
      * @param information annettu tieto.
      * @param secondInformation annettu tieto.
+     * @param thirdInformation
      * @return palauttaa true, jos tieto on lisätty ja false jos ei.
     */
     
-    public boolean addUserInformation(String information, String secondInformation);
+    public boolean addUserInformation(String information, String secondInformation, String thirdInformation);
     
     /** Tarkastaa halutun tiedon tietokannasta.
     *
@@ -68,6 +69,15 @@ public interface UsernameInterface {
      * @return palauttaa tietokannan antaman id:n, jos käyttäjä löytyy ja palauttaa 0, jos ei.
     */
     public Integer searchUsernameId(String information);
+    
+    
+    /** Hakee halutun käyttäjän id:n tietokannasta.
+    *
+    * 
+     * @param information annettu tieto.
+     * @return palauttaa tietokannan antaman id:n, jos käyttäjä löytyy ja palauttaa 0, jos ei.
+    */
+    public String searrchUsernamePrivilage(String information);
     
     /** Poistaa halutun tiedon käyttäjä tietokannasta.
     *

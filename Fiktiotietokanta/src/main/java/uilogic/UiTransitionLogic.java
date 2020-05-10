@@ -55,8 +55,8 @@ public class UiTransitionLogic {
         primaryStage.setScene(scenePlayer.getProfileMenu().getProfileMenuScene());
     }
 
-    public void fromMainMenuToAdminMenu(Stage primaryStage, String givenUsername, String givenPassword) {
-        if (!(givenUsername.equals("Tester")) && !(givenPassword.equals("Tester"))) {
+    public void fromMainMenuToAdminMenu(Stage primaryStage, User user) {
+        if (!(user.getPrivilage().equals("Admin"))) {
             scenePlayer.getPublicMainMenu().getErrorMessage().setText("Your user doesn't have admin privileges");
             return;
         }
@@ -68,6 +68,7 @@ public class UiTransitionLogic {
         user.setId(0);
         user.setUsername("");
         user.setPassword("");
+        user.setPrivilage("");
         scenePlayer.getPublicMainMenu().getErrorMessage().setText("");
         primaryStage.setTitle("Login screen");
         primaryStage.setScene(scenePlayer.getLogin().getLoginScene());
@@ -157,7 +158,7 @@ public class UiTransitionLogic {
     }
 
     public void fromCreateProfileToChooseAbility(Stage primaryStage, List<String> abilityList, UiAbilityLogic uiAbilityLogic) {
-        //List<String> abilityList = uiLogicCore.getDaoPlayer().getAbilityDatabase().showDatabaseAsARestrictedList(String.valueOf(user.getId()));
+        
         scenePlayer.getChooseAbilities().getTableView().getItems().addAll(uiAbilityLogic.addAbilitiesIntoList(abilityList));
         primaryStage.setTitle("Choose Abilities table");
         primaryStage.setScene(scenePlayer.getChooseAbilities().getChoosenAbilitiesScene());

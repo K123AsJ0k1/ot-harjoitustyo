@@ -55,15 +55,16 @@ public class UiLogicCore {
            
         this.daoPlayer = new DaoPlayer(fileManager, configuration);
         if (configuration.getMode().equals("Public")) {
-            user = new User("","",0);
-           parameters = new Parameters("","");
+            user = new User("","","",0);
+            parameters = new Parameters("","");
         }
         
         if (configuration.getMode().equals("Private")) {
-           user = new User("","",0);
+           user = new User("","","",0);
            user.setUsername("Private");
            user.setPassword("Private");
            user.setId(this.daoPlayer.usernameDatabase.searchUsernameId("Private"));
+           user.setPrivilage(this.daoPlayer.usernameDatabase.searrchUsernamePrivilage("Private"));
            parameters = new Parameters("","");
         }
         
@@ -87,16 +88,17 @@ public class UiLogicCore {
            
         Boolean daoSetup = daoPlayer.daoSetup();
         
-        this.daoPlayer.usernameDatabase.addUserInformation("Private","Private");
+        this.daoPlayer.usernameDatabase.addUserInformation("Private","Private","Admin");
         
         if (!daoSetup) {
             return false;
         }
         
-        user = new User("","",0);
+        user = new User("","","",0);
         user.setUsername("Private");
         user.setPassword("Private");
         user.setId(this.daoPlayer.usernameDatabase.searchUsernameId("Private"));
+        user.setPrivilage(this.daoPlayer.usernameDatabase.searrchUsernamePrivilage("Private"));
         
         parameters = new Parameters("","");
         
@@ -121,7 +123,7 @@ public class UiLogicCore {
         Boolean daoSetup = daoPlayer.daoSetup();
         
         for (Admin admin: adminList) {
-            daoPlayer.getUsernameDatabase().addUserInformation(admin.getUsername(), admin.getPassword());
+            daoPlayer.getUsernameDatabase().addUserInformation(admin.getUsername(), admin.getPassword(),"Admin");
         }
         
         
@@ -130,7 +132,7 @@ public class UiLogicCore {
         }
         
         
-        user = new User("","",0);
+        user = new User("","","",0);
         parameters = new Parameters("","");
 
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
