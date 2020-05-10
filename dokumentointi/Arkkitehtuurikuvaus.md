@@ -78,12 +78,21 @@ Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterfa
 
 Kummankin rajapinnan metodit mahdollistavat perustoiminnot, kuten tiedot lisäyksen, haun, tarkastuksen ja poistamisen, mutta DatabaseInterface mahdollistaa myös tietokannan listaamisen, joko kokonaisena tai rajoitettuna.  
 
-Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja TextTemplateInterface ja lisäksi Ability-olio, joiden metodit ovat
+Muita tärkeitä rajapintoja ovat FileManagerInterface, FileWriterInterface, TextRefineryInterface ja TextTemplateInterface, joiden metodit ovat
+
+**FileManagerInterface**
+
+- public String getUserPath()
+- public String getDirectoryPath()
+- public Boolean configFileExists()
+- public Boolean createStandardDirectory()
+- public Boolean createModifiedDirectory(String givenName)
 
 **FileWriterInterface**
 
 - public boolean saveTextAsAFile(String information, File file)
 - public void showSaveFileDialog(Stage primaryStage, String text)
+- public boolean saveTextAsAConfig(String information, FileManagerInterface fileManager);
 
 **TextRefineryInterface**
 
@@ -97,8 +106,81 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
  **TextTemplateInterface**
  
  - public String simpleMaker()
+ 
+ FileWriterInterface mahdollistaa tiedostojen tallentamisen ja siihen tarvittu käyttöliittymä dialogin, TextRefineryInterface mahdollistaa käyttöliittymän antaman profiili tekstin muokkauksen ja TextTempalteInterface mahdollistaa erilaisten profiili mallien tuomisen käyttöliittymään.
+ 
+ 
+ Sovelluksen perustoiminnalle tärkeitä olioita ovat Admin,Parameters, TextMode ja User, joiden metodit ovat:
+ 
+ **Admin**
+
+- public String getUsername()
+- public String getPassword()
+- public String toString()
+
+**Parameters**
+
+- public String getChosenAbility()
+- public String getLeftOverParameters()
+- public void setChoosenAbility(STring givenString)
+- public void setLeftOVerParameters(String givenString)
+
+**TextMode**
+
+- public void setMode(String givenText)
+- public String getMode()
+
+**User**
+
+- public String getUsername()
+- public String getPassword()
+- public String getPrivilage()
+- public Integer getId()
+- public void setUsername()
+- public void setPassword()
+- public void setPrivilage()
+- public void setId()
+
+Käyttöliittymän listojen toiminnalle tärkeitä olioita ovat UserTable, ClassTable, NameTable, DescriptionTable, RequrimentTable, RealityTable ja AbilityTable, joiden tarjoamat metodit ovat
+
+**UserTable**
+
+- String getNumberIdentity()
+- String getUsernameIdentity()
+- String getPrivilageIdentity()
+- public String toString()
+
+**ClassTable**
+
+- public String getClassNumberIdentity()
+- public String getClassNameIdentity()
+- public String toString()
+
+**NameTable**
+
+- public String getNameNumberIdentity()
+- public String getNameNameIdentity()
+- public String toString()
+
+**DescriptionTable**
+
+- public String getDescriptionNumberIdentity()
+- public String getDescriptionNameIdentity()
+- public String toString()
+
+**RequrimentTable**
+
+- public String getRequrimentNumberIdentity()
+- public String getRequrimentNameIdentity()
+- public String toString()
+
+**RealityTable**
+
+- public String getRealityNumberIdentity()
+- public String getRealityNameIdentity()
+- public String toString()
   
-**Ability**
+**AbilityTable**
 
 - public String getClassIdentity()
 - public String getNameIdentity()
@@ -107,7 +189,8 @@ Muita tärkeitä rajapintoja ovat FileWriterInterface,TextRefineryInterface ja T
 - public String getRealityIdentity()
 - public String toString()
 
-FileWriterInterface mahdollistaa tiedostojen tallentamisen ja siihen tarvittu käyttöliittymä dialogin, TextRefineryInterface mahdollistaa käyttöliittymän antaman profiili tekstin muokkauksen, TextTempalteInterface mahdollistaa erilaisten profiili mallien tuomisen käyttöliittymään ja ability olio mahdollistaa käyttöliittymässä käytety listat.
+Lista oliot mahdollistavat tiedonkulun tietokantojen ja käyttöliittymän eri metodien väleillä, jotka tässä tapauksessa ovat TableView ja sen mahdollistama selection model.
+
 
 Alla oleva luokka/pakkauskaavio näyttää tämän hetkisen (28.4.2020) sovelluslogiikan suhdetta eri rajapintojen välillä
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkauskaavio.png)
