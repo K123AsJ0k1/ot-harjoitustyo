@@ -213,17 +213,15 @@ public class NameDatabase implements DatabaseInterface {
 
     @Override
     public List<String> showDatabaseAsAList() {
-
         List<String> databaseAsAList = new ArrayList<>();
-
         try {
-
-            PreparedStatement command = connection.prepareStatement("SELECT Name FROM Names;");
+            PreparedStatement command = connection.prepareStatement("SELECT id,Name FROM Names;");
             ResultSet querySet = command.executeQuery();
-
             while (querySet.next()) {
+                Integer givenId = querySet.getInt("id");
                 String givenClass = querySet.getString("Name");
-                databaseAsAList.add(givenClass);
+                String identity = String.valueOf(givenId)+"/"+givenClass;
+                databaseAsAList.add(identity);
             }
 
             querySet.close();
@@ -241,7 +239,8 @@ public class NameDatabase implements DatabaseInterface {
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> emptyList = new ArrayList<>();
+        return emptyList;
     }
 
     @Override

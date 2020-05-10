@@ -183,7 +183,6 @@ public class UiTransitionLogic {
     }
     
     public void fromAdminMenuToUserTable(Stage primaryStage, List<String> userList, UiUserTableLogic uiUserTableLogic) {
-        System.out.println(userList.toString());
         scenePlayer.getUserDatabaseTable().getTableView().getItems().addAll(uiUserTableLogic.addUsersIntoAlist(userList));
         primaryStage.setTitle("Username parameters as a list");
         primaryStage.setScene(scenePlayer.getUserDatabaseTable().getUserDatabaseTableScene());
@@ -191,6 +190,20 @@ public class UiTransitionLogic {
     
     public void fromUserTableToAdminMenu(Stage primaryStage) {
         scenePlayer.getUserDatabaseTable().getTableView().getItems().clear();
+        primaryStage.setTitle("Admin menu");
+        primaryStage.setScene(scenePlayer.getAdminMenu().getAdminMenuScene());
+    }
+    
+    public void fromAdminMenuToParameterTable(Stage primaryStage, List<String> classList, List<String> nameList, UiParametersTableLogic uiParametersTableLogic) {
+        scenePlayer.getAbilityParamtersTable().getClassTableView().getItems().addAll(uiParametersTableLogic.addClassesIntoAlist(classList));
+        scenePlayer.getAbilityParamtersTable().getNameTableView().getItems().addAll(uiParametersTableLogic.addNamesIntoAlist(nameList));
+        primaryStage.setTitle("Ability parameters as a list");
+        primaryStage.setScene(scenePlayer.getAbilityParamtersTable().getUserDatabaseTableScene());
+    }
+    
+    public void fromParametersTableToAdminMenu(Stage primaryStage) {
+        scenePlayer.getAbilityParamtersTable().getClassTableView().getItems().clear();
+        scenePlayer.getAbilityParamtersTable().getNameTableView().getItems().clear();
         primaryStage.setTitle("Admin menu");
         primaryStage.setScene(scenePlayer.getAdminMenu().getAdminMenuScene());
     }

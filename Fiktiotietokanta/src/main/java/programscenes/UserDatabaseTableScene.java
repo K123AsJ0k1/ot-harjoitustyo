@@ -51,7 +51,7 @@ public class UserDatabaseTableScene {
         this.tableview.getColumns().addAll(numberColumn, usernameColumn, privilageColumn);
         layout.getChildren().addAll(lable, this.tableview, buttonLayout);
 
-        layout.setPrefSize(300, 400);
+        layout.setPrefSize(200, 400);
 
         this.useDatabaseTable = new Scene(layout);
     }

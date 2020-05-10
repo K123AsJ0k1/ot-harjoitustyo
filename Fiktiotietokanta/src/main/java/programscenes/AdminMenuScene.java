@@ -20,7 +20,8 @@ import javafx.stage.Stage;
 public class AdminMenuScene {
     
     Scene adminMenuScreen;
-    Button inspectMenuButton;
+    Button usernameListButton;
+    Button parametersListButton;
     Button returnButton;
     Label errorMessage;
     
@@ -28,14 +29,16 @@ public class AdminMenuScene {
         GridPane layout = new GridPane();
 
         Label titleAdminMenu = new Label("What do you want to do?");
-        this.inspectMenuButton = new Button("Username parameters as a list");
+        this.usernameListButton = new Button("Username parameters as a list");
+        this.parametersListButton = new Button("Ability paramters as a list");
         this.returnButton = new Button("Return to the main menu");
         this.errorMessage = new Label("");
 
         layout.add(titleAdminMenu, 0, 0);
-        layout.add(this.inspectMenuButton, 0, 1);
-        layout.add(this.returnButton, 0, 2);
-        layout.add(this.errorMessage, 0, 3);
+        layout.add(this.usernameListButton, 0, 1);
+        layout.add(this.parametersListButton,0, 2);
+        layout.add(this.returnButton, 0, 3);
+        layout.add(this.errorMessage, 0, 4);
 
         layout.setPrefSize(300, 300);
         layout.setAlignment(Pos.CENTER);
@@ -56,7 +59,11 @@ public class AdminMenuScene {
     }
     
     public Button getUserParamsAsAListMenuButton() {
-        return this.inspectMenuButton;
+        return this.usernameListButton;
+    }
+    
+    public Button getAbilityParamsAsAListMenuButton() {
+        return this.parametersListButton;
     }
     
     public Button getReturnButton() {

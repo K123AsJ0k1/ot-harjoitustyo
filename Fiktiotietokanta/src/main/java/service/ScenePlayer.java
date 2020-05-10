@@ -11,6 +11,7 @@ import installationscenes.AdministratorSettingsScene;
 import installationscenes.WelcomeScene;
 import javafx.scene.Scene;
 import programscenes.AbilityMenuScene;
+import programscenes.AbilityParametersTableScene;
 import programscenes.AddAbilitiesScene;
 import programscenes.AdminMenuScene;
 import programscenes.ChooseAbilitiesScene;
@@ -47,6 +48,7 @@ public class ScenePlayer {
     PrivateDaoSettingsScene privateDaoSettingsScene;
     AdministratorSettingsScene administratorSettingsScene;
     UserDatabaseTableScene userDatabaseTableScene;
+    AbilityParametersTableScene abilityParametersTableScene;
     
     public ScenePlayer() {
         loginScene = new LoginScene();
@@ -66,6 +68,7 @@ public class ScenePlayer {
         privateDaoSettingsScene = new PrivateDaoSettingsScene();
         administratorSettingsScene = new AdministratorSettingsScene();
         userDatabaseTableScene = new UserDatabaseTableScene();
+        abilityParametersTableScene = new AbilityParametersTableScene();
     }
     
     
@@ -135,6 +138,10 @@ public class ScenePlayer {
     
     public UserDatabaseTableScene getUserDatabaseTable() {
         return this.userDatabaseTableScene;
+    }
+    
+    public AbilityParametersTableScene getAbilityParamtersTable() {
+        return this.abilityParametersTableScene;
     }
     
      

@@ -17,6 +17,7 @@ import filelogic.FileManager;
 import java.util.List;
 import uilogic.UiInstallSupportLogic;
 import uilogic.UiInstallTransitionsLogic;
+import uilogic.UiParametersTableLogic;
 import uilogic.UiSupportLogic;
 import uilogic.UiUserTableLogic;
 
@@ -37,6 +38,7 @@ public class UiLogicCore {
     UiUserLogic uiUserLogic;
     UiAbilityLogic uiAbilityLogic;
     UiUserTableLogic uiUserTableLogic;
+    UiParametersTableLogic uiParamtersTableLogic;
     UiTransitionLogic uiTransitionLogic;
     UiSupportLogic uiSupportLogic;
     
@@ -72,6 +74,7 @@ public class UiLogicCore {
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
+        uiParamtersTableLogic = new UiParametersTableLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         uiSupportLogic = new UiSupportLogic(this.scenePlayer);
@@ -107,6 +110,7 @@ public class UiLogicCore {
         
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
+        uiParamtersTableLogic = new UiParametersTableLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         uiSupportLogic = new UiSupportLogic(this.scenePlayer);
@@ -141,6 +145,7 @@ public class UiLogicCore {
 
         uiAbilityLogic = new UiAbilityLogic(this.daoPlayer);
         uiUserTableLogic = new UiUserTableLogic(this.daoPlayer);
+        uiParamtersTableLogic = new UiParametersTableLogic(this.daoPlayer);
         uiUserLogic = new UiUserLogic(this.daoPlayer.getUsernameDatabase(), user, this.scenePlayer);
         uiTransitionLogic = new UiTransitionLogic(this.scenePlayer);
         uiSupportLogic = new UiSupportLogic(this.scenePlayer);
@@ -192,6 +197,10 @@ public class UiLogicCore {
         return this.uiUserTableLogic;
     }
     
+    public UiParametersTableLogic getUiParametersTableLogic() {
+        return this.uiParamtersTableLogic;
+    }
+    
     public UiTransitionLogic getUiTransitionLogic() {
         return this.uiTransitionLogic;
     }
@@ -203,6 +212,7 @@ public class UiLogicCore {
     public Configuration getConfiguration() {
         return this.configuration;
     }
+    
 
     
     

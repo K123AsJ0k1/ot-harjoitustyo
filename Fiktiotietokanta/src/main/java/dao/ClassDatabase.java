@@ -188,11 +188,13 @@ public class ClassDatabase implements DatabaseInterface {
     public List<String> showDatabaseAsAList() {
         List<String> databaseAsAList = new ArrayList<>();
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT Class FROM Classes;");
+            PreparedStatement command = connection.prepareStatement("SELECT id,Class FROM Classes;");
             ResultSet querySet = command.executeQuery();
             while (querySet.next()) {
+                Integer givenId = querySet.getInt("id");
                 String givenClass = querySet.getString("Class");
-                databaseAsAList.add(givenClass);
+                String identity = String.valueOf(givenId)+"/"+givenClass;
+                databaseAsAList.add(identity);
             }
             querySet.close();
             command.close();
@@ -205,7 +207,8 @@ public class ClassDatabase implements DatabaseInterface {
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> emptyList = new ArrayList<>();
+        return emptyList;
     }
 
     @Override
