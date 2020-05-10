@@ -6,30 +6,14 @@
 package uilogic;
 
 import assets.Ability;
-import dao.AbilityDatabase;
-import dao.ClassDatabase;
-import dao.DescriptionDatabase;
-import dao.NameDatabase;
-import dao.RealityDatabase;
-import dao.RequrimentDatabase;
-import dao.UsernameDatabase;
 import domain.DatabaseInterface;
-import domain.FileWriterInterface;
-import domain.TextRefineryInterface;
-import domain.TextTemplateInterface;
-import domain.UsernameInterface;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
 import service.DaoPlayer;
-import textlogic.TemplateMaker;
-import textlogic.TextRefinery;
 
 /**
- * Ominaisuuksiin liittyvää käyttöliittymä logiikkaa.
- *
- *
+ * Sovelluksen ominaisuuksien toiminnan hallitsija.
  */
 public class UiAbilityLogic {
 
@@ -43,7 +27,7 @@ public class UiAbilityLogic {
     /**
      * Konstruktori.
      *
-     * @param daoPlayer
+     * @param daoPlayer antaa tarvittavan viiteet.
      */
     public UiAbilityLogic(DaoPlayer daoPlayer) {
         this.classDatabase = daoPlayer.getClassDatabase();
@@ -55,9 +39,9 @@ public class UiAbilityLogic {
     }
 
     /**
-     * Lisää ominaisuuden.
+     * Lisää ominaisuuden tietokantaan
      *
-     * @param usernameId käyttäjän id-
+     * @param usernameId käyttäjän id
      * @param textFieldClass saatu merkkijono.
      * @param textFieldName saatu merkkijono.
      * @param textFieldDescription saatu merkkijono.
@@ -80,49 +64,36 @@ public class UiAbilityLogic {
         if (!classDatabase.searchInformation(textFieldClass)) {
             addClass = true;
         }
-
         if (!nameDatabase.searchInformation(textFieldName)) {
             addName = true;
         }
-
         if (!descriptionDatabase.searchInformation(textFieldDescription)) {
             addDescription = true;
         }
-
         if (!requrimentDatabase.searchInformation(textFieldRequriment)) {
             addRequriment = true;
         }
-
         if (!realityDatabase.searchInformation(textFieldReality)) {
             addReality = true;
         }
-
+        
         Boolean classHasBeenAdded = false;
-
         if (addClass) {
             classHasBeenAdded = classDatabase.addInformation(textFieldClass);
         }
-
         Boolean nameHasBeenAdded = false;
-
         if (addName) {
             nameHasBeenAdded = nameDatabase.addInformation(textFieldName);
         }
-
         Boolean descriptionHasBeenAdded = false;
-
         if (addDescription) {
             descriptionHasBeenAdded = descriptionDatabase.addInformation(textFieldDescription);
         }
-
         Boolean requrimentHasBeenAdded = false;
-
         if (addRequriment) {
             requrimentHasBeenAdded = requrimentDatabase.addInformation(textFieldRequriment);
         }
-
         Boolean realityHasBeenAdded = false;
-
         if (addReality) {
             realityHasBeenAdded = realityDatabase.addInformation(textFieldReality);
         }
@@ -142,7 +113,7 @@ public class UiAbilityLogic {
         if (abilityDatabase.searchInformation(information)) {
             return "Ability already exists";
         }
-        
+
         Boolean abilityHasBeenAdded = abilityDatabase.addInformation(information);
 
         if (!abilityHasBeenAdded) {
@@ -152,15 +123,13 @@ public class UiAbilityLogic {
         return "Ability has been added";
     }
 
-    /**
-     * Lisää ominaisuuksia listaksi.
-     *
+    /** Lisää ominaisuudet listaan ability olio listaan.
      * @param abilityList lista ominaisuuksia.
      * @return palauttaa koodin tilaa merkitsevän merkkijono.
      */
     public List<Ability> addAbilitiesIntoList(List<String> abilityList) {
         List<Ability> returnedList = new ArrayList<>();
-        
+
         for (String ability : abilityList) {
             String[] split = ability.split("/");
             String classIdentity = classDatabase.searchInformationTextIdentity(split[0]);
@@ -174,11 +143,9 @@ public class UiAbilityLogic {
         return returnedList;
     }
 
-    /**
-     * Poistaa ominaisuuden.
-     *
+    /**Poistaa ominaisuuden tietokannasta.
      * @param usernameId käyttäjän id.
-     * @param selectedItems valitut asiat.
+     * @param selectedItems listasta valittu ominaisuus.
      */
     public void removeAbility(int usernameId, ObservableList selectedItems) {
         String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
@@ -191,18 +158,14 @@ public class UiAbilityLogic {
         abilityDatabase.removeInformation(removedId);
     }
 
-    /**
-     * Valitsee ominaisuuden.
-     *
-     * @param selectedItems valitut asiat.
-     * @return palauttaa parametrit.
+    /** Valitsee ominaisuuden listasta.
+     * @param selectedItems listasta valittu ominaisuus.
+     * @return palauttaa ominaisuuden parametrit.
      */
     public String chooseAbility(ObservableList selectedItems) {
         String[] givenAbilitySplit = selectedItems.get(0).toString().split("/");
         String selectedParameters = givenAbilitySplit[0] + "," + givenAbilitySplit[1] + "," + givenAbilitySplit[2] + "," + givenAbilitySplit[3] + "," + givenAbilitySplit[4];
         return selectedParameters;
     }
-    
-    
 
 }

@@ -7,54 +7,36 @@ package textlogic;
 
 import domain.TextRefineryInterface;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Auttaa kirjoittajaa tekstin jalostamisessa.
- *
- *
+/** Sovelluksessa luodun tekstin editoinnin hallitsija.
  */
 public class TextRefinery implements TextRefineryInterface {
-
-    /**
-     * Konstruktori.
-     *
-     *
-     */
+    /** Konstruktori.
+    */
     public TextRefinery() {
-
     }
-
     @Override
     public boolean givenTextLineChecker(String information) {
-
         char[] characterTable = information.toCharArray();
-
         int previousLineIndex = 0;
         int index = 0;
-
         for (char merkki : characterTable) {
             int difference = index - previousLineIndex;
-
             if (merkki == '\n') {
                 previousLineIndex = index;
             }
-
             if (difference > 100) {
                 return false;
             }
             index = index + 1;
         }
-
         return true;
     }
-
     @Override
     public boolean givenTextLineHasSpaces(String information) {
         char[] characterTable = information.toCharArray();
-
         int previousSpaceIndex = 0;
         int index = 0;
         for (char merkki : characterTable) {
@@ -62,24 +44,19 @@ public class TextRefinery implements TextRefineryInterface {
             if (merkki == ' ') {
                 previousSpaceIndex = index;
             }
-
             if (difference > 20) {
                 return false;
             }
             index = index + 1;
-
         }
-
         return true;
     }
 
     @Override
     public String choosenAbilityIsFoundFromText(String information, String abilityInformation) {
-
         String[] wordTable = information.trim().split(" ");
         String[] parameterTable = abilityInformation.trim().split(",");
         String modifiedAbilityString = "";
-
         if (parameterTable.length == 5) {
             Boolean classIsPresent = false;
             Boolean nameIsPresent = false;
@@ -92,35 +69,27 @@ public class TextRefinery implements TextRefineryInterface {
             String descriptionString = parameterTable[2];
             String requrimentString = parameterTable[3];
             String realityString = parameterTable[4];
-
             for (String text : wordTable) {
-
                 if (text.equals(parameterTable[0])) {
                     classIsPresent = true;
                 }
-
                 if (text.equals(parameterTable[1])) {
                     nameIsPresent = true;
                 }
-
                 if (text.equals(parameterTable[2])) {
                     descriptionIsPresent = true;
                 }
-
                 if (text.equals(parameterTable[3])) {
                     requrimentIsPresent = true;
                 }
-
                 if (text.equals(parameterTable[4])) {
                     realityIsPresent = true;
                 }
 
             }
-
             if (!classIsPresent) {
                 modifiedAbilityString = classString;
             }
-
             if (!nameIsPresent) {
                 if (modifiedAbilityString.equals(classString)) {
                     modifiedAbilityString = modifiedAbilityString + "," + nameString;
@@ -130,7 +99,6 @@ public class TextRefinery implements TextRefineryInterface {
                 }
 
             }
-
             if (!descriptionIsPresent) {
                 if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString)) {
                     modifiedAbilityString = modifiedAbilityString + "," + descriptionString;
@@ -140,7 +108,6 @@ public class TextRefinery implements TextRefineryInterface {
                 }
 
             }
-
             if (!requrimentIsPresent) {
                 if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString) || modifiedAbilityString.contains(descriptionString)) {
                     modifiedAbilityString = modifiedAbilityString + "," + requrimentString;
@@ -150,7 +117,6 @@ public class TextRefinery implements TextRefineryInterface {
                 }
 
             }
-
             if (!realityIsPresent) {
                 if (modifiedAbilityString.contains(classString) || modifiedAbilityString.contains(nameString) || modifiedAbilityString.contains(descriptionString) || modifiedAbilityString.contains(requrimentString)) {
                     modifiedAbilityString = modifiedAbilityString + "," + realityString;
@@ -161,11 +127,8 @@ public class TextRefinery implements TextRefineryInterface {
 
             }
         }
-
         return modifiedAbilityString;
-
     }
-
     @Override
     public List<String> choosenAbilitiesAreFoundFromText(String information, List<String> abilityList) {
         List<String> foundAbilityList = new ArrayList<>();
@@ -259,23 +222,17 @@ public class TextRefinery implements TextRefineryInterface {
             }
             
         }
-        
         return foundAbilityList;  
     }
-
     @Override
     public Integer giveTextWordCount(String infromation) {
         String[] wordTable = infromation.split(" ");
         return wordTable.length;   
     }
-
     @Override
     public Integer giveCharacterCount(String infromation) {
         char[] characterTable = infromation.toCharArray();
         return characterTable.length;
     }
     
-    
-    
-
 }
