@@ -6,7 +6,9 @@
 package programscenes;
 
 import assets.ClassTable;
+import assets.DescriptionTable;
 import assets.NameTable;
+import assets.RequrimentTable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +28,9 @@ public class AbilityParametersTableScene {
     Button returnButton;
     TableView classTableview;
     TableView nameTableview;
+    TableView descriptionTableview;
+    TableView requrimentTableview;
+    TableView realityTableview;
     
     public AbilityParametersTableScene() {
         VBox layout = new VBox();
@@ -39,6 +44,9 @@ public class AbilityParametersTableScene {
         buttonLayout.getChildren().addAll(this.returnButton);
         this.classTableview = new TableView();
         this.nameTableview = new TableView();
+        this.descriptionTableview = new TableView();
+        this.requrimentTableview = new TableView();
+        this.realityTableview = new TableView();
 
         TableColumn<String, ClassTable> classNumberColumn = new TableColumn<>("Class id");
         classNumberColumn.setCellValueFactory(new PropertyValueFactory<>("classNumberIdentity"));
@@ -56,10 +64,37 @@ public class AbilityParametersTableScene {
         
         this.nameTableview.getColumns().addAll(nameNumberColumn, nameNameColumn);
         
+        TableColumn<String, DescriptionTable> descriptionNumberColumn = new TableColumn<>("Description id");
+        descriptionNumberColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionNumberIdentity"));
         
-        layout.getChildren().addAll(lable, this.classTableview, nameTableview, buttonLayout);
+        TableColumn<String, DescriptionTable> descriptionNameColumn = new TableColumn<>("Description name");
+        descriptionNameColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionNameIdentity"));
+        
+        this.descriptionTableview.getColumns().addAll(descriptionNumberColumn, descriptionNameColumn);
+        
+        TableColumn<String, RequrimentTable> requrimentNumberColumn = new TableColumn<>("Requriment id");
+        requrimentNumberColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentNumberIdentity"));
+        
+        TableColumn<String, RequrimentTable> requrimentNameColumn = new TableColumn<>("Requriment name");
+        requrimentNameColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentNameIdentity"));
+        
+        this.requrimentTableview.getColumns().addAll(requrimentNumberColumn,requrimentNameColumn);
+        
+        TableColumn<String, RequrimentTable> realityNumberColumn = new TableColumn<>("Reality id");
+        realityNumberColumn.setCellValueFactory(new PropertyValueFactory<>("realityNumberIdentity"));
+        
+        TableColumn<String, RequrimentTable> realityNameColumn = new TableColumn<>("Reality name");
+        realityNameColumn.setCellValueFactory(new PropertyValueFactory<>("realityNameIdentity"));
+        
+        this.realityTableview.getColumns().addAll(realityNumberColumn,realityNameColumn);
+        
+        HBox tableViewLayout = new HBox();
+        
+        tableViewLayout.getChildren().addAll(this.classTableview,this.nameTableview,this.descriptionTableview,this.requrimentTableview,this.realityTableview);
+        
+        layout.getChildren().addAll(lable, tableViewLayout, buttonLayout);
 
-        layout.setPrefSize(200, 400);
+        layout.setPrefSize(600, 400);
 
         abilityParametersTable = new Scene(layout);
     }
@@ -78,6 +113,18 @@ public class AbilityParametersTableScene {
     
     public TableView getNameTableView() {
         return this.nameTableview;
+    }
+    
+    public TableView getDescriptionTableView() {
+        return this.descriptionTableview;
+    }
+    
+    public TableView getRequrimentTableView() {
+        return this.requrimentTableview;
+    }
+    
+    public TableView getRealityTableView() {
+        return this.realityTableview;
     }
     
 }

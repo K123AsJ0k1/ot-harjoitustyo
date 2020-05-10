@@ -200,11 +200,13 @@ public class RealityDatabase implements DatabaseInterface {
         List<String> databaseAsAList = new ArrayList<>();
 
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT Reality FROM Realities;");
+            PreparedStatement command = connection.prepareStatement("SELECT id,Reality FROM Realities;");
             ResultSet querySet = command.executeQuery();
             while (querySet.next()) {
+                Integer givenId = querySet.getInt("id");
                 String givenClass = querySet.getString("Reality");
-                databaseAsAList.add(givenClass);
+                String identity = String.valueOf(givenId)+"/"+givenClass;
+                databaseAsAList.add(identity);
             }
             querySet.close();
             command.close();
@@ -218,7 +220,8 @@ public class RealityDatabase implements DatabaseInterface {
 
     @Override
     public List<String> showDatabaseAsARestrictedList(String information) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> emptyList = new ArrayList<>();
+        return emptyList;
     }
 
     @Override

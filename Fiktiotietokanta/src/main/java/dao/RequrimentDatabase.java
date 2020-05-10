@@ -201,11 +201,13 @@ public class RequrimentDatabase implements DatabaseInterface {
         List<String> databaseAsAList = new ArrayList<>();
 
         try {
-            PreparedStatement command = connection.prepareStatement("SELECT Requriment FROM Requriments;");
+            PreparedStatement command = connection.prepareStatement("SELECT id,Requriment FROM Requriments;");
             ResultSet querySet = command.executeQuery();
             while (querySet.next()) {
+                Integer givenId = querySet.getInt("id");
                 String givenClass = querySet.getString("Requriment");
-                databaseAsAList.add(givenClass);
+                String identity = String.valueOf(givenId)+"/"+givenClass;
+                databaseAsAList.add(identity);
             }
             querySet.close();
             command.close();

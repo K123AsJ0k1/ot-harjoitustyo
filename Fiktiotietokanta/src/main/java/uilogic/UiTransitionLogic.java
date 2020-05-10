@@ -194,9 +194,12 @@ public class UiTransitionLogic {
         primaryStage.setScene(scenePlayer.getAdminMenu().getAdminMenuScene());
     }
     
-    public void fromAdminMenuToParameterTable(Stage primaryStage, List<String> classList, List<String> nameList, UiParametersTableLogic uiParametersTableLogic) {
+    public void fromAdminMenuToParameterTable(Stage primaryStage, List<String> classList, List<String> nameList, List<String> descriptionList, List<String> requrimentList, List<String> realityList,  UiParametersTableLogic uiParametersTableLogic) {
         scenePlayer.getAbilityParamtersTable().getClassTableView().getItems().addAll(uiParametersTableLogic.addClassesIntoAlist(classList));
         scenePlayer.getAbilityParamtersTable().getNameTableView().getItems().addAll(uiParametersTableLogic.addNamesIntoAlist(nameList));
+        scenePlayer.getAbilityParamtersTable().getDescriptionTableView().getItems().addAll(uiParametersTableLogic.addDescriptionIntoAlist(descriptionList));
+        scenePlayer.getAbilityParamtersTable().getRequrimentTableView().getItems().addAll(uiParametersTableLogic.addRequrimentIntoAlist(requrimentList));
+        scenePlayer.getAbilityParamtersTable().getRealityTableView().getItems().addAll(uiParametersTableLogic.addRealityIntoAlist(realityList));
         primaryStage.setTitle("Ability parameters as a list");
         primaryStage.setScene(scenePlayer.getAbilityParamtersTable().getUserDatabaseTableScene());
     }
@@ -204,6 +207,9 @@ public class UiTransitionLogic {
     public void fromParametersTableToAdminMenu(Stage primaryStage) {
         scenePlayer.getAbilityParamtersTable().getClassTableView().getItems().clear();
         scenePlayer.getAbilityParamtersTable().getNameTableView().getItems().clear();
+        scenePlayer.getAbilityParamtersTable().getDescriptionTableView().getItems().clear();
+        scenePlayer.getAbilityParamtersTable().getRequrimentTableView().getItems().clear();
+        scenePlayer.getAbilityParamtersTable().getRealityTableView().getItems().clear();
         primaryStage.setTitle("Admin menu");
         primaryStage.setScene(scenePlayer.getAdminMenu().getAdminMenuScene());
     }

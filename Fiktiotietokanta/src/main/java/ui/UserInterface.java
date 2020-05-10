@@ -294,7 +294,7 @@ public class UserInterface extends Application {
         });
         
         uiLogicCore.getScenePlayer().getAdminMenu().getAbilityParamsAsAListMenuButton().setOnAction((event) ->{
-           uiLogicCore.getUiTransitionLogic().fromAdminMenuToParameterTable(primaryStage, uiLogicCore.getDaoPlayer().getClassDatabase().showDatabaseAsAList(), uiLogicCore.getDaoPlayer().getNameDatabase().showDatabaseAsAList(), uiLogicCore.getUiParametersTableLogic());
+           uiLogicCore.getUiTransitionLogic().fromAdminMenuToParameterTable(primaryStage, uiLogicCore.getDaoPlayer().getClassDatabase().showDatabaseAsAList(), uiLogicCore.getDaoPlayer().getNameDatabase().showDatabaseAsAList(),uiLogicCore.getDaoPlayer().getDescriptionDatabase().showDatabaseAsAList(),uiLogicCore.getDaoPlayer().getRequrimetnDatabase().showDatabaseAsAList(),uiLogicCore.getDaoPlayer().getRealityDatabase().showDatabaseAsAList(), uiLogicCore.getUiParametersTableLogic());
         });
         
         uiLogicCore.getScenePlayer().getAbilityParamtersTable().getReturnButton().setOnAction((event) ->{

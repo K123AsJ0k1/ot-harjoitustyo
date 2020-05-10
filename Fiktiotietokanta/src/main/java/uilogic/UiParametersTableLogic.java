@@ -6,7 +6,10 @@
 package uilogic;
 
 import assets.ClassTable;
+import assets.DescriptionTable;
 import assets.NameTable;
+import assets.RealityTable;
+import assets.RequrimentTable;
 import assets.UserTable;
 import domain.UsernameInterface;
 import java.util.ArrayList;
@@ -47,6 +50,45 @@ public class UiParametersTableLogic {
             String nameIdentity = split[1];
             NameTable addedName = new NameTable(numberIdentity, nameIdentity);
             returnedList.add(addedName);
+        }
+        return returnedList;
+    }
+    
+    public List<DescriptionTable> addDescriptionIntoAlist(List<String> descriptionList) {
+        List<DescriptionTable> returnedList = new ArrayList<>();
+        
+        for (String descriptionParam : descriptionList) {
+            String[] split = descriptionParam.split("/");
+            String numberIdentity = split[0];
+            String nameIdentity = split[1];
+            DescriptionTable addedDescription = new DescriptionTable(numberIdentity, nameIdentity);
+            returnedList.add(addedDescription);
+        }
+        return returnedList;
+    }
+    
+    public List<RequrimentTable> addRequrimentIntoAlist(List<String> requrimentList) {
+        List<RequrimentTable> returnedList = new ArrayList<>();
+        
+        for (String requrimentParam : requrimentList) {
+            String[] split = requrimentParam.split("/");
+            String numberIdentity = split[0];
+            String nameIdentity = split[1];
+            RequrimentTable addedRequriment = new RequrimentTable(numberIdentity, nameIdentity);
+            returnedList.add(addedRequriment);
+        }
+        return returnedList;
+    }
+    
+    public List<RealityTable> addRealityIntoAlist(List<String> realityList) {
+        List<RealityTable> returnedList = new ArrayList<>();
+        
+        for (String realityParam : realityList) {
+            String[] split = realityParam.split("/");
+            String numberIdentity = split[0];
+            String nameIdentity = split[1];
+            RealityTable addedReality = new RealityTable(numberIdentity, nameIdentity);
+            returnedList.add(addedReality);
         }
         return returnedList;
     }
