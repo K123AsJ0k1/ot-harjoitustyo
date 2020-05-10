@@ -56,6 +56,7 @@
                         <exclude>uilogic/*</exclude>
                         <exclude>service/*</exclude>
                         <exclude>tables/*</exclude>
+                        <exclude>filelogic/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

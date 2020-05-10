@@ -170,7 +170,7 @@ public class UiMainSupport {
      * @param textPlayer huolehtii tarkastuksesta.
     */ 
     public void useTemplate(TextPlayer textPlayer) {
-        if (scenePlayer.getCreateProfile().getProfileEditor().getText().length()>0) {
+        if (scenePlayer.getCreateProfile().getProfileEditor().getText().length() > 0) {
             scenePlayer.getCreateProfile().getProfileEditor().setText(textPlayer.getTextTemplateInterface().simpleMaker());
             return;
         }

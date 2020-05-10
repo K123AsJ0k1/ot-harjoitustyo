@@ -5,11 +5,7 @@
  */
 package Fiktiotietokanta;
 
-import filelogic.FileConfig;
-import domain.FileManagerInterface;
-import domain.FileWriterInterface;
-import filelogic.FileManager;
-import filelogic.FileWriter;
+import assets.Parameters;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,6 +17,12 @@ import static org.junit.Assert.*;
  *
  * @author niila
  */
-public class FileWriterTest {
+public class ParametersTest {
     
+    @Test
+    public void constructorWorks() {
+        Parameters test = new Parameters("Test","Test");
+        assertEquals("Test", test.getChosenAbility());
+        assertEquals("Test", test.getLeftOverParameters());
+    }
 }

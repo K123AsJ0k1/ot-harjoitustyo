@@ -5,9 +5,7 @@
  */
 package Fiktiotietokanta;
 
-import filelogic.FileConfig;
-import domain.FileManagerInterface;
-import filelogic.FileManager;
+import assets.TextMode;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,8 +17,12 @@ import static org.junit.Assert.*;
  *
  * @author niila
  */
-public class ConfigurationTest {
+public class TextModeTest {
     
-    
-    
+    @Test
+    public void constructorWorks() {
+        TextMode test = new TextMode();
+        test.setMode("Test");
+        assertEquals("Test",test.getMode());
+    }
 }
