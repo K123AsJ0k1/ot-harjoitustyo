@@ -206,13 +206,21 @@ Alla oleva luokka/pakkauskaavio näyttää eri pakkausten ja eri luokkien välis
 Sovelluksen asennuksen aikana luodaan config niminen tiedosto, joka sisältää sovelluksen tilan, tietokannan tiedostojen nimen ja tietokantojen nimet, ja jotka ovat muodossa
 
 ```ProgramMode: Public/Private```
+
 ```FolderName: Annettu nimi```
+
 ```UsernameDatabaseName: Annettu nimi```
+
 ```ClassDatabaseName: Annettu nimi```
+
 ```NameDatabaseName: Annettu nimi```
+
 ```DescriptionDatabaseName: Annettu nimi```
+
 ```RequrimentDatabaseName: Annettu nimi```
+
 ```RealityDatabaseName: Annettu nimi```
+
 ```AbilityDatabaseName: Annettu nimi```
 
 tiedosto luodaan ja luetaan FileConfig luokassa, joka sijaitsee filelogic pakkauksessa.
