@@ -9,7 +9,6 @@ import installationscenes.PrivateDaoSettingsScene;
 import installationscenes.PublicDaoSettingsScene;
 import installationscenes.AdministratorSettingsScene;
 import installationscenes.WelcomeScene;
-import javafx.scene.Scene;
 import programscenes.AbilityMenuScene;
 import programscenes.AbilityParametersTableScene;
 import programscenes.AddAbilitiesScene;
@@ -26,11 +25,10 @@ import programscenes.SignInScene;
 import programscenes.UserDatabaseTableScene;
 
 /**
- *
- * @author niila
+ * Sovelluksen käyttöliittymän scenejen toiminnan hallitsija.
  */
 public class ScenePlayer {
-    
+
     LoginScene loginScene;
     SignInScene signInScene;
     PublicMainMenuScene publicMainMenuScene;
@@ -49,7 +47,10 @@ public class ScenePlayer {
     AdministratorSettingsScene administratorSettingsScene;
     UserDatabaseTableScene userDatabaseTableScene;
     AbilityParametersTableScene abilityParametersTableScene;
-    
+
+    /**
+     * Konstruktori.
+     */
     public ScenePlayer() {
         loginScene = new LoginScene();
         signInScene = new SignInScene();
@@ -70,79 +71,77 @@ public class ScenePlayer {
         userDatabaseTableScene = new UserDatabaseTableScene();
         abilityParametersTableScene = new AbilityParametersTableScene();
     }
-    
-    
+
     public LoginScene getLogin() {
         return this.loginScene;
     }
-    
+
     public SignInScene getSignIn() {
         return this.signInScene;
     }
-    
+
     public PublicMainMenuScene getPublicMainMenu() {
         return this.publicMainMenuScene;
     }
-    
+
     public PrivateMainMenuScene getPrivateMainMenu() {
         return this.privateMainMenuScene;
     }
-    
+
     public AbilityMenuScene getAbilityMenu() {
         return this.abilityMenuScene;
     }
-    
+
     public ProfileMenuScene getProfileMenu() {
         return this.profileMenuScene;
     }
-    
+
     public AdminMenuScene getAdminMenu() {
         return this.adminMenuScene;
     }
-    
+
     public CreateFileScene getCreateFile() {
         return this.createFileScene;
     }
-    
+
     public AddAbilitiesScene getAddAbilities() {
         return this.addAbilitiesScene;
     }
-    
+
     public RemoveAbilitiesScene getRemoveAbilities() {
         return this.removeAbilitiesScene;
     }
-    
+
     public CreateProfileScene getCreateProfile() {
         return this.createProfileScene;
     }
-    
+
     public ChooseAbilitiesScene getChooseAbilities() {
         return this.chooseAbilitiesScene;
     }
-    
+
     public WelcomeScene getWelcome() {
         return this.welcomeScene;
     }
-    
+
     public PublicDaoSettingsScene getPublicDaoSettings() {
         return this.publicDaoSettingsScene;
     }
-    
+
     public PrivateDaoSettingsScene getPrivateDaoSettings() {
         return this.privateDaoSettingsScene;
     }
-    
+
     public AdministratorSettingsScene getAdministratorSettings() {
         return this.administratorSettingsScene;
     }
-    
+
     public UserDatabaseTableScene getUserDatabaseTable() {
         return this.userDatabaseTableScene;
     }
-    
+
     public AbilityParametersTableScene getAbilityParamtersTable() {
         return this.abilityParametersTableScene;
     }
-    
-     
+
 }

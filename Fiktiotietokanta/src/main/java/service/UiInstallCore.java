@@ -14,12 +14,10 @@ import filelogic.FileWriter;
 import uilogic.UiInstallSupportLogic;
 import uilogic.UiInstallTransitionsLogic;
 
-/**
- *
- * @author niila
+/** Sovelluksen asennuksen toiminan ydin.
  */
 public class UiInstallCore {
-    
+
     ScenePlayer scenePlayer;
     Configuration configuration;
     TextAreaMode textAreaMode;
@@ -28,6 +26,8 @@ public class UiInstallCore {
     UiInstallSupportLogic uiInstallSupportLogic;
     UiInstallTransitionsLogic uiInstallTransitionsLogic;
     
+    /** Konstruktori.
+    */
     public UiInstallCore() {
         scenePlayer = new ScenePlayer();
         configuration = new Configuration();
@@ -37,41 +37,33 @@ public class UiInstallCore {
         uiInstallSupportLogic = new UiInstallSupportLogic(this.scenePlayer);
         uiInstallTransitionsLogic = new UiInstallTransitionsLogic(this.scenePlayer);
     }
-    
+
     public Configuration getConfiguration() {
         return this.configuration;
     }
-    
+
     public TextAreaMode getTextAreaMode() {
         return this.textAreaMode;
     }
-    
+
     public FileWriterInterface getFileWriter() {
         return this.fileWriter;
     }
-    
+
     public FileManagerInterface getFileManager() {
         return this.fileManager;
     }
-      
+
     public ScenePlayer getScenePlayer() {
         return this.scenePlayer;
     }
-    
+
     public UiInstallSupportLogic getUiInstallSupportLogic() {
         return this.uiInstallSupportLogic;
     }
-    
+
     public UiInstallTransitionsLogic getUiInstallTransitionsLogic() {
         return this.uiInstallTransitionsLogic;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

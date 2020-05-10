@@ -13,32 +13,33 @@ import filelogic.FileManager;
 import textlogic.TextRefinery;
 
 /**
- *
- * @author niila
+ * Sovelluksen tekstin toiminnan hallitsija.
  */
 public class TextPlayer {
-    
+
     FileWriterInterface fileWriter;
-    FileManagerInterface fileManager;   
+    FileManagerInterface fileManager;
     TextRefineryInterface textRefinery;
-    
+
+    /**
+     * Konstruktori.
+     */
     public TextPlayer() {
         fileWriter = new FileWriter();
         fileManager = new FileManager();
         textRefinery = new TextRefinery();
     }
-    
+
     public FileWriterInterface getFileWriterInterface() {
         return this.fileWriter;
     }
-    
+
     public FileManagerInterface getFileManagerInterface() {
         return this.fileManager;
     }
-    
+
     public TextRefineryInterface getTextRefineryInterface() {
         return this.textRefinery;
     }
-    
-    
+
 }
