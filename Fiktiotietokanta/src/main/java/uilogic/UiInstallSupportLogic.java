@@ -7,11 +7,7 @@ package uilogic;
 
 import assets.Configuration;
 import assets.TextAreaMode;
-import javafx.scene.Node;
-import javafx.stage.Stage;
-import service.LayoutPlayer;
 import service.ScenePlayer;
-import service.UiLogicCore;
 
 /**
  *

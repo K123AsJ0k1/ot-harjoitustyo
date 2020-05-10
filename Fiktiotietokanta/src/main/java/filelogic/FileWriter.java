@@ -13,17 +13,11 @@ import java.io.PrintWriter;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-/**
- * Tiedoston tallentaja.
- *
- *
+/** Sovelluksen tiedostojen tallentamiseen käytetty kirjoittaja.
  */
 public class FileWriter implements FileWriterInterface {
 
-    /**
-     * Tiedoston tallentaja konstruktori.
-     *
-     *
+    /** Konstruktori.
      */
     public FileWriter() {
 
@@ -60,7 +54,7 @@ public class FileWriter implements FileWriterInterface {
 
     @Override
     public boolean saveTextAsAConfig(String information, FileManagerInterface fileManager) {
-        String path = fileManager.getUserPath()+File.separator+"config";
+        String path = fileManager.getUserPath() + File.separator + "config";
         File configFile = new File(path);
         
         try {

@@ -15,8 +15,6 @@ import assets.Parameters;
 import domain.FileManagerInterface;
 import filelogic.FileManager;
 import java.util.List;
-import uilogic.UiInstallSupportLogic;
-import uilogic.UiInstallTransitionsLogic;
 import uilogic.UiParametersTableLogic;
 import uilogic.UiSupportLogic;
 import uilogic.UiUserTableLogic;
