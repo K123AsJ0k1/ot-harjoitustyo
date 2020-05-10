@@ -5,8 +5,8 @@
  */
 package uilogic;
 
-import assets.Configuration;
-import assets.TextAreaMode;
+import filelogic.FileConfig;
+import assets.TextMode;
 import service.ScenePlayer;
 
 /**
@@ -31,7 +31,7 @@ public class UiInstallSupport {
      * @param configuration annetut asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void checkFolderName(Configuration configuration, TextAreaMode textMode) {
+    public void checkFolderName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("Folder");
             scenePlayer.getPublicDaoSettings().getMessage().setText("");
@@ -52,7 +52,7 @@ public class UiInstallSupport {
      * @param configuration annettuu asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void checkUserDName(Configuration configuration, TextAreaMode textMode) {
+    public void checkUserDName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("UsernameDatabase");
             scenePlayer.getPublicDaoSettings().getMessage().setText("");
@@ -72,7 +72,7 @@ public class UiInstallSupport {
      * @param configuration annettuu asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void checkClassDName(Configuration configuration, TextAreaMode textMode) {
+    public void checkClassDName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("ClassDatabase");
             scenePlayer.getPublicDaoSettings().getMessage().setText("");
@@ -92,7 +92,7 @@ public class UiInstallSupport {
      * @param configuration annettuu asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void checkNameDName(Configuration configuration, TextAreaMode textMode) {
+    public void checkNameDName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("NameDatabase");
             scenePlayer.getPublicDaoSettings().getMessage().setText("");
@@ -112,7 +112,7 @@ public class UiInstallSupport {
      * @param configuration annettuu asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void checkDescriptionDName(Configuration configuration, TextAreaMode textMode) {
+    public void checkDescriptionDName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("DescriptionDatabase");
             scenePlayer.getPublicDaoSettings().getMessage().setText("");
@@ -132,7 +132,7 @@ public class UiInstallSupport {
      * @param configuration annettuu asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void checkRequrimentDName(Configuration configuration, TextAreaMode textMode) {
+    public void checkRequrimentDName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("RequrimentDatabase");
             scenePlayer.getPublicDaoSettings().getMessage().setText("");
@@ -152,7 +152,7 @@ public class UiInstallSupport {
      * @param configuration annettuu asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void checkRealityDName(Configuration configuration, TextAreaMode textMode) {
+    public void checkRealityDName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("RealityDatabase");
             scenePlayer.getPublicDaoSettings().getMessage().setText("");
@@ -172,7 +172,7 @@ public class UiInstallSupport {
      * @param configuration annettuu asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void checkAbilityDName(Configuration configuration, TextAreaMode textMode) {
+    public void checkAbilityDName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             textMode.setMode("AbilityDatabase");
             scenePlayer.getPublicDaoSettings().getMessage().setText("");
@@ -192,7 +192,7 @@ public class UiInstallSupport {
      * @param configuration annettuu asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
-    public void setSelectedName(Configuration configuration, TextAreaMode textMode) {
+    public void setSelectedName(FileConfig configuration, TextMode textMode) {
         if (configuration.getMode().equals("Public")) {
             String givenName = scenePlayer.getPublicDaoSettings().getNameInput().getText();
             
@@ -325,7 +325,7 @@ public class UiInstallSupport {
      *
      * @param configuration annettuu asetukset.
      */
-    public void addAdmin(Configuration configuration) {
+    public void addAdmin(FileConfig configuration) {
         if (configuration.getMode().equals("Public")) {
             String givenUsername = scenePlayer.getAdministratorSettings().getUsernameArea().getText();
             String givenPassword = scenePlayer.getAdministratorSettings().getPasswordArea().getText();

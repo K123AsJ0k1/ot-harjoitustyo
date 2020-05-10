@@ -10,6 +10,7 @@ import domain.FileManagerInterface;
 import domain.UsernameInterface;
 import filelogic.FileManager;
 import java.io.File;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -22,7 +23,7 @@ public class UsernameDatabaseTest {
     //Constructor tests
     
     @Test
-    public void norModeWorks() throws Exception {
+    public void norModeWorks() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Normal","UsernameDatabase");
@@ -32,7 +33,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void testModeWorks() throws Exception {
+    public void testModeWorks() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -43,7 +44,7 @@ public class UsernameDatabaseTest {
     
     
     @Test
-    public void dataBaseExists() throws Exception {
+    public void dataBaseExists(){
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -51,7 +52,7 @@ public class UsernameDatabaseTest {
     }
     // Create database tests
     @Test
-    public void createDatabase() throws Exception {
+    public void createDatabase() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -61,7 +62,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void createDatabaseCatchesErrors() throws Exception {
+    public void createDatabaseCatchesErrors() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -73,7 +74,7 @@ public class UsernameDatabaseTest {
     }
     //Remove database tests
     @Test
-    public void removeDatabaseWorks() throws Exception {
+    public void removeDatabaseWorks() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -83,7 +84,7 @@ public class UsernameDatabaseTest {
     } 
     
     @Test
-    public void removeDatabaseCatchesErrors1() throws Exception {
+    public void removeDatabaseCatchesErrors1() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -92,7 +93,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void removeDatabaseCatchesErrors2() throws Exception {
+    public void removeDatabaseCatchesErrors2() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -106,7 +107,7 @@ public class UsernameDatabaseTest {
     //Add username tests
     
     @Test
-    public void usernameCanBeAdded() throws Exception {
+    public void usernameCanBeAdded() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -117,7 +118,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void addUsernameCatchesErrors1() throws Exception {
+    public void addUsernameCatchesErrors1() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -134,7 +135,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void addUsernameCatchesErrors2() throws Exception {
+    public void addUsernameCatchesErrors2(){
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -144,7 +145,7 @@ public class UsernameDatabaseTest {
     
     // searchUserInformation tests
     @Test
-    public void searchUserInfoWorks() throws Exception {
+    public void searchUserInfoWorks() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -156,7 +157,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void searchUserInfoIsCorrect() throws Exception {
+    public void searchUserInfoIsCorrect() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -170,7 +171,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void searchUserInfoCatchesErrors1() throws Exception {
+    public void searchUserInfoCatchesErrors1() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -184,7 +185,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void searchUserInfoCatchesErrors2() throws Exception {
+    public void searchUserInfoCatchesErrors2() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -195,7 +196,7 @@ public class UsernameDatabaseTest {
     //Remove username tests
     
     @Test
-    public void removeUsernameWorks() throws Exception {
+    public void removeUsernameWorks() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -207,7 +208,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void removeUsernameIsCorrect() throws Exception {
+    public void removeUsernameIsCorrect() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -226,7 +227,7 @@ public class UsernameDatabaseTest {
     
     
     @Test
-    public void removeUsernameCatchesErrors1() throws Exception {
+    public void removeUsernameCatchesErrors1() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -237,7 +238,7 @@ public class UsernameDatabaseTest {
     //SearchUserIdInformation tests
     
     @Test
-    public void searchUserIdWorks() throws Exception {
+    public void searchUserIdWorks() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -249,7 +250,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void searchUserIdIsCorrect() throws Exception {
+    public void searchUserIdIsCorrect() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -267,7 +268,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void searchUserIdCatchesError1() throws Exception {
+    public void searchUserIdCatchesError1(){
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -278,7 +279,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void searchUserIdCatchesError2() throws Exception {
+    public void searchUserIdCatchesError2() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -287,7 +288,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void searchUserIdCatchesError3() throws Exception {
+    public void searchUserIdCatchesError3() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -303,7 +304,7 @@ public class UsernameDatabaseTest {
     //UserPasswordCheck tests
     
     @Test
-    public void userPasswordCheckWorks() throws Exception {
+    public void userPasswordCheckWorks() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -315,7 +316,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void userPasswordCheckIsCorrect() throws Exception {
+    public void userPasswordCheckIsCorrect() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -333,7 +334,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void userPasswordCatchesErros1() throws Exception {
+    public void userPasswordCatchesErros1() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -347,7 +348,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void userPasswordCatchesErrors2() throws Exception {
+    public void userPasswordCatchesErrors2() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -356,7 +357,7 @@ public class UsernameDatabaseTest {
     }
     
     @Test
-    public void userPasswordCatchesErrors3() throws Exception {
+    public void userPasswordCatchesErrors3() {
         FileManagerInterface dirCreator = new FileManager();
         dirCreator.createStandardDirectory();
         UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
@@ -372,6 +373,111 @@ public class UsernameDatabaseTest {
         assertEquals(false, wrongUsernameCheck);
         test.removeUsernameDatabase();
     }
+    
+    // searchUsername Tests
+    
+    @Test
+    public void searchUserPrivilage() {
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
+        test.createUsernameDatabase();
+        test.addUserInformation("Test","Test", "Test");
+        String givenPrivilage = test.searchUsernamePrivilage("Test");
+        assertEquals("Test", givenPrivilage);
+        test.removeUsernameDatabase();
+    }
+    @Test
+    public void searchUserPrivilageIsCorrect() {
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
+        test.createUsernameDatabase();
+        test.addUserInformation("Test1","Test1", "Test1");
+        test.addUserInformation("Test2","Test2", "Test2");
+        test.addUserInformation("Test3","Test3", "Test3");
+        String givenPrivilage1 = test.searchUsernamePrivilage("Test1");
+        assertEquals("Test1", givenPrivilage1);
+        String givenPrivilage2 = test.searchUsernamePrivilage("Test2");
+        assertEquals("Test2", givenPrivilage2);
+        String givenPrivilage3 = test.searchUsernamePrivilage("Test3");
+        assertEquals("Test3", givenPrivilage3);
+        test.removeUsernameDatabase();
+    }
+    @Test
+    public void searchUserPrivilageErrors1() {
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
+        test.createUsernameDatabase();
+        test.addUserInformation("Test","Test", "Test");
+        String isNotFound = test.searchUsernamePrivilage("Test2");
+        assertEquals("null", isNotFound); 
+        test.removeUsernameDatabase();
+    }
+    @Test
+    public void searchUserPrivilageErrors2() {
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
+        String isNotFound = test.searchUsernamePrivilage("Test");
+        assertEquals("null", isNotFound); 
+    }
+    
+    // Show database as a list tests
+    
+    @Test
+    public void databaseAsAListWorks() {
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
+        test.createUsernameDatabase();
+        test.addUserInformation("Test", "Test", "Test");
+        List<String> givenList = test.showDatabaseAsAList();
+        assertEquals("1/Test/Test", givenList.get(0));
+        test.removeUsernameDatabase();
+    }
+    
+    @Test
+    public void databaseAsAListIsCorrect() {
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
+        test.createUsernameDatabase();
+        test.addUserInformation("Test1", "Test1", "Test1");
+        test.addUserInformation("Test2", "Test2", "Test2");
+        test.addUserInformation("Test3", "Test3", "Test3");
+        List<String> givenList = test.showDatabaseAsAList();
+        assertEquals("1/Test1/Test1", givenList.get(0));
+        assertEquals("2/Test2/Test2", givenList.get(1));
+        assertEquals("3/Test3/Test3", givenList.get(2));
+        test.removeUsernameDatabase();
+    }
+    
+    @Test
+    public void databaseAsAListCatchesErrors1() {
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
+        test.createUsernameDatabase();
+        List<String> noList = test.showDatabaseAsAList();
+        assertEquals("[]",noList.toString());
+        test.removeUsernameDatabase();
+    }
+    
+    @Test
+    public void databaseAsAListCatchesErrors2() {
+        FileManagerInterface dirCreator = new FileManager();
+        dirCreator.createStandardDirectory();
+        UsernameInterface test = new UsernameDatabase(dirCreator,"Test","UsernameDatabase");
+        List<String> noList = test.showDatabaseAsAList();
+        assertEquals("[]",noList.toString());
+        test.removeUsernameDatabase();
+    }
+    
+    
+    
+    
     
     
      

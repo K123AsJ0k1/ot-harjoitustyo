@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assets;
+package filelogic;
+import assets.Admin;
 import domain.FileManagerInterface;
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 /** config tiedoston luomisesssa käytetty olio.
  */
-public class Configuration {
+public class FileConfig {
     String mode;
     String folderName;
     String usenameDName;
@@ -25,7 +26,7 @@ public class Configuration {
     List<Admin> adminList;
     /** Olion konstuktori.
     */
-    public Configuration() {
+    public FileConfig() {
         this.mode = "null";
         this.folderName = "databases";
         this.usenameDName = "UsernameDatabase";

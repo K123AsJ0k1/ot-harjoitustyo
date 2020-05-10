@@ -5,7 +5,7 @@
  */
 package service;
 import assets.Admin;
-import assets.Configuration;
+import filelogic.FileConfig;
 import uilogic.UiAbility;
 import uilogic.UiUser;
 import uilogic.UiMainTransition;
@@ -24,7 +24,7 @@ public class UiLogicCore {
     ScenePlayer scenePlayer;
     DaoPlayer daoPlayer;
     TextPlayer textPlayer;
-    Configuration configuration;
+    FileConfig configuration;
     User user;
     Parameters parameters;
     FileManagerInterface fileManager;
@@ -41,7 +41,7 @@ public class UiLogicCore {
         this.scenePlayer = scenePlayer;
         this.textPlayer = new TextPlayer();
         fileManager = new FileManager();
-        configuration = new Configuration();
+        configuration = new FileConfig();
     }
     
     /** Käynnistää ytimen.
@@ -191,7 +191,7 @@ public class UiLogicCore {
     public UiMainSupport getUiSupportLogic() {
         return this.uiSupportLogic;
     }
-    public Configuration getConfiguration() {
+    public FileConfig getConfiguration() {
         return this.configuration;
     }
 

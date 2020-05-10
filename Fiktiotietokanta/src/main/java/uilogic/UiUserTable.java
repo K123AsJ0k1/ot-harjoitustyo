@@ -5,7 +5,7 @@
  */
 package uilogic;
 
-import assets.UserTable;
+import tables.UserTable;
 import domain.UsernameInterface;
 import java.util.ArrayList;
 import java.util.List;

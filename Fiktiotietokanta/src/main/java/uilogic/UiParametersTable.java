@@ -5,11 +5,11 @@
  */
 package uilogic;
 
-import assets.ClassTable;
-import assets.DescriptionTable;
-import assets.NameTable;
-import assets.RealityTable;
-import assets.RequrimentTable;
+import tables.ClassTable;
+import tables.DescriptionTable;
+import tables.NameTable;
+import tables.RealityTable;
+import tables.RequrimentTable;
 import domain.UsernameInterface;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,10 +5,10 @@
  */
 package mainscenes;
 
-import assets.ClassTable;
-import assets.DescriptionTable;
-import assets.NameTable;
-import assets.RequrimentTable;
+import tables.ClassTable;
+import tables.DescriptionTable;
+import tables.NameTable;
+import tables.RequrimentTable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;

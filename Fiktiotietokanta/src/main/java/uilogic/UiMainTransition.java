@@ -5,7 +5,7 @@
  */
 package uilogic;
 
-import assets.Configuration;
+import filelogic.FileConfig;
 import assets.User;
 import assets.Parameters;
 import java.util.List;
@@ -120,7 +120,7 @@ public class UiMainTransition {
      * @param primaryStage käyttöliittymän antama stage.
      * @param configuration antaa sovelluksen asennuksen.
      */
-    public void fromAbilityMenuToMainMenu(Stage primaryStage, Configuration configuration) {
+    public void fromAbilityMenuToMainMenu(Stage primaryStage, FileConfig configuration) {
         if (configuration.getMode().equals("Public")) {
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(scenePlayer.getPublicMainMenu().getMainMenuScene());
@@ -143,7 +143,7 @@ public class UiMainTransition {
      * @param primaryStage käyttöliittymän antama stage.
      * @param configuration antaa sovelluksen asennuksen.
      */
-    public void fromProfileMenuToMainMenu(Stage primaryStage, Configuration configuration) {
+    public void fromProfileMenuToMainMenu(Stage primaryStage, FileConfig configuration) {
         if (configuration.getMode().equals("Public")) {
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(scenePlayer.getPublicMainMenu().getMainMenuScene());
@@ -174,7 +174,7 @@ public class UiMainTransition {
      * @param primaryStage käyttöliittymän antama stage.
      * @param configuration antaa sovelluksen asennuksen.
      */
-    public void fromAdminMenuToMainMenu(Stage primaryStage, Configuration configuration) {
+    public void fromAdminMenuToMainMenu(Stage primaryStage, FileConfig configuration) {
         if (configuration.getMode().equals("Public")) {
             primaryStage.setTitle("Main menu");
             primaryStage.setScene(scenePlayer.getPublicMainMenu().getMainMenuScene());

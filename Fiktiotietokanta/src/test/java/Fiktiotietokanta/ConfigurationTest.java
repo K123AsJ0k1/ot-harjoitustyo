@@ -5,7 +5,7 @@
  */
 package Fiktiotietokanta;
 
-import assets.Configuration;
+import filelogic.FileConfig;
 import domain.FileManagerInterface;
 import filelogic.FileManager;
 import org.junit.After;

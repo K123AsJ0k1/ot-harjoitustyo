@@ -51,10 +51,11 @@
                     <excludes>
                         <exclude>ui/*</exclude>
                         <exclude>main/*</exclude>
-                        <exclude>installationscenes/*</exclude>
-                        <exclude>programscenes/*</exclude>
+                        <exclude>installscenes/*</exclude>
+                        <exclude>mainscenes/*</exclude>
                         <exclude>uilogic/*</exclude>
                         <exclude>service/*</exclude>
+                        <exclude>tables/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

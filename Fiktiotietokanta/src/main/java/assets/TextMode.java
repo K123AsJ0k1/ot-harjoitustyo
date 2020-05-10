@@ -7,12 +7,12 @@ package assets;
 
 /** DaoSettingsScenejen käyttämä olio.
  */
-public class TextAreaMode {
+public class TextMode {
     
     String textMode;
     /** Olion konstruktori.
     */
-    public TextAreaMode() {
+    public TextMode() {
         textMode = "";
     }
     

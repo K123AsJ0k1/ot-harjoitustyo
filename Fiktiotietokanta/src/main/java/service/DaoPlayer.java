@@ -5,7 +5,7 @@
  */
 package service;
 
-import assets.Configuration;
+import filelogic.FileConfig;
 import dao.AbilityDatabase;
 import dao.ClassDatabase;
 import dao.DescriptionDatabase;
@@ -33,7 +33,7 @@ public class DaoPlayer {
      * @param fileManager antaa tarvitun tiedosto polun.
      * @param configuratio antaa tarvitut asetus tiedot.
     */
-    public DaoPlayer(FileManagerInterface fileManager, Configuration configuratio) {
+    public DaoPlayer(FileManagerInterface fileManager, FileConfig configuratio) {
         fileManager.createModifiedDirectory(configuratio.getFolderName());
         usernameDatabase = new UsernameDatabase(fileManager, "Normal", configuratio.getUsernameDName());
         classDatabase = new ClassDatabase(fileManager, "Normal", configuratio.getClassDName());

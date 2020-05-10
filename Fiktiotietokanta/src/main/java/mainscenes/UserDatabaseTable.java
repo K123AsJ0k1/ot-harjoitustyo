@@ -5,7 +5,7 @@
  */
 package mainscenes;
 
-import assets.UserTable;
+import tables.UserTable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;

@@ -5,8 +5,8 @@
  */
 package uilogic;
 
-import assets.Configuration;
-import assets.TextAreaMode;
+import filelogic.FileConfig;
+import assets.TextMode;
 import domain.FileManagerInterface;
 import domain.FileWriterInterface;
 import javafx.stage.Stage;
@@ -35,7 +35,7 @@ public class UiInstallTransitions {
      * @param primaryStage käyttöliittmän stage.
      * @param configuration annetut asetukset.
      */
-    public void fromWelcomeToDaoSettings(Stage primaryStage, Configuration configuration) {
+    public void fromWelcomeToDaoSettings(Stage primaryStage, FileConfig configuration) {
         if (scenePlayer.getWelcome().getPublicMode().isSelected()) {
             configuration.setMode("Public");
             primaryStage.setTitle("Dao settings");
@@ -55,7 +55,7 @@ public class UiInstallTransitions {
      * @param configuration annetut asetukset.
      * @param textAreaMode tilanteen mukainen teksti tila.
      */
-    public void fromDaoSettingsToWelcome(Stage primaryStage, Configuration configuration, TextAreaMode textAreaMode) {
+    public void fromDaoSettingsToWelcome(Stage primaryStage, FileConfig configuration, TextMode textAreaMode) {
         if (configuration.getMode().equals("Public")) {
             configuration.setMode("");
             textAreaMode.setMode("");
@@ -82,7 +82,7 @@ public class UiInstallTransitions {
      * @param primaryStage käyttöliittmän stage.
      * @param textAreaMode annettu teksti tilanne.
      */
-    public void fromDaoSettingsToAdministratorSettings(Stage primaryStage, TextAreaMode textAreaMode) {
+    public void fromDaoSettingsToAdministratorSettings(Stage primaryStage, TextMode textAreaMode) {
         textAreaMode.setMode("");
         scenePlayer.getPrivateDaoSettings().getNameInput().clear();
         primaryStage.setTitle("Administrator settings");
@@ -111,7 +111,7 @@ public class UiInstallTransitions {
      * @param fileManager antaa tarviut tiedot.
      * @param fileWriter antaa tiedot ja luo config tiedoston.
      */
-    public void fromAdministratorToLogin(Stage primaryStage, UiLogicCore uiLogicCore, Configuration configuration, FileManagerInterface fileManager, FileWriterInterface fileWriter) {
+    public void fromAdministratorToLogin(Stage primaryStage, UiLogicCore uiLogicCore, FileConfig configuration, FileManagerInterface fileManager, FileWriterInterface fileWriter) {
         if (configuration.getAdminList().size() > 0) {
             fileWriter.saveTextAsAConfig(configuration.createConfigString(), fileManager);
             uiLogicCore.publicCoreSetup(configuration.getAdminList());
@@ -129,7 +129,7 @@ public class UiInstallTransitions {
      * @param fileManager antaa tarviut tiedot.
      * @param fileWriter antaa tiedot ja luo config tiedoston.
      */
-    public void fromDaoSettingsToMainMenu(Stage primaryStage, UiLogicCore uiLogicCore, Configuration configuration, FileManagerInterface fileManager, FileWriterInterface fileWriter) {
+    public void fromDaoSettingsToMainMenu(Stage primaryStage, UiLogicCore uiLogicCore, FileConfig configuration, FileManagerInterface fileManager, FileWriterInterface fileWriter) {
         fileWriter.saveTextAsAConfig(configuration.createConfigString(), fileManager);
         uiLogicCore.privateCoreSetup();
         primaryStage.setTitle("Main menu");
