@@ -30,10 +30,6 @@ Ohjelma voidaan suorittaa netbeansin vihreällä nappulalla Fiktiotietokannan ma
 
 **Testaus**
 
-Ohjelman testikäyttäjä ja salasana ovat
-
-```Tester```
-
 Testit suoritetaan komennolla 
 
 ```mvn test```
