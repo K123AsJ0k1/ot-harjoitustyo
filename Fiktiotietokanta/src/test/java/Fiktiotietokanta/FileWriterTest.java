@@ -23,14 +23,4 @@ import static org.junit.Assert.*;
  */
 public class FileWriterTest {
     
-    @Test
-    public void test() {
-        FileWriterInterface test = new FileWriter();
-        FileManagerInterface fileManager = new FileManager();
-        Configuration configTest = new Configuration();
-        configTest.setMode("Public");
-        test.saveTextAsAConfig(configTest.createConfigString(), fileManager);
-    }
-    
-    
 }

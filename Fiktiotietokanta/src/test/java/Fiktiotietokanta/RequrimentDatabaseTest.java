@@ -378,7 +378,7 @@ public class RequrimentDatabaseTest {
         test.createDatabase();
         test.addInformation("Test");
         List<String> givenList = test.showDatabaseAsAList();
-        assertEquals("Test",givenList.get(0));
+        assertEquals("1/Test",givenList.get(0));
         test.removeDatabase();
     }
     
@@ -392,9 +392,9 @@ public class RequrimentDatabaseTest {
         test.addInformation("Test2");
         test.addInformation("Test3");
         List<String> givenList = test.showDatabaseAsAList();
-        assertEquals("Test1",givenList.get(0));
-        assertEquals("Test2",givenList.get(1));
-        assertEquals("Test3",givenList.get(2));
+        assertEquals("1/Test1",givenList.get(0));
+        assertEquals("2/Test2",givenList.get(1));
+        assertEquals("3/Test3",givenList.get(2));
         test.removeDatabase();
     }
     
