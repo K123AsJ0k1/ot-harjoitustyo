@@ -52,31 +52,14 @@
 |4.5 |6 | Testien parantaminen | 
 |6.5 |8 | Projektin muokkaus |
 |7.5 |10 | Projektin muokkaus |
+|8.5 |10 | Asennus käyttöliittymän luonti |
+|9.5 |12 | Projektin muokkausta ja testausta |
+|10.5 |14 | Projektin valmistelua |
+|10.5 |   | Dokumentointi |
+
 
 - Tuntien yhteinen summa on 97.
 
-| Perusversion toiminnallisuus | Onko toimiva?| Milloin tehtiin valmiiksi |
-| ------------- |:-------------:|  -----:|     
-| Sovelluksen kirjautumiskäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
-| Tunnuksen luominen | On | 30.3 |
-| Tunnuksen vaatimukset | On | 30.3 |
-| Tunnuksella kirjautuminen | On | 30.3 |
-| Sovelluksen pääkäyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
-| Päävalikko | On | 31.3 |
-| Ominaisuushallinnan siirtyminen | On | 31.3 |
-| Profiilinhallinnan siirtyminen | On | 31.3 |
-| Uloskirjautumisen palautus kirjautumiseen | On | 31.3 |
-| Sovelluksen ominaisuushallinta käyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan |  |
-| Ominaisuushallinnan valikko | On | 7.4 |
-| Ominaisuuden lisäys tietokantaan | On | 7.4 |
-| Ominaisuuden poisto tietokannasta | On | 15.4 |
-| Siirtyminen takaisin päävalikkoon | On | 7.4 |
-| Sovelluksen profiilinhallinta käyttöliittymä | Toimii kokonaisuudessaan, mutta tulee todennäköisesti vielä muuttumaan | |
-| Profiilinhallinnan valikko | On | 31.3 |
-| Profiilin luominen | Perusidea toimii, mutta vaatii vielä muokkausta | 19.4 |
-| Tiedoston luominen profiilista | Perusidea toimii, mutta vaati vielä muokkausta | 19.4 |
-| Profiilin resetointi | On | 19.4 |
-| Siirtyminen takaisin päävalikkoon |On | 31.3 |
 
 
 
