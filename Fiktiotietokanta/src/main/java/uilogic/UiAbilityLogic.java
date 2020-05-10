@@ -39,7 +39,7 @@ public class UiAbilityLogic {
     }
 
     /**
-     * Lisää ominaisuuden tietokantaan
+     * Lisää ominaisuuden tietokantaan.
      *
      * @param usernameId käyttäjän id
      * @param textFieldClass saatu merkkijono.

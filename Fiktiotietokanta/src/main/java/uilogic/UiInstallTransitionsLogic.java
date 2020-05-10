@@ -51,9 +51,9 @@ public class UiInstallTransitionsLogic {
 
     /**
      * Mahdollistaa siirtymän dao asetus scenesta tervetuloa sceneen.
-     *
      * @param primaryStage käyttöliittmän stage.
      * @param configuration annetut asetukset.
+     * @param textAreaMode tilanteen mukainen teksti tila.
      */
     public void fromDaoSettingsToWelcome(Stage primaryStage, Configuration configuration, TextAreaMode textAreaMode) {
         if (configuration.getMode().equals("Public")) {

@@ -12,29 +12,37 @@ import javafx.stage.Stage;
 import service.ScenePlayer;
 import service.TextPlayer;
 
-/**
- *
- * @author niila
+/** Sovelluksen käyttöliittymän toimintaa tukeva hallitsija.
  */
 public class UiSupportLogic {
 
     ScenePlayer scenePlayer;
-
+    /** Konstuktori.
+     * @param scenePlayer antaa tarvitun viiteen.
+    */
     public UiSupportLogic(ScenePlayer scenePlayer) {
         this.scenePlayer = scenePlayer;
     }
-
+    /** Resetoi profiilin.
+     * @param primaryStage käyttöliittymän antama stage.
+    */
     public void resetProfile(Stage primaryStage) {
         this.scenePlayer.getCreateProfile().getProfileEditor().clear();
         this.scenePlayer.getCreateFile().getTextPresentation().setText("");
     }
-
+    /** Tallentaa profiilin tiedostoksi.
+     * @param primaryStage käyttöliittymän antama stage.
+     * @param textPlayer tarvittu teksti hallitsija.
+    */
     public void saveProfileAsAFile(Stage primaryStage, TextPlayer textPlayer) {
         String text = this.scenePlayer.getCreateProfile().getProfileEditor().getText().trim();
         this.scenePlayer.getCreateFile().getTextPresentation().setText(text);
         textPlayer.getFileWriterInterface().showSaveFileDialog(primaryStage, text);
     }
-
+    /** Lisää ominaisuuden ominaisuus tietokantaan.
+     * @param user antaa tarvittavat käyttäjä tiedot.
+     * @param uiAbilityLogic antaa tarvitun viiteen.
+    */
     public void addAbility(User user, UiAbilityLogic uiAbilityLogic) {
         scenePlayer.getAddAbilities().getErrorMessage().setText("");
         String textFieldClass = scenePlayer.getAddAbilities().getClassInput().getText().trim();
@@ -52,7 +60,10 @@ public class UiSupportLogic {
         scenePlayer.getAddAbilities().getRequrimentInput().clear();
         scenePlayer.getAddAbilities().getRealityInput().clear();
     }
-
+    /** Poistaa ominaisuuden ominaisuus tietokannasta.
+     * @param user antaa tarvittavat käyttäjä tiedot.
+     * @param uiAbilityLogic antaa tarvitun viiteen.
+    */
     public void removeAbility(User user, UiAbilityLogic uiAbilityLogic) {
         if (scenePlayer.getRemoveAbilities().getSelectionModel().getSelectedItems().size() > 0) {
             ObservableList selectedItems = scenePlayer.getRemoveAbilities().getSelectionModel().getSelectedItems();
@@ -69,42 +80,54 @@ public class UiSupportLogic {
             scenePlayer.getRemoveAbilities().getTableView().refresh();
         }
     }
-    
+    /** Poistaa luokka tietokannassa olevat tiedot.
+     * @param uiAbilityLogic antaa tarvitun viiteen.
+    */
     public void cleanClassDatabase(UiAbilityLogic uiAbilityLogic) {
-        for (String param:uiAbilityLogic.classDatabase.showDatabaseAsAList()) {
-             String[] table = param.split("/");
-             uiAbilityLogic.classDatabase.removeInformation(table[1]);
-        }      
+        for (String param : uiAbilityLogic.classDatabase.showDatabaseAsAList()) {
+            String[] table = param.split("/");
+            uiAbilityLogic.classDatabase.removeInformation(table[1]);
+        }
     }
-    
+    /** Poistaa nimi tietokannassa olevat tiedot.
+     * @param uiAbilityLogic antaa tarvitun viiteen.
+    */
     public void cleanNameDatabase(UiAbilityLogic uiAbilityLogic) {
-        for (String param:uiAbilityLogic.nameDatabase.showDatabaseAsAList()) {
-             String[] table = param.split("/");
-             uiAbilityLogic.nameDatabase.removeInformation(table[1]);
-        }  
+        for (String param : uiAbilityLogic.nameDatabase.showDatabaseAsAList()) {
+            String[] table = param.split("/");
+            uiAbilityLogic.nameDatabase.removeInformation(table[1]);
+        }
     }
-    
+    /** Poistaa selite tietokannassa olevat tiedot.
+     * @param uiAbilityLogic antaa tarvitun viiteen.
+    */
     public void cleanDescriptionDatabase(UiAbilityLogic uiAbilityLogic) {
-        for (String param:uiAbilityLogic.descriptionDatabase.showDatabaseAsAList()) {
-             String[] table = param.split("/");
-             uiAbilityLogic.descriptionDatabase.removeInformation(table[1]);
-        }  
+        for (String param : uiAbilityLogic.descriptionDatabase.showDatabaseAsAList()) {
+            String[] table = param.split("/");
+            uiAbilityLogic.descriptionDatabase.removeInformation(table[1]);
+        }
     }
-    
+    /** Poistaa vaatimus tietokannassa olevat tiedot.
+     * @param uiAbilityLogic antaa tarvitun viiteen.
+    */
     public void cleanRequrimentDatabase(UiAbilityLogic uiAbilityLogic) {
-        for (String param:uiAbilityLogic.requrimentDatabase.showDatabaseAsAList()) {
-             String[] table = param.split("/");
-             uiAbilityLogic.requrimentDatabase.removeInformation(table[1]);
-        }  
+        for (String param : uiAbilityLogic.requrimentDatabase.showDatabaseAsAList()) {
+            String[] table = param.split("/");
+            uiAbilityLogic.requrimentDatabase.removeInformation(table[1]);
+        }
     }
-    
+    /** Poistaa todellisuus tietokannassa olevat tiedot.
+     * @param uiAbilityLogic antaa tarvitun viiteen.
+    */
     public void cleanRealityDatabase(UiAbilityLogic uiAbilityLogic) {
-        for (String param:uiAbilityLogic.realityDatabase.showDatabaseAsAList()) {
-             String[] table = param.split("/");
-             uiAbilityLogic.realityDatabase.removeInformation(table[1]);
-        }  
+        for (String param : uiAbilityLogic.realityDatabase.showDatabaseAsAList()) {
+            String[] table = param.split("/");
+            uiAbilityLogic.realityDatabase.removeInformation(table[1]);
+        }
     }
-    
+    /** Poistaa käyttäjän tietokannassa olevat tiedot.
+     * @param uiUserTableLogic
+    */
     public void removeUserFromTable(UiUserTableLogic uiUserTableLogic) {
         if (scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems().size() > 0) {
             ObservableList selectedItems = scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems();
@@ -118,23 +141,30 @@ public class UiSupportLogic {
             scenePlayer.getUserDatabaseTable().getTableView().refresh();
         }
     }
-    
+    /** Resetoi parametrin ominaisuuden.
+     * @param parameters
+    */
     public void resetAbility(Parameters parameters) {
         parameters.setChoosenAbility("");
         parameters.setLeftOverParameters("");
         scenePlayer.getCreateProfile().getLeftParameterItem().setText("Ability parameters left:" + "");
-    }
-    
+    } 
+    /** Tarkastaa teksti alueen ominaisuuksien varalta.
+     * @param parameters tarkasteltava ominaisuus.
+     * @param textPlayer huolehtii tarkastuksesta.
+    */ 
     public void checkTextAreaForAbilities(Parameters parameters, TextPlayer textPlayer) {
-        parameters.setLeftOverParameters(textPlayer.getTextRefineryInterface().choosenAbilityIsFoundFromText(scenePlayer.getCreateProfile().getProfileEditor().getText(),parameters.getChosenAbility()));
+        parameters.setLeftOverParameters(textPlayer.getTextRefineryInterface().choosenAbilityIsFoundFromText(scenePlayer.getCreateProfile().getProfileEditor().getText(), parameters.getChosenAbility()));
         scenePlayer.getCreateProfile().getLeftParameterItem().setText("Ability parameters left:" + parameters.getLeftOverParameters());
     }
-    
+    /** Tarkastaa teksti alueen tiedot.
+     * @param textPlayer huolehtii tarkastuksesta.
+    */ 
     public void checkTextArea(TextPlayer textPlayer) {
-        scenePlayer.getCreateProfile().getLineCheckItem().setText("Text has different lines:"+textPlayer.getTextRefineryInterface().givenTextLineChecker(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
-        scenePlayer.getCreateProfile().getSpaceCheckItem().setText("Words have spaces between them:"+textPlayer.getTextRefineryInterface().givenTextLineHasSpaces(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
-        scenePlayer.getCreateProfile().getWordCountItem().setText("Current wordcount:"+textPlayer.getTextRefineryInterface().giveTextWordCount(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
-        scenePlayer.getCreateProfile().getCharacterCountItem().setText("Current charactercount:"+textPlayer.getTextRefineryInterface().giveCharacterCount(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
+        scenePlayer.getCreateProfile().getLineCheckItem().setText("Text has different lines:" + textPlayer.getTextRefineryInterface().givenTextLineChecker(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
+        scenePlayer.getCreateProfile().getSpaceCheckItem().setText("Words have spaces between them:" + textPlayer.getTextRefineryInterface().givenTextLineHasSpaces(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
+        scenePlayer.getCreateProfile().getWordCountItem().setText("Current wordcount:" + textPlayer.getTextRefineryInterface().giveTextWordCount(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
+        scenePlayer.getCreateProfile().getCharacterCountItem().setText("Current charactercount:" + textPlayer.getTextRefineryInterface().giveCharacterCount(scenePlayer.getCreateProfile().getProfileEditor().getText().trim()));
     }
 
 }

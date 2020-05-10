@@ -28,7 +28,7 @@ public class UiInstallSupportLogic {
     /**
      * Hakee tietokanta kansion nimen ja laittaa moodin Folderiksi.
      *
-     * @param configuration annettuu asetukset.
+     * @param configuration annetut asetukset.
      * @param textMode tilanteen mukainen teksti tila.
      */
     public void checkFolderName(Configuration configuration, TextAreaMode textMode) {
@@ -305,7 +305,7 @@ public class UiInstallSupportLogic {
      *
      * @param configuration annettuu asetukset.
      */
-    public void AddAdmin(Configuration configuration) {
+    public void addAdmin(Configuration configuration) {
         if (configuration.getMode().equals("Public")) {
             String givenUsername = scenePlayer.getAdministratorSettings().getUsernameArea().getText();
             String givenPassword = scenePlayer.getAdministratorSettings().getPasswordArea().getText();
