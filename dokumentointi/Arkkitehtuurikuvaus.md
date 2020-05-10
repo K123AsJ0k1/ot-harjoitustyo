@@ -10,11 +10,19 @@ Pakkaus main sisältää sovelluksen käynnistykseen tarvitun mainin, pakkaus ui
 
 # Käyttöliittymä
 
-Käyttöliittymä sisältää yksitoista erillistä näkymää 
+Käyttöliittymä jakautuu kahteen osaan, jotka ovat asennus näkymät
+
+- tervetuloa näkymä
+- julkinen dao asetus näkymä
+- yksityinen dao asetus näkymä
+- pääkäyttäjä asetus näkymä
+
+ja perusnäkymät 
 
 - kirjautuminen
 - uuden käyttäjän luominen
-- päävalikko
+- julkinen päävalikko
+- yksityinen päävalikko
 - ominaisuusvalikko
 - ominaisuuksien lisäys
 - ominaisuuksien poistaminen
@@ -22,13 +30,13 @@ Käyttöliittymä sisältää yksitoista erillistä näkymää
 - profiilin luonti 
 - ominaisuuden valitseminen
 - tiedoston luonti
-- pääkäyttäjä näkymä
+- pääkäyttäjä valikko
+- parametri lista 
+- käyttäjä lista
 
-jokainen näistä on toteutettu omana Scene-oliona. Näkymistä yksi kerrallaan on näkyvänä eli sijoitettuna sovelluksena stageen. Käyttöliittymä on rakennettu ohjelmallisesti luokassa ui.UserInterface.
+jokainen näistä on toteutettu omana Scene-oliona, jotka tuodaan hyödyntämällä scenePlayeriä. Näkymistä yksi kerrallaan on näkyvänä eli sijoitettuna sovelluksena stageen. Käyttöliittymä on toiminallisesti luokassa ui.UserInterface ja taas jokainen toiminta suoritetaan uiLogic pakkauksen sisältämissä luokissa.
 
-Käyttöliittymä tullaan eristämään kokonaan sovelluslogiikasta, eli käyttöliittymä kutsuu tilanteeseen sopivia metodeja ja asettaa tarvitut parametrit niihin.
-
-
+Käyttöliittymä itsessään vastaa setOnAction toiminnasta, kun taas näiden aiheuttamasta toiminnan viestimisestä huolehtivat UiInstallCore ja UiLogicCore, jossa varsinaiset toimet aiheuttavat uilogic pakkauksen luokat ja niiden viestiminen ScenePlayer,DaoPlayer ja TextPlayerin kanssa.
 
 # Sovelluslogiikka
 
