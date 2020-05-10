@@ -14,9 +14,11 @@ DAO luokkien testaamisessa käytety kansio on nimeltään projectdatabases ja se
 
 **Testauskattavuus**
 
-Käyttöliittymäkerrosta lukuunottamatta sovelluksen testauksen rivikattavuus 
+Käyttöliittymä kerrosta ja käyttöliittymä logiikkaa lukuunottamatta sovelluksen testauksen rivikattavuus on 95 prosenttia ja haarautumiskattavuus on 93 prosenttia
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Testikuva.PNG)
+
+Testaamatta jäivitä tiedostojen toiminta, sovelluslogiikan UiInstallCore ja UiLogicCore ja kaikki Playerit.
 
 # Järjestelmätestaus
 
@@ -24,6 +26,19 @@ Sovelluksen järjestelmätestaus on tehty manuaalisesti.
 
 **Asennus ja konfigurointi**
 
+Sovellus on testattu windows ympäristössä siten, että sovellus onnistui luomaan asennuksen kautta tarvitun config tiedoston, tietokanta folderin ja tietokannat.
+
+Sovellus on testattu tilanteessa, jossa tietokanta folder on poistettu ja sovellus hyödyntää config tiedostoa uuden folderin ja tietokantojen luomiseen.
+
+
 **Toiminnallisuudet**
 
+Määritellydokumentin ja käyttöohjeen toiminnallisuudet on käyty läpi ja jokaisessa tekstikentässä on yritetty syöttää virheellisiä arvoja ja myös tyhjiä arvoja. 
+
 # Sovellukseen jääneet laatuongelmat 
+
+Sovelluksen käyttöliittymä on kömpelö tilanteissa
+
+- Listojen tarkastelussa, kun listassa on enemmän kuin 20 riviä.
+
+- Profiilin edintoiti työkalut voivat olla kömpelöitä ja välillä puutteellisia
