@@ -55,10 +55,10 @@
 |8.5 |10 | Asennus käyttöliittymän luonti |
 |9.5 |12 | Projektin muokkausta ja testausta |
 |10.5 |14 | Projektin valmistelua |
-|10.5 |   | Dokumentointi |
+|10.5 |   | Projektin dokumentoinin tekoa |
 
 
-- Tuntien yhteinen summa on 97.
+- Tuntien yhteinen summa on 157.
 
 
 
