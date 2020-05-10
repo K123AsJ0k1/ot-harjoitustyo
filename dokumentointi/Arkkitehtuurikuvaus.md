@@ -2,11 +2,11 @@
 
 # Rakenne 
 
-Ohjelma on rakenteeltaan nelitasoinen, ja koodin pakkausrakenne on seuraava:
+Ohjelma on rakenteeltaan viisitasoinen, ja koodin pakkausrakenne on seuraava:
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Pakkausrakenne.png)
 
-Pakkaus main sisältää sovelluksen käynnistykseen tarvitun mainin, pakkaus ui sisältää tarvitun käyttöliittymä koodin, pakkaus domain sisältää tarvittavat rajapinnat ja pakkaus dao sisältää käyttöliittymän tarvitsemat tietokannat. Lisäksi on huomioitava se, että pakkaus ui siirtää sovellusloogikan pakkauksille scene, service ja textlogic, missä scene pakkaus sisältää osan käyttöliittmän scene olioista, service sisältää osan sovelluslogiikasta ja textlogic sisältää käyttöliittymän tekstieditori sovelluslogiikan.
+Pakkaus main sisältää sovelluksen käynnistykseen tarvitun mainin, pakkaus ui sisältää käyttöliittymän tarvitsemat setOnAction tapahtumat ja käynnistämis ja sulkemistapahtumat, pakkaus service sisältää tarvittavat käyttöliittymä scenet, logiikan ja muun toiminallisuuden, pakkaus domain sisältää servicen tarvitsemat rajapinnat ja pakkaus dao sisältää sovelluksen tarvitsemat tietokannat. Lisäksi on huomattavaa se, että service hyödyntää olioita sisältävää assets pakkausta, asennus näkymä pakkaausta installscenes pakkausta, perusnäkymä pakkausta mainscenes, lista pakkausta tables, käyttöliittymä logiikkaa sisältävää uilogic pakkausta, tiedosto logiikkaa sisältävää filelogic pakkausta ja teksti logiikkaa sisältävää textlogic pakkausta.
 
 # Käyttöliittymä
 
