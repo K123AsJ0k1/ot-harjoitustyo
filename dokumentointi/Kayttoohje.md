@@ -2,6 +2,12 @@
 
 Lataa joko koko repositori tai valitse uusin release
 
+# Ohjelman käynnistäminen
+
+Ohjelma voidaan käynnistää joko luomalla jar mvn Packagen avulla,hakemalla otettu release tai komennolla
+
+```Java -jar (releasen nimi).jar```
+
 # Konfigurointi
 
 Käynnistäessä ohjelman ilmestyy seuraava tervetuloa näkymä:
@@ -30,11 +36,6 @@ Dao asetus näkymä toimii samanlaisesti kuin julkisen tilan asennuksessa, mutta
 
 ![alt text](https://github.com/K123AsJ0k1/ot-harjoitustyo/blob/master/dokumentointi/kuvat/Sovelluksen%20p%C3%A4%C3%A4valikko%20private.PNG)
 
-# Ohjelman käynnistäminen
-
-Ohjelma voidaan käynnistää joko luomalla jar mvn Packagen avulla,hakemalla otettu release tai komennolla
-
-```Java -jar (releasen nimi).jar```
 
 # Kirjautuminen
 
