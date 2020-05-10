@@ -105,6 +105,16 @@ public class UiSupportLogic {
         }  
     }
     
+    public void removeUserFromTable(UiUserTableLogic uiUserTableLogic) {
+        if (scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems().size() > 0) {
+            ObservableList selectedItems = scenePlayer.getUserDatabaseTable().getSelectionModel().getSelectedItems();
+            int removedIndex = scenePlayer.getUserDatabaseTable().getSelectionModel().getFocusedIndex();
+            uiUserTableLogic.removeUser(selectedItems);
+            scenePlayer.getUserDatabaseTable().getTableView().getItems().remove(removedIndex);
+            scenePlayer.getUserDatabaseTable().getTableView().refresh();
+        }
+    }
+    
     public void resetAbility(Parameters parameters) {
         parameters.setChoosenAbility("");
         parameters.setLeftOverParameters("");

@@ -9,6 +9,7 @@ import assets.UserTable;
 import domain.UsernameInterface;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 import service.DaoPlayer;
 
 /**
@@ -35,6 +36,11 @@ public class UiUserTableLogic {
             returnedList.add(addedUser);
         }
         return returnedList;
+    }
+    
+    public void removeUser(ObservableList selectedItems) {
+        String[] givenUserTableSplit = selectedItems.get(0).toString().split("/");
+        usernameDatabase.removeUserInformation(givenUserTableSplit [1]);
     }
     
 }

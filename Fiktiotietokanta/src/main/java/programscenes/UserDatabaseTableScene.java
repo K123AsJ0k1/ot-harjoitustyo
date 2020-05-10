@@ -24,18 +24,19 @@ public class UserDatabaseTableScene {
     
     Scene useDatabaseTable;
     Button returnButton;
+    Button removeButton;
     TableView tableview;
+    TableView.TableViewSelectionModel<UserTable> selectionModel;
     
     public UserDatabaseTableScene() {
         VBox layout = new VBox();
 
-        Label lable = new Label("List of abilities you have created");
-
         HBox buttonLayout = new HBox();
 
         this.returnButton = new Button("Return");
+        this.removeButton = new Button("Remove user");
         
-        buttonLayout.getChildren().addAll(this.returnButton);
+        buttonLayout.getChildren().addAll(this.returnButton,this.removeButton);
         this.tableview = new TableView();
 
         TableColumn<String, UserTable> numberColumn = new TableColumn<>("Id");
@@ -47,11 +48,13 @@ public class UserDatabaseTableScene {
         TableColumn<String, UserTable> privilageColumn = new TableColumn<>("Privilage");
         privilageColumn.setCellValueFactory(new PropertyValueFactory<>("privilageIdentity"));
         
-
         this.tableview.getColumns().addAll(numberColumn, usernameColumn, privilageColumn);
-        layout.getChildren().addAll(lable, this.tableview, buttonLayout);
+        layout.getChildren().addAll(this.tableview, buttonLayout);
 
         layout.setPrefSize(200, 400);
+        
+        this.selectionModel = this.tableview.getSelectionModel();
+        this.selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
         this.useDatabaseTable = new Scene(layout);
     }
@@ -64,8 +67,16 @@ public class UserDatabaseTableScene {
         return this.returnButton;
     }
     
+    public Button getRemoveButton() {
+        return this.removeButton;
+    }
+    
     public TableView getTableView() {
         return this.tableview;
+    }
+    
+    public TableView.TableViewSelectionModel<UserTable> getSelectionModel() {
+        return this.selectionModel;
     }
     
 }

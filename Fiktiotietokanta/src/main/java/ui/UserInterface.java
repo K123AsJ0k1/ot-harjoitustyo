@@ -301,6 +301,10 @@ public class UserInterface extends Application {
            uiLogicCore.getUiTransitionLogic().fromParametersTableToAdminMenu(primaryStage);
         });
         
+        uiLogicCore.getScenePlayer().getUserDatabaseTable().getRemoveButton().setOnAction((event) ->{
+           uiLogicCore.getUiSupportLogic().removeUserFromTable(uiLogicCore.getUiUserTableLogic());
+        });
+        
         if (uiInstallCore.getFileManager().configFileExists()) {
             if (uiLogicCore.getConfiguration().getMode().equals("Public")) {
                 primaryStage.setTitle("Login screen");

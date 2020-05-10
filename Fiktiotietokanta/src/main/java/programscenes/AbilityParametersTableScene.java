@@ -35,8 +35,6 @@ public class AbilityParametersTableScene {
     public AbilityParametersTableScene() {
         VBox layout = new VBox();
 
-        Label lable = new Label("List of abilities you have created");
-
         HBox buttonLayout = new HBox();
 
         this.returnButton = new Button("Return");
@@ -88,13 +86,14 @@ public class AbilityParametersTableScene {
         
         this.realityTableview.getColumns().addAll(realityNumberColumn,realityNameColumn);
         
+        
         HBox tableViewLayout = new HBox();
         
         tableViewLayout.getChildren().addAll(this.classTableview,this.nameTableview,this.descriptionTableview,this.requrimentTableview,this.realityTableview);
         
-        layout.getChildren().addAll(lable, tableViewLayout, buttonLayout);
+        layout.getChildren().addAll(tableViewLayout, buttonLayout);
 
-        layout.setPrefSize(600, 400);
+        layout.setPrefSize(800, 400);
 
         abilityParametersTable = new Scene(layout);
     }
