@@ -32,7 +32,7 @@ public class CreateProfileScene {
     MenuItem characterCountItem;
     MenuItem lineCheckItem;
     MenuItem spaceCheckItem;
-    MenuItem abilityCheckItem;
+    
     Menu exitProfile;
     MenuItem exitWithSave;
     MenuItem exitWithoutSave;
@@ -56,9 +56,8 @@ public class CreateProfileScene {
         this.characterCountItem = new MenuItem("Current character count:0");
         this.lineCheckItem = new MenuItem("Text has different lines:");
         this.spaceCheckItem = new MenuItem("Words have spaces between them:");
-        this.abilityCheckItem = new MenuItem("The amount of abilities found in text:0");
         
-        contextMenu.getItems().addAll(this.chooseAbilityItem, this.leftParameterItem, this.resetAbilityItem, this.checkAreaItem, this.wordCountItem, this.characterCountItem, this.lineCheckItem, this.spaceCheckItem, this.abilityCheckItem);   
+        contextMenu.getItems().addAll(this.chooseAbilityItem, this.leftParameterItem, this.resetAbilityItem, this.checkAreaItem, this.wordCountItem, this.characterCountItem, this.lineCheckItem, this.spaceCheckItem);   
         this.exitProfile= new Menu("Exit profile creator");
 
         this.exitWithSave = new MenuItem("Save and return");
@@ -68,26 +67,14 @@ public class CreateProfileScene {
         
         Menu textTemplatesAreaProfileMenu = new Menu("Templates");
         
-        MenuItem editTextAreaProfileMenu1 = new MenuItem("Create unspecified template");
+        MenuItem editTextAreaProfileMenu1 = new MenuItem("Create unspefied template");
         MenuItem editTextAreaProfileMenu2 = new MenuItem("Person profile template");
         MenuItem editTextAreaProfileMenu3 = new MenuItem("Culture profile template");
-        MenuItem editTextAreaProfileMenu4 = new MenuItem("Object profile template");
-        MenuItem editTextAreaProfileMenu5 = new MenuItem("Place profile template");
-        MenuItem editTextAreaProfileMenu6 = new MenuItem("World profile template");
-        MenuItem editTextAreaProfileMenu7 = new MenuItem("Universe profile template");
         
-        textTemplatesAreaProfileMenu.getItems().addAll(editTextAreaProfileMenu1, editTextAreaProfileMenu2, editTextAreaProfileMenu3, editTextAreaProfileMenu4, editTextAreaProfileMenu5, editTextAreaProfileMenu6,editTextAreaProfileMenu7);
+        textTemplatesAreaProfileMenu.getItems().addAll(editTextAreaProfileMenu1, editTextAreaProfileMenu2, editTextAreaProfileMenu3);
         
-        Menu helpProfileMenu = new Menu("Help");
         
-        MenuItem helpProfileMenu1 = new MenuItem("How to use this editor");
-        MenuItem helpProfileMenu2 = new MenuItem("Quick tips");
-        MenuItem helpProfileMenu3 = new MenuItem("General questions answered");
-        
-        helpProfileMenu.getItems().addAll(helpProfileMenu1, helpProfileMenu2, helpProfileMenu3);
-          
-        menuBar.getMenus().addAll(this.exitProfile, textTemplatesAreaProfileMenu, helpProfileMenu);
-
+        menuBar.getMenus().addAll(this.exitProfile,textTemplatesAreaProfileMenu);
         menuRoot.setTop(menuBar);
 
         profileEditor = new TextArea();
@@ -150,10 +137,6 @@ public class CreateProfileScene {
     
     public MenuItem getSpaceCheckItem() {
         return this.spaceCheckItem;
-    }
-    
-    public MenuItem getAbilityCheckItem() {
-        return this.abilityCheckItem;
     }
     
     public Menu getExitProfile() {
