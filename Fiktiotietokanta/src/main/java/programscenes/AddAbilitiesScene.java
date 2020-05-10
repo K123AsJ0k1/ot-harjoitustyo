@@ -88,11 +88,7 @@ public class AddAbilitiesScene {
     public Label getErrorMessage() {
         return this.errorMessage;
     }
-
-    public void setErrorMessage(String givenError) {
-        this.errorMessage.setText(givenError);
-    }
-
+    
     public TextField getClassInput() {
         return this.classInput;
     }

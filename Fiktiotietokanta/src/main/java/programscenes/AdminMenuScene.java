@@ -68,8 +68,4 @@ public class AdminMenuScene {
         return this.errorMessage;
     }
 
-    public void setErrorMessage(String givenError) {
-        this.errorMessage.setText(givenError);
-    }
-
 }
