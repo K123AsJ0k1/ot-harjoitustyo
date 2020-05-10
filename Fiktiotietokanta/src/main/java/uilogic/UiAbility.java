@@ -5,7 +5,7 @@
  */
 package uilogic;
 
-import assets.Ability;
+import tables.AbilityTable;
 import domain.DatabaseInterface;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,8 +127,8 @@ public class UiAbility {
      * @param abilityList lista ominaisuuksia.
      * @return palauttaa koodin tilaa merkitsevän merkkijono.
      */
-    public List<Ability> addAbilitiesIntoList(List<String> abilityList) {
-        List<Ability> returnedList = new ArrayList<>();
+    public List<AbilityTable> addAbilitiesIntoList(List<String> abilityList) {
+        List<AbilityTable> returnedList = new ArrayList<>();
 
         for (String ability : abilityList) {
             String[] split = ability.split("/");
@@ -137,7 +137,7 @@ public class UiAbility {
             String descriptionIdentity = descriptionDatabase.searchInformationTextIdentity(split[2]);
             String requrimentIdentity = requrimentDatabase.searchInformationTextIdentity(split[3]);
             String realityIdentity = realityDatabase.searchInformationTextIdentity(split[4]);
-            Ability addedAbility = new Ability(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
+            AbilityTable addedAbility = new AbilityTable(classIdentity, nameIdentity, descriptionIdentity, requrimentIdentity, realityIdentity);
             returnedList.add(addedAbility);
         }
         return returnedList;

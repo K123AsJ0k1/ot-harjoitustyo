@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assets;
+package tables;
 
 /** Ability olio käyttöliittymälle.
  *
  * 
  */
-public class Ability {
+public class AbilityTable {
     
     private String classIdentity = null;
     private String nameIdentity = null;
@@ -25,7 +25,7 @@ public class Ability {
      * @param givenRequriment annettu vaatimus.
      * @param givenReality annettu todellisuus.
     */
-    public Ability(String givenClass, String givenName, String givenDescription, String givenRequriment, String givenReality) {
+    public AbilityTable(String givenClass, String givenName, String givenDescription, String givenRequriment, String givenReality) {
         this.classIdentity = givenClass;
         this.nameIdentity = givenName;
         this.descriptionIdentity = givenDescription;

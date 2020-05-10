@@ -14,7 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import assets.Ability;
+import tables.AbilityTable;
 
 /**
  * Sovelluksen käyttöliittymän poista ominaisuuksia lista scene.
@@ -25,7 +25,7 @@ public class RemoveAbilities {
     Button removeAbilityButton;
     Button returnButton;
     TableView tableview;
-    TableView.TableViewSelectionModel<Ability> selectionModel;
+    TableView.TableViewSelectionModel<AbilityTable> selectionModel;
 
     /**
      * Poista ominaisuuksia listan konstruktori.
@@ -43,19 +43,19 @@ public class RemoveAbilities {
         buttonLayout.getChildren().addAll(this.returnButton, this.removeAbilityButton);
         this.tableview = new TableView();
 
-        TableColumn<String, Ability> classColumn = new TableColumn<>("Class");
+        TableColumn<String, AbilityTable> classColumn = new TableColumn<>("Class");
         classColumn.setCellValueFactory(new PropertyValueFactory<>("classIdentity"));
 
-        TableColumn<String, Ability> nameColumn = new TableColumn<>("Name");
+        TableColumn<String, AbilityTable> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("nameIdentity"));
 
-        TableColumn<String, Ability> descriptionColumn = new TableColumn<>("Description");
+        TableColumn<String, AbilityTable> descriptionColumn = new TableColumn<>("Description");
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionIdentity"));
 
-        TableColumn<String, Ability> requrimentColumn = new TableColumn<>("Requriment");
+        TableColumn<String, AbilityTable> requrimentColumn = new TableColumn<>("Requriment");
         requrimentColumn.setCellValueFactory(new PropertyValueFactory<>("requrimentIdentity"));
 
-        TableColumn<String, Ability> realityColumn = new TableColumn<>("Reality");
+        TableColumn<String, AbilityTable> realityColumn = new TableColumn<>("Reality");
         realityColumn.setCellValueFactory(new PropertyValueFactory<>("realityIdentity"));
 
         this.tableview.getColumns().addAll(classColumn, nameColumn, descriptionColumn, requrimentColumn, realityColumn);
@@ -85,7 +85,7 @@ public class RemoveAbilities {
         return this.tableview;
     }
 
-    public TableView.TableViewSelectionModel<Ability> getSelectionModel() {
+    public TableView.TableViewSelectionModel<AbilityTable> getSelectionModel() {
         return this.selectionModel;
     }
 

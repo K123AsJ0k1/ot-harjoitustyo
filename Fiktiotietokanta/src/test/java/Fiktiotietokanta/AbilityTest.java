@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import assets.Ability;
+import tables.AbilityTable;
 
 /**
  *
@@ -21,7 +21,7 @@ public class AbilityTest {
     
     @Test
     public void construtorWorks() {
-        Ability test = new Ability("Test","Test","Test","Test","Test");
+        AbilityTable test = new AbilityTable("Test","Test","Test","Test","Test");
         String testClass = test.getClassIdentity();
         String testName = test.getNameIdentity();
         String testDescription = test.getDescriptionIdentity();
@@ -36,7 +36,7 @@ public class AbilityTest {
     
     @Test
     public void toStringIsCorrect() {
-        Ability test = new Ability("Test","Test","Test","Test","Test");
+        AbilityTable test = new AbilityTable("Test","Test","Test","Test","Test");
         String testToString = test.toString();
         assertEquals("Test/Test/Test/Test/Test", testToString);
     }
