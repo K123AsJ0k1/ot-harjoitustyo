@@ -2,7 +2,7 @@
 
 Ohjelmaa on testattu automatisoitujen yksikkö- ja integrointi testien avulla JUnitilla ja sekä manuaalisesti tapahtunein järjestelmä tason testein.
 
-# Yksikkö testaus
+# Yksikkö- ja integrointi testaus
 
 **Sovelluslogiikka**
 
