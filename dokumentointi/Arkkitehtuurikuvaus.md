@@ -54,8 +54,9 @@ Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterfa
 
 **DatabaseInterface**
 
-- public boolean createDatabase() throws Exception
+- public boolean createDatabase()
 - public boolean databaseExists()
+- public String getConnectionString()
 - public boolean addInformation(String information)
 - public boolean searchInformation(String infromation)
 - public Integer searchInformationId(String infromation)
@@ -63,16 +64,19 @@ Tietokannat keskustelevat käyttöliittymän kanssa rajapintojen DatabaseInterfa
 - public List<String> showDatabaseAsAList()
 - public List<String> showDatabaseAsARestrictedList(String infromation)
 - public boolean removeInformation(String information)
-- public boolean removeDatabase() throws Exception
+- public boolean removeDatabase()
   
 **UsernameInterface**
 
 - public boolean createUsernameDatabase() throws Exception
 - public boolean usernameDatabaseExists()
+- public String getConnectionString()
 - public boolean addUserInformation(String information, String secondInformation)
 - public boolean searchUserInformation(String information)
 - public boolean userPasswordCheck(String username, String password)
 - public Integer searchUsernameId(String information)
+- public String searchUsernamePrivilage(String information)
+- public List<String> showDatabaseAsAList()
 - public boolean removeUserInformation(String information)
 - public boolean removeDatabase() throws Exception
 
