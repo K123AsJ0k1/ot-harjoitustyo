@@ -51,6 +51,10 @@
                     <excludes>
                         <exclude>ui/*</exclude>
                         <exclude>main/*</exclude>
+                        <exclude>installationscenes/*</exclude>
+                        <exclude>programscenes/*</exclude>
+                        <exclude>uilogic/*</exclude>
+                        <exclude>service/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

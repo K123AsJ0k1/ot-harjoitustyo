@@ -11,9 +11,7 @@ import service.UiInstallCore;
 import service.UiLogicCore;
 
 /**
- * Käyttöliittymä.
- *
- * @author niila
+ * Sovelluksen käyttöliittymä toiminnallisuus.
  */
 public class UserInterface extends Application {
 
